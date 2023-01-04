@@ -1,0 +1,22 @@
+[user]
+{{if (eq .chezmoi.username "ayuzaka")}}
+  email = ayuzaka@vivaldi.net
+  name = ayuzaka
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB8J7Vbr1etXaBfRUx5zgC6vdtsarhM4YfM6vEkJVkw1 ayuzaka@vivaldi.net
+{{else}}
+  email = kazuya@melty.co.jp
+  name = kazuya
+  signingkey =
+{{end}}
+[init]
+  defaultBranch = main
+[ghq]
+  vcs = git
+  root = ~/workspace
+[rerere]
+	enabled = true
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+	template = ~/.gitmessage

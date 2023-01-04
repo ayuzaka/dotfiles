@@ -1,0 +1,6 @@
+set main-view = id date author:email-user commit-title:graph=yes,refs=yes
+bind main D !sh -c "git difftool %(commit)~ %(commit)"
+
+bind generic G none
+bind generic g move-first-line
+bind generic G move-last-line

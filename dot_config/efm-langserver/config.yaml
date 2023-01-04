@@ -1,0 +1,36 @@
+version: 2
+tools:
+  markdown-textlint: &markdown-textlint
+    lint-command: 'npx textlint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m [%trror/%r]'
+    root-markers:
+      - .textlintrc
+  markdown-markdownlint: &markdown-markdownlint
+    lint-command: 'npx markdownlint -s -c %USERPROFILE%\.markdownlint.json'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l %m'
+      - '%f:%l:%c %m'
+      - '%f: %l: %m'
+  stylelint-lint: &stylelint-lint
+    lint-command: 'npx --no-install stylelint --formatter unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: false
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m [%t%*[a-z]]'
+    root-markers:
+      - .stylelintrc.json
+    commands:
+      - command: 'npx --no-install stylelint --fix ${INPUT}'
+        title: 'stylelint fix'
+languages:
+  css:
+    - <<: *stylelint-lint
+      # typescriptreact:
+      #   - <<: *stylelint-lint
+  markdown:
+    - <<: *markdown-textlint
+    - <<: *markdown-markdownlint

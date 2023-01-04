@@ -1,0 +1,14 @@
+#--hidden
+#--color=always
+#--ignore-case
+#--line-number
+#--column
+#--no-heading
+
+# exclude file type
+-T
+lock
+
+# exclude path
+-g
+!.git/*

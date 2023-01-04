@@ -1,0 +1,143 @@
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8 " 保存時の文字コード
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
+set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
+set ambiwidth=double " □や○文字が崩れる問題を解決
+set statusline=%F
+set history=200
+set nobackup
+set noswapfile
+set autoread
+set hidden
+set showcmd
+set cursorline
+set virtualedit=onemore
+set smartindent
+set showmatch
+source $VIMRUNTIME/macros/matchit.vim
+set wildmenu
+set wildmode=list:longest
+set wildmode=full
+set nowrap
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+set belloff=all
+set hlsearch
+set nospell
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set incsearch
+set signcolumn=yes
+set backspace=indent,eol,start
+
+noremap <C-]> <esc>
+noremap! <C-]> <esc>
+
+syntax enable
+
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk
+
+filetype plugin indent on
+runtime macros/matchint.vim
+
+autocmd QuickFixCmdPost *grep* cwindow
+
+if executable('rg')
+  let &grepprg = 'rg --vimgrep --hidden --ignore-case'
+  set grepformat=%f:%l:%c:%m
+endif
+
+" keymap
+
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " 検索時のハイライトを消す
+xnoremap <leader>cc :<C-u>s/\%\V_\(.\)/\u\1/g<CR><C-l>
+xnoremap <leader>sc :<C-u>s/\%\V\([A-Z]\)/_\L\1/g<CR><C-l>
+
+if has('vim_starting')
+    " 挿入モード時に非点滅の縦棒タイプのカーソル
+    let &t_SI .= "\e[6 q"
+    " ノーマルモード時に非点滅のブロックタイプのカーソル
+    let &t_EI .= "\e[2 q"
+endif
+
+" 全角スペースを可視化
+augroup highlightIdegraphicSpace
+  autocmd!
+  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
+
+autocmd InsertLeave * set nopaste
+
+"""""""""""""""""""""
+" Plugin
+"""""""""""""""""""""
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'arcticicestudio/nord-vim'
+
+Plug 'Shougo/ddc.vim'
+Plug 'Shougo/ddc-ui-native'
+Plug 'Shougo/ddc-matcher_head'
+Plug 'Shougo/ddc-sorter_rank'
+
+Plug 'vim-skk/skkeleton'
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+Plug 'easymotion/vim-easymotion'
+
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'json', 'graphql', 'markdown', 'yaml', 'html']   }
+
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+
+Plug 'editorconfig/editorconfig-vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kamykn/spelunker.vim'
+
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+
+Plug 'vim-denops/denops.vim'
+
+call plug#end()
+
+colorscheme nord
+
+" custom command
+:source ~/.vim/command.vim
+
+" 各種設定の読み込み
+let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
+function! FindPlugin(name) abort
+  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
+endfunction
+command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
+
+runtime! vim_config/*.vim
+
+set re=0

@@ -1,0 +1,33 @@
+{
+  "title": "VS Code shortcuts",
+  "rules": [
+    {
+      "description": "control + ] to Esc",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "close_bracket",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "description": "Only for VS Code",
+              "bundle_identifiers": [
+                "com.microsoft.VSCode"
+              ]
+            }
+          ],
+          "to": [
+            {
+              "key_code": "escape"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

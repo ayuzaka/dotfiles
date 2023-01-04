@@ -1,0 +1,95 @@
+snippets:
+  - name: lsd
+    keyword: ls
+    snippet: lsd
+
+  - name: ls --long
+    keyword: ll
+    snippet: lsd -lh
+
+  - name: ls --all
+    keyword: la
+    snippet: lsd -lah
+
+  - name: mkdir
+    keyword: mkdir
+    snippet: mkdir -p
+
+  - name: clear
+    keyword: cl
+    snippet: clear
+
+  - name: aws-cli
+    keyword: aws
+    snippet: docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli
+
+  - name: ssh-add apple-use-keychain
+    keyword: ssh-add-apple
+    snippet: ssh-add --apple-use-keychain {{path}}
+
+  - name: docker image ls
+    keyword: dils
+    snippet: docker image ls
+
+  - name: docker container ls
+    keyword: dcls
+    snippet: docker container ls
+
+  - name: docker container stop
+    keyword: dcstop
+    snippet: docker container stop
+
+  - name: docker container exec
+    keyword: dc-exec
+    snippet: docker container exec -it
+
+  - name: python
+    keyword: py
+    snippet: python3
+
+  - name: weather in Hachioji
+    keyword: weather
+    snippet: curl https://wttr.in/Hachioji
+
+completions:
+  - name: git switch
+    patterns:
+      - "^git switch(?: .*)? $"
+    sourceCommand: "git branch | grep -v '*'"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'Git Switch > ' "
+    callback: "awk '{print $1}'"
+
+  - name: git branch delete
+    patterns:
+      - "^git branch -d(?: .*)? $"
+    sourceCommand: "git branch --merged | grep -v -E '(develop|master|main)'"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'Git Branch Delete > ' "
+    callback: "awk '{print $1}'"
+
+  - name: tmux attach
+    patterns:
+      - "^tmux a -t(?: .*)? $"
+    sourceCommand: "tmux ls"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'tmux attach > ' "
+    callback: "awk -F ':' '{print $1}'"
+
+  - name: docker (running) container operation
+    patterns:
+      - "^docker container exec -it(?: .*)? $"
+      - "^docker container stop(?: .*)? $"
+    sourceCommand: "docker container ls | grep -v CONTAINER | awk '{print $11}'"
+    options:
+      --prompt: "'docker container > ' "
+

@@ -1,0 +1,29 @@
+{
+  "title": "global keybind",
+  "rules": [
+    {
+      "description": "Esc to ABC",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "escape"
+          },
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "select_input_source": {
+                "input_source_id": "com.apple.keylayout.ABC",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

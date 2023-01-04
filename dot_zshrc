@@ -172,14 +172,6 @@ esac
 # -----------------------------
 eval "$(sheldon source)"
 
-# -----------------------------
-#  fzf
-# -----------------------------
-[[ ! -f ~/workspace/dotfiles/zsh-scripts/fzf.sh ]] || source ~/workspace/dotfiles/zsh-scripts/fzf.sh
-[[ ! -f ~/workspace/dotfiles/zsh-scripts/fzf-git.sh ]] || source ~/workspace/dotfiles/zsh-scripts/fzf-git.sh
-[[ ! -f ~/workspace/dotfiles/zsh-scripts/cdr.sh ]] || source ~/workspace/dotfiles/zsh-scripts/cdr.sh
-[[ ! -f ~/workspace/dotfiles/zsh-scripts/npm.sh ]] || source ~/workspace/dotfiles/zsh-scripts/npm.sh
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -226,3 +218,65 @@ if [[ -n $ZENO_LOADED ]]; then
   # (default: fzf-completion if exists; otherwise expand-or-complete)
   # export ZENO_COMPLETION_FALLBACK=expand-or-complete
 fi
+
+# scripts
+function fzf-down() {
+  fzf --height 50% "$@" --border
+}
+
+fghq() {
+  local projectDir=$(ghq list | fzf --preview "bat $(ghq root)/{}/README.md")
+  if [ "$projectDir" = "" ];then
+    return 0
+  fi
+
+  cd ~/workspace/$projectDir
+}
+
+autoload -Uz is-at-least
+if is-at-least 4.3.11
+then
+  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+  add-zsh-hook chpwd chpwd_recent_dirs
+  zstyle ':chpwd:*'      recent-dirs-max 500
+  zstyle ':chpwd:*'      recent-dirs-default yes
+  zstyle ':completion:*' recent-dirs-insert both
+fi
+
+# fzf-cdr
+alias cdd='fzf-cdr'
+function fzf-cdr() {
+    target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
+    target_dir=`echo ${target_dir/\~/$HOME}`
+    if [ -n "$target_dir" ]; then
+        cd $target_dir
+    fi
+}
+
+function nrun() {
+  if [ ! -e package.json ]; then
+    echo 'There is no package.json'
+    return 0
+  fi
+
+  if ! type jq > /dev/null; then
+    echo 'command not found: jq'
+    return 0
+  fi
+
+  local managerCommand
+  if [ -e package-lock.json ]; then
+    managerCommand='npm run'
+  elif [ -e yarn.lock ]; then
+    managerCommand='yarn'
+  else
+    echo 'There is no package manager'
+    return 0
+  fi
+
+  local scripts=`jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json 2>/dev/null || echo ''`
+  local selected=`echo $scripts | fzf | awk -F ' = ' '{ print $1 }'`
+
+  echo "$managerCommand $selected"
+  $(echo "$managerCommand $selected")
+}

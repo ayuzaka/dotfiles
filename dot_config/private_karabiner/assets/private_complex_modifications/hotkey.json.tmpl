@@ -188,8 +188,9 @@
         }
       ]
     },
+    {{if (eq .chezmoi.hostname "melty-kazuya")}}
     {
-      "description": "ctrl-8 to Spotify",
+      "description": "ctrl-8 to Asana",
       "manipulators": [
         {
           "type": "basic",
@@ -203,12 +204,13 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Spotify'"
+              "shell_command": "open -a 'Asana'"
             }
           ]
         }
       ]
     },
+    {{end}}
     {
       "description": "ctrl-9 to Finder",
       "manipulators": [

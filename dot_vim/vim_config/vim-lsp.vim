@@ -42,6 +42,6 @@ let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'es
 let g:lsp_settings = {
       \ 'efm-langserver': {
       \     'disabled': 0,
-      \     'allowlist': ['markdown','typescriptreact', 'css'],
+      \     'allowlist': ['markdown', 'typescript' ,'typescriptreact', 'css'],
       \   }
       \ }

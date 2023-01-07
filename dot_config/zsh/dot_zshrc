@@ -20,13 +20,17 @@ export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PATH=$PATH:$CARGO_HOME/bin
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
 export GOPATH="$XDG_DATA_HOME"/go
 export PATH=$PATH:$GOPATH/bin
 
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
-
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 # -----------------------------
 # General
@@ -121,6 +125,8 @@ ulimit -c 0
 # -----------------------------
 # 自動補完を有効にする
 autoload -Uz compinit ; compinit
+
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 # 補完の選択を楽にする
 zstyle ':completion:*' menu select

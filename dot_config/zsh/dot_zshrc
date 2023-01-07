@@ -5,6 +5,29 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# xdg-ninja
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+#export XDG_RUNTIME_DIR="/run/user/$UID"
+
+# ripgrep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
+
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PATH=$PATH:$CARGO_HOME/bin
+
+export GOPATH="$XDG_DATA_HOME"/go
+export PATH=$PATH:$GOPATH/bin
+
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+
 # -----------------------------
 # General
 # -----------------------------
@@ -134,7 +157,7 @@ setopt magic_equal_subst
 # History
 # -----------------------------
 # 基本設定
-HISTFILE=$HOME/.zsh-history
+HISTFILE="$XDG_STATE_HOME"/zsh/history
 HISTSIZE=100000
 SAVEHIST=1000000
 
@@ -174,29 +197,6 @@ eval "$(sheldon source)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# xdg-ninja
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
-#export XDG_RUNTIME_DIR="/run/user/$UID"
-
-# ripgrep
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
-
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
-
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export PATH=$PATH:$CARGO_HOME/bin
-
-export GOPATH="$XDG_DATA_HOME"/go
-export PATH=$PATH:$GOPATH/bin
-
-export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
-
-export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 
 # zeno.zsh
 export ZENO_HOME="$XDG_CONFIG_HOME/zeno"

@@ -8,6 +8,7 @@ tools:
       - '%f:%l:%c: %m [%trror/%r]'
     root-markers:
       - .textlintrc
+
   markdown-markdownlint: &markdown-markdownlint
     lint-command: 'npx markdownlint -s -c %USERPROFILE%\.markdownlint.json'
     lint-stdin: true
@@ -15,7 +16,9 @@ tools:
       - '%f:%l %m'
       - '%f:%l:%c %m'
       - '%f: %l: %m'
+
   stylelint-lint: &stylelint-lint
+    prefix: stylelint
     lint-command: 'npx --no-install stylelint --formatter unix --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: false
     lint-stdin: true
@@ -24,13 +27,40 @@ tools:
     root-markers:
       - .stylelintrc.json
     commands:
-      - command: 'npx --no-install stylelint --fix ${INPUT}'
-        title: 'stylelint fix'
+      - title: 'stylelint fix'
+        command: 'npx'
+        arguments:
+          - '-no-install'
+          - 'stylelint'
+          - '--fix'
+          - '${INPUT}'
+
+  eslint-lint: &eslint-lint
+    prefix: eslint
+    lint-command: 'npx --no-install eslint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    root-markers:
+      - package.json
+      - .eslintrc.js
+    command:
+      - title: 'eslint fix'
+        command: 'npx'
+        arguments:
+          - '--no-install'
+          - 'eslint'
+          - '--fix'
+          - '${INPUT}'
+
 languages:
+  typescript:
+    - <<: *eslint-lint
+    - <<: *stylelint-lint
+  typescriptreact:
+    - <<: *eslint-lint
+    - <<: *stylelint-lint
   css:
     - <<: *stylelint-lint
-      # typescriptreact:
-      #   - <<: *stylelint-lint
   markdown:
     - <<: *markdown-textlint
     - <<: *markdown-markdownlint

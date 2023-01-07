@@ -97,7 +97,6 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'tsuyoshicho/vim-efm-langserver-settings'
 
 Plug 'easymotion/vim-easymotion'
 

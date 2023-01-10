@@ -59,6 +59,8 @@ languages:
   typescriptreact:
     - <<: *eslint-lint
     - <<: *stylelint-lint
+  svelte:
+    - <<: *eslint-lint
   css:
     - <<: *stylelint-lint
   markdown:

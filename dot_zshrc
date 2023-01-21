@@ -53,7 +53,7 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Node (fnm)
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 
 # cdした際のディレクトリをディレクトリスタックへ自動追加
 setopt auto_pushd

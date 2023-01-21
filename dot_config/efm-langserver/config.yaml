@@ -61,6 +61,7 @@ languages:
     - <<: *stylelint-lint
   svelte:
     - <<: *eslint-lint
+    - <<: *stylelint-lint
   css:
     - <<: *stylelint-lint
   markdown:

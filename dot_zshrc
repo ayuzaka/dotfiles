@@ -275,6 +275,8 @@ function nrun() {
     managerCommand='npm run'
   elif [ -e yarn.lock ]; then
     managerCommand='yarn'
+  elif [ -e pnpm-lock.yaml ]; then
+    managerCommand='pnpm'
   else
     echo 'There is no package manager'
     return 0

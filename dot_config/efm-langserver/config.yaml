@@ -55,7 +55,6 @@ tools:
 languages:
   typescript:
     - <<: *eslint-lint
-    - <<: *stylelint-lint
   typescriptreact:
     - <<: *eslint-lint
     - <<: *stylelint-lint

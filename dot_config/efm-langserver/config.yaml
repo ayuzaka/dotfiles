@@ -51,6 +51,12 @@ tools:
           - 'eslint'
           - '--fix'
           - '${INPUT}'
+  shellcheck-lint: &shellcheck-lint
+    prefix: shellcheck
+    lint-command: 'shellcheck -f gcc -x -'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %t%*[^:]: %m [SC%n]'
 
 languages:
   typescript:
@@ -66,3 +72,5 @@ languages:
   markdown:
     - <<: *markdown-textlint
     - <<: *markdown-markdownlint
+  sh:
+    - <<: *shellcheck-lint

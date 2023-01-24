@@ -231,12 +231,12 @@ function fzf-down() {
 }
 
 fghq() {
-  local projectDir=$(ghq list | fzf --preview "bat $(ghq root)/{}/README.md")
+  projectDir=$(ghq list | fzf --preview "bat $(ghq root)/{}/README.md")
   if [ "$projectDir" = "" ];then
     return 0
   fi
 
-  cd ~/workspace/$projectDir
+  cd ~/workspace/"$projectDir" || return
 }
 
 autoload -Uz is-at-least
@@ -249,13 +249,12 @@ then
   zstyle ':completion:*' recent-dirs-insert both
 fi
 
-# fzf-cdr
-alias cdd='fzf-cdr'
-function fzf-cdr() {
-    target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
-    target_dir=`echo ${target_dir/\~/$HOME}`
+alias cdd='fzf_cdr'
+fzf_cdr() {
+    target_dir=$(cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf)
+    target_dir="${target_dir/\~/$HOME}"
     if [ -n "$target_dir" ]; then
-        cd $target_dir
+        cd "$target_dir" || return
     fi
 }
 
@@ -282,8 +281,8 @@ function nrun() {
     return 0
   fi
 
-  local scripts=`jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json 2>/dev/null || echo ''`
-  local selected=`echo $scripts | fzf | awk -F ' = ' '{ print $1 }'`
+  scripts=$(jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json 2>/dev/null || echo '')
+  selected=$(echo "$scripts" | fzf | awk -F ' = ' '{ print $1 }')
 
   if [ -n "$selected" ]; then
     echo "$managerCommand $selected"

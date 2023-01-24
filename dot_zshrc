@@ -285,8 +285,10 @@ function nrun() {
   local scripts=`jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json 2>/dev/null || echo ''`
   local selected=`echo $scripts | fzf | awk -F ' = ' '{ print $1 }'`
 
-  echo "$managerCommand $selected"
-  $(echo "$managerCommand $selected")
+  if [ -n "$selected" ]; then
+    echo "$managerCommand $selected"
+    $(echo "$managerCommand $selected")
+  fi
 }
 
 # tabtab source for packages

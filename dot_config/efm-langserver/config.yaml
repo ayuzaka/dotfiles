@@ -26,6 +26,8 @@ tools:
       - '%f:%l:%c: %m [%t%*[a-z]]'
     root-markers:
       - .stylelintrc.json
+      - .stylelintrc.js
+      - .stylelintrc.cjs
     commands:
       - title: 'stylelint fix'
         command: 'npx'

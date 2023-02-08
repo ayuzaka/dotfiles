@@ -1,8 +1,4 @@
 snippets:
-  - name: lsd
-    keyword: ls
-    snippet: lsd
-
   - name: ls --long
     keyword: ll
     snippet: lsd -lh

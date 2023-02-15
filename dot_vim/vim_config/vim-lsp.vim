@@ -34,6 +34,7 @@ let g:lsp_diagnostics_highlights_delay = 50
 let g:lsp_diagnostics_signs_delay = 50
 let g:lsp_diagnostics_signs_insert_mode_enabled = 0
 let g:lsp_diagnostics_virtual_text_delay = 50
+let lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_completion_documentation_delay = 40
 let g:lsp_document_highlight_delay = 100
 let g:lsp_document_code_action_signs_delay = 100

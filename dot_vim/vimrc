@@ -125,6 +125,7 @@ Plug 'lambdalisue/fern-git-status.vim'
 
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+Plug 'imsnif/kdl.vim'
 
 Plug 'vim-denops/denops.vim'
 

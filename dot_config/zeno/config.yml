@@ -89,7 +89,7 @@ completions:
       --height: "80%"
       --print0: true
       --preview-window: "down"
-      --prompt: "'tmux attach > ' "
+      --prompt: "'Zellij attach > ' "
 
   - name: docker (running) container operation
     patterns:

@@ -7,10 +7,6 @@ snippets:
     keyword: la
     snippet: lsd -lah
 
-  - name: mkdir
-    keyword: mkdir
-    snippet: mkdir -p
-
   - name: clear
     keyword: cl
     snippet: clear

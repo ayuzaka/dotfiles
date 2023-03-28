@@ -129,6 +129,8 @@ Plug 'imsnif/kdl.vim'
 
 Plug 'vim-denops/denops.vim'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 colorscheme nord

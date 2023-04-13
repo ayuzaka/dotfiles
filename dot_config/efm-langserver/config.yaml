@@ -65,11 +65,12 @@ languages:
     - <<: *eslint-lint
   typescriptreact:
     - <<: *eslint-lint
-    - <<: *stylelint-lint
   svelte:
     - <<: *eslint-lint
     - <<: *stylelint-lint
   css:
+    - <<: *stylelint-lint
+  scss:
     - <<: *stylelint-lint
   markdown:
     - <<: *markdown-textlint

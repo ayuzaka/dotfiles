@@ -57,6 +57,11 @@ tools:
   prettier: &prettier
     format-command: 'npx --no-install prettier --stdin-filepath ${INPUT}'
     format-stdin: true
+    root-markers:
+      - package.json
+      - .prettierrc
+      - .prettierrc.js
+      - .prettierrc.config.js
 
   shellcheck-lint: &shellcheck-lint
     prefix: shellcheck

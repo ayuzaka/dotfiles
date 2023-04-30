@@ -48,3 +48,13 @@ let g:lsp_settings = {
       \ }
 
 autocmd BufWritePre *.js,*.ts,*.tsx,*.css,*.scss,*.svelte call execute('LspDocumentFormatSync --server=efm-langserver')
+
+command! ESLintFix {
+  :!npx eslint --fix %
+  :LspStopServer
+}
+
+command! StylelintFix {
+  :!npx stylelint --fix %
+  :LspStopServer
+}

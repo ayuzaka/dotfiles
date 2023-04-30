@@ -53,6 +53,11 @@ tools:
           - 'eslint'
           - '--fix'
           - '${INPUT}'
+
+  prettier: &prettier
+    format-command: 'npx --no-install prettier --stdin-filepath ${INPUT}'
+    format-stdin: true
+
   shellcheck-lint: &shellcheck-lint
     prefix: shellcheck
     lint-command: 'shellcheck -f gcc -x -'
@@ -61,17 +66,25 @@ tools:
       - '%f:%l:%c: %t%*[^:]: %m [SC%n]'
 
 languages:
+  javascript:
+    - <<: *eslint-lint
+    - <<: *prettier
   typescript:
     - <<: *eslint-lint
+    - <<: *prettier
   typescriptreact:
+    - <<: *prettier
     - <<: *eslint-lint
   svelte:
     - <<: *eslint-lint
     - <<: *stylelint-lint
+    - <<: *prettier
   css:
     - <<: *stylelint-lint
+    - <<: *prettier
   scss:
     - <<: *stylelint-lint
+    - <<: *prettier
   markdown:
     - <<: *markdown-textlint
     - <<: *markdown-markdownlint

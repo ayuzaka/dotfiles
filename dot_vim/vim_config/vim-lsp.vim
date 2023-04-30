@@ -46,3 +46,5 @@ let g:lsp_settings = {
       \     'allowlist': ['markdown', 'javascript' , 'typescript' ,'typescriptreact', 'svelte' , 'css', 'scss', 'sh'],
       \   }
       \ }
+
+autocmd BufWritePre *.js,*.ts,*.tsx,*.css,*.scss,*.svelte call execute('LspDocumentFormatSync --server=efm-langserver')

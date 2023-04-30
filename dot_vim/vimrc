@@ -102,7 +102,6 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install --fronzen-lockfile --production', 'for': ['javascript', 'typescript', 'typescriptreact', 'svelte' , 'css', 'json', 'graphql', 'markdown', 'yaml', 'html']   }
 
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'

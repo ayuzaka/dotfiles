@@ -54,8 +54,6 @@ endif
 " keymap
 
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " 検索時のハイライトを消す
-xnoremap <leader>cc :<C-u>s/\%\V_\(.\)/\u\1/g<CR><C-l>
-xnoremap <leader>sc :<C-u>s/\%\V\([A-Z]\)/_\L\1/g<CR><C-l>
 
 if has('vim_starting')
     " 挿入モード時に非点滅の縦棒タイプのカーソル

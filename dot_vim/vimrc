@@ -73,6 +73,8 @@ augroup END
 
 autocmd InsertLeave * set nopaste
 
+autocmd BufNewFile,BufRead .env* set filetype=dotenv
+
 """""""""""""""""""""
 " Plugin
 """""""""""""""""""""

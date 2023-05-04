@@ -51,9 +51,11 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m
 endif
 
-" keymap
+" 検索時のハイライトを消す
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> 
 
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " 検索時のハイライトを消す
+" prettier
+nnoremap gp :silent %! npx prettier --stdin-filepath "%"<CR>
 
 if has('vim_starting')
     " 挿入モード時に非点滅の縦棒タイプのカーソル

@@ -108,6 +108,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+{{if (eq .chezmoi.hostname "melty-kazuya")}}
+Plug 'digitaltoad/vim-pug'
+{{end}}
 
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'

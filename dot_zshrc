@@ -249,6 +249,7 @@ then
   zstyle ':completion:*' recent-dirs-insert both
 fi
 
+# search ~/.chpwd-recent-dirs
 alias cdd='fzf_cdr'
 fzf_cdr() {
     target_dir=$(cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf)

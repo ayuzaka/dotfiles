@@ -39,10 +39,6 @@ snippets:
     keyword: py
     snippet: python3
 
-  - name: weather in Hachioji
-    keyword: weather
-    snippet: curl https://wttr.in/Hachioji
-
 completions:
   - name: git switch
     patterns:

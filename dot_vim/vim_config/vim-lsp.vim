@@ -24,6 +24,16 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+augroup vim_lsp_golangci_lint_langserver
+  au!
+  autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'golangci-lint-langserver',
+      \ 'cmd': {server_info->['golangci-lint-langserver']},
+      \ 'initialization_options': {'command': ['golangci-lint', 'run', '--enable-all', '--disable', 'lll', '--out-format', 'json', '--issues-exit-code=1']},
+      \ 'whitelist': ['go'],
+      \ })
+augroup END
+
 nmap <silent> fmt :LspDocumentFormat<CR>
 let g:lsp_signs_enabled = 1
 let g:lsp_document_code_action_signs_enabled = 0

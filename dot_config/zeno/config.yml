@@ -39,10 +39,6 @@ snippets:
     keyword: py
     snippet: python3
 
-  - name: move to trash
-    keyword: rm
-    snippet: mv {{file}} ~/.Trash
-
 completions:
   - name: git switch
     patterns:

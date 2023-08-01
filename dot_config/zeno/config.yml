@@ -11,6 +11,10 @@ snippets:
     keyword: cl
     snippet: clear
 
+  - name: trash
+    keyword: rm
+    snippet: trash
+
   - name: aws-cli
     keyword: aws
     snippet: docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli

@@ -39,6 +39,10 @@ snippets:
     keyword: py
     snippet: python3
 
+  - name: golangci-lint
+    keyword: golint
+    snippet: golangci-lint
+
 completions:
   - name: git switch
     patterns:

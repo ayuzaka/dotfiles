@@ -23,18 +23,6 @@ snippets:
     keyword: ssh-add-apple
     snippet: ssh-add --apple-use-keychain {{path}}
 
-  - name: docker image ls
-    keyword: dils
-    snippet: docker image ls
-
-  - name: docker container ls
-    keyword: dcls
-    snippet: docker container ls
-
-  - name: docker container stop
-    keyword: dcstop
-    snippet: docker container stop
-
   - name: docker container exec
     keyword: dc-exec
     snippet: docker container exec -it
@@ -95,6 +83,22 @@ completions:
     patterns:
       - "^docker container exec -it(?: .*)? $"
       - "^docker container stop(?: .*)? $"
-    sourceCommand: "docker container ls | grep -v CONTAINER | awk '{print $11}'"
+    sourceCommand: "docker container ls --format '{{.Names}}'"
     options:
       --prompt: "'docker container > ' "
+
+  - name: docker container operation
+    patterns:
+      - "^docker container rm(?: .*)? $"
+    sourceCommand: "docker container ls -a --format '{{.Names}}'"
+    options:
+      --prompt: "'docker container > ' "
+
+  - name: docker image operation
+    patterns:
+      - '^docker image rm(?: .*)? $'
+    sourceCommand: "docker image ls --format '{{.Repository}}:{{.Tag}}:{{.ID}}'"
+    options:
+      --prompt: "'docker image > ' "
+    callback: "awk -F ':' '{print $3}'"
+

@@ -180,29 +180,6 @@
         }
       ]
     },
-    {{if (eq .chezmoi.hostname "melty-kazuya")}}
-    {
-      "description": "ctrl-8 to Asana",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "8",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -a 'Asana'"
-            }
-          ]
-        }
-      ]
-    },
-    {{end}}
     {
       "description": "ctrl-9 to Finder",
       "manipulators": [

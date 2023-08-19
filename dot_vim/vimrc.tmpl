@@ -71,6 +71,11 @@ augroup highlightIdegraphicSpace
   autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
+augroup disableGitHubCopilot
+    autocmd!
+    autocmd BufRead,BufNewFile $HOME/workspace/atcoder-go/* execute ":Copilot disable"
+augroup END
+
 autocmd InsertLeave * set nopaste
 
 autocmd BufNewFile,BufRead .env* set filetype=dotenv

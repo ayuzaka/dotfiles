@@ -148,8 +148,9 @@ call plug#end()
 
 {{if (eq .chezmoi.hostname "melty-kazuya")}}
 colorscheme dogrun
-{{end}}
+{{else}}
 colorscheme nord
+{{end}}
 
 " custom command
 :source ~/.vim/command.vim

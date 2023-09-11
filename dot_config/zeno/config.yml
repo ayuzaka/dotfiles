@@ -106,3 +106,13 @@ completions:
       --prompt: "'docker image > ' "
     callback: "awk -F ':' '{print $3}'"
 
+  - name: npm scripts
+    patterns:
+      - "^npm run(?: .*)? $"
+      - "^yarn run(?: .*)? $"
+      - "^pnpm run(?: .*)? $"
+      - "^bun run(?: .*)? $"
+    sourceCommand: "jq -r '.scripts | to_entries | .[] | .key + \" = \" + .value' package.json"
+    options:
+      --prompt: "'npm run > '"
+    callback: "awk -F ' = ' '{ print $1 }'"

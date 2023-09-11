@@ -266,7 +266,7 @@ fzf_cdr() {
 eval "$(github-copilot-cli alias -- "$0")"
 
 # bun completions
-[ -s "/Users/ayuzaka/.bun/_bun" ] && source "/Users/ayuzaka/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

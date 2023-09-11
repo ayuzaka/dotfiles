@@ -106,6 +106,13 @@ completions:
       --prompt: "'docker image > ' "
     callback: "awk -F ':' '{print $3}'"
 
+  - name: ssh login
+    patterns:
+      - "^ssh(?: .*)? $"
+    sourceCommand: "cat ~/.ssh/config | grep -E '^Host\\s' | grep -v '*' | awk '{print $2}'"
+    options:
+      --prompt: "'ssh > ' "
+
   - name: npm scripts
     patterns:
       - "^npm run(?: .*)? $"

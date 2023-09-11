@@ -34,7 +34,7 @@ snippets:
   - name: golangci-lint
     keyword: golint
     snippet: golangci-lint
-  
+
   - name: online-judge-tools-go
     keyword: ojgo
     snippet: oj test -c "go run main.go" -d tests/
@@ -100,7 +100,7 @@ completions:
 
   - name: docker image operation
     patterns:
-      - '^docker image rm(?: .*)? $'
+      - "^docker image rm(?: .*)? $"
     sourceCommand: "docker image ls --format '{{.Repository}}:{{.Tag}}:{{.ID}}'"
     options:
       --prompt: "'docker image > ' "

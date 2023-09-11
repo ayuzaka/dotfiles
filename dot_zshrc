@@ -259,38 +259,6 @@ fzf_cdr() {
     fi
 }
 
-function nrun() {
-  if [ ! -e package.json ]; then
-    echo 'There is no package.json'
-    return 0
-  fi
-
-  if ! type jq > /dev/null; then
-    echo 'command not found: jq'
-    return 0
-  fi
-
-  local managerCommand
-  if [ -e package-lock.json ]; then
-    managerCommand='npm run'
-  elif [ -e yarn.lock ]; then
-    managerCommand='yarn'
-  elif [ -e pnpm-lock.yaml ]; then
-    managerCommand='pnpm run'
-  else
-    echo 'There is no package manager'
-    return 0
-  fi
-
-  scripts=$(jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json 2>/dev/null || echo '')
-  selected=$(echo "$scripts" | fzf | awk -F ' = ' '{ print $1 }')
-
-  if [ -n "$selected" ]; then
-    echo "$managerCommand $selected"
-    $(echo "$managerCommand $selected")
-  fi
-}
-
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true

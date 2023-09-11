@@ -71,6 +71,9 @@ tools:
       - '%f:%l:%c: %t%*[^:]: %m [SC%n]'
 
 languages:
+  javascript:
+    - <<: *eslint-lint
+    - <<: *prettier
   typescript:
     - <<: *eslint-lint
     - <<: *prettier

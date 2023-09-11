@@ -1,7 +1,7 @@
 version: 2
 tools:
   markdown-textlint: &markdown-textlint
-    lint-command: 'npx textlint -f unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: 'bunx textlint -f unix --stdin --stdin-filename "${INPUT}"'
     lint-ignore-exit-code: true
     lint-stdin: true
     lint-formats:
@@ -10,7 +10,7 @@ tools:
       - .textlintrc
 
   markdown-markdownlint: &markdown-markdownlint
-    lint-command: 'npx markdownlint -s -c %USERPROFILE%\.markdownlint.json'
+    lint-command: 'bunx markdownlint -s -c %USERPROFILE%\.markdownlint.json'
     lint-stdin: true
     lint-formats:
       - '%f:%l %m'
@@ -19,7 +19,7 @@ tools:
 
   stylelint-lint: &stylelint-lint
     prefix: stylelint
-    lint-command: 'npx --no-install stylelint --formatter unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: 'bunx stylelint --formatter unix --stdin --stdin-filename "${INPUT}"'
     lint-ignore-exit-code: false
     lint-stdin: true
     lint-formats:
@@ -30,7 +30,7 @@ tools:
       - .stylelintrc.cjs
     commands:
       - title: 'stylelint fix'
-        command: 'npx'
+        command: 'bunx'
         arguments:
           - '-no-install'
           - 'stylelint'
@@ -39,7 +39,7 @@ tools:
 
   eslint-lint: &eslint-lint
     prefix: eslint
-    lint-command: 'npx --no-install eslint -f unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: 'bunx eslint -f unix --stdin --stdin-filename "${INPUT}"'
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:
@@ -47,7 +47,7 @@ tools:
       - .eslintrc.js
     command:
       - title: 'eslint fix'
-        command: 'npx'
+        command: 'bunx'
         arguments:
           - '--no-install'
           - 'eslint'
@@ -55,7 +55,7 @@ tools:
           - '${INPUT}'
 
   prettier: &prettier
-    format-command: 'npx --no-install prettier --stdin-filepath "${INPUT}"'
+    format-command: 'bunx prettier --stdin-filepath "${INPUT}"'
     format-stdin: true
     root-markers:
       - package.json

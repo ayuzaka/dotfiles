@@ -79,6 +79,7 @@ augroup END
 autocmd InsertLeave * set nopaste
 
 autocmd BufNewFile,BufRead .env* set filetype=dotenv
+autocmd BufNewFile,BufRead *.wat set filetype=wast
 
 " https://zenn.dev/vim_jp/articles/2023-06-30-vim-substitute-tips
 cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s///g<Left><Left>" : 's'

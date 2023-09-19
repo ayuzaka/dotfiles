@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # xdg-ninja
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -12,7 +15,22 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XDG_RUNTIME_DIR="/run/user/$UID"
 
-# ripgrep
+# -----------------------------
+# PATH
+# -----------------------------
+export HOMEBREW_CASK_OPTS=--appdir=/Applications
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
+
+case "${OSTYPE}" in
+  darwin*)
+    export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+    export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
+  ;;
+esac
+
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
 
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
@@ -25,12 +43,24 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export GOPATH="$XDG_DATA_HOME"/go
 export PATH=$PATH:$GOPATH/bin
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Node (fnm)
+eval "$(fnm env --use-on-cd)"
+
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+
 
 # -----------------------------
 # General
@@ -40,20 +70,6 @@ autoload -Uz colors ; colors
 
 # エディタをvimに設定
 export EDITOR=vim
-
-# パス
-export HOMEBREW_CASK_OPTS=--appdir=/Applications
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$PATH:~/.local/bin"
-export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
-
-# Deno
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-# Node (fnm)
-eval "$(fnm env --use-on-cd)"
 
 # cdした際のディレクトリをディレクトリスタックへ自動追加
 setopt auto_pushd
@@ -121,45 +137,6 @@ umask 022
 ulimit -c 0
 
 # -----------------------------
-# Completion
-# -----------------------------
-# 自動補完を有効にする
-autoload -Uz compinit ; compinit
-
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-
-# 補完の選択を楽にする
-zstyle ':completion:*' menu select
-
-# 補完候補をできるだけ詰めて表示する
-setopt list_packed
-
-# 補完候補にファイルの種類も表示する
-setopt list_types
-
-# 色の設定
-export LSCOLORS=Exfxcxdxbxegedabagacad
-
-# 補完時の色設定
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-
-# キャッシュの利用による補完の高速化
-zstyle ':completion::complete:*' use-cache true
-
-# 補完候補に色つける
-autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# 大文字・小文字を区別しない(大文字を入力した場合は区別する)
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# manの補完をセクション番号別に表示させる
-zstyle ':completion:*:manuals' separate-sections true
-
-# --prefix=/usr などの = 以降でも補完
-setopt magic_equal_subst
-
-# -----------------------------
 # History
 # -----------------------------
 # 基本設定
@@ -185,89 +162,9 @@ setopt hist_verify
 # historyコマンドは残さない
 setopt hist_save_no_dups
 
-
-# -----------------------------
-# PATH
-# -----------------------------
-case "${OSTYPE}" in
-  darwin*)
-    export PATH=$PATH:/opt/local/bin:/opt/local/sbin
-    export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
-  ;;
-esac
-
 # -----------------------------
 # plugin
 # -----------------------------
 eval "$(sheldon source)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# zeno.zsh
-export ZENO_HOME="$XDG_CONFIG_HOME/zeno"
-
-if [[ -n $ZENO_LOADED ]]; then
-  bindkey ' '  zeno-auto-snippet
-
-  # fallback if snippet not matched (default: self-insert)
-  # export ZENO_AUTO_SNIPPET_FALLBACK=self-insert
-
-  # if you use zsh's incremental search
-  # bindkey -M isearch ' ' self-insert
-
-  bindkey '^m' zeno-auto-snippet-and-accept-line
-
-  bindkey '^i' zeno-completion
-
-  # fallback if completion not matched
-  # (default: fzf-completion if exists; otherwise expand-or-complete)
-  # export ZENO_COMPLETION_FALLBACK=expand-or-complete
-fi
-
-# scripts
-function fzf-down() {
-  fzf --height 50% "$@" --border
-}
-
-fghq() {
-  projectDir=$(ghq list | fzf --preview "bat $(ghq root)/{}/README.md")
-  if [ "$projectDir" = "" ];then
-    return 0
-  fi
-
-  cd ~/workspace/"$projectDir" || return
-}
-
-autoload -Uz is-at-least
-if is-at-least 4.3.11
-then
-  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-  add-zsh-hook chpwd chpwd_recent_dirs
-  zstyle ':chpwd:*'      recent-dirs-max 500
-  zstyle ':chpwd:*'      recent-dirs-default yes
-  zstyle ':completion:*' recent-dirs-insert both
-fi
-
-# search ~/.chpwd-recent-dirs
-alias cdd='fzf_cdr'
-fzf_cdr() {
-    target_dir=$(cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf)
-    target_dir="${target_dir/\~/$HOME}"
-    if [ -n "$target_dir" ]; then
-        cd "$target_dir" || return
-    fi
-}
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
-
-eval "$(github-copilot-cli alias -- "$0")"
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+zsh-defer source $XDG_CONFIG_HOME/zsh/lazy.zsh

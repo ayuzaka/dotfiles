@@ -167,4 +167,4 @@ setopt hist_save_no_dups
 # -----------------------------
 eval "$(sheldon source)"
 
-zsh-defer source $XDG_CONFIG_HOME/zsh/lazy.zsh
+zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh

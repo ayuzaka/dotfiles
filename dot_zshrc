@@ -165,6 +165,7 @@ setopt hist_save_no_dups
 # -----------------------------
 # plugin
 # -----------------------------
+export SHELDON_CONFIG_DIR="$XDG_CONFIG_HOME"/zsh/sheldon
 eval "$(sheldon source)"
 
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh

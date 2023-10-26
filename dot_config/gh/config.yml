@@ -9,6 +9,10 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
+    openpr: |-
+        !gh api graphql -F owner='{owner}' -F name='{repo}' -F commitHash="$1" -f query='
+        query($owner: String!, $name: String!, $commitHash: GitObjectID!) { repository (owner: $owner, name: $name) { object (oid: $commitHash) { ... on Commit { associatedPullRequests (first:1) { edges { node { number } } } } } } }
+        ' --jq '.data.repository.object.associatedPullRequests.edges[].node.number' | xargs gh browse
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

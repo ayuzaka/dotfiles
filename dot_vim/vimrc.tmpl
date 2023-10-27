@@ -152,6 +152,13 @@ colorscheme nord
 " custom command
 :source ~/.vim/command.vim
 
+function! RunOpenPR()
+  let word = expand('<cword>')
+  execute '!git rev-parse ' . word . ' | xargs gh openpr'
+endfunction
+
+command! -nargs=0 OpenPR :call RunOpenPR()
+
 " 各種設定の読み込み
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
 function! FindPlugin(name) abort

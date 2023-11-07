@@ -10,7 +10,7 @@ tools:
       - .textlintrc
 
   markdown-markdownlint: &markdown-markdownlint
-    lint-command: 'bunx markdownlint -s -c %USERPROFILE%\.markdownlint.json'
+    lint-command: 'bunx markdownlint -s -c "~/.config/markdown/markdownlint.json"'
     lint-stdin: true
     lint-formats:
       - '%f:%l %m'

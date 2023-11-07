@@ -9,16 +9,18 @@
   name = kazuya
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECy5CC5LFQkrflFwMBBmR8iehnjdkvPFrfwE4//QxyN kazuya@melty.co.jp
 {{end}}
+[core]
+  excludesfile = ~/.config/git/gitignore_global
 [gpg]
   format = ssh
 [commit]
   gpgsign = true
-  template = ~/.gitmessage
+  template = ~/.config/git/gitmessage
 [credential "https://github.com"]
-  helper = 
+  helper =
   helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-  helper = 
+  helper =
   helper = !/opt/homebrew/bin/gh auth git-credential
 {{else}}
 [user]

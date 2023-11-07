@@ -101,3 +101,8 @@ if [[ -n $ZENO_LOADED ]]; then
   # export ZENO_COMPLETION_FALLBACK=expand-or-complete
 fi
 
+# gibo
+export GIBO_BOILERPLATES="$XDG_CONFIG_HOME"/gibo/gitignore-boilerplates
+
+# Dart
+export PUB_CACHE="$XDG_CONFIG_HOME"/dart/pub-cache

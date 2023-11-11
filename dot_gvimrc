@@ -1,4 +1,4 @@
 set lines=50
 set columns=100
-set guifont=Fira\ Code\ Retina:h14
+set guifont=MonaspaceKrypton-Regular:h12
 set wrap

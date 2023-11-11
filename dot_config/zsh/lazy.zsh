@@ -37,8 +37,6 @@ zstyle ':completion:*:manuals' separate-sections true
 # --prefix=/usr などの = 以降でも補完
 setopt magic_equal_subst
 
-eval "$(github-copilot-cli alias -- "$0")"
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 

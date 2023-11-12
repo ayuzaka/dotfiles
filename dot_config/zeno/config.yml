@@ -105,7 +105,7 @@ completions:
   - name: ssh login
     patterns:
       - "^ssh(?: .*)? $"
-    sourceCommand: "cat ~/.ssh/config | grep -E '^Host\\s' | grep -v '*' | awk '{print $2}'"
+    sourceCommand: "cat ~/.ssh/*.conf | grep -E '^Host\\s' | grep -v '*' | awk '{print $2}'"
     options:
       --prompt: "'ssh > ' "
 

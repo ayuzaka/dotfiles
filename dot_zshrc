@@ -179,4 +179,8 @@ fi
 source "$sheldon_cache"
 unset sheldon_cache sheldon_toml
 
+if [[ -f "$XDG_CONFIG_HOME/fzf/fzf.zsh" ]]; then
+  source "$XDG_CONFIG_HOME/fzf/fzf.zsh"
+fi
+
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh

@@ -35,6 +35,15 @@ snippets:
     keyword: ojgo
     snippet: oj test -c "go run main.go" -d tests/
 
+  - name: gh copilot explain
+    keyword: ghe
+    snippet: gh copilot explain "{{text}}"
+
+  - name: gh copilot suggest
+    keyword: ghs
+    snippet: gh copilot suggest "{{text}}"
+
+
 completions:
   - name: git switch
     patterns:

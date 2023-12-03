@@ -54,11 +54,11 @@ let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'es
 let g:lsp_settings = {
       \ 'efm-langserver': {
       \     'disabled': 0,
-      \     'allowlist': ['markdown', 'javascript', 'typescript' ,'typescriptreact', 'svelte' , 'css', 'scss', 'sh'],
+      \     'allowlist': ['markdown', 'javascript', 'typescript' ,'typescriptreact', 'svelte' , 'css', 'scss', 'sh', 'yaml'],
       \   }
       \ }
 
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.svelte call execute('LspDocumentFormatSync --server=efm-langserver')
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.svelte,*.yaml,*.yml call execute('LspDocumentFormatSync --server=efm-langserver')
 
 command! ESLintFix {
   :!bunx eslint --fix "%"

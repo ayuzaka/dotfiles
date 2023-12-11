@@ -43,7 +43,6 @@ snippets:
     keyword: ghs
     snippet: gh copilot suggest "{{text}}"
 
-
 completions:
   - name: git switch
     patterns:
@@ -128,3 +127,11 @@ completions:
     options:
       --prompt: "'npm run > '"
     callback: "awk -F ' = ' '{ print $1 }'"
+
+  - name: connect postgresql
+    patterns:
+      - "^pgcli -D(?: .*)? $"
+    sourceCommand: "pgcli --list-dsn"
+    options:
+      --prompt: "'pgcli --dns > '"
+    callback: "awk -F ' : ' '{ print $1 }'"

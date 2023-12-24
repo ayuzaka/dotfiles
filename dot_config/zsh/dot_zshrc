@@ -26,7 +26,7 @@ export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
 
 case "${OSTYPE}" in
   darwin*)
-    export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+    export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin
     export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
   ;;
 esac
@@ -45,11 +45,11 @@ export PATH=$PATH:$GOPATH/bin
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:$BUN_INSTALL/bin"
 
 # Deno
 export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="$PATH:$DENO_INSTALL/bin"
 
 # Node (fnm)
 eval "$(fnm env --use-on-cd)"

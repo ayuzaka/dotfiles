@@ -47,6 +47,10 @@ snippets:
     keyword: ghs
     snippet: gh copilot suggest "{{text}}"
 
+  - name: ollama
+    keyword: ol
+    snippet: ollama
+
 completions:
   - name: git switch
     patterns:

@@ -135,3 +135,10 @@ completions:
     options:
       --prompt: "'pgcli --dns > '"
     callback: "awk -F ' : ' '{ print $1 }'"
+
+  - name: ollama run
+    patterns:
+      - "^ollama run(?: .*)? $"
+    sourceCommand: "ollama list | grep -v 'NAME' | awk -F ':' '{print $1}'"
+    options:
+      --prompt: "'ollama run > '"

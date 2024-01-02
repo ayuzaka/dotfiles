@@ -35,6 +35,10 @@ snippets:
     keyword: ojgo
     snippet: oj test -c "go run main.go" -d tests/
 
+  - name: git-difftool
+    keyword: gitdiff
+    snippet: git difftool
+
   - name: gh copilot explain
     keyword: ghe
     snippet: gh copilot explain "{{text}}"

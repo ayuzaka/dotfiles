@@ -15,10 +15,6 @@ snippets:
     keyword: aws
     snippet: docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli
 
-  - name: ssh-add apple-use-keychain
-    keyword: ssh-add-apple
-    snippet: ssh-add --apple-use-keychain {{path}}
-
   - name: docker container exec
     keyword: dc-exec
     snippet: docker container exec -it

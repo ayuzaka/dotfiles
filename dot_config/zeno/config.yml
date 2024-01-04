@@ -136,14 +136,6 @@ completions:
       --prompt: "'npm run > '"
     callback: "awk -F ' = ' '{ print $1 }'"
 
-  - name: connect postgresql
-    patterns:
-      - "^pgcli -D(?: .*)? $"
-    sourceCommand: "pgcli --list-dsn"
-    options:
-      --prompt: "'pgcli --dns > '"
-    callback: "awk -F ' : ' '{ print $1 }'"
-
   - name: ollama run
     patterns:
       - "^ollama run(?: .*)? $"

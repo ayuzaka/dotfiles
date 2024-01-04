@@ -1,10 +1,14 @@
 {{if (eq .chezmoi.os "darwin")}}
-[user]
 {{if (eq .chezmoi.username "ayuzaka")}}
+[user]
   email = ayuzaka.f@gmail.com
   name = ayuzaka
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7Znr/wBN4wlbrZdQygS+ZEj+Q6khfMDiMv3llx+4SH ayuzaka.f@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4WeL6W4XDqEtgkxBE0PYO0w8IfjgaXfiRd8IGOj1A9
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 {{else}}
+[user]
   email = kazuya@melty.co.jp
   name = kazuya
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECy5CC5LFQkrflFwMBBmR8iehnjdkvPFrfwE4//QxyN kazuya@melty.co.jp

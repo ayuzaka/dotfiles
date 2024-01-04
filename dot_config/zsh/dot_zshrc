@@ -184,3 +184,6 @@ if [[ -f "$XDG_CONFIG_HOME/fzf/fzf.zsh" ]]; then
 fi
 
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
+
+# 1Password
+source $XDG_CONFIG_HOME/op/plugins.sh

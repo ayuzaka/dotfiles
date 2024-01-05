@@ -173,7 +173,7 @@ sheldon_toml="$SHELDON_CONFIG_DIR"/plugins.toml
 
 # キャッシュがない、またはキャッシュが古い場合にキャッシュを作成
 if [[ ! -r "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
-  sheldon source > $sheldon_cache
+  sheldon source > "$sheldon_cache"
 fi
 
 source "$sheldon_cache"
@@ -186,4 +186,4 @@ fi
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
 
 # 1Password
-source $XDG_CONFIG_HOME/op/plugins.sh
+source "$XDG_CONFIG_HOME"/op/plugins.sh

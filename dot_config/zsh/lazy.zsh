@@ -2,7 +2,8 @@
 # Completion
 # -----------------------------
 # 自動補完を有効にする
-autoload -Uz compinit ; compinit
+autoload -Uz compinit
+compinit
 
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
@@ -25,7 +26,9 @@ export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30
 zstyle ':completion::complete:*' use-cache true
 
 # 補完候補に色つける
-autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
+autoload -U colors
+colors
+zstyle ':completion:*' list-colors "${LS_COLORS}"
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # 大文字・小文字を区別しない(大文字を入力した場合は区別する)
@@ -48,11 +51,11 @@ setopt magic_equal_subst
 # search ~/.chpwd-recent-dirs
 alias cdd='fzf_cdr'
 fzf_cdr() {
-    target_dir=$(cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf)
-    target_dir="${target_dir/\~/$HOME}"
-    if [ -n "$target_dir" ]; then
-        cd "$target_dir" || return
-    fi
+  target_dir=$(cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf)
+  target_dir="${target_dir/\~/$HOME}"
+  if [ -n "$target_dir" ]; then
+    cd "$target_dir" || return
+  fi
 }
 
 function fzf-down() {
@@ -61,7 +64,7 @@ function fzf-down() {
 
 fghq() {
   projectDir=$(ghq list | fzf --preview "bat $(ghq root)/{}/README.md")
-  if [ "$projectDir" = "" ];then
+  if [ "$projectDir" = "" ]; then
     return 0
   fi
 
@@ -69,12 +72,11 @@ fghq() {
 }
 
 autoload -Uz is-at-least
-if is-at-least 4.3.11
-then
+if is-at-least 4.3.11; then
   autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
   add-zsh-hook chpwd chpwd_recent_dirs
-  zstyle ':chpwd:*'      recent-dirs-max 500
-  zstyle ':chpwd:*'      recent-dirs-default yes
+  zstyle ':chpwd:*' recent-dirs-max 500
+  zstyle ':chpwd:*' recent-dirs-default yes
   zstyle ':completion:*' recent-dirs-insert both
 fi
 
@@ -82,7 +84,7 @@ fi
 export ZENO_HOME="$XDG_CONFIG_HOME/zeno"
 
 if [[ -n $ZENO_LOADED ]]; then
-  bindkey ' '  zeno-auto-snippet
+  bindkey ' ' zeno-auto-snippet
 
   # fallback if snippet not matched (default: self-insert)
   # export ZENO_AUTO_SNIPPET_FALLBACK=self-insert

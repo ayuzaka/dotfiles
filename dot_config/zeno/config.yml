@@ -123,10 +123,10 @@ completions:
 
   - name: npm scripts
     patterns:
-      - "^npm run(?: .*)? $"
-      - "^yarn run(?: .*)? $"
-      - "^pnpm run(?: .*)? $"
-      - "^bun run(?: .*)? $"
+      - "npm run(?: .*)? $"
+      - "yarn run(?: .*)? $"
+      - "pnpm run(?: .*)? $"
+      - "bun run(?: .*)? $"
     sourceCommand: 'jq -r ''.scripts | to_entries | .[] | .key + " = " + .value'' package.json'
     options:
       --prompt: "'npm run > '"

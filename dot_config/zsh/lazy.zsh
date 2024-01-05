@@ -106,3 +106,19 @@ export GIBO_BOILERPLATES="$XDG_CONFIG_HOME"/gibo/gitignore-boilerplates
 
 # Dart
 export PUB_CACHE="$XDG_CONFIG_HOME"/dart/pub-cache
+
+# With 1Password
+opr() {
+  who=$(op whoami)
+  if [[ $? != 0 ]]; then
+    eval $(op signin)
+  fi
+
+  if [[ -f "$PWD/.env" ]]; then
+    op run --env-file="$PWD"/.env -- "$@"
+  elif [[ -f "$PWD/.env.local" ]]; then
+    op run --env-file="$PWD"/.env.local -- "$@"
+  else
+    op run --env-file="$XDG_CONFIG_HOME"/op/.env.1password -- "$@"
+  fi
+}

@@ -1,10 +1,17 @@
-{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.username "ayuzaka")) }}
+{{ if (eq .chezmoi.username "ayuzaka") }}
 [user]
   email = ayuzaka.f@gmail.com
   name = ayuzaka
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4WeL6W4XDqEtgkxBE0PYO0w8IfjgaXfiRd8IGOj1A9
+{{ if (eq .chezmoi.os "darwin") }}
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{ else }}
+[core]
+  sshCommand = ssh.exe
+[gpg "ssh"]
+  program = "/mnt/c/Users/ayuza/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+{{ end }}
 {{ end }}
 
 {{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.username "melty-kazuya")) }}
@@ -14,16 +21,6 @@
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECy5CC5LFQkrflFwMBBmR8iehnjdkvPFrfwE4//QxyN kazuya@melty.co.jp
 {{ end }}
 
-{{ if eq .chezmoi.os "linux" }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-[user]
-  email = ayuzaka.f@gmail.com
-  name = ayuzaka
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7Znr/wBN4wlbrZdQygS+ZEj+Q6khfMDiMv3llx+4SH ayuzaka.f@gmail.com
-{{ end }}
-{{ end }}
-
-{{if (eq .chezmoi.os "darwin")}}
 [core]
   excludesfile = ~/.config/git/gitignore_global
 [gpg]
@@ -33,12 +30,10 @@
   template = ~/.config/git/gitmessage
 [credential "https://github.com"]
   helper =
-  helper = !/opt/homebrew/bin/gh auth git-credential
+  helper = !gh auth git-credential
 [credential "https://gist.github.com"]
   helper =
-  helper = !/opt/homebrew/bin/gh auth git-credential
-{{end}}
-
+  helper = !gh auth git-credential
 [init]
   defaultBranch = main
 [ghq]

@@ -50,7 +50,7 @@ let g:lsp_document_highlight_delay = 100
 let g:lsp_document_code_action_signs_delay = 100
 let g:lsp_settings_filetype_javascript = ['typescript-language-server', 'eslint-language-server']
 let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'deno']
-let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'eslint-language-server', 'deno', 'tailwindcss-intellisense']
+let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'eslint-language-server', 'deno']
 let g:lsp_settings = {
       \ 'efm-langserver': {
       \     'disabled': 0,
@@ -69,3 +69,4 @@ command! StylelintFix {
   :!bunx stylelint --fix "%"
   :LspStopServer
 }
+

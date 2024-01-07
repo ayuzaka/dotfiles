@@ -190,7 +190,7 @@ fi
 
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
 
-{{ if eq .chezmoi.os "darwin" }}
+{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.username "ayuzaka")) }}
 # 1Password
 source "$XDG_CONFIG_HOME"/op/plugins.sh
 {{ end }}

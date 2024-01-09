@@ -14,7 +14,7 @@
 {{ end }}
 {{ end }}
 
-{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.username "melty-kazuya")) }}
+{{ if (eq .chezmoi.hostname "melty-kazuya") }}
 [user]
   email = kazuya@melty.co.jp
   name = kazuya

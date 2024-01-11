@@ -138,3 +138,11 @@ completions:
     sourceCommand: "ollama list | grep -v 'NAME' | awk -F ':' '{print $1}'"
     options:
       --prompt: "'ollama run > '"
+
+  - name: fnm switch
+    patterns:
+      - "^fnm use (?: .*)?"
+    sourceCommand: "fnm list"
+    options:
+      --prompt: "'fnm use > '"
+    callback: "awk '{print $2}'"

@@ -132,6 +132,14 @@ completions:
       --prompt: "'npm run > '"
     callback: "awk -F ' = ' '{ print $1 }'"
 
+  - name: deno tasks
+    patterns:
+      - "deno task(?: .*)? $"
+    sourceCommand: 'jq -r ''.tasks | to_entries | .[] | .key + " = " + .value'' deno.json'
+    options:
+      --prompt: "'deno task > '"
+    callback: "awk -F ' = ' '{ print $1 }'"
+
   - name: ollama run
     patterns:
       - "^ollama run(?: .*)? $"

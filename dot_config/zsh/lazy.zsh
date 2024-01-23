@@ -62,15 +62,6 @@ function fzf-down() {
   fzf --height 50% "$@" --border
 }
 
-fghq() {
-  projectDir=$(ghq list | fzf --preview "bat $(ghq root)/{}/README.md")
-  if [ "$projectDir" = "" ]; then
-    return 0
-  fi
-
-  cd ~/workspace/"$projectDir" || return
-}
-
 autoload -Uz is-at-least
 if is-at-least 4.3.11; then
   autoload -Uz chpwd_recent_dirs cdr add-zsh-hook

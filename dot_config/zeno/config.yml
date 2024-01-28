@@ -154,3 +154,10 @@ completions:
     options:
       --prompt: "'fnm use > '"
     callback: "awk '{print $2}'"
+
+  - name: act run job
+    patterns:
+      - "^act --job (?: .*)?"
+    sourceCommand: "act --list | grep -v Stage | awk '{print $2}'"
+    options:
+      --prompt: "'act --job > '"

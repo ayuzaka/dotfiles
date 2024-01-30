@@ -5,6 +5,7 @@ cmap <C-j> <Plug>(skkeleton-enable)
 function! s:skkeleton_init() abort
   call skkeleton#config({
     \ 'userDictionary': '~/.config/skkeleton/userJisyo',
+    \ 'globalDictionaries': ['~/.config/skk/SKK-JISYO.L'],
     \ 'eggLikeNewline': v:true
     \ })
 endfunction

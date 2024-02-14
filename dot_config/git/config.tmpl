@@ -14,13 +14,6 @@
 {{ end }}
 {{ end }}
 
-{{ if (eq .chezmoi.hostname "melty-kazuya") }}
-[user]
-  email = kazuya@melty.co.jp
-  name = kazuya
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECy5CC5LFQkrflFwMBBmR8iehnjdkvPFrfwE4//QxyN kazuya@melty.co.jp
-{{ end }}
-
 [core]
   excludesfile = ~/.config/git/gitignore_global
 [gpg]

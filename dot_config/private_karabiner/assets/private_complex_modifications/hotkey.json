@@ -181,6 +181,27 @@
       ]
     },
     {
+      "description": "ctrl-8 to NotionCalendar",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "8",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'Notion Calendar'"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "ctrl-9 to Finder",
       "manipulators": [
         {

@@ -1,26 +1,34 @@
-[colors.bright]
-black = "#4C566A"
-blue = "#81A1C1"
-cyan = "#8FBCBB"
-green = "#A3BE8C"
-magenta = "#B48EAD"
-red = "#BF616A"
-white = "#ECEFF4"
-yellow = "#EBCB8B"
-
-[colors.normal]
-black = "#3B4252"
-blue = "#81A1C1"
-cyan = "#88C0D0"
-green = "#A3BE8C"
-magenta = "#B48EAD"
-red = "#BF616A"
-white = "#E5E9F0"
-yellow = "#EBCB8B"
+# Isnpired from Iceberg theme.
 
 [colors.primary]
-background = "#2E3440"
-foreground = "#D8DEE9"
+background = '0x16171E'
+foreground = '0xD1D2D3'
+
+[colors.cursor]
+text = '0xFEFFFF'
+cursor = '0xc7c7c7'
+
+# Normal colors
+[colors.normal]
+black = '0x000000'
+red = '0xE68E8E'
+green = '0x83AC8E'
+yellow = '0xF5B78A'
+blue = '0x9BB8DC'
+magenta = '0xBAACE2'
+cyan = '0x00C5C7'
+white = '0xC7C7C7'
+
+# Bright colors
+[colors.bright]
+black = '0x676767'
+red = '0xFF6D67'
+green = '0x5FF967'
+yellow = '0xFEFB67'
+blue = '0x6871FF'
+magenta = '0xFF76FF'
+cyan = '0x5FFDFF'
+white = '0xFEFFFF'
 
 [font]
 size = 12.0

@@ -92,6 +92,7 @@ cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] 
 call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'cocopon/iceberg.vim'
 
 Plug 'Shougo/ddc.vim'
 Plug 'Shougo/ddc-ui-native'
@@ -145,7 +146,8 @@ Plug 'github/copilot.vim'
 
 call plug#end()
 
-colorscheme nord
+set background=dark
+colorscheme iceberg
 
 " custom command
 :source ~/.vim/command.vim

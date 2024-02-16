@@ -131,7 +131,7 @@
       ]
     },
     {
-      "description": "ctrl-6 to Notion",
+      "description": "ctrl-6 to Notion Calendar",
       "manipulators": [
         {
           "type": "basic",
@@ -145,15 +145,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Notion'"
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "select_input_source": {
-                "input_source_id": "jp.sourceforge.inputmethod.aquaskk",
-                "language": "ja"
-              }
+              "shell_command": "open -a 'Notion Calendar'"
             }
           ]
         }
@@ -181,7 +173,7 @@
       ]
     },
     {
-      "description": "ctrl-8 to NotionCalendar",
+      "description": "ctrl-8 to 1Password",
       "manipulators": [
         {
           "type": "basic",
@@ -195,7 +187,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Notion Calendar'"
+              "shell_command": "open -a '1Password'"
             }
           ]
         }

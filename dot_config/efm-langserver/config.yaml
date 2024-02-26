@@ -43,7 +43,6 @@ tools:
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:
-      - package.json
       - .eslintrc.js
     command:
       - title: "eslint fix"
@@ -58,7 +57,6 @@ tools:
     format-command: 'bunx prettier --stdin-filepath "${INPUT}"'
     format-stdin: true
     root-markers:
-      - package.json
       - .prettierrc
       - .prettierrc.js
       - .prettierrc.config.js

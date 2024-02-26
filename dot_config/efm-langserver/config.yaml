@@ -70,6 +70,15 @@ tools:
     lint-formats:
       - "%f:%l:%c: %t%*[^:]: %m [SC%n]"
 
+  actionlint-lint: &actionlint-lint
+    prefix: actionlint
+    lint-command: "bash -c \"[[ '${INPUT}' =~ \\\\.github/workflows/ ]]\" && actionlint -oneline -no-color -"
+    lint-stdin: true
+    lint-formats:
+      - "%f:%l:%c: %m"
+    root-markers:
+      - .github
+
 languages:
   javascript:
     - <<: *eslint-lint
@@ -95,5 +104,6 @@ languages:
     - <<: *markdown-markdownlint
   yaml:
     - <<: *prettier
+    - <<: *actionlint-lint
   sh:
     - <<: *shellcheck-lint

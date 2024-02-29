@@ -1,20 +1,3 @@
-# -----------------------------
-# Completion
-# -----------------------------
-# 自動補完を有効にする
-autoload -Uz compinit
-compinit
-
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-
-# 補完の選択を楽にする
-zstyle ':completion:*' menu select
-
-# 補完候補をできるだけ詰めて表示する
-setopt list_packed
-
-# 補完候補にファイルの種類も表示する
-setopt list_types
 
 # 色の設定
 export LSCOLORS=Exfxcxdxbxegedabagacad

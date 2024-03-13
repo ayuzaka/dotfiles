@@ -34,19 +34,19 @@ white = '0xFEFFFF'
 size = 12.0
 
 [font.normal]
-family = "MonaspiceKr NF"
+family = "Moralerspace Argon NF"
 style = "Regular"
 
 [font.bold]
-family = "MonaspiceKr NF"
+family = "Moralerspace Argon NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "MonaspiceKr NF"
+family = "Moralerspace Argon NF"
 style = "Bold"
 
 [font.italic]
-family = "MonaspiceKr NF"
+family = "Moralerspace Argon NF"
 style = "Italic"
 
 [window]

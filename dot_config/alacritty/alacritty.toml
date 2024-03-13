@@ -33,21 +33,21 @@ white = '0xFEFFFF'
 [font]
 size = 12.0
 
+[font.normal]
+family = "MonaspiceKr NF"
+style = "Regular"
+
 [font.bold]
-family = "FiraCode Nerd Font"
+family = "MonaspiceKr NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "FiraCode Nerd Font"
+family = "MonaspiceKr NF"
 style = "Bold"
 
 [font.italic]
-family = "FiraCode Nerd Font"
+family = "MonaspiceKr NF"
 style = "Italic"
-
-[font.normal]
-family = "FiraCode Nerd Font"
-style = "Regular"
 
 [window]
 decorations = "full"

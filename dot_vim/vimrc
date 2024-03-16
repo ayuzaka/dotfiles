@@ -24,7 +24,6 @@ set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set belloff=all
 set hlsearch
-set nospell
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -32,6 +31,10 @@ set incsearch
 set signcolumn=yes
 set backspace=indent,eol,start
 set viminfo+=n~/.config/vim/viminfo
+
+" 日本語は無視
+set spelllang+=cjk
+set spell
 
 noremap <C-]> <esc>
 noremap! <C-]> <esc>
@@ -125,7 +128,6 @@ Plug 'rust-lang/rust.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cohama/lexima.vim'
-Plug 'kamykn/spelunker.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'

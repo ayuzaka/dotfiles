@@ -34,7 +34,8 @@ augroup vim_lsp_golangci_lint_langserver
       \ })
 augroup END
 
-nmap <silent> fmt :LspDocumentFormat<CR>
+nnoremap <silent>fmt :LspDocumentFormat<CR>
+command! Prettier :LspDocumentFormatSync --server=efm-langserver
 let g:lsp_signs_enabled = 1
 let g:lsp_document_code_action_signs_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
@@ -57,8 +58,6 @@ let g:lsp_settings = {
       \     'allowlist': ['markdown', 'javascript', 'typescript' ,'typescriptreact', 'svelte' , 'css', 'scss', 'sh', 'yaml'],
       \   }
       \ }
-
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.svelte,*.yaml,*.yml call execute('LspDocumentFormatSync --server=efm-langserver')
 
 command! ESLintFix {
   :!bunx eslint --fix "%"

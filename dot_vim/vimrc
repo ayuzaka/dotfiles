@@ -58,9 +58,6 @@ endif
 " 検索時のハイライトを消す
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-" prettier
-nnoremap gp :silent %! bunx prettier --stdin-filepath "%"<CR>
-
 if has('vim_starting')
     " 挿入モード時に非点滅の縦棒タイプのカーソル
     let &t_SI .= "\e[6 q"

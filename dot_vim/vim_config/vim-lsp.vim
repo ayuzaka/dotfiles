@@ -35,7 +35,7 @@ augroup vim_lsp_golangci_lint_langserver
 augroup END
 
 nnoremap <silent>fmt :LspDocumentFormat<CR>
-command! Prettier :LspDocumentFormatSync --server=efm-langserver
+command! EfmFormat :LspDocumentFormatSync --server=efm-langserver
 let g:lsp_signs_enabled = 1
 let g:lsp_document_code_action_signs_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1

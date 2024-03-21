@@ -31,6 +31,10 @@ snippets:
     keyword: ojgo
     snippet: oj test -c "go run main.go" -d tests/
 
+  - name: git tree
+    keyword: gittree
+    snippet: git log --graph --oneline --decorate
+
   - name: git-difftool
     keyword: gitdiff
     snippet: git difftool

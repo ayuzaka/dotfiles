@@ -32,12 +32,20 @@ snippets:
     snippet: oj test -c "go run main.go" -d tests/
 
   - name: git tree
-    keyword: gittree
-    snippet: git log --graph --oneline --decorate
+    keyword: git-tree
+    snippet: git log --graph --pretty=format:'%x09%C(auto) %h %Cgreen %cd %Creset%x09%C(cyan ul)%an%Creset %x09%C(auto)%s %d' --date=format:'%Y-%m-%d (%a)'
 
   - name: git-difftool
     keyword: gitdiff
     snippet: git difftool
+
+  - name: my PR
+    keyword: gh-pr-me
+    snippet: gh pr list --author "@me" --state all
+
+  - name: search PR
+    keyword: gh-pr-search
+    snippet: gh pr list --state all --json number,title --jq ".[] | [.number,.title] | @csv" --search "{{text}}" | fzf | awk -F ',' '{print $1}' | xargs gh browse
 
   - name: gh copilot explain
     keyword: ghe

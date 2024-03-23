@@ -18,14 +18,6 @@
             {
               "shell_command": "open -a 'Alacritty'"
             }
-          ],
-          "to_after_key_up": [
-            {
-              "select_input_source": {
-                "input_source_id": "com.apple.keylayout.ABC",
-                "language": "en"
-              }
-            }
           ]
         }
       ]

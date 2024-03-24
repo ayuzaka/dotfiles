@@ -96,3 +96,5 @@ opr() {
     op run --env-file="$XDG_CONFIG_HOME"/op/.env.1password -- "$@"
   fi
 }
+
+export PATH="$PATH:/opt/homebrew/Cellar/icu4c/74.2/bin"

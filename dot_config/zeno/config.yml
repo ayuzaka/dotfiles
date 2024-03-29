@@ -162,6 +162,8 @@ completions:
   - name: fnm switch
     patterns:
       - "^fnm use (?: .*)?"
+      - "^fnm uninstall (?: .*)?"
+      - "^fnm default (?: .*)?"
     sourceCommand: "fnm list"
     options:
       --prompt: "'fnm use > '"

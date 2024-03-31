@@ -15,17 +15,39 @@ function! SearchRegex(text)
   execute '/' . @/
 endfunction
 
-command! SearchFullWidthEn :call SearchRegex('[Ａ-Ｚａ-ｚ]')
-command! SearchFullWidthNum :call SearchRegex('[０-９]')
-command! SearchFullWidth :call SearchRegex('[Ａ-Ｚａ-ｚ０-９]')
+command! SearchFullWidthEn :call SearchRegex('[Ａ-Ｚａ-ｚ]\+')
+command! SearchFullWidthNum :call SearchRegex('[０-９]\+')
+command! SearchFullWidth :call SearchRegex('[Ａ-Ｚａ-ｚ０-９]\+')
 
-function! ConvertByUconv(command)
+function! FullToHalf()
   let l:word = expand('<cword>')
-  let l:converted_word = system('uconv -x ' . a:command . ' <<< ' . shellescape(l:word))
+  let l:halfwidth_word = ''
 
-  execute 'substitute/\V\<' . escape(l:word, '/'). '\>/' . l:converted_word . '/g'
+  for l:char in split(l:word, '\zs')
+    if char2nr(l:char) >= 65281 && char2nr(l:char) <= 65370
+      let l:halfwidth_word .= nr2char(char2nr(l:char) - 65248)
+    else
+      let l:halfwidth_word .= l:char
+    endif
+  endfor
+
+  execute a:firstline . ',' . a:lastline . 'substitute/\V\<' . escape(l:word, '/'). '\>/' . l:halfwidth_word . '/g'
 endfunction
 
-command! ConvertHalfwidth :call ConvertByUconv('fullwidth-halfwidth')
-command! ConvertFullwidth :call ConvertByUconv('halfwidth-fullwidth')
-command! ConvertKatakana :call ConvertByUconv('katakana')
+function! HalfToFull()
+    let l:word = expand('<cword>')
+    let l:fullwidth_word = ''
+
+    for l:char in split(l:word, '\zs')
+        if char2nr(l:char) >= 33 && char2nr(l:char) <= 126
+            let l:fullwidth_word .= nr2char(char2nr(l:char) + 65248)
+        else
+            let l:fullwidth_word .= l:char
+        endif
+    endfor
+
+    execute a:firstline . ',' . a:lastline . 'substitute/\V\<' . escape(l:word, '/') . '\>/' . l:fullwidth_word . '/g'
+endfunction
+
+command! FullToHalf :call FullToHalf()
+command! HalfToFull :call HalfToFull()

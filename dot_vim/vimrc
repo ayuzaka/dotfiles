@@ -96,14 +96,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
 
+Plug 'vim-denops/denops.vim'
+
 Plug 'Shougo/ddc.vim'
 Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
 
-Plug 'vim-skk/skkeleton'
+Plug 'Shougo/ddu.vim'
+Plug 'Shougo/ddu-ui-ff'
+Plug 'Shougo/ddu-source-file_rec'
+Plug 'Shougo/ddu-kind-file'
+Plug 'Shougo/ddu-filter-matcher_substring'
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-skk/skkeleton'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -139,8 +145,6 @@ Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 Plug 'imsnif/kdl.vim'
 
-Plug 'vim-denops/denops.vim'
-
 Plug 'github/copilot.vim'
 
 call plug#end()
@@ -150,7 +154,6 @@ colorscheme iceberg
 
 " custom command
 :source ~/.vim/command.vim
-
 
 " 各種設定の読み込み
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))

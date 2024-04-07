@@ -54,6 +54,7 @@ let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-
 let g:lsp_settings_filetype_html = ['html-languageserver', 'tailwindcss-intellisense']
 let g:lsp_settings_filetype_css = ['css-languageserver', 'tailwindcss-intellisense']
 let g:lsp_settings_filetype_typescriptreact = ['typescript-language-server', 'eslint-language-server', 'deno']
+let g:lsp_settings_filetype_svelte = ['svelte-language-server', 'eslint-language-server']
 let g:lsp_settings = {
       \ 'efm-langserver': {
       \     'disabled': 0,

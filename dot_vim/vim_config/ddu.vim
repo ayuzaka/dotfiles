@@ -10,7 +10,7 @@ call ddu#custom#patch_global({
     \   },
     \   'sourceParams': {
     \     'file_rec': {
-    \       'ignoredDirectories': [".git", "node_modules", ".next", ".husky", "styled-system", ".op", "dist", "out", ".cache", "svelte-kit"],
+    \       'ignoredDirectories': [".git", ".husky", "node_modules", "dist", "build", "out", ".cache", ".next", "svelte-kit", "styled-system", ".op"],
     \     },
     \   },
     \   'kindOptions': {

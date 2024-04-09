@@ -2,15 +2,9 @@ UsePlugin 'ddu.vim'
 
 call ddu#custom#patch_global({
     \   'ui': 'ff',
-    \   'sources': [{'name': 'file_rec', 'params': {}}],
     \   'sourceOptions': {
     \     '_': {
     \       'matchers': ['matcher_substring'],
-    \     },
-    \   },
-    \   'sourceParams': {
-    \     'file_rec': {
-    \       'ignoredDirectories': [".git", ".husky", "node_modules", "dist", "build", "out", ".cache", ".next", "svelte-kit", "styled-system", ".op"],
     \     },
     \   },
     \   'kindOptions': {
@@ -18,14 +12,20 @@ call ddu#custom#patch_global({
     \       'defaultAction': 'open',
     \     },
     \   },
-    \   'uiParams': {
-    \     'ff': {
-    \       'startFilter': v:true,
-    \     }
+    \ })
+
+ call ddu#custom#patch_local('git-files', {
+    \   'sources': [{'name': 'file_external', 'params': {}}],
+    \   'sourceParams': {
+    \     'file_external': {
+    \       'cmd': ['git', 'ls-files']
+    \     },
     \   },
     \ })
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
+autocmd FileType ddu-filer call s:ddu_my_settings()
+
 function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <CR>
         \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
@@ -47,4 +47,4 @@ function! s:ddu_filter_my_settings() abort
   \ <Cmd>close<CR>
 endfunction
 
-nnoremap <C-p> :call ddu#start({})<CR>
+nnoremap <C-p> :call ddu#start({"name": "git-files"})<CR>

@@ -23,6 +23,15 @@ call ddu#custom#patch_global({
     \   },
     \ })
 
+ call ddu#custom#patch_local('grep', {
+    \   'sources': [{'name': 'file_external', 'params': {}}],
+    \   'sourceParams': #{
+    \     rg: #{
+    \       args: ['--column', '--no-heading', '--color', 'never']
+    \     },
+    \   },
+    \ })
+
 autocmd FileType ddu-ff call s:ddu_my_settings()
 autocmd FileType ddu-filer call s:ddu_my_settings()
 
@@ -48,3 +57,9 @@ function! s:ddu_filter_my_settings() abort
 endfunction
 
 nnoremap <C-p> :call ddu#start({"name": "git-files"})<CR>
+command! DduGrep :call ddu#start({
+      \  'name': 'grep',
+      \  'sources': [
+      \    { 'name': 'rg', 'params': { 'input': expand('<cword>') } }
+      \  ],
+      \ })

@@ -19,7 +19,7 @@ source $VIMRUNTIME/macros/matchit.vim
 set wildmenu
 set wildmode=list:longest
 set wildmode=full
-set nowrap
+set wrap
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set belloff=all

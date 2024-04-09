@@ -57,9 +57,3 @@ function! s:ddu_filter_my_settings() abort
 endfunction
 
 nnoremap <C-p> :call ddu#start({"name": "git-files"})<CR>
-command! DduGrep :call ddu#start({
-      \  'name': 'grep',
-      \  'sources': [
-      \    { 'name': 'rg', 'params': { 'input': expand('<cword>') } }
-      \  ],
-      \ })

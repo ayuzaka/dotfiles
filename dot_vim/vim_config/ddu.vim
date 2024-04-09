@@ -24,14 +24,6 @@ call ddu#custom#patch_global({
     \   },
     \ })
 
- call ddu#custom#patch_local('grep', {
-    \   'sources': [{'name': 'file_external', 'params': {}}],
-    \   'sourceParams': #{
-    \     rg: #{
-    \       args: ['--column', '--no-heading', '--color', 'never']
-    \     },
-    \   },
-    \ })
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 autocmd FileType ddu-filer call s:ddu_my_settings()

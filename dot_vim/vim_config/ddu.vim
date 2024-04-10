@@ -15,11 +15,11 @@ call ddu#custom#patch_global({
     \   },
     \ })
 
- call ddu#custom#patch_local('git-files', {
+ call ddu#custom#patch_local('fd', {
     \   'sources': [{'name': 'file_external', 'params': {}}],
     \   'sourceParams': {
     \     'file_external': {
-    \       'cmd': ['git', 'ls-files']
+    \       'cmd': ['fd', '.', '-H', '-t', 'f']
     \     },
     \   },
     \ })
@@ -49,4 +49,4 @@ function! s:ddu_filter_my_settings() abort
   \ <Cmd>close<CR>
 endfunction
 
-nnoremap <C-p> :call ddu#start({"name": "git-files"})<CR>
+nnoremap <C-p> :call ddu#start({"name": "fd"})<CR>

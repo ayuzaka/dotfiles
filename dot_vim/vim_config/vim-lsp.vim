@@ -58,7 +58,7 @@ let g:lsp_settings_filetype_svelte = ['svelte-language-server', 'eslint-language
 let g:lsp_settings = {
       \ 'efm-langserver': {
       \     'disabled': 0,
-      \     'allowlist': ['markdown', 'javascript', 'typescript' ,'typescriptreact', 'svelte' , 'css', 'scss', 'sh', 'yaml'],
+      \     'allowlist': ['*'],
       \   }
       \ }
 

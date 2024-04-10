@@ -32,10 +32,7 @@ set signcolumn=yes
 set backspace=indent,eol,start
 set viminfo+=n~/.config/vim/viminfo
 set re=0
-
-" 日本語は無視
-set spelllang+=cjk
-set spell
+set nospell
 
 noremap <C-]> <esc>
 noremap! <C-]> <esc>

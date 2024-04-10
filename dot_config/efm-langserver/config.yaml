@@ -77,6 +77,13 @@ tools:
     root-markers:
       - .github
 
+  cspell-lint: &cspell-lint
+    prefix: cspell
+    lint-command: 'bunx cspell lint --config ~/.config/cspell/cspell.config.json --no-progress --no-summary --no-color ${INPUT}'
+    lint-formats:
+      - '%f:%l:%c - %m'
+      - '%f:%l:%c %m'
+
 languages:
   javascript:
     - <<: *eslint-lint
@@ -105,3 +112,5 @@ languages:
     - <<: *actionlint-lint
   sh:
     - <<: *shellcheck-lint
+  =:
+    - <<: *cspell-lint

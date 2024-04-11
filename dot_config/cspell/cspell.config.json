@@ -3,13 +3,18 @@
   "version": "0.2",
   "allowCompoundWords": true,
   "dictionaries": [
-    "dotfiles"
+    "dotfiles",
+    "program"
   ],
   "dictionaryDefinitions": [
     {
       "name": "dotfiles",
       "path": "~/.local/share/cspell/dict-user.txt",
       "description": "dotfiles dictionary"
+    },
+    {
+      "name": "program",
+      "path": "~/.local/share/cspell/dict-program.txt"
     }
   ]
 }

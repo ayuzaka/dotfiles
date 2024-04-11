@@ -8,7 +8,7 @@
   "dictionaryDefinitions": [
     {
       "name": "dotfiles",
-      "path": "~/.config/cspell/dictionaries.txt",
+      "path": "~/.local/share/cspell/dict-user.txt",
       "description": "dotfiles dictionary"
     }
   ]

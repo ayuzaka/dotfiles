@@ -1,5 +1,15 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "allowCompoundWords": true
+  "allowCompoundWords": true,
+  "dictionaries": [
+    "dotfiles"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "dotfiles",
+      "path": "~/.config/cspell/dictionaries.txt",
+      "description": "dotfiles dictionary"
+    }
+  ]
 }

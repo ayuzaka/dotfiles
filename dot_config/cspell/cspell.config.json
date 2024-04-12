@@ -4,7 +4,8 @@
   "allowCompoundWords": true,
   "dictionaries": [
     "dotfiles",
-    "program"
+    "program",
+    "custom"
   ],
   "dictionaryDefinitions": [
     {
@@ -15,6 +16,22 @@
     {
       "name": "program",
       "path": "~/.local/share/cspell/dict-program.txt"
+    },
+    {
+      "name": "custom",
+      "path": "~/.local/share/cspell/dict-custom.txt"
+    }
+  ],
+  "languageSettings": [
+    {
+      "languageId": "vim",
+      "locale": "*",
+      "ignoreRegExpList": [
+        "/Plug .*/"
+      ],
+      "dictionaries": [
+        "program"
+      ]
     }
   ]
 }

@@ -21,6 +21,19 @@ call ddu#custom#patch_global(#{
     \   },
     \ })
 
+call ddu#custom#patch_global(#{
+    \   kindOptions: {
+    \     'ai-review-request': #{
+    \       defaultAction: 'open',
+    \     },
+    \     'ai-review-log': #{
+    \       defaultAction: 'resume',
+    \     },
+    \   },
+    \ })
+
+call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4' } })
+
 call ddu#custom#patch_local('fd', #{
    \   sources: [#{name: 'file_external', params: {}}],
    \   sourceParams: #{

@@ -7,9 +7,6 @@ call ddu#custom#patch_global(#{
     \       matchers: ['matcher_substring'],
     \       ignoreCase: v:true,
     \     },
-    \     help: #{
-    \       defaultAction: 'open',
-    \     },
     \   },
     \   kindOptions: #{
     \     file: #{
@@ -71,8 +68,13 @@ call ddu#custom#patch_local('codeAction', #{
    \ })
 
 call ddu#custom#patch_local('help', #{
-   \   sources: [#{name: 'help'}],
-   \ })
+    \   sources: [#{name: 'help'}],
+    \   sourceOptions: #{
+    \     help: #{
+    \       defaultAction: 'open',
+    \     },
+    \   },
+     \})
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 autocmd FileType ddu-filer call s:ddu_my_settings()

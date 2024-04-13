@@ -111,6 +111,7 @@ Plug 'shun/ddu-source-rg'
 Plug 'Shougo/ddu-source-file'
 Plug 'Shougo/ddu-kind-file'
 Plug 'Shougo/ddu-filter-matcher_substring'
+Plug 'matsui54/ddu-source-help'
 
 Plug 'vim-skk/skkeleton'
 

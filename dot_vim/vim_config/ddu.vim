@@ -7,6 +7,9 @@ call ddu#custom#patch_global(#{
     \       matchers: ['matcher_substring'],
     \       ignoreCase: v:true,
     \     },
+    \     help: #{
+    \       defaultAction: 'open',
+    \     },
     \   },
     \   kindOptions: #{
     \     file: #{
@@ -67,6 +70,10 @@ call ddu#custom#patch_local('codeAction', #{
    \   sources: [#{name: 'lsp_codeAction', params: #{ method: 'textDocument/codeAction' }}],
    \ })
 
+call ddu#custom#patch_local('help', #{
+   \   sources: [#{name: 'help'}],
+   \ })
+
 autocmd FileType ddu-ff call s:ddu_my_settings()
 autocmd FileType ddu-filer call s:ddu_my_settings()
 
@@ -97,3 +104,4 @@ command! DduDef :call ddu#start({"name": "lsp_definition"})
 command! DduRef :call ddu#start({"name": "lsp_references"})
 
 command! Grep call ddu_rg#find()
+command! Help call ddu#start({"name": "help"})

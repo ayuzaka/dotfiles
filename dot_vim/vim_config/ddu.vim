@@ -95,3 +95,5 @@ nnoremap <C-p> :call ddu#start({"name": "fd"})<CR>
 command! DduCodeAction :call ddu#start({"name": "codeAction"})
 command! DduDef :call ddu#start({"name": "lsp_definition"})
 command! DduRef :call ddu#start({"name": "lsp_references"})
+
+command! Grep call ddu_rg#find()

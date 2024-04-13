@@ -99,6 +99,7 @@ Plug 'Shougo/ddc.vim'
 Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
+Plug 'Shougo/ddc-source-lsp'
 
 Plug 'Shougo/ddu.vim'
 Plug 'Shougo/ddu-ui-ff'

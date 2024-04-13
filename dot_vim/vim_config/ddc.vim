@@ -2,19 +2,33 @@ UsePlugin 'ddc.vim'
 
 call ddc#custom#patch_global('ui', 'native')
 
-" skkeleton
-call ddc#custom#patch_global('sources', ['skkeleton'])
-call ddc#custom#patch_global('sourceOptions', {
-    \   '_': {
-    \     'matchers': ['matcher_head'],
-    \     'sorters': ['sorter_rank']
+let g:ddc_source_lsp_param_snippetEngine = 'vim-lsp'
+call ddc#custom#patch_global('sources', ['lsp', 'skkeleton'])
+call ddc#custom#patch_global('sourceOptions', #{
+    \   _: #{
+    \     matchers: ['matcher_head'],
+    \     sorters: ['sorter_rank']
     \   },
-    \   'skkeleton': {
-    \     'mark': 'skkeleton',
-    \     'matchers': ['skkeleton'],
-    \     'sorters': []
+    \   skkeleton: #{
+    \     mark: 'skkeleton',
+    \     matchers: ['skkeleton'],
+    \     sorters: []
+    \   },
+    \   lsp: #{
+    \     mark: 'lsp',
+    \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
     \   },
     \ })
+
+call ddc#custom#patch_global('sourceParams', #{
+      \   lsp: #{
+      \     snippetEngine: denops#callback#register({
+      \           body -> vsnip#anonymous(body)
+      \     }),
+      \     enableResolveItem: v:true,
+      \     enableAdditionalTextEdit: v:true,
+      \   }
+      \ })
 
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>

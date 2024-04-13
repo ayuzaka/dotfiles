@@ -17,6 +17,7 @@ call ddc#custom#patch_global('sourceOptions', #{
     \   lsp: #{
     \     mark: 'lsp',
     \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
+    \     sorters: ['sorter_lsp-kind'],
     \   },
     \   copilot: #{
     \     mark: 'copilot',

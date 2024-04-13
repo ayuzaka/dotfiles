@@ -1,4 +1,3 @@
-
 # 色の設定
 export LSCOLORS=Exfxcxdxbxegedabagacad
 

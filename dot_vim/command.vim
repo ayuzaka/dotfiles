@@ -51,3 +51,14 @@ endfunction
 
 command! FullToHalf :call FullToHalf()
 command! HalfToFull :call HalfToFull()
+
+function! AddSpell()
+  let l:word = expand('<cword>')
+  let l:file = "$HOME/.local/share/cspell/dict-custom.txt"
+
+  execute 'redir >> ' . l:file
+  silent echo tolower(l:word)
+  redir END
+endfunction
+
+command! SpellAdd :call AddSpell()

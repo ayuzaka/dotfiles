@@ -2,6 +2,11 @@ UsePlugin 'ddu.vim'
 
 call ddu#custom#patch_global(#{
     \   ui: 'ff',
+    \   uiParams: #{
+    \     ff: #{
+    \       ignoreEmpty: v:true,
+    \     },
+    \   },
     \   sourceOptions: #{
     \     _: #{
     \       matchers: ['matcher_substring'],

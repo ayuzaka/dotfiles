@@ -54,7 +54,7 @@ command! HalfToFull :call HalfToFull()
 
 function! AddSpell()
   let l:word = expand('<cword>')
-  let l:file = "$HOME/.local/share/cspell/dict-custom.txt"
+  let l:file = "$XDG_DATA_HOME/cspell/dict-custom.txt"
 
   execute 'redir >> ' . l:file
   silent echo tolower(l:word)

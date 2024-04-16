@@ -1,6 +1,6 @@
 UsePlugin 'vim-fugitive'
 
-function! GitShowCurrentHash()
+function! GitShowCurrentHash() abort
     let hash = expand('<cword>')
     execute ':Git show ' . hash
 endfunction

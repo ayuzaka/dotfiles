@@ -52,13 +52,15 @@ endfunction
 command! FullToHalf :call FullToHalf()
 command! HalfToFull :call HalfToFull()
 
-function! AddSpell() abort
-  let l:word = expand('<cword>')
+function! AddSpell(arg = '') abort
+  let l:word = a:arg == '' ? expand('<cword>') : a:arg
   let l:file = "$XDG_DATA_HOME/cspell/dict-custom.txt"
 
   execute 'redir >> ' . l:file
   silent echo tolower(l:word)
   redir END
+
+  echo 'Added "' . l:word . '"'
 endfunction
 
-command! SpellAdd :call AddSpell()
+command! -nargs=* SpellAdd call AddSpell(<f-args>)

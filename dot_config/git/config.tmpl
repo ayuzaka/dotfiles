@@ -1,17 +1,5 @@
-[user]
-  email = ayuzaka.f@gmail.com
-  name = ayuzaka
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4WeL6W4XDqEtgkxBE0PYO0w8IfjgaXfiRd8IGOj1A9
-{{ if (eq .chezmoi.os "darwin") }}
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-{{ else }}
-[core]
-  sshCommand = ssh.exe
-[gpg "ssh"]
-  program = "/mnt/c/Users/ayuza/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
-{{ end }}
-
+[include]
+  path = ~/.config/git/config.local
 [core]
   excludesfile = ~/.config/git/gitignore_global
 [gpg]

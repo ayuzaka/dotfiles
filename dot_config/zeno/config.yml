@@ -93,16 +93,6 @@ completions:
       --prompt: "'tmux attach > ' "
     callback: "awk -F ':' '{print $1}'"
 
-  - name: zellij attach
-    patterns:
-      - "^zellij a(?: .*)? $"
-    sourceCommand: "zellij list-sessions"
-    options:
-      --height: "80%"
-      --print0: true
-      --preview-window: "down"
-      --prompt: "'Zellij attach > ' "
-
   - name: docker (running) container operation
     patterns:
       - "^docker container exec -it(?: .*)? $"

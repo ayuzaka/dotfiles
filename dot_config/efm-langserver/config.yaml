@@ -39,7 +39,7 @@ tools:
 
   eslint-lint: &eslint-lint
     prefix: eslint
-    lint-command: 'bunx eslint -f unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: "bunx eslint -f unix --stdin --stdin-filename '${INPUT}'"
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:
@@ -92,8 +92,8 @@ languages:
     - <<: *eslint-lint
     - <<: *prettier
   typescriptreact:
-    - <<: *prettier
     - <<: *eslint-lint
+    - <<: *prettier
   svelte:
     - <<: *eslint-lint
     - <<: *stylelint-lint

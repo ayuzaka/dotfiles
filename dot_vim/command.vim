@@ -17,7 +17,8 @@ endfunction
 
 command! SearchFullWidthEn :call SearchRegex('[Ａ-Ｚａ-ｚ]\+')
 command! SearchFullWidthNum :call SearchRegex('[０-９]\+')
-command! SearchFullWidth :call SearchRegex('[Ａ-Ｚａ-ｚ０-９]\+')
+command! SearchFullWidthSpace :call SearchRegex('[　]\+')
+command! SearchFullWidth :call SearchRegex('[Ａ-Ｚａ-ｚ　０-９]\+')
 
 function! FullToHalf() abort
   let l:word = expand('<cword>')

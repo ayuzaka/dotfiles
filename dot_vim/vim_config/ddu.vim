@@ -82,7 +82,6 @@ call ddu#custom#patch_local('help', #{
      \})
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
-autocmd FileType ddu-filer call s:ddu_my_settings()
 
 function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <CR>

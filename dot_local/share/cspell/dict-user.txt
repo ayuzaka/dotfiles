@@ -1,11 +1,13 @@
 alacritty
 ayuzaka
+ayuza
 cocopon
 cohama
 evanleck
 fatih
 hhkb
 imsnif
+jisyo
 karabiner
 keka
 kekaexternalhelper

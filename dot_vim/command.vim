@@ -65,3 +65,10 @@ function! AddSpell(arg = '') abort
 endfunction
 
 command! -nargs=* SpellAdd call AddSpell(<f-args>)
+
+command! Profile call s:command_profile()
+function! s:command_profile() abort
+  profile start ~/profile.txt
+  profile func *
+  profile file *
+endfunction

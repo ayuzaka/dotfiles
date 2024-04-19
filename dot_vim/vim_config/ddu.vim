@@ -111,6 +111,5 @@ command! DduCodeAction :call ddu#start({"name": "codeAction"})
 command! DduDef :call ddu#start({"name": "lsp_definition"})
 command! DduRef :call ddu#start({"name": "lsp_references"})
 
-nnoremap <silent> ;g <Cmd>call ddu_rg#find()<CR>
 command! Grep call ddu_rg#find()
 command! Help call ddu#start({"name": "help"})

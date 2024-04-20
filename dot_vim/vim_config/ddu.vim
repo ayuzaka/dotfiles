@@ -120,6 +120,17 @@ command! DduCodeAction :call ddu#start({"name": "codeAction"})
 command! DduDef :call ddu#start({"name": "lsp_definition"})
 command! DduRef :call ddu#start({"name": "lsp_references"})
 
-command! Grep call ddu_rg#find()
+"command! Grep call ddu#start({"name": "rg", "sources": [{"name": "rg", "params": {"input": input("Search word: ")}}]})
+
+command! Grep call ddu#start(#{
+      \  sources: [#{
+      \    name: 'rg',
+      \    params: #{
+      \      input: input('Search word: '),
+      \      args: ['-i', '--column', '--no-heading', '--color', 'never'],
+      \    },
+      \  }],
+      \})
+
 command! Help call ddu#start({"name": "help"})
 command! GitStatus call ddu#start({"name": "git_status"})

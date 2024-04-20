@@ -81,8 +81,17 @@ call ddu#custom#patch_local('help', #{
     \   },
      \})
 
-autocmd FileType ddu-ff call s:ddu_my_settings()
+call ddu#custom#patch_local('git_status', #{
+    \  sources: [#{name: 'git_status'}],
+    \  kindOptions: #{
+    \    git_status: #{
+    \      defaultAction: 'open',
+    \      actions: #{}
+    \    },
+    \  },
+    \})
 
+autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <CR>
         \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
@@ -113,3 +122,4 @@ command! DduRef :call ddu#start({"name": "lsp_references"})
 
 command! Grep call ddu_rg#find()
 command! Help call ddu#start({"name": "help"})
+command! GitStatus call ddu#start({"name": "git_status"})

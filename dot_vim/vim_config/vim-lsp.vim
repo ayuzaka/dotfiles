@@ -30,7 +30,7 @@ augroup vim_lsp_golangci_lint_langserver
       \ 'name': 'golangci-lint-langserver',
       \ 'cmd': {server_info->['golangci-lint-langserver']},
       \ 'initialization_options': {'command': ['golangci-lint', 'run', '--out-format', 'json', '--issues-exit-code=1']},
-      \ 'whitelist': ['go'],
+      \ 'allowlist': ['go'],
       \ })
 augroup END
 
@@ -40,7 +40,7 @@ augroup vim_lsp_biome
       \ 'name': 'biome',
       \ 'cmd': {server_info->['bunx', 'biome', 'lsp-proxy']},
       \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'biome.json'))},
-      \ 'whitelist': ['javascript', 'javascriptreact', 'json', 'jsonc', 'typescript', 'typescriptreact'],
+      \ 'allowlist': ['javascript', 'javascriptreact', 'json', 'jsonc', 'typescript', 'typescriptreact'],
       \ })
 augroup END
 
@@ -69,7 +69,7 @@ let g:lsp_settings = {
       \ 'efm-langserver': {
       \     'disabled': 0,
       \     'allowlist': ['*'],
-      \   }
+      \   },
       \ }
 
 command! ESLintFix {

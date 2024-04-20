@@ -34,6 +34,16 @@ augroup vim_lsp_golangci_lint_langserver
       \ })
 augroup END
 
+augroup vim_lsp_biome
+  au!
+  autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'biome',
+      \ 'cmd': {server_info->['bunx', 'biome', 'lsp-proxy']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), 'biome.json'))},
+      \ 'whitelist': ['javascript', 'javascriptreact', 'json', 'jsonc', 'typescript', 'typescriptreact'],
+      \ })
+augroup END
+
 nnoremap <silent>fmt :LspDocumentFormat<CR>
 command! EfmFormat :LspDocumentFormatSync --server=efm-langserver
 let g:lsp_signs_enabled = 1

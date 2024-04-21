@@ -26,71 +26,6 @@ call ddu#custom#patch_global(#{
     \   },
     \ })
 
-call ddu#custom#patch_global(#{
-    \   kindOptions: {
-    \     'ai-review-request': #{
-    \       defaultAction: 'open',
-    \     },
-    \     'ai-review-log': #{
-    \       defaultAction: 'resume',
-    \     },
-    \   },
-    \ })
-
-call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4' } })
-
-call ddu#custom#patch_local('fd', #{
-   \   sources: [#{name: 'file_external', params: {}}],
-   \   sourceParams: #{
-   \     file_external: #{
-   \       cmd: ['fd', '.', '-H', '-t', 'f']
-   \     },
-   \   },
-   \ })
-
-let g:ddu_source_lsp_clientName = 'vim-lsp'
-call ddu#custom#patch_local('lsp_definition', #{
-      \  sync: v:true,
-      \  sources: [#{
-      \    name: 'lsp_definition',
-      \    params: #{ method: 'textDocument/definition' },
-      \  }],
-      \})
-
-call ddu#custom#patch_local('lsp_references', #{
-      \  sync: v:true,
-      \  sources: [#{
-      \    name: 'lsp_references',
-      \    params: #{
-      \      method: 'textDocument/references',
-      \      includeDeclaration: v:false,
-      \    },
-      \  }],
-      \})
-
-call ddu#custom#patch_local('codeAction', #{
-   \   sources: [#{name: 'lsp_codeAction', params: #{ method: 'textDocument/codeAction' }}],
-   \ })
-
-call ddu#custom#patch_local('help', #{
-    \   sources: [#{name: 'help'}],
-    \   sourceOptions: #{
-    \     help: #{
-    \       defaultAction: 'open',
-    \     },
-    \   },
-     \})
-
-call ddu#custom#patch_local('git_status', #{
-    \  sources: [#{name: 'git_status'}],
-    \  kindOptions: #{
-    \    git_status: #{
-    \      defaultAction: 'open',
-    \      actions: #{}
-    \    },
-    \  },
-    \})
-
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <CR>
@@ -114,21 +49,3 @@ function! s:ddu_filter_my_settings() abort
   nnoremap <buffer><silent> q
   \ <Cmd>close<CR>
 endfunction
-
-nnoremap <C-p> :call ddu#start({"name": "fd"})<CR>
-command! DduCodeAction :call ddu#start({"name": "codeAction"})
-command! DduDef :call ddu#start({"name": "lsp_definition"})
-command! DduRef :call ddu#start({"name": "lsp_references"})
-
-command! Grep call ddu#start(#{
-      \  sources: [#{
-      \    name: 'rg',
-      \    params: #{
-      \      input: input('Search word: '),
-      \      args: ['-i', '--column', '--no-heading', '--color', 'never'],
-      \    },
-      \  }],
-      \})
-
-command! Help call ddu#start({"name": "help"})
-command! Gs call ddu#start({"name": "git_status"})

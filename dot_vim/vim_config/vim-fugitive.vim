@@ -5,5 +5,4 @@ function! GitShowCurrentHash() abort
     execute ':Git show ' . hash
 endfunction
 
-command! Gs call GitShowCurrentHash()
 command! Gb :Git blame

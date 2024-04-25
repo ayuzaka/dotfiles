@@ -72,13 +72,15 @@ let g:lsp_settings = {
       \   },
       \ }
 
-command! ESLintFix {
-  :!bunx eslint --fix "%"
-  :LspStopServer
-}
+function! s:eslint_fix() abort
+  execute '!bunx eslint --fix "%"'
+  execute 'LspStopServer'
+endfunction
+command! ESLintFix call s:eslint_fix()
 
-command! StylelintFix {
-  :!bunx stylelint --fix "%"
-  :LspStopServer
-}
+function! s:stylelint_fix() abort
+  execute '!bunx stylelint --fix "%"'
+  execute 'LspStopServer'
+endfunction
+command! StylelintFix call s:stylelint_fix()
 

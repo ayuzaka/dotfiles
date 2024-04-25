@@ -34,8 +34,10 @@ fastify
 fgrep
 fira
 fnamemod
+gcloud
 getcmdline
 getcmdtype
+getcwd
 gibo
 gochecknoinits
 golangci

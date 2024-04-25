@@ -15,6 +15,10 @@ snippets:
     keyword: aws
     snippet: docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli
 
+  - name: toggle gcloud profile
+    keyword: gcloud-activate
+    snippet: gcloud config configurations activate
+
   - name: docker container exec
     keyword: dc-exec
     snippet: docker container exec -it
@@ -165,3 +169,10 @@ completions:
     sourceCommand: "act --list | grep -v Stage | awk '{print $2}'"
     options:
       --prompt: "'act --job > '"
+
+  - name: toggle active gcloud account
+    patterns:
+      - "^gcloud config configurations activate(?: .*)?"
+    sourceCommand: "gcloud config configurations list --format 'value(name)'"
+    options:
+      --prompt: "'gcloud --project > '"

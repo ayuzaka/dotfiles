@@ -15,10 +15,6 @@ snippets:
     keyword: aws
     snippet: docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli
 
-  - name: toggle gcloud profile
-    keyword: gcloud-activate
-    snippet: gcloud config configurations activate
-
   - name: docker container exec
     keyword: dc-exec
     snippet: docker container exec -it

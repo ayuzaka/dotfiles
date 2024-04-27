@@ -17,12 +17,6 @@ call ddu#custom#patch_global(#{
     \     file: #{
     \       defaultAction: 'open',
     \     },
-    \     lsp: #{
-    \       defaultAction: 'open',
-    \     },
-    \     lsp_codeAction: #{
-    \       defaultAction: 'apply',
-    \     },
     \   },
     \ })
 

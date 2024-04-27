@@ -1,6 +1,18 @@
 UsePlugin 'ddu-source-lsp'
 
 let g:ddu_source_lsp_clientName = 'vim-lsp'
+
+call ddu#custom#patch_global(#{
+    \   kindOptions: #{
+    \     lsp: #{
+    \       defaultAction: 'open',
+    \     },
+    \     lsp_codeAction: #{
+    \       defaultAction: 'apply',
+    \     },
+    \   },
+    \ })
+
 call ddu#custom#patch_local('lsp_definition', #{
       \  sync: v:true,
       \  sources: [#{

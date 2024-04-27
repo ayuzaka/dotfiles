@@ -111,6 +111,8 @@ Plug 'Shougo/ddu-kind-file'
 Plug 'Shougo/ddu-filter-matcher_substring'
 Plug 'matsui54/ddu-source-help'
 Plug 'kuuote/ddu-source-git_status'
+Plug 'Shougo/ddu-ui-filer'
+Plug 'Shougo/ddu-column-filename'
 
 Plug 'vim-skk/skkeleton'
 

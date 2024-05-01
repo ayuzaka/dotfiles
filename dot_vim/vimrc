@@ -12,6 +12,7 @@ set autoread
 set hidden
 set showcmd
 set cursorline
+" 行末の1文字先までカーソルを移動できるようにする
 set virtualedit=onemore
 set smartindent
 set showmatch

@@ -36,6 +36,16 @@ call ddu#custom#patch_local('codeAction', #{
       \  sources: [#{name: 'lsp_codeAction', params: #{ method: 'textDocument/codeAction' }}],
       \})
 
+call ddu#custom#patch_local('lsp_diagnostic', #{
+      \  sources: [#{
+      \    name: 'lsp_diagnostic',
+      \    params: #{
+      \      clientName: 'vim-lsp',
+      \    },
+      \  }]
+      \})
+
 command! DduCodeAction :call ddu#start({"name": "codeAction"})
 command! DduDef :call ddu#start({"name": "lsp_definition"})
 command! DduRef :call ddu#start({"name": "lsp_references"})
+command! DduDiagnostic :call ddu#start({"name": "lsp_diagnostic"})

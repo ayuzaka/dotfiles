@@ -8,6 +8,7 @@ tools:
       - "%f:%l:%c: %m [%trror/%r]"
     root-markers:
       - .textlintrc
+      - .textlintrc.json
 
   markdown-markdownlint: &markdown-markdownlint
     lint-command: 'bunx markdownlint -s -c "~/.config/markdown/markdownlint.json"'

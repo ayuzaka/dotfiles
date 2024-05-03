@@ -12,7 +12,7 @@ ZDOTDIR=$HOME/.config/zsh
 
 ## Homebrew
 
-[https://brew.sh/]
+<https://brew.sh/>
 
 ```sh
 # Brewfile があるパスに移動

@@ -140,12 +140,6 @@ Plug 'cohama/lexima.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-" Plug 'lambdalisue/gin.vim'
-
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-git-status.vim'
 
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'

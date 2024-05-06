@@ -45,6 +45,7 @@ golint
 gopath
 gpgsign
 grepprg
+gruvbox
 guibg
 histignorealldups
 hlsearch
@@ -59,6 +60,7 @@ jquery
 jsdoc
 jsdom
 kaku
+keyof
 kysely
 lato
 lscolors
@@ -83,6 +85,7 @@ nosnakecase
 nospell
 noswapfile
 nuxt
+nvim
 ollama
 omnifunc
 osrelease

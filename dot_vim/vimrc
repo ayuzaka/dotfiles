@@ -93,6 +93,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-denops/denops.vim'
 
@@ -151,7 +152,7 @@ Plug 'yuki-yano/ai-review.vim'
 call plug#end()
 
 set background=dark
-colorscheme iceberg
+colorscheme gruvbox
 
 " custom command
 :source ~/.vim/command.vim

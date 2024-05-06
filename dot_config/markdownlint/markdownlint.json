@@ -2,6 +2,9 @@
   "no-trailing-punctuation": false,
   "no-inline-html": false,
   "no-space-in-code": false,
+  "MD010": {
+    "ignore_code_languages": ["go"]
+  },
   "MD013": false,
   "MD024": false
 }

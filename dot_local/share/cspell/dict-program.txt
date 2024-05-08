@@ -5,10 +5,14 @@ astro
 asyncomplete
 autocmd
 axios
+bdel
 biomejs
 bnext
 boms
 bprev
+buflisted
+buflisted
+bufnr
 bunx
 chpwd
 cica
@@ -25,6 +29,7 @@ difft
 difftastic
 dotenv
 dups
+echohl
 elif
 emojify
 esac
@@ -35,6 +40,7 @@ fgrep
 fira
 fnamemod
 gcloud
+getbufvar
 getcmdline
 getcmdtype
 getcwd

@@ -1,6 +1,11 @@
 command! CopyFile let @* = expand('%:t')
 command! CopyPath let @* = expand('%:p')
 
+" buffer
+nnoremap <silent> b, :bprev<CR>
+nnoremap <silent> b. :bnext<CR>
+nnoremap bd :bd<CR>
+
 function! RunOpenPR() abort
   let word = expand('<cword>')
   execute '!git rev-parse ' . word . ' | xargs gh openpr'

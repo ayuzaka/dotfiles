@@ -49,3 +49,6 @@ command! DduCodeAction :call ddu#start({"name": "codeAction"})
 command! DduDef :call ddu#start({"name": "lsp_definition"})
 command! DduRef :call ddu#start({"name": "lsp_references"})
 command! DduDiagnostic :call ddu#start({"name": "lsp_diagnostic"})
+
+nnoremap <C-d>d :call ddu#start({"name": "lsp_definition"})<CR>
+nnoremap <C-d>r :call ddu#start({"name": "lsp_references"})<CR>

@@ -94,6 +94,18 @@ return {
       action = act.CloseCurrentTab { confirm = true },
     },
     {
+      key = ',',
+      mods = 'LEADER',
+      action = act.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, _pane, line)
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
+    },
+    {
       key = 'x',
       mods = 'LEADER',
       action = act.CloseCurrentPane { confirm = true },

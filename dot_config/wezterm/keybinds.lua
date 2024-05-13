@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
-wezterm.on('update-right-status', function(window, pane)
+wezterm.on('update-right-status', function(window)
   window:set_right_status(window:active_workspace())
 end)
 

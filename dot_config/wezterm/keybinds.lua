@@ -95,6 +95,11 @@ return {
       action = act.CloseCurrentPane { confirm = true },
     },
     {
+      key = 'p',
+      mods = 'SUPER',
+      action = act.CopyTo 'ClipboardAndPrimarySelection'
+    },
+    {
       key = 'v',
       mods = 'SUPER',
       action = act.PasteFrom 'Clipboard'

@@ -5,7 +5,7 @@ wezterm.on('update-right-status', function(window)
   window:set_right_status(window:active_workspace())
 end)
 
-return {
+local config = {
   leader = { key = 's', mods = 'CTRL', timeout_milliseconds = 1000 },
   keys = {
     {
@@ -156,3 +156,13 @@ return {
   },
 }
 
+for i = 1, 8 do
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'LEADER',
+    action = act.ActivateTab(i - 1),
+  })
+end
+
+
+return config

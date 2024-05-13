@@ -1,6 +1,10 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
+wezterm.on('update-right-status', function(window, pane)
+  window:set_right_status(window:active_workspace())
+end)
+
 return {
   leader = { key = 's', mods = 'CTRL', timeout_milliseconds = 1000 },
   keys = {
@@ -97,17 +101,45 @@ return {
     {
       key = 'p',
       mods = 'SUPER',
-      action = act.CopyTo 'ClipboardAndPrimarySelection'
+      action = act.CopyTo 'ClipboardAndPrimarySelection',
     },
     {
       key = 'v',
       mods = 'SUPER',
-      action = act.PasteFrom 'Clipboard'
+      action = act.PasteFrom 'Clipboard',
     },
     {
       key = 'j',
       mods = 'CTRL',
       action = act.DisableDefaultAssignment,
+    },
+    {
+      key = 's',
+      mods = 'LEADER',
+      action = act.ShowLauncherArgs {
+        flags = 'WORKSPACES',
+      },
+    },
+    {
+      key = 'y',
+      mods = 'CTRL|SHIFT',
+      action = act.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Foreground = { AnsiColor = 'Fuchsia' } },
+          { Text = 'Enter name ofr new workspace' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:perform_action(
+              act.SwitchToWorkspace {
+                name = line,
+              },
+              pane
+            )
+          end
+        end)
+      },
     },
   },
 }

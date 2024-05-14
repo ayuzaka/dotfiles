@@ -148,7 +148,7 @@ set background=dark
 colorscheme gruvbox
 
 " custom command
-:source ~/.vim/command.vim
+:source ~/.config/vim/command.vim
 
 " 各種設定の読み込み
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))

@@ -82,7 +82,7 @@ cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] 
 " Plugin
 """""""""""""""""""""
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'

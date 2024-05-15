@@ -11,4 +11,4 @@ call ddu#custom#patch_global(#{
     \  },
     \})
 
-call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4' } })
+call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4o' } })

@@ -6,9 +6,8 @@
 #--no-heading
 
 # exclude file type
--T
-lock
+--T=lock
+--T=svg
 
 # exclude path
--g
-!.git/*
+-g=!.git/*

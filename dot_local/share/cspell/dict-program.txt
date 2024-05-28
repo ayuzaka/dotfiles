@@ -97,6 +97,7 @@ lspconfig
 mycli
 nargs
 nbsp
+netrw
 nmap
 nnoremap
 noautoremoveslash

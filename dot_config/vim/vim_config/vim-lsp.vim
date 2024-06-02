@@ -34,7 +34,6 @@ augroup vim_lsp_golangci_lint_langserver
       \ })
 augroup END
 
-
 nnoremap <silent>fmt :LspDocumentFormat<CR>
 command! EfmFormat :LspDocumentFormatSync --server=efm-langserver
 let g:lsp_signs_enabled = 1
@@ -61,6 +60,10 @@ let g:lsp_settings = {
       \     'disabled': 0,
       \     'allowlist': ['*'],
       \   },
+      \  'biome': {
+      \     'disabled': 1,
+      \     'allowlist': ['typescript', 'typescriptreact'],
+      \  }
       \ }
 
 function! s:eslint_fix() abort

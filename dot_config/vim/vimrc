@@ -79,6 +79,14 @@ cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] 
 
 let g:netrw_home = '$XDG_CACHE_HOME/vim'
 
+" a" の時に周囲の空白を巻き込まないようにする
+xnoremap a" 2i"
+xnoremap a' 2i'
+xnoremap a` 2i`
+onoremap a" 2i"
+onoremap a' 2i'
+onoremap a` 2i`
+
 """""""""""""""""""""
 " Plugin
 """""""""""""""""""""

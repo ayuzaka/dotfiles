@@ -60,6 +60,8 @@ export PATH="/home/ayuzaka/.local/share/fnm:$PATH"
 {{ end }}
 eval "$(fnm env --use-on-cd)"
 
+export RYE_HOME="$XDG_DATA_HOME"/rye
+
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export ANDROID_HOME="$XDG_DATA_HOME"/android

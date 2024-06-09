@@ -31,6 +31,7 @@ brew bundle
 - [ollama](https://github.com/jmorganca/ollama)
 - [Firebase CLI](https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux)
 - [tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
+- [rye](https://rye.astral.sh/)
 
 fetch and install the tmux plugin  
 `Ctrl + s + I`

@@ -94,6 +94,7 @@ libxss
 libxtst
 lscolors
 lspconfig
+mdast
 mycli
 nargs
 nbsp
@@ -122,11 +123,13 @@ ostype
 palt
 pgcli
 plemol
+popperjs
 posix
 psql
 pumvisible
 pushd
 redir
+rehype
 rerere
 rgba
 ripgreprc
@@ -136,11 +139,13 @@ rxvt
 setaf
 setf
 setw
+shadcn
 shellenv
 shopt
 showcmd
 structcheck
 stylelintrc
+svgr
 tagfunc
 testid
 textlintrc
@@ -160,6 +165,7 @@ vitest
 vsnip
 vsplit
 webp
+webrtc
 xtrace
 zcompdump
 zstyle

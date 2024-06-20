@@ -160,6 +160,8 @@ call plug#end()
 set background=dark
 colorscheme gruvbox
 
+command! GitBrowse !git browse
+
 " custom command
 :source ~/.config/vim/command.vim
 

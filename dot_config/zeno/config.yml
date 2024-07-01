@@ -63,6 +63,10 @@ snippets:
     keyword: ol
     snippet: ollama
 
+  - name: img2sixel
+    keyword: ls-img
+    snippet: img2sixel
+
 completions:
   - name: git switch
     patterns:

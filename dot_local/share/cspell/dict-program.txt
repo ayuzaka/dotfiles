@@ -79,6 +79,7 @@ libnspr
 libnss
 libpango
 libpangocairo
+libsixel
 libstdc
 libx
 libxcb
@@ -143,6 +144,7 @@ shadcn
 shellenv
 shopt
 showcmd
+sixel
 structcheck
 stylelintrc
 svgr

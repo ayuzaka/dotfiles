@@ -39,6 +39,7 @@ fgrep
 fira
 firebaserc
 fnamemod
+fnamemodify
 gcloud
 getbufvar
 getcmdline

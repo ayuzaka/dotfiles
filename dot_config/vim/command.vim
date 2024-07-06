@@ -128,3 +128,10 @@ function! BufOnly(buffer, bang)
     echomsg delete_count "buffers deleted"
   endif
 endfunction
+
+function! GitBrowseCurrent() abort
+  let dir_path = fnamemodify(expand('%'), ':~:.')
+  execute '!git browse --path=' . dir_path
+endfunction
+
+command! GitBrowse :call GitBrowseCurrent()

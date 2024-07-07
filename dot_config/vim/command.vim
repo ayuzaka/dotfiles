@@ -93,7 +93,7 @@ function! BufOnly(buffer, bang)
     " A buffer name was provided.
     let buffer = bufnr(a:buffer)
   endif
- 
+
   if buffer == -1
     echohl ErrorMsg
     echomsg "No matching buffer for" a:buffer
@@ -131,7 +131,7 @@ endfunction
 
 function! GitBrowseCurrent() abort
   let dir_path = fnamemodify(expand('%'), ':~:.')
-  execute '!git browse --path=' . dir_path
+  execute '!gh browse ' . dir_path
 endfunction
 
 command! GitBrowse :call GitBrowseCurrent()

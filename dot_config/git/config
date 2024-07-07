@@ -30,5 +30,3 @@
   cmd = difft "$LOCAL" "$REMOTE"
 [pager]
   difftool = true
-[alias]
-  browse = "!deno run --allow-net --allow-run --allow-read --allow-env jsr:@lambdalisue/git-browse/cli"

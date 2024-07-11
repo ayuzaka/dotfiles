@@ -34,6 +34,8 @@ set backspace=indent,eol,start
 set viminfo+=n~/.config/vim/viminfo
 set re=0
 set nospell
+set foldmethod=syntax
+set foldlevelstart=99
 
 noremap <C-]> <esc>
 noremap! <C-]> <esc>

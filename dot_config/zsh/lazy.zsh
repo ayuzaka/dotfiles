@@ -104,4 +104,4 @@ source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 source "$RYE_HOME/env"
 
 # Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :

@@ -80,13 +80,18 @@ local config = {
     },
     {
       key = '=',
-      mods = 'LEADER',
+      mods = 'CTRL',
       action = act.IncreaseFontSize,
     },
     {
       key = '0',
       mods = 'LEADER',
       action = act.ResetFontSize,
+    },
+    {
+      key = '-',
+      mods = 'CTRL',
+      action = wezterm.action.DecreaseFontSize
     },
     {
       key = 'w',

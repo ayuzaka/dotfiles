@@ -17,3 +17,22 @@ command! GrepIgnore call ddu#start(#{
       \  }],
       \})
 
+command! GrepInclude call ddu#start(#{
+      \  sources: [#{
+      \    name: 'rg',
+      \    params: #{
+      \      input: input('Search word: '),
+      \      args: ['-i', '--column', '--no-heading', '--color', 'never', '--t', input('Enter include type: ')],
+      \    },
+      \  }],
+      \})
+
+command! GrepExclude call ddu#start(#{
+      \  sources: [#{
+      \    name: 'rg',
+      \    params: #{
+      \      input: input('Search word: '),
+      \      args: ['-i', '--column', '--no-heading', '--color', 'never', '--T', input('Enter exclude type: ')],
+      \    },
+      \  }],
+      \})

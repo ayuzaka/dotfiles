@@ -137,12 +137,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'airblade/vim-tailwind'
-
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-wasm'
+Plug 'ionide/Ionide-vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cohama/lexima.vim'

@@ -29,6 +29,9 @@ tools:
       - .stylelintrc.json
       - .stylelintrc.js
       - .stylelintrc.cjs
+      - .stylelintrc.mjs
+      - stylelint.config.cjs
+      - stylelint.config.mjs
     commands:
       - title: "stylelint fix"
         command: "bunx"

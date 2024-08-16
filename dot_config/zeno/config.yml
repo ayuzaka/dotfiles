@@ -90,6 +90,17 @@ completions:
       --prompt: "'Git Branch Delete > ' "
     callback: "awk '{print $1}'"
 
+  - name: git branch delete force
+    patterns:
+      - "^git branch -D(?: .*)? $"
+    sourceCommand: "git branch | grep -v -E '(develop|master|main)'"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'Git Branch Delete > ' "
+    callback: "awk '{print $1}'"
+
   - name: tmux attach
     patterns:
       - "^tmux a -t(?: .*)? $"

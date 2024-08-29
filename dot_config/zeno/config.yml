@@ -67,6 +67,10 @@ snippets:
     keyword: ls-img
     snippet: img2sixel
 
+  - name: gcloud switch
+    keyword: gcloud-switch
+    snippet: gcloud config configurations activate
+
 completions:
   - name: git switch
     patterns:

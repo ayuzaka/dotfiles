@@ -8,6 +8,10 @@ function! s:skkeleton_init() abort
     \ 'globalDictionaries': ['~/.config/skk/SKK-JISYO.L'],
     \ 'eggLikeNewline': v:true
     \ })
+
+  call skkeleton#register_kanatable('rom', {
+        \  'z~': ['〜'],
+        \})
 endfunction
 augroup skkeleton-initialize-pre
   autocmd!

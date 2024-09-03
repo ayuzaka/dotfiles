@@ -105,3 +105,6 @@ source "$RYE_HOME/env"
 
 # Added by OrbStack: command-line tools and integration
 source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
+
+export WASMTIME_HOME="$XDG_DATA_HOME/wasmtime"
+export PATH="$WASMTIME_HOME/bin:$PATH"

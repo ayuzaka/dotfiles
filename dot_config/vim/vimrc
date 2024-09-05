@@ -152,6 +152,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 Plug 'imsnif/kdl.vim'
+Plug 'machakann/vim-sandwich'
 
 Plug 'github/copilot.vim'
 Plug 'yuki-yano/ai-review.vim'

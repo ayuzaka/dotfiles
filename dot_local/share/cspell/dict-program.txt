@@ -169,6 +169,7 @@ vsnip
 vsplit
 webp
 webrtc
+xnoremap
 xtrace
 zcompdump
 zstyle

@@ -164,6 +164,7 @@ colorscheme gruvbox
 
 " custom command
 :source ~/.config/vim/command.vim
+:source ~/.config/vim/abbrev.vim
 
 " 各種設定の読み込み
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))

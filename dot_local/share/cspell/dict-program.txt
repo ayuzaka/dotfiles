@@ -57,6 +57,7 @@ guibg
 histignorealldups
 hlsearch
 hono
+iabbrev
 iframe
 imap
 inoremap

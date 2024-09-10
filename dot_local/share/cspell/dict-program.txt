@@ -168,6 +168,7 @@ vite
 vitest
 vsnip
 vsplit
+wabt
 webp
 webrtc
 xnoremap

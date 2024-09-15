@@ -37,20 +37,33 @@ set nospell
 set foldmethod=syntax
 set foldlevelstart=99
 
-noremap <C-]> <esc>
-noremap! <C-]> <esc>
 
 syntax enable
+
+"key mapping
+
+noremap <C-]> <esc>
+noremap! <C-]> <esc>
 
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
 
-filetype plugin indent on
-runtime macros/matchint.vim
-
 " 検索時のハイライトを消す
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" 行末までコピー
+nnoremap Y y$
+
+" リドゥ
+nnoremap U <c-r>
+
+" 連続してインデント操作
+xnoremap < <gv
+xnoremap > >gv
+
+filetype plugin indent on
+runtime macros/matchint.vim
 
 if has('vim_starting')
     " 挿入モード時に非点滅の縦棒タイプのカーソル

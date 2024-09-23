@@ -103,6 +103,8 @@ languages:
     - <<: *eslint-lint
     - <<: *stylelint-lint
     - <<: *prettier
+  html:
+    - <<: *prettier
   css:
     - <<: *stylelint-lint
     - <<: *prettier

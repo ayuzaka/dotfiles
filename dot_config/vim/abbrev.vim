@@ -1,4 +1,3 @@
-
 augroup my_abbrev
   autocmd FileType sql iabbrev <buffer> select SELECT
   autocmd FileType sql iabbrev <buffer> from FROM

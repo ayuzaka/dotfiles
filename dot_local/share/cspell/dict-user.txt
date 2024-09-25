@@ -1,6 +1,6 @@
 alacritty
-ayuzaka
 ayuza
+ayuzaka
 cocopon
 cohama
 evanleck
@@ -16,6 +16,7 @@ mattn
 prabirshrestha
 shougo
 skkeleton
+toggl
 tpope
 vscodevim
 wezterm

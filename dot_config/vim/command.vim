@@ -1,6 +1,8 @@
 command! CopyFile let @* = expand('%:t')
 command! CopyPath let @* = expand('%:p')
 
+command! RemoveBlankLines :%v/\S/d
+
 " buffer
 nnoremap <silent> b, :bprev<CR>
 nnoremap <silent> b. :bnext<CR>

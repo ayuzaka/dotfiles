@@ -9,5 +9,6 @@ augroup my_abbrev
   autocmd FileType typescript,typescriptreact iabbrev <buffer> ex export
   autocmd FIleType typescript,typescriptreact iabbrev <buffer> im import
   autocmd FileType typescript,typescriptreact iabbrev <buffer> con console
+  autocmd FileType typescript,typescriptreact iabbrev <buffer> cosnt const
 augroup END
 

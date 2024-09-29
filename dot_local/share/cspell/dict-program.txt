@@ -41,6 +41,7 @@ firebaserc
 fnamemod
 fnamemodify
 gcloud
+gcompat
 getbufvar
 getcmdline
 getcmdtype
@@ -53,6 +54,7 @@ gopath
 gpgsign
 grepprg
 gruvbox
+gsap
 guibg
 histignorealldups
 hlsearch

@@ -176,4 +176,5 @@ webrtc
 xnoremap
 xtrace
 zcompdump
+zoxide
 zstyle

@@ -71,6 +71,10 @@ snippets:
     keyword: gcloud-switch
     snippet: gcloud config configurations activate
 
+  - name: use zoxide instead of cd
+    keyword: cd
+    snippet: z
+
 completions:
   - name: git switch
     patterns:

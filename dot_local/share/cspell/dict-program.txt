@@ -104,6 +104,7 @@ mycli
 nargs
 nbsp
 netrw
+nextjs
 nmap
 nnoremap
 noautoremoveslash

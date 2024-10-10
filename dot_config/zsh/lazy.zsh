@@ -30,16 +30,6 @@ setopt magic_equal_subst
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# search ~/.chpwd-recent-dirs
-alias cdd='fzf_cdr'
-fzf_cdr() {
-  target_dir=$(cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf)
-  target_dir="${target_dir/\~/$HOME}"
-  if [ -n "$target_dir" ]; then
-    cd "$target_dir" || return
-  fi
-}
-
 function fzf-down() {
   fzf --height 50% "$@" --border
 }

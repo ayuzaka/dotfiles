@@ -102,8 +102,6 @@ onoremap a` 2i`
 
 call plug#begin('~/.local/share/vim/plugged')
 
-Plug 'arcticicestudio/nord-vim'
-Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 
 Plug 'vim-denops/denops.vim'

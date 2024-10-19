@@ -89,6 +89,12 @@ tools:
       - '%f:%l:%c - %m'
       - '%f:%l:%c %m'
 
+  hadolint-lint: &hadolint-lint
+    prefix: hadolint
+    lint-command: 'hadolint --no-color'
+    lint-formats:
+      - '%f:%l %m'
+
 languages:
   javascript:
     - <<: *eslint-lint
@@ -119,5 +125,7 @@ languages:
     - <<: *actionlint-lint
   sh:
     - <<: *shellcheck-lint
+  dockerfile:
+    - <<: *hadolint-lint
   =:
     - <<: *cspell-lint

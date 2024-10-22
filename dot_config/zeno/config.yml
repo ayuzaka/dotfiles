@@ -39,6 +39,10 @@ snippets:
     keyword: git-tree
     snippet: git log --graph --pretty=format:'%x09%C(auto) %h %Cgreen %cd %Creset%x09%C(cyan ul)%an%Creset %x09%C(auto)%s %d' --date=format:'%Y-%m-%d (%a)'
 
+  - name: git switch main
+    keyword: gm
+    snippet: git switch main
+
   - name: git-difftool
     keyword: gitdiff
     snippet: git difftool

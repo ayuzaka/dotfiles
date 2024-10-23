@@ -43,6 +43,14 @@ snippets:
     keyword: gm
     snippet: git switch main
 
+  - name: git switch
+    keyword: gs
+    snippet: git switch
+
+  - name: git fetch && git checkout
+    keyword: gc
+    snippet: git fetch && git checkout
+
   - name: git-difftool
     keyword: gitdiff
     snippet: git difftool

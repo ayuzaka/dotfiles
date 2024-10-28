@@ -1,5 +1,6 @@
 command! CopyFile let @* = expand('%:t')
 command! CopyPath let @* = expand('%:p')
+command! CopyFullPath let @* = fnamemodify(expand("%"), ":~:.")
 
 command! RemoveBlankLines :%v/\S/d
 

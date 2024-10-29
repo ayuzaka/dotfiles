@@ -9,7 +9,7 @@ function! s:ddu_filer_my_settings() abort
   nnoremap <buffer><silent><expr> <CR>
     \ ddu#ui#get_item()->get('isTree', v:false) ?
     \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow'})<CR>" :
-    \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>"
+    \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'rightbelow vsplit'}})<CR>"
 
   nnoremap <buffer><silent> <Space>
         \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
@@ -38,7 +38,7 @@ function! s:ddu_filer_my_settings() abort
   nnoremap <buffer><silent><expr> l
         \ ddu#ui#get_item()->get('isTree', v:false) ?
         \ "<Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>" :
-        \ "<Cmd>call ddu#ui#do_action('itemAction')<CR>"
+        \ "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'rightbelow vsplit' } })<CR>"
 endfunction
 
 call ddu#custom#patch_local('filer', #{
@@ -63,6 +63,11 @@ call ddu#custom#patch_local('filer', #{
       \      sort: 'filename',
       \    },
       \  },
+      \  actionOptions: #{
+      \    open: #{
+      \      quit: v:false,
+      \    }
+      \  }
       \})
 
 command! Filer call ddu#start(#{

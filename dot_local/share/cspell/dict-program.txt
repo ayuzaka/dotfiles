@@ -55,6 +55,7 @@ gpgsign
 grepprg
 gruvbox
 gsap
+gsplit
 guibg
 hadolint
 histignorealldups

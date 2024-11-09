@@ -12,7 +12,6 @@ brew install chezmoi
 
 Clone dotfiles
 
-```sh
 chezmoi init https://github.com/ayuzaka/dotfiles.git
 ```
 

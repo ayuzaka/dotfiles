@@ -2,13 +2,13 @@ vim.cmd("packadd vim-jetpack")
 require("jetpack.packer").add {
   { "tani/vim-jetpack" },
   { "morhetz/gruvbox" },
+  { "nvim-treesitter/nvim-treesitter" },
   { "vim-denops/denops.vim" },
   { "github/copilot.vim"},
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { 'prabirshrestha/asyncomplete.vim' },
   { 'prabirshrestha/asyncomplete-lsp.vim' },
-  { "evanleck/vim-svelte" },
   { "Shougo/ddc.vim"},
   { "Shougo/ddc-ui-native"},
   { "Shougo/ddc-matcher_head"},
@@ -33,8 +33,6 @@ require("jetpack.packer").add {
   { "vim-airline/vim-airline"},
   { "vim-airline/vim-airline-themes"},
   { "easymotion/vim-easymotion"},
-  { "maxmellon/vim-jsx-pretty"},
-  { "leafgarland/typescript-vim"},
   { "cohama/lexima.vim"},
   { "airblade/vim-gitgutter"},
   { "tpope/vim-fugitive"},
@@ -47,6 +45,7 @@ require("jetpack.packer").add {
 require("plugins.gruvbox")
 require("plugins.denops")
 require("plugins.vim-lsp")
+require("plugins.nvim-treesitter")
 require("plugins.skkeleton")
 require("plugins.ddc")
 require("plugins.ddu")

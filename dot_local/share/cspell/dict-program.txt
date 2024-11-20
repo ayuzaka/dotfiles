@@ -162,6 +162,7 @@ tolower
 tput
 trror
 tseslint
+turborepo
 udev
 udgothic
 ugothic

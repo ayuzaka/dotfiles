@@ -5,6 +5,8 @@ require("jetpack.packer").add {
   { "nvim-treesitter/nvim-treesitter" },
   { "vim-denops/denops.vim" },
   { "github/copilot.vim"},
+  { "nvim-lua/plenary.nvim" },
+  { "CopilotC-Nvim/CopilotChat.nvim", branch = 'canary' },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { 'prabirshrestha/asyncomplete.vim' },
@@ -59,3 +61,4 @@ require("plugins.vim-markdown")
 require("plugins.vim-airline")
 require("plugins.vim-fugitive")
 require("plugins.copilot")
+require("plugins.copilot-chat")

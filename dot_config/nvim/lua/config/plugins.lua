@@ -6,7 +6,7 @@ require("jetpack.packer").add {
   { "vim-denops/denops.vim" },
   { "github/copilot.vim"},
   { "nvim-lua/plenary.nvim" },
-  { "CopilotC-Nvim/CopilotChat.nvim", branch = 'canary' },
+  { "CopilotC-Nvim/CopilotChat.nvim", branch = "canary" },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { 'prabirshrestha/asyncomplete.vim' },
@@ -42,6 +42,7 @@ require("jetpack.packer").add {
   { "preservim/vim-markdown"},
   { "imsnif/kdl.vim"},
   { "machakann/vim-sandwich"},
+  { "folke/ts-comments.nvim", event = "VeryLazy" },
 }
 
 require("plugins.gruvbox")

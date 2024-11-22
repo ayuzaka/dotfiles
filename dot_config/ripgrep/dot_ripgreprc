@@ -11,3 +11,4 @@
 
 # exclude path
 -g=!.git/*
+-g=!.yarn/*

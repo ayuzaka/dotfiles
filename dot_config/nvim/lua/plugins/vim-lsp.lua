@@ -17,13 +17,6 @@ local function on_lsp_buffer_enabled()
   vim.keymap.set("n", "K", "<plug>(lsp-hover)", opts)
 
   -- スクロール設定
-  --vim.keymap.set("n", "<c-f>", function()
-  --  return vim.fn.popup_list():empty() and "<c-f>" or vim.fn["lsp#scroll"](4)
-  --end, { expr = true, buffer = true })
-
-  --vim.keymap.set("n", "<c-b>", function()
-  --  return vim.fn.popup_list():empty() and "<c-b>" or vim.fn["lsp#scroll"](-4)
-  --end, { expr = true, buffer = true })
   vim.keymap.set('n', '<c-f>', function()
     -- ポップアップウィンドウが表示されているかチェック
     local win_list = vim.api.nvim_list_wins()

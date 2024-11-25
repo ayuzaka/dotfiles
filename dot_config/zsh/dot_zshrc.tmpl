@@ -70,7 +70,7 @@ export ANDROID_HOME="$XDG_DATA_HOME"/android
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-export MANPAGER="col -b -x|vim -R -c 'set ft=man nolist nomod noma' -"
+export MANPAGER="col -b -x|nvim -R -c 'set ft=man nolist nomod noma' -"
 export MINIKUBE_HOME="$XDG_DATA_HOME"/minikube
 
 # -----------------------------
@@ -79,8 +79,8 @@ export MINIKUBE_HOME="$XDG_DATA_HOME"/minikube
 # 色を使用
 autoload -Uz colors ; colors
 
-# エディタをvimに設定
-export EDITOR=vim
+# エディタをnvimに設定
+export EDITOR=nvim
 
 # cdした際のディレクトリをディレクトリスタックへ自動追加
 setopt auto_pushd

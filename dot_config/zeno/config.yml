@@ -87,6 +87,10 @@ snippets:
     keyword: cd
     snippet: z
 
+  - name: force neovim
+    keyword: vim
+    snippet: nvim
+
 completions:
   - name: git switch
     patterns:

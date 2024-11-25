@@ -1,6 +1,6 @@
 vim.fn["ddc#custom#patch_global"]("ui", "native")
 
-vim.fn["ddc#custom#patch_global"]("sources", {"skkeleton"})
+vim.fn["ddc#custom#patch_global"]("sources", { "skkeleton", "vim-lsp" })
 
 vim.fn["ddc#custom#patch_global"]("sourceOptions", {
     ["_"] = {
@@ -15,6 +15,10 @@ vim.fn["ddc#custom#patch_global"]("sourceOptions", {
         isVolatile = true,
         minAutoCompleteLength = 1
     },
+    ["vim-lsp"] = {
+      matchers = { "matcher_head" },
+      mark = "lsp"
+    }
 })
 
 vim.fn["skkeleton#config"]({

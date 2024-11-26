@@ -72,6 +72,7 @@ cask "tableplus"
 cask "visual-studio-code"
 cask "wezterm"
 cask "yubico-authenticator"
+cask "zen-browser"
 mas "Gifski", id: 1351639930
 mas "Kindle", id: 302584613
 mas "RunCat", id: 1429033973

@@ -40,6 +40,7 @@ fira
 firebaserc
 fnamemod
 fnamemodify
+foldexpr
 gcloud
 gcompat
 getbufvar
@@ -111,6 +112,7 @@ nmap
 nnoremap
 noautoremoveslash
 nobackup
+nofoldenable
 nohlsearch
 noinherit
 nolist

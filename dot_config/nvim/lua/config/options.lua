@@ -51,8 +51,9 @@ opt.signcolumn = "yes"
 opt.backspace = "indent,eol,start"
 opt.re = 0
 opt.spell = false
-opt.foldmethod = "syntax"
-opt.foldlevelstart = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd([[ set nofoldenable ]])
 
 opt.syntax = "on"
 
@@ -101,4 +102,4 @@ cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ":s" ? [getchar(), ""][1] 
 ]])
 
 -- netrwの設定
-vim.g.netrw_home = vim.env.XDG_CACHE_HOME .. "/vim"
+vim.g.netrw_home = vim.env.XDG_CACHE_HOME .. "/nvim"

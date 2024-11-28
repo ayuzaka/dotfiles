@@ -51,6 +51,10 @@ snippets:
     keyword: gc
     snippet: git fetch && git checkout
 
+  - name: copy latest commit hash
+    keyword: gch
+    snippet: git rev-parse HEAD | pbcopy
+
   - name: git-difftool
     keyword: gitdiff
     snippet: git difftool

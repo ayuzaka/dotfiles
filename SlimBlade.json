@@ -1,0 +1,410 @@
+{
+  "devices": [
+    [
+      32982,
+      {
+        "*": {
+          "config": {
+            "acceleration": true,
+            "accelerationRate": 20,
+            "commands": [
+              [
+                1,
+                {
+                  "command": "mouse_leftClick",
+                  "params": null
+                }
+              ],
+              [
+                2,
+                {
+                  "command": "mouse_rightClick",
+                  "params": null
+                }
+              ],
+              [
+                3,
+                {
+                  "command": "missionControl_missionControl",
+                  "params": {}
+                }
+              ],
+              [
+                4,
+                {
+                  "command": "browser_forward",
+                  "params": {}
+                }
+              ],
+              [
+                8,
+                {
+                  "command": "mouse_button4Click",
+                  "params": null
+                }
+              ],
+              [
+                12,
+                {
+                  "command": "missionControl_launchpad",
+                  "params": {}
+                }
+              ],
+              [
+                16,
+                {
+                  "command": "mouse_button5Click",
+                  "params": null
+                }
+              ],
+              [
+                1073741824,
+                {
+                  "command": "navigation_scrollLeft",
+                  "params": null
+                }
+              ],
+              [
+                2147483648,
+                {
+                  "command": "navigation_scrollRight",
+                  "params": null
+                }
+              ]
+            ],
+            "customModifiers": "",
+            "customacceleration": true,
+            "customaccelerationRate": 20,
+            "customspeed": 80,
+            "id": 0,
+            "inertialScroll": false,
+            "inertialScrollFactor": 0,
+            "inertialScrollNullSteps": 0,
+            "inertialScrollTimer": 0,
+            "lockedAxisModifiers": "",
+            "scrollInvert": false,
+            "scrollLines": 1,
+            "slowDivider": 0,
+            "slowModifiers": "",
+            "snapModifiers": "",
+            "snippets": [
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              }
+            ],
+            "speed": 50
+          },
+          "fileName": "",
+          "name": "*"
+        },
+        "com.amazon.Lassen-Kindle": {
+          "config": {
+            "acceleration": true,
+            "accelerationRate": 20,
+            "commands": [
+              [
+                1,
+                {
+                  "command": "mouse_leftClick",
+                  "params": null
+                }
+              ],
+              [
+                2,
+                {
+                  "command": "mouse_rightClick",
+                  "params": null
+                }
+              ],
+              [
+                3,
+                {
+                  "command": "missionControl_missionControl",
+                  "params": {}
+                }
+              ],
+              [
+                4,
+                {
+                  "command": "navigation_pageUp",
+                  "params": {}
+                }
+              ],
+              [
+                8,
+                {
+                  "command": "navigation_pageDown",
+                  "params": {}
+                }
+              ],
+              [
+                12,
+                {
+                  "command": "missionControl_launchpad",
+                  "params": {}
+                }
+              ],
+              [
+                16,
+                {
+                  "command": "mouse_button5Click",
+                  "params": null
+                }
+              ],
+              [
+                1073741824,
+                {
+                  "command": "navigation_scrollLeft",
+                  "params": null
+                }
+              ],
+              [
+                2147483648,
+                {
+                  "command": "navigation_scrollRight",
+                  "params": null
+                }
+              ]
+            ],
+            "customModifiers": "",
+            "customacceleration": true,
+            "customaccelerationRate": 20,
+            "customspeed": 80,
+            "id": 0,
+            "inertialScroll": false,
+            "inertialScrollFactor": 0,
+            "inertialScrollNullSteps": 0,
+            "inertialScrollTimer": 0,
+            "lockedAxisModifiers": "",
+            "scrollInvert": false,
+            "scrollLines": 1,
+            "slowDivider": 0,
+            "slowModifiers": "",
+            "snapModifiers": "",
+            "snippets": [
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              }
+            ],
+            "speed": 50
+          },
+          "fileName": "",
+          "name": "Amazon Kindle"
+        },
+        "com.apple.iBooksX-Books": {
+          "config": {
+            "acceleration": true,
+            "accelerationRate": 20,
+            "commands": [
+              [
+                1,
+                {
+                  "command": "mouse_leftClick",
+                  "params": null
+                }
+              ],
+              [
+                2,
+                {
+                  "command": "mouse_rightClick",
+                  "params": {
+                    "label": "",
+                    "modifiers": ""
+                  }
+                }
+              ],
+              [
+                3,
+                {
+                  "command": "missionControl_missionControl",
+                  "params": {}
+                }
+              ],
+              [
+                4,
+                {
+                  "command": "navigation_pageUp",
+                  "params": {}
+                }
+              ],
+              [
+                8,
+                {
+                  "command": "navigation_pageDown",
+                  "params": {}
+                }
+              ],
+              [
+                12,
+                {
+                  "command": "missionControl_launchpad",
+                  "params": {}
+                }
+              ],
+              [
+                16,
+                {
+                  "command": "mouse_button5Click",
+                  "params": null
+                }
+              ],
+              [
+                1073741824,
+                {
+                  "command": "navigation_scrollLeft",
+                  "params": null
+                }
+              ],
+              [
+                2147483648,
+                {
+                  "command": "navigation_scrollRight",
+                  "params": null
+                }
+              ]
+            ],
+            "customModifiers": "",
+            "customacceleration": true,
+            "customaccelerationRate": 20,
+            "customspeed": 80,
+            "id": 0,
+            "inertialScroll": false,
+            "inertialScrollFactor": 0,
+            "inertialScrollNullSteps": 0,
+            "inertialScrollTimer": 0,
+            "lockedAxisModifiers": "",
+            "scrollInvert": false,
+            "scrollLines": 1,
+            "slowDivider": 0,
+            "slowModifiers": "",
+            "snapModifiers": "",
+            "snippets": [
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              },
+              {
+                "content": "",
+                "label": ""
+              }
+            ],
+            "speed": 50
+          },
+          "fileName": "",
+          "name": "Books"
+        }
+      }
+    ]
+  ],
+  "platform": "darwin",
+  "timestamp": 1732934195,
+  "trayIcon": true,
+  "versionMajor": 2,
+  "versionMinor": 0
+}

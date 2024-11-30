@@ -1,6 +1,7 @@
 vim.cmd("packadd vim-jetpack")
 require("jetpack.packer").add {
   { "tani/vim-jetpack" },
+  { "tani/vim-artemis" },
   { "morhetz/gruvbox" },
   { "nvim-treesitter/nvim-treesitter" },
   { "vim-denops/denops.vim" },
@@ -49,7 +50,6 @@ require("plugins.nvim-treesitter")
 require("plugins.skkeleton")
 require("plugins.ddc")
 require("plugins.ddu")
-require("plugins.ddu-column-icon_filename")
 require("plugins.ddu-source")
 require("plugins.ddu-source-rg")
 require("plugins.ddu-source-git_status")

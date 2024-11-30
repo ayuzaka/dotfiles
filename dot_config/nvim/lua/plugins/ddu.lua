@@ -1,23 +1,3 @@
-vim.fn["ddu#custom#patch_global"]({
-    ui = "ff",
-    uiParams = {
-        ff = {
-            ignoreEmpty = true
-        }
-    },
-    sourceOptions = {
-        ["_"] = {
-            matchers = {"matcher_substring"},
-            ignoreCase = true
-        }
-    },
-    kindOptions = {
-        file = {
-            defaultAction = "open"
-        }
-    }
-})
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "ddu-ff",
     callback = function()
@@ -47,3 +27,6 @@ vim.api.nvim_create_autocmd("FileType", {
             "<Cmd>close<CR>", opts)
     end
 })
+
+local vimx = require("artemis")
+vimx.fn.ddu.custom.load_config(vimx.fn.expand("$XDG_CONFIG_HOME/nvim/ts/ddu.ts"))

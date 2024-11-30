@@ -52,35 +52,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
-vim.fn["ddu#custom#patch_local"]("filer", {
-    ui = "filer",
-    sources = {{
-        name = "file",
-        params = {}
-    }},
-    sourceOptions = {
-        ["_"] = {
-            columns = {"filename"}
-        }
-    },
-    uiParams = {
-        filer = {
-            displayRoot = false,
-            statusline = false,
-            winWidth = 40,
-            split = "vertical",
-            splitDirection = "topleft",
-            previewSplit = "vertical",
-            sort = "filename"
-        }
-    },
-    actionOptions = {
-        open = {
-            quit = false
-        }
-    }
-})
-
 vim.api.nvim_create_user_command("Filer", function()
     vim.fn["ddu#start"]({
         name = "filer"

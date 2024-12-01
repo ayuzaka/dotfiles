@@ -22,7 +22,7 @@ vim.fn["ddc#custom#patch_global"]("sourceOptions", {
 })
 
 vim.fn["skkeleton#config"]({
-    completionRankFile = "~/.skkeleton/rank.json"
+    completionRankFile = "~/.config/skkeleton/rank.json"
 })
 
 vim.keymap.set("i", "<TAB>", function()

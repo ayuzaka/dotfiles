@@ -7,7 +7,7 @@ require("jetpack.packer").add {
   { "vim-denops/denops.vim" },
   { "github/copilot.vim"},
   { "nvim-lua/plenary.nvim" },
-  { "CopilotC-Nvim/CopilotChat.nvim", branch = "canary" },
+  { "CopilotC-Nvim/CopilotChat.nvim", branch = "main" },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { "Shougo/ddc.vim"},

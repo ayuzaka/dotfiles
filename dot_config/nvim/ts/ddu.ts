@@ -5,8 +5,6 @@ import {
 
 export class Config extends BaseConfig {
   override config(args: ConfigArguments): void {
-    args.setAlias("column", "icon_filename_for_ff", "icon_filename");
-
     args.contextBuilder.patchGlobal({
       ui: "ff",
       uiParams: {

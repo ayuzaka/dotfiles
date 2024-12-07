@@ -51,8 +51,7 @@ opt.signcolumn = "yes"
 opt.backspace = "indent,eol,start"
 opt.re = 0
 opt.spell = false
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "manual"
 vim.cmd([[ set nofoldenable ]])
 
 opt.syntax = "on"

@@ -11,6 +11,7 @@ jisyo
 karabiner
 keka
 kekaexternalhelper
+kosugi
 lexima
 mattn
 prabirshrestha
@@ -21,4 +22,6 @@ tpope
 vscodevim
 wezterm
 yano
+yazi
+yubico
 yuki

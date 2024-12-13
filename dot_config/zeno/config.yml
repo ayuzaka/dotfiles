@@ -110,7 +110,7 @@ completions:
   - name: git branch delete
     patterns:
       - "^git branch -d(?: .*)? $"
-    sourceCommand: "git branch --merged | grep -v -E '(develop|master|main)'"
+    sourceCommand: "git branch --merged | grep -v -E '(develop|master|main|^\\*)'"
     options:
       --height: "80%"
       --print0: true
@@ -121,7 +121,7 @@ completions:
   - name: git branch delete force
     patterns:
       - "^git branch -D(?: .*)? $"
-    sourceCommand: "git branch | grep -v -E '(develop|master|main)'"
+    sourceCommand: "git branch | grep -v -E '(develop|master|main|^\\*)'"
     options:
       --height: "80%"
       --print0: true

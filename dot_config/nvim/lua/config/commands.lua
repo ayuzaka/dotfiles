@@ -16,12 +16,20 @@ vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "b.", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "bd", ":bd<CR>", {})
 
-local function run_open_pr()
-    local word = vim.fn.expand("<cword>")
-    vim.fn.system("git rev-parse " .. word .. " | xargs gh openpr")
+local function get_current_latest_blame_hash()
+  local file = vim.fn.expand("%:p")
+  local line = vim.fn.line(".")
+  local blame = vim.fn.system(string.format("git blame -L %d,%d %s", line, line, file))
+
+  return vim.split(blame, "\n")[1]:match("^(%x+)")
 end
 
-vim.api.nvim_create_user_command("OpenPR", run_open_pr, {})
+local function run_open_pr_current_line()
+  local hash = get_current_latest_blame_hash()
+  vim.fn.system("git rev-parse " .. hash .. " | xargs gh openpr")
+end
+
+vim.api.nvim_create_user_command("OpenPRCurrentLine", run_open_pr_current_line, {})
 
 local function search_regex(text)
     vim.fn.histdel("/")

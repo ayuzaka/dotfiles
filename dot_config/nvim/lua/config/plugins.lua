@@ -30,8 +30,8 @@ require("jetpack.packer").add {
   { "ryota2357/ddu-column-icon_filename"},
   { "Shougo/ddu-column-filename"},
   { "vim-skk/skkeleton"},
-  { "vim-airline/vim-airline"},
-  { "vim-airline/vim-airline-themes"},
+  { "nvim-tree/nvim-web-devicons" },
+  { 'nvim-lualine/lualine.nvim' },
   { "easymotion/vim-easymotion"},
   { "cohama/lexima.vim"},
   { "airblade/vim-gitgutter"},
@@ -56,7 +56,7 @@ require("plugins.ddu-source-git_status")
 require("plugins.ddu-source-lsp")
 require("plugins.ddu-ui-filer")
 require("plugins.vim-markdown")
-require("plugins.vim-airline")
+require("plugins.lualine")
 require("plugins.vim-fugitive")
 require("plugins.copilot")
 require("plugins.copilot-chat")

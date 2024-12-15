@@ -100,3 +100,7 @@ export WASMTIME_HOME="$XDG_DATA_HOME/wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
 eval "$(zoxide init zsh)"
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^o" edit-command-line

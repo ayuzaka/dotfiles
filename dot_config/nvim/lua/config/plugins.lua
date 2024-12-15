@@ -34,8 +34,7 @@ require("jetpack.packer").add {
   { 'nvim-lualine/lualine.nvim' },
   { "easymotion/vim-easymotion"},
   { "cohama/lexima.vim"},
-  { "airblade/vim-gitgutter"},
-  { "tpope/vim-fugitive"},
+  { "lewis6991/gitsigns.nvim" },
   { "godlygeek/tabular"},
   { "preservim/vim-markdown"},
   { "imsnif/kdl.vim"},
@@ -57,6 +56,6 @@ require("plugins.ddu-source-lsp")
 require("plugins.ddu-ui-filer")
 require("plugins.vim-markdown")
 require("plugins.lualine")
-require("plugins.vim-fugitive")
+require("plugins.gitsigns")
 require("plugins.copilot")
 require("plugins.copilot-chat")

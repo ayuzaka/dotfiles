@@ -2,11 +2,11 @@ vim.api.nvim_create_user_command("CopyFile", function()
     vim.fn.setreg("*", vim.fn.expand("%:t"))
 end, {})
 
-vim.api.nvim_create_user_command("CopyPath", function()
+vim.api.nvim_create_user_command("CopyFullPath", function()
     vim.fn.setreg("*", vim.fn.expand("%:p"))
 end, {})
 
-vim.api.nvim_create_user_command("CopyFullPath", function()
+vim.api.nvim_create_user_command("CopyPath", function()
     vim.fn.setreg("*", vim.fn.fnamemodify(vim.fn.expand("%"), ":~:."))
 end, {})
 

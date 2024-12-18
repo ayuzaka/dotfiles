@@ -102,6 +102,7 @@ libxss
 libxtst
 lscolors
 lspconfig
+mbps
 mdast
 mycli
 nargs
@@ -172,6 +173,7 @@ ugothic
 valibot
 vdir
 vercel
+vframes
 vite
 vitest
 vsnip

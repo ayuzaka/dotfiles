@@ -41,7 +41,6 @@ require("jetpack.packer").add {
   { "machakann/vim-sandwich"},
   { "folke/ts-comments.nvim", event = "VeryLazy" },
   { "chentoast/marks.nvim" },
-  { "vuki656/package-info.nvim" }
 }
 
 require("plugins.gruvbox")
@@ -62,4 +61,3 @@ require("plugins.gitsigns")
 require("plugins.copilot")
 require("plugins.copilot-chat")
 require("plugins.marks")
-require("plugins.package-info")

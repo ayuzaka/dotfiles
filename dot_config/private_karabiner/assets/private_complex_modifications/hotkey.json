@@ -102,28 +102,7 @@
       ]
     },
     {
-      "description": "ctrl-4 to Arc",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "4",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -a 'arc'"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "ctrl-4 to Firefox",
+      "description": "ctrl-4 to Default Browser",
       "manipulators": [
         {
           "type": "basic",

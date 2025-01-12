@@ -9,6 +9,7 @@ canva
 cocopon
 cohama
 dahon
+dify
 evanleck
 fatih
 hhkb

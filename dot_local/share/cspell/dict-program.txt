@@ -63,6 +63,7 @@ grepprg
 gruvbox
 gsap
 gsplit
+gsutil
 guibg
 hadolint
 histignorealldups
@@ -171,6 +172,7 @@ structcheck
 stylelintrc
 svgr
 tagfunc
+tauri
 testid
 textlintrc
 tinify

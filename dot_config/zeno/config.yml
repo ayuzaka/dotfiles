@@ -47,9 +47,9 @@ snippets:
     keyword: gc
     snippet: git fetch && git checkout
 
-  - name: copy latest commit hash
+  - name: show latest commit hash
     keyword: gch
-    snippet: git rev-parse HEAD | pbcopy
+    snippet: git rev-parse HEAD
 
   - name: my PR
     keyword: gh-pr-me

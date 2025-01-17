@@ -82,3 +82,17 @@ vim.api.nvim_create_autocmd("FileType", {
         end
     end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"markdown"},
+    group = abbrev_group,
+    callback = function()
+        local abbrevs = {
+            restful = "RESTful",
+        }
+
+        for from, to in pairs(abbrevs) do
+            vim.cmd(string.format("iabbrev <buffer> %s %s", from, to))
+        end
+    end,
+})

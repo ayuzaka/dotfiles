@@ -110,6 +110,17 @@ vim.g.lsp_settings = {
   ["biome"] = {
     disabled = 1,
     allowlist = {"typescript", "typescriptreact"}
+  },
+  ["pylsp-all"] = {
+    workspace_config = {
+      pylsp = {
+        plugins = {
+          jedi = {
+            environment = ".venv/bin/python"
+          }
+        }
+      }
+    }
   }
 }
 

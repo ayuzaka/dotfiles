@@ -104,7 +104,8 @@ vim.g.lsp_settings_filetype_svelte = {"svelte-language-server", "eslint-language
 vim.g.lsp_settings = {
   ["efm-langserver"] = {
     disabled = 0,
-    allowlist = {"*"}
+    allowlist = {"*"},
+    blocklist = {"dotenv"}
   },
   ["biome"] = {
     disabled = 1,

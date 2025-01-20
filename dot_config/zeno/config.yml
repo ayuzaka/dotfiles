@@ -16,8 +16,8 @@ snippets:
     snippet: docker container exec -it
 
   - name: python
-    keyword: py
-    snippet: python3
+    keyword: python
+    snippet: rye run python
 
   - name: golangci-lint
     keyword: golint

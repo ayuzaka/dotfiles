@@ -2,9 +2,16 @@ vim.g.copilot_filetypes = {
   dotenv = false
 }
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "/Users/ayuzaka/Documents/MyFirstObsidian/",
+vim.api.nvim_create_augroup('disableGitHubCopilot', { clear = true })
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = 'disableGitHubCopilot',
+  pattern = {
+    vim.fn.expand('$HOME') .. '/workspace/ayuzaka/learn/*',
+    vim.fn.expand('$HOME') .. '/Documents/MyFirstObsidian/*'
+  },
   callback = function()
-    vim.cmd("Echo 'Hello'")
+    vim.cmd('Copilot disable')
   end
 })
+

@@ -160,3 +160,12 @@ vim.keymap.set("n", "gf", function()
     vim.cmd("normal! gF")
   end
 end)
+
+local function open_by_another_editor(command)
+  local path = vim.fn.expand('%:p')
+  local line = vim.fn.line('.')
+  vim.fn.system(command .. ' --g ' .. path .. ':' .. line)
+end
+
+vim.api.nvim_create_user_command('Cursor', function() open_by_another_editor('cursor') end, { range = true })
+vim.api.nvim_create_user_command('Code', function() open_by_another_editor('code') end, { range = true })

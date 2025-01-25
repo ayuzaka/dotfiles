@@ -19,6 +19,7 @@ karabiner
 keka
 kekaexternalhelper
 kosugi
+lcel
 lcom
 lexima
 liskov

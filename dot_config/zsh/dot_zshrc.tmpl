@@ -217,3 +217,6 @@ zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
 # 1Password
 source "$XDG_CONFIG_HOME"/op/plugins.sh
 {{ end }}
+
+export GHCUP_USE_XDG_DIRS=true
+[ -f "/Users/ayuzaka/.local/share/ghcup/env" ] && . "/Users/ayuzaka/.local/share/ghcup/env" # ghcup-env

@@ -72,6 +72,26 @@ export class Config extends BaseConfig {
       ],
     });
 
+    args.contextBuilder.patchLocal("lsp_implementation", {
+      sync: true,
+      sources: [
+        {
+          name: "lsp_definition",
+          params: { method: "textDocument/implementation" },
+        },
+      ],
+    });
+
+    args.contextBuilder.patchLocal("lsp_typeDefinition", {
+      sync: true,
+      sources: [
+        {
+          name: "lsp_definition",
+          params: { method: "textDocument/typeDefinition" },
+        },
+      ],
+    });
+
     args.contextBuilder.patchLocal("lsp_references", {
       sync: true,
       sources: [

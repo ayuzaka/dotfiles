@@ -7,10 +7,6 @@ local function on_lsp_buffer_enabled()
   end
 
   local opts = { noremap = true, silent = true, buffer = true }
-  vim.keymap.set("n", "gd", "<plug>(lsp-definition)", opts)
-  vim.keymap.set("n", "gr", "<plug>(lsp-references)", opts)
-  vim.keymap.set("n", "gi", "<plug>(lsp-implementation)", opts)
-  vim.keymap.set("n", "gt", "<plug>(lsp-type-definition)", opts)
   vim.keymap.set("n", "<leader>rn", "<plug>(lsp-rename)", opts)
   vim.keymap.set("n", "[g", "<Plug>(lsp-previous-diagnostic)", opts)
   vim.keymap.set("n", "]g", "<Plug>(lsp-next-diagnostic)", opts)

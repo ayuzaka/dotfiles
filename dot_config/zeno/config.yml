@@ -15,10 +15,6 @@ snippets:
     keyword: dc-exec
     snippet: docker container exec -it
 
-  - name: python via rye
-    keyword: rpy
-    snippet: rye run python
-
   - name: golangci-lint
     keyword: golint
     snippet: golangci-lint

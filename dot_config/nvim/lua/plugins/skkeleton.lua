@@ -9,7 +9,12 @@ local function skkeleton_init()
     })
 
     vim.fn['skkeleton#register_kanatable']('rom', {
-        ['z~'] = {'〜'}
+        ['z~'] = {'〜'},
+        ['('] = {'（'},
+        [')'] = {'）'},
+        ['!'] = {'！'},
+        ['?'] = {'？'},
+        ['~'] = {'〜'},
     })
 end
 

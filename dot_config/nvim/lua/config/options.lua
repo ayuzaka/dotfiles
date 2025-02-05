@@ -1,38 +1,36 @@
-local opt = vim.opt
-
 -- 文字コードの設定
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
-opt.fileencodings = "ucs-boms,utf-8,euc-jp,cp932"
-opt.fileformats = "unix,dos,mac"
-opt.ambiwidth = "double"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+vim.opt.fileencodings = "ucs-boms,utf-8,euc-jp,cp932"
+vim.opt.fileformats = "unix,dos,mac"
+vim.opt.ambiwidth = "double"
 
 -- 基本設定
-opt.statusline = "%F"
-opt.history = 200
-opt.backup = false
-opt.swapfile = false
-opt.autoread = true
-opt.hidden = true
-opt.showcmd = true
-opt.cursorline = true
+vim.opt.statusline = "%F"
+vim.opt.history = 200
+vim.opt.backup = false
+vim.opt.swapfile = false
+vim.opt.autoread = true
+vim.opt.hidden = true
+vim.opt.showcmd = true
+vim.opt.cursorline = true
 
 -- カーソル移動と表示の設定
-opt.virtualedit = "onemore"
-opt.smartindent = true
-opt.showmatch = true
+vim.opt.virtualedit = "onemore"
+vim.opt.smartindent = true
+vim.opt.showmatch = true
 
 -- matchit.vimの読み込み
 vim.cmd([[source $VIMRUNTIME/macros/matchit.vim]])
 
 -- ワイルドメニューの設定
-opt.wildmenu = true
-opt.wildmode = "full"
+vim.opt.wildmenu = true
+vim.opt.wildmode = "full"
 
 -- 表示関連の設定
-opt.wrap = true
-opt.list = true
-opt.listchars = {
+vim.opt.wrap = true
+vim.opt.list = true
+vim.opt.listchars = {
   tab = "»-",
   trail = "-",
   extends = "»",
@@ -41,20 +39,20 @@ opt.listchars = {
 }
 
 -- その他の設定
-opt.belloff = "all"
-opt.hlsearch = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.incsearch = true
-opt.signcolumn = "yes"
-opt.backspace = "indent,eol,start"
-opt.re = 0
-opt.spell = false
+vim.opt.belloff = "all"
+vim.opt.hlsearch = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.incsearch = true
+vim.opt.signcolumn = "yes"
+vim.opt.backspace = "indent,eol,start"
+vim.opt.re = 0
+vim.opt.spell = false
 vim.opt.foldmethod = "manual"
 vim.cmd([[ set nofoldenable ]])
 
-opt.syntax = "on"
+vim.opt.syntax = "on"
 
 -- ファイルタイプの設定
 vim.cmd("filetype plugin indent on")
@@ -83,7 +81,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
 -- InsertLeaveでpasteモードを解除
 vim.api.nvim_create_autocmd("InsertLeave", {
     callback = function()
-        opt.paste = false
+        vim.opt.paste = false
     end,
 })
 
@@ -91,7 +89,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     pattern = ".env*",
     callback = function()
-        opt.filetype = "dotenv"
+        vim.opt.filetype = "dotenv"
     end,
 })
 

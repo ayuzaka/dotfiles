@@ -96,6 +96,7 @@ vim.g.lsp_settings_filetype_typescriptreact = {"typescript-language-server", "es
 vim.g.lsp_settings_filetype_html = {"html-languageserver", "tailwindcss-intellisense"}
 vim.g.lsp_settings_filetype_css = {"css-languageserver", "tailwindcss-intellisense"}
 vim.g.lsp_settings_filetype_svelte = {"svelte-language-server", "eslint-language-server"}
+vim.g.lsp_settings_filetype_python = {"pylsp-all", "pyright-langserver"}
 
 vim.g.lsp_settings = {
   ["efm-langserver"] = {

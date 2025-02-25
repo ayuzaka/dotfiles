@@ -21,6 +21,7 @@
   enabled = true
 [push]
   useForceIfIncludes = true
+  autoSetupRemote = true
 [mergetool]
   trustExitCode = true
  [diff]

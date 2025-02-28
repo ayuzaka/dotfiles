@@ -11,6 +11,7 @@ cocopon
 cohama
 dahon
 dify
+duckduckgo
 evanleck
 fatih
 hhkb

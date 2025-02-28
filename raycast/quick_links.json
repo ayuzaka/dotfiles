@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Search Google",
+    "link": "https://google.com/search?q={argument name=\"query\"}"
+  },
+  {
+    "name": "Search DuckDuckGo",
+    "link": "https://duckduckgo.com/?q={argument name=\"query\"}"
+  },
+  {
+    "name": "Search Twitter",
+    "link": "https://x.com/search?q={argument name=\"query\"}"
+  },
+  {
+    "name": "Search Amazon",
+    "link": "https://amazon.co.jp/s?k={argument name=\"query\"}"
+  },
+  {
+    "name": "Search Apple Maps",
+    "link": "https://beta.maps.apple.com/?q={argument name=\"query\"}"
+  },
+  {
+    "name": "Search Google Maps",
+    "link": "https://www.google.com/maps/search/{argument name=\"query\"}"
+  },
+  {
+    "name": "Search YouTube",
+    "link": "https://www.youtube.com/results?search_query={argument name=\"query\"}"
+  }
+]

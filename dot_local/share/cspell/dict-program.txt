@@ -46,6 +46,7 @@ fgrep
 fira
 firacode
 firebaserc
+fmap
 fmea
 fnamemod
 fnamemodify
@@ -208,6 +209,7 @@ udev
 udgothic
 ugothic
 unmarshal
+unwords
 valibot
 vdir
 venv

@@ -95,6 +95,17 @@ completions:
       --prompt: "'Git Switch > ' "
     callback: "awk '{print $1}'"
 
+  - name: git checkout remote branch
+    patterns:
+      - "git checkout(?: .*)? $"
+    sourceCommand: "git branch -r | grep -v '*' | sed 's/origin\\/\/\/'"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'Git Switch > ' "
+    callback: "awk '{print $1}'"
+
   - name: git branch delete
     patterns:
       - "^git branch -d(?: .*)? $"

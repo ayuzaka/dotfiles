@@ -39,9 +39,9 @@ snippets:
     keyword: gs
     snippet: git switch
 
-  - name: git fetch && git checkout
+  - name: git checkout
     keyword: gc
-    snippet: git fetch && git checkout
+    snippet: git checkout
 
   - name: show latest commit hash
     keyword: gch

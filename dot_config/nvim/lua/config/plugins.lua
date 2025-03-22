@@ -8,6 +8,7 @@ require("jetpack.packer").add {
   { "github/copilot.vim"},
   { "nvim-lua/plenary.nvim" },
   { "CopilotC-Nvim/CopilotChat.nvim", branch = "main" },
+  { "joshuavial/aider.nvim" },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { "Shougo/ddc.vim"},
@@ -61,5 +62,6 @@ require("plugins.lualine")
 require("plugins.gitsigns")
 require("plugins.copilot")
 require("plugins.copilot-chat")
+require("plugins.aider")
 require("plugins.marks")
 require("plugins.import-cost")

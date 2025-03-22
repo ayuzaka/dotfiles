@@ -26,5 +26,9 @@
   {
     "name": "Search YouTube",
     "link": "https://www.youtube.com/results?search_query={argument name=\"query\"}"
+  },
+  {
+    "name": "Search goo 辞書",
+    "link": "https://dictionary.goo.ne.jp/srch/all/{argument name=\"query\"}/m6u/"
   }
 ]

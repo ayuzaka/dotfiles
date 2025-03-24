@@ -127,6 +127,7 @@ lspconfig
 luaenv
 mbps
 mdast
+monokai
 mycli
 nargs
 nbsp
@@ -166,6 +167,7 @@ psql
 pumvisible
 pushd
 pyenv
+pygments
 pylsp
 pyproject
 rdbms
@@ -208,6 +210,7 @@ turborepo
 udev
 udgothic
 ugothic
+unlines
 unmarshal
 unwords
 valibot

@@ -2,28 +2,31 @@
   "title": "global keybind",
   "rules": [
     {
-      "description": "Esc to ABC",
+      "description": "control + ] to Esc",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "escape"
+            "key_code": "close_bracket",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
           },
           "conditions": [
             {
               "type": "frontmost_application_if",
+              "description": "Only for VS Code",
               "bundle_identifiers": [
                 "com.github.wez.wezterm",
-                "com.microsoft.VSCode"
+                "com.microsoft.VSCode",
+                "md.obsidian"
               ]
             }
           ],
-          "to_if_alone": [
+          "to": [
             {
               "key_code": "escape"
-            }
-          ],
-          "to_after_key_up": [
+            },
             {
               "key_code": "l"
             }

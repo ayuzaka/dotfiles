@@ -3,3 +3,4 @@ Brewfile
 Brewfile.lock.json
 SlimBlade.json
 raycast
+init.sh

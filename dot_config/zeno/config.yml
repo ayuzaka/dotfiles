@@ -87,7 +87,7 @@ completions:
   - name: git switch
     patterns:
       - "^git switch(?: .*)? $"
-    sourceCommand: "git branch | grep -v '*'"
+    sourceCommand: "git for-each-ref --format='%(refname:short) - %(contents:subject)' refs/heads/ | grep -v '^$(git symbolic-ref --short HEAD) -'"
     options:
       --height: "80%"
       --print0: true

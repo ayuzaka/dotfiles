@@ -3,6 +3,7 @@
 [core]
   excludesfile = ~/.config/git/gitignore_global
   editor = nvim
+  pager = less -x4
 [gpg]
   format = ssh
 [commit]
@@ -32,3 +33,5 @@
   cmd = difft "$LOCAL" "$REMOTE"
 [pager]
   difftool = true
+[tig]
+  tab-size = 4

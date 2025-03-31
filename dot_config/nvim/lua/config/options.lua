@@ -20,9 +20,6 @@ vim.opt.virtualedit = "onemore"
 vim.opt.smartindent = true
 vim.opt.showmatch = true
 
--- matchit.vimの読み込み
-vim.cmd([[source $VIMRUNTIME/macros/matchit.vim]])
-
 -- ワイルドメニューの設定
 vim.opt.wildmenu = true
 vim.opt.wildmode = "full"

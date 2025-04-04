@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   group = 'disableGitHubCopilot',
   pattern = {
     vim.fn.expand('$HOME') .. '/workspace/ayuzaka/learn/*',
-    vim.fn.expand('$HOME') .. '**/ObsidianVault/*',
+    vim.fn.expand('$HOME') .. '**/Documents/*',
   },
   callback = function()
     vim.cmd('Copilot disable')

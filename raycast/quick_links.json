@@ -30,5 +30,9 @@
   {
     "name": "Search goo 辞書",
     "link": "https://dictionary.goo.ne.jp/srch/all/{argument name=\"query\"}/m6u/"
+  },
+  {
+    "name": "Search JSR",
+    "link": "https://jsr.io/packages?search={argument name=\"query\"}"
   }
 ]

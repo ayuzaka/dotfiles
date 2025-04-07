@@ -84,16 +84,16 @@ tools:
 
   cspell-lint: &cspell-lint
     prefix: cspell
-    lint-command: 'bunx cspell lint --config ~/.config/cspell/cspell.config.json --no-progress --no-summary --no-color ${INPUT}'
+    lint-command: "bunx cspell lint --config ~/.config/cspell/cspell.config.json --no-progress --no-summary --no-color ${INPUT}"
     lint-formats:
-      - '%f:%l:%c - %m'
-      - '%f:%l:%c %m'
+      - "%f:%l:%c - %m"
+      - "%f:%l:%c %m"
 
   hadolint-lint: &hadolint-lint
     prefix: hadolint
-    lint-command: 'hadolint --no-color'
+    lint-command: "hadolint --no-color"
     lint-formats:
-      - '%f:%l %m'
+      - "%f:%l %m"
 
 languages:
   javascript:

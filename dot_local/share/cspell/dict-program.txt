@@ -170,6 +170,7 @@ pyenv
 pygments
 pylsp
 pyproject
+pyright
 rdbms
 redir
 rehype

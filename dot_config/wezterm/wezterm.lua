@@ -11,6 +11,7 @@ return {
   show_new_tab_button_in_tab_bar = false,
   window_decorations = "RESIZE",
   disable_default_key_bindings = true,
+  disable_default_mouse_bindings = true,
   leader = keybinds.leader,
   keys = keybinds.keys,
 }

@@ -1,20 +1,22 @@
 require("codecompanion").setup({
   opts = {
     log_level = "DEBUG", -- or "TRACE"
+    language = "Japanese",
+  },
+  display = {
+    chat = {
+      auto_scroll = false,
+      show_header_separator = true,
+    },
   },
   strategies = {
     chat = {
       adapter = "anthropic",
-      slash_commands = {
-        ["file"] = {
-          -- Location to the slash command in CodeCompanion
-          callback = "strategies.chat.slash_commands.file",
-          description = "Select a file using Telescope",
-          opts = {
-            provider = "mini_pick",
-            contains_code = true,
-          },
-        },
+      roles = {
+        llm = function(adapter)
+              return "  CodeCompanion (" .. adapter.formatted_name .. ")"
+            end,
+        user = "  Me",
       },
     },
     inline = {
@@ -47,3 +49,4 @@ vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
+

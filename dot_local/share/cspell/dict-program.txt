@@ -140,6 +140,7 @@ linehl
 lscolors
 lspconfig
 luaenv
+luarc
 matchparen
 mbps
 mdast

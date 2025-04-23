@@ -4,3 +4,4 @@ Brewfile.lock.json
 SlimBlade.json
 raycast
 init.sh
+.luarc.json

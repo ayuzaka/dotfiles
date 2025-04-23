@@ -1,5 +1,5 @@
-vim.keymap.set({"n", "v", "o"}, "<C-]>", "<Esc>")
-vim.keymap.set({"i", "c"}, "<C-]>", "<Esc>")
+vim.keymap.set({ "n", "v", "o" }, "<C-]>", "<Esc>")
+vim.keymap.set({ "i", "c" }, "<C-]>", "<Esc>")
 
 -- 折り返し時の移動を表示行単位に
 vim.keymap.set("n", "j", "gj", { silent = true })

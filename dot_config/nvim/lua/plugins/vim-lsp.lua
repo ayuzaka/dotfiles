@@ -63,12 +63,12 @@ vim.api.nvim_create_autocmd("User", {
   callback = function()
     vim.fn["lsp#register_server"]({
       name = "golangci-lint-langserver",
-      cmd = function() return {"golangci-lint-langserver"} end,
+      cmd = function() return { "golangci-lint-langserver" } end,
       initialization_options = {
-        command = {"golangci-lint", "run", "--out-format", "json",
-                  "--issues-exit-code=1", "--config", "~/.config/golangci-lint/.golangci.yaml"}
+        command = { "golangci-lint", "run", "--out-format", "json",
+          "--issues-exit-code=1", "--config", "~/.config/golangci-lint/.golangci.yaml" }
       },
-      allowlist = {"go"}
+      allowlist = { "go" }
     })
   end
 })
@@ -90,24 +90,24 @@ vim.g.lsp_completion_documentation_delay = 40
 vim.g.lsp_document_highlight_delay = 100
 vim.g.lsp_document_code_action_signs_delay = 100
 
-vim.g.lsp_settings_filetype_javascript = {"typescript-language-server", "eslint-language-server"}
-vim.g.lsp_settings_filetype_typescript = {"typescript-language-server", "eslint-language-server", "deno", "biome"}
-vim.g.lsp_settings_filetype_typescriptreact = {"typescript-language-server", "eslint-language-server", "deno", "biome"}
-vim.g.lsp_settings_filetype_html = {"html-languageserver", "tailwindcss-intellisense"}
-vim.g.lsp_settings_filetype_css = {"css-languageserver", "tailwindcss-intellisense", "biome"}
-vim.g.lsp_settings_filetype_json = {"biome"}
-vim.g.lsp_settings_filetype_svelte = {"svelte-language-server", "eslint-language-server"}
-vim.g.lsp_settings_filetype_python = {"pylsp-all", "pyright-langserver"}
+vim.g.lsp_settings_filetype_javascript = { "typescript-language-server", "eslint-language-server" }
+vim.g.lsp_settings_filetype_typescript = { "typescript-language-server", "eslint-language-server", "deno", "biome" }
+vim.g.lsp_settings_filetype_typescriptreact = { "typescript-language-server", "eslint-language-server", "deno", "biome" }
+vim.g.lsp_settings_filetype_html = { "html-languageserver", "tailwindcss-intellisense" }
+vim.g.lsp_settings_filetype_css = { "css-languageserver", "tailwindcss-intellisense", "biome" }
+vim.g.lsp_settings_filetype_json = { "biome" }
+vim.g.lsp_settings_filetype_svelte = { "svelte-language-server", "eslint-language-server" }
+vim.g.lsp_settings_filetype_python = { "pylsp-all", "pyright-langserver" }
 
 vim.g.lsp_settings = {
   ["efm-langserver"] = {
     disabled = 0,
-    allowlist = {"*"},
-    blocklist = {"dotenv"}
+    allowlist = { "*" },
+    blocklist = { "dotenv" }
   },
   ["biome"] = {
     disabled = 1,
-    allowlist = {"typescript", "typescriptreact", "css", "json"}
+    allowlist = { "typescript", "typescriptreact", "css", "json" }
   },
   ["pylsp-all"] = {
     workspace_config = {
@@ -123,13 +123,15 @@ vim.g.lsp_settings = {
 }
 
 local function eslint_fix()
-  vim.cmd("!bunx eslint --fix "%"")
+  vim.cmd("!bunx eslint --fix " % "")
   vim.cmd("LspStopServer")
 end
+
 vim.api.nvim_create_user_command("ESLintFix", eslint_fix, {})
 
 local function stylelint_fix()
-  vim.cmd("!bunx stylelint --fix "%"")
+  vim.cmd("!bunx stylelint --fix " % "")
   vim.cmd("LspStopServer")
 end
+
 vim.api.nvim_create_user_command("StylelintFix", stylelint_fix, {})

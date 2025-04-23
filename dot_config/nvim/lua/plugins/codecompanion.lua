@@ -14,8 +14,8 @@ require("codecompanion").setup({
       adapter = "anthropic",
       roles = {
         llm = function(adapter)
-              return "  CodeCompanion (" .. adapter.formatted_name .. ")"
-            end,
+          return "  CodeCompanion (" .. adapter.formatted_name .. ")"
+        end,
         user = "  Me",
       },
     },
@@ -49,4 +49,3 @@ vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
-

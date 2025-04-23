@@ -60,34 +60,34 @@ vim.cmd("runtime macros/matchit.vim")
 -- 全角スペースの可視化
 vim.api.nvim_create_augroup("highlightIdeographicSpace", { clear = true })
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-    group = "highlightIdeographicSpace",
-    callback = function()
-        vim.api.nvim_set_hl(0, "IdeographicSpace", {
-            underline = true,
-            bg = "DarkGreen"
-        })
-    end,
+  group = "highlightIdeographicSpace",
+  callback = function()
+    vim.api.nvim_set_hl(0, "IdeographicSpace", {
+      underline = true,
+      bg = "DarkGreen"
+    })
+  end,
 })
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
-    group = "highlightIdeographicSpace",
-    callback = function()
-        vim.fn.matchadd("IdeographicSpace", "　")
-    end,
+  group = "highlightIdeographicSpace",
+  callback = function()
+    vim.fn.matchadd("IdeographicSpace", "　")
+  end,
 })
 
 -- InsertLeaveでpasteモードを解除
 vim.api.nvim_create_autocmd("InsertLeave", {
-    callback = function()
-        vim.opt.paste = false
-    end,
+  callback = function()
+    vim.opt.paste = false
+  end,
 })
 
 -- .env*ファイルの設定
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-    pattern = ".env*",
-    callback = function()
-        vim.opt.filetype = "dotenv"
-    end,
+  pattern = ".env*",
+  callback = function()
+    vim.opt.filetype = "dotenv"
+  end,
 })
 
 -- 置換コマンドの省略形

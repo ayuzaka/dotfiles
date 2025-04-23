@@ -15,24 +15,24 @@ end
 vim.api.nvim_create_user_command("Grep", grep, {})
 
 vim.api.nvim_create_user_command("GrepIgnore", function()
-    vim.fn["ddu#start"]({
-      sources = {
-        {
-          name = "rg",
-          params = {
-            input = vim.fn.input("Search word: "),
-            args = {
-              "-i",
-              "--column",
-              "--no-heading",
-              "--color",
-              "never"
-            }
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = vim.fn.input("Search word: "),
+          args = {
+            "-i",
+            "--column",
+            "--no-heading",
+            "--color",
+            "never"
           }
         }
       }
-    })
-  end,
+    }
+  })
+end,
   {}
 )
 

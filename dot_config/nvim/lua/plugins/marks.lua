@@ -1,4 +1,4 @@
-require'marks'.setup {
+require 'marks'.setup {
   -- whether to map keybinds or not. default true
   default_mappings = false,
   -- which builtin marks to show. default {}
@@ -16,7 +16,7 @@ require'marks'.setup {
   -- can be either a table with all/none of the keys, or a single number, in which case
   -- the priority applies to all marks.
   -- default 10.
-  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
   -- disables mark tracking for specific filetypes. default {}
   excluded_filetypes = {},
   -- disables mark tracking for specific buftypes. default {}

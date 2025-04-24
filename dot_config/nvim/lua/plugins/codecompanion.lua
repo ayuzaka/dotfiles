@@ -1,3 +1,6 @@
+local spinner = require("plugins.codecompanion_spinner")
+spinner:init()
+
 require("codecompanion").setup({
   opts = {
     log_level = "DEBUG", -- or "TRACE"
@@ -17,6 +20,17 @@ require("codecompanion").setup({
           return "  CodeCompanion (" .. adapter.formatted_name .. ")"
         end,
         user = "  Me",
+      },
+      keymaps = {
+        send = {
+          callback = function(chat)
+            vim.cmd("stopinsert")
+            chat:add_buf_message({ role = "llm", content = "" })
+            chat:submit()
+          end,
+          index = 1,
+          description = "Send",
+        },
       },
     },
     inline = {

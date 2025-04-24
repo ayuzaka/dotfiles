@@ -12,6 +12,7 @@ require("jetpack.packer").add {
   { "joshuavial/aider.nvim" },
   { "olimorris/codecompanion.nvim" },
   { "nvim-lua/plenary.nvim", branch = "master" },
+  { "j-hui/fidget.nvim" },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { "Shougo/ddc.vim" },
@@ -67,5 +68,6 @@ require("plugins.copilot")
 require("plugins.copilot-chat")
 require("plugins.aider")
 require("plugins.codecompanion")
+require("plugins.fidget")
 require("plugins.marks")
 require("plugins.import-cost")

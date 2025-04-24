@@ -14,7 +14,7 @@ require("codecompanion").setup({
   },
   strategies = {
     chat = {
-      adapter = "anthropic",
+      adapter = "copilot",
       roles = {
         llm = function(adapter)
           return "  CodeCompanion (" .. adapter.formatted_name .. ")"
@@ -34,7 +34,7 @@ require("codecompanion").setup({
       },
     },
     inline = {
-      adapter = "anthropic",
+      adapter = "copilot",
       keymaps = {
         accept_change = {
           modes = { n = "ga" },

@@ -49,25 +49,17 @@ require("jetpack.packer").add {
   { "barrett-ruth/import-cost.nvim", build = "sh install.sh npm" }
 }
 
-require("plugins.gruvbox")
-require("plugins.denops")
-require("plugins.vim-lsp")
-require("plugins.nvim-treesitter")
-require("plugins.skkeleton")
-require("plugins.ddc")
-require("plugins.ddu")
-require("plugins.ddu-source")
-require("plugins.ddu-source-rg")
-require("plugins.ddu-source-git_status")
-require("plugins.ddu-source-lsp")
-require("plugins.ddu-ui-filer")
-require("plugins.vim-markdown")
-require("plugins.lualine")
-require("plugins.gitsigns")
-require("plugins.copilot")
-require("plugins.copilot-chat")
-require("plugins.aider")
-require("plugins.codecompanion")
-require("plugins.fidget")
-require("plugins.marks")
-require("plugins.import-cost")
+local function require_all_plugins()
+  local plugin_files = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/*.lua", false, true)
+
+  for _, file in ipairs(plugin_files) do
+    -- ファイルパスからモジュール名を抽出
+    local module_name = file:match("lua/plugins/(.+).lua$")
+    local ok, err = pcall(require, "plugins." .. module_name)
+    if not ok then
+      vim.notify("Failed to load module: plugins." .. module_name .. "\n" .. err, vim.log.levels.ERROR)
+    end
+  end
+end
+
+require_all_plugins()

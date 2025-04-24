@@ -11,7 +11,6 @@ require("jetpack.packer").add {
   { "CopilotC-Nvim/CopilotChat.nvim", branch = "main" },
   { "joshuavial/aider.nvim" },
   { "olimorris/codecompanion.nvim" },
-  { "nvim-lua/plenary.nvim", branch = "master" },
   { "j-hui/fidget.nvim" },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },

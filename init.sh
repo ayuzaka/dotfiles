@@ -2,7 +2,7 @@
 
 # npm のディレクトリパスを変更
 # ref: https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#recommended-create-a-new-user-writable-npm-prefix
-npm config set prefix "$XDG_DATA_HOME"/npm/bin
+npm config set prefix "$XDG_DATA_HOME"/npm
 
 # スクリーンショットの保存名
 defaults write com.apple.screencapture name "screenShot"

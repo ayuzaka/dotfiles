@@ -96,6 +96,7 @@ vim.g.lsp_settings_filetype_typescriptreact = { "typescript-language-server", "e
 vim.g.lsp_settings_filetype_html = { "html-languageserver", "tailwindcss-intellisense" }
 vim.g.lsp_settings_filetype_css = { "css-languageserver", "tailwindcss-intellisense", "biome" }
 vim.g.lsp_settings_filetype_json = { "biome" }
+vim.g.lsp_settings_filetype_jsonc = { "biome" }
 vim.g.lsp_settings_filetype_svelte = { "svelte-language-server", "eslint-language-server" }
 vim.g.lsp_settings_filetype_python = { "pylsp-all", "pyright-langserver" }
 
@@ -107,7 +108,7 @@ vim.g.lsp_settings = {
   },
   ["biome"] = {
     disabled = 1,
-    allowlist = { "typescript", "typescriptreact", "css", "json" }
+    allowlist = { "typescript", "typescriptreact", "css", "json", "jsonc" }
   },
   ["pylsp-all"] = {
     workspace_config = {

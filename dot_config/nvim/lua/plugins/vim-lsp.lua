@@ -106,10 +106,6 @@ vim.g.lsp_settings = {
     allowlist = { "*" },
     blocklist = { "dotenv" }
   },
-  ["biome"] = {
-    disabled = 1,
-    allowlist = { "typescript", "typescriptreact", "css", "json", "jsonc" }
-  },
   ["pylsp-all"] = {
     workspace_config = {
       pylsp = {
@@ -122,6 +118,27 @@ vim.g.lsp_settings = {
     }
   }
 }
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "lsp_setup",
+  callback = function()
+    local function is_biome_json_present()
+      local cwd = vim.loop.cwd()
+      local biome_path = cwd .. "/biome.json"
+      local stat = vim.loop.fs_stat(biome_path)
+      return stat and stat.type == "file"
+    end
+
+    if not is_biome_json_present() then
+      vim.g.lsp_settings = {
+        ["biome"] = {
+          disabled = 1,
+          allowlist = { "typescript", "typescriptreact", "css", "json", "jsonc" }
+        }
+      }
+    end
+  end
+})
 
 local function eslint_fix()
   vim.cmd("!bunx eslint --fix " % "")

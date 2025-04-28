@@ -12,6 +12,7 @@ require("jetpack.packer").add {
   { "joshuavial/aider.nvim" },
   { "olimorris/codecompanion.nvim" },
   { "j-hui/fidget.nvim" },
+  { "nvim-telescope/telescope.nvim" },
   { "prabirshrestha/vim-lsp" },
   { "mattn/vim-lsp-settings" },
   { "Shougo/ddc.vim" },

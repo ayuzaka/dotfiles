@@ -98,6 +98,7 @@ vim.g.lsp_settings_filetype_css = { "css-languageserver", "tailwindcss-intellise
 vim.g.lsp_settings_filetype_json = { "biome" }
 vim.g.lsp_settings_filetype_jsonc = { "biome" }
 vim.g.lsp_settings_filetype_svelte = { "svelte-language-server", "eslint-language-server" }
+vim.g.lsp_settings_filetype_vue = { "volar-server", "eslint-language-server", "typescript-language-server" }
 vim.g.lsp_settings_filetype_python = { "pylsp-all", "pyright-langserver" }
 
 vim.g.lsp_settings = {

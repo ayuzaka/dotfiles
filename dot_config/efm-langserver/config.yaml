@@ -109,6 +109,10 @@ languages:
     - <<: *eslint-lint
     - <<: *stylelint-lint
     - <<: *prettier
+  vue:
+    - <<: *eslint-lint
+    - <<: *stylelint-lint
+    - <<: *prettier
   html:
     - <<: *prettier
   css:

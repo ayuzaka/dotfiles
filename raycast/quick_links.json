@@ -34,5 +34,9 @@
   {
     "name": "Search JSR",
     "link": "https://jsr.io/packages?search={argument name=\"query\"}"
+  },
+  {
+    "name": "Search RFC",
+    "link": "https://www.rfc-editor.org/rfc/rfc{argument name=\"query\"}"
   }
 ]

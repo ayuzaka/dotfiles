@@ -3,5 +3,5 @@ Brewfile
 Brewfile.lock.json
 SlimBlade.json
 raycast
-init.sh
+mac_init.sh
 .luarc.json

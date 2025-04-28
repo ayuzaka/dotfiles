@@ -63,6 +63,10 @@ snippets:
     keyword: ghs
     snippet: gh copilot suggest "{{text}}"
 
+  - name: gitui
+    keyword: gu
+    snippet: gitui
+
   - name: ollama
     keyword: ol
     snippet: ollama

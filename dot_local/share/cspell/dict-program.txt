@@ -69,6 +69,7 @@ getcwd
 ghci
 ghcup
 gibo
+gitui
 gochecknoinits
 goenv
 golangci

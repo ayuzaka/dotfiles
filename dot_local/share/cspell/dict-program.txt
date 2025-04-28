@@ -172,6 +172,7 @@ nospell
 noswapfile
 numhl
 nuxt
+nuxtjs
 nvim
 ollama
 omnifunc
@@ -258,6 +259,7 @@ vite
 vitest
 vsnip
 vsplit
+vueuse
 wabt
 webp
 webrtc
@@ -266,3 +268,4 @@ xtrace
 zcompdump
 zoxide
 zstyle
+zxcvbn

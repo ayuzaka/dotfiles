@@ -41,6 +41,7 @@ require("jetpack.packer").add {
   { "cohama/lexima.vim" },
   { "lewis6991/gitsigns.nvim" },
   { "godlygeek/tabular" },
+  { "mattn/emmet-vim" },
   { "preservim/vim-markdown" },
   { "imsnif/kdl.vim" },
   { "machakann/vim-sandwich" },

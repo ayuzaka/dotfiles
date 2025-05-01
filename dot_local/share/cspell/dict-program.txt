@@ -52,6 +52,7 @@ fgrep
 fira
 firacode
 firebaserc
+fixjson
 fluxctl
 fmap
 fmea

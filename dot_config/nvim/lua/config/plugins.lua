@@ -42,6 +42,7 @@ require("jetpack.packer").add {
   { "lewis6991/gitsigns.nvim" },
   { "godlygeek/tabular" },
   { "mattn/emmet-vim" },
+  { "rhysd/vim-fixjson" },
   { "preservim/vim-markdown" },
   { "imsnif/kdl.vim" },
   { "machakann/vim-sandwich" },

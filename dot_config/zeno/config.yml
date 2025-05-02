@@ -87,6 +87,10 @@ snippets:
     keyword: vim
     snippet: nvim
 
+  - name: Output image file's width and height
+    keyword: swh
+    snippet: sips -g pixelWidth -g pixelHeight
+
 completions:
   - name: git switch
     patterns:

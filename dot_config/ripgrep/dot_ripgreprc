@@ -12,3 +12,4 @@
 # exclude path
 -g=!.git/*
 -g=!.yarn/*
+-g=!.obsidian/*

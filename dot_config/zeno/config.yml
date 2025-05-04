@@ -19,6 +19,10 @@ snippets:
     keyword: dc-exec
     snippet: docker container exec -it
 
+  - name: devcontainer exec
+    keyword: dcon-exec
+    snippet: devcontainer exec --workspace-folder . /bin/bash -i
+
   - name: golangci-lint
     keyword: golint
     snippet: golangci-lint

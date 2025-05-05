@@ -80,6 +80,7 @@ gpgsign
 grepprg
 gruvbox
 gsap
+gscan
 gsplit
 gsutil
 guibg
@@ -164,8 +165,11 @@ nohlsearch
 noinherit
 nolist
 nomod
+noopener
+noopener
 nopaste
 nord
+noreferrer
 noremap
 noscript
 nosnakecase
@@ -175,6 +179,7 @@ numhl
 nuxt
 nuxtjs
 nvim
+ofetch
 ollama
 omnifunc
 orgtbl
@@ -260,6 +265,7 @@ vite
 vitest
 vsnip
 vsplit
+vuetify
 vueuse
 wabt
 webp

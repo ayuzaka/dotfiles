@@ -20,6 +20,9 @@
   defaultBranch = main
 [rerere]
   enabled = true
+[fetch]
+prune = true
+pruneTags = true
 [push]
   useForceIfIncludes = true
   autoSetupRemote = true

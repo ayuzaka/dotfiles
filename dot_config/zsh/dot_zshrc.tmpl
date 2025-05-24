@@ -43,9 +43,6 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export GOPATH="$XDG_DATA_HOME"/go
 export PATH=$PATH:$GOPATH/bin
 
-# npm
-export PATH="$XDG_DATA_HOME"/npm/bin:$PATH
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$PATH:$BUN_INSTALL/bin"
@@ -62,6 +59,10 @@ export PATH="/home/ayuzaka/.local/share/fnm:$PATH"
 {{ end }}
 {{ end }}
 eval "$(fnm env --use-on-cd)"
+
+# npm
+export PATH="$XDG_DATA_HOME"/npm/bin:$PATH
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME"/npm
 
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 

@@ -1,4 +1,4 @@
-vim.fn["ddc#custom#patch_global"]("ui", "native")
+vim.fn["ddc#custom#patch_global"]("ui", "pum")
 
 vim.fn["ddc#custom#patch_global"]("sources", { "skkeleton", "vim-lsp" })
 

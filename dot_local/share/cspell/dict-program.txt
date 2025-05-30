@@ -272,6 +272,7 @@ webp
 webrtc
 xnoremap
 xtrace
+yarnrc
 zcompdump
 zoxide
 zstyle

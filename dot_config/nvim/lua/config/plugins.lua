@@ -20,6 +20,7 @@ require("jetpack.packer").add {
   { "Shougo/ddc-matcher_head" },
   { "Shougo/ddc-sorter_rank" },
   { "shun/ddc-source-vim-lsp" },
+  { "tani/ddc-fuzzy" },
   { "Shougo/ddu.vim" },
   { "Shougo/ddu-ui-ff" },
   { "Shougo/ddu-source-file_rec" },

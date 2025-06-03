@@ -2,3 +2,4 @@
 .vscode
 .op/plugins
 .vim-lsp-settings
+.claude

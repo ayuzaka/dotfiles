@@ -104,3 +104,5 @@ eval "$(zoxide init zsh)"
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^o" edit-command-line
+
+alias claude=$HOME/.claude/local/claude

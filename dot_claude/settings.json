@@ -11,5 +11,6 @@
 			"Bash(npm run dev:*)",
 		],
 		"deny": []
-	}
+	},
+  "includeCoAuthoredBy": false
 }

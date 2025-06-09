@@ -107,6 +107,17 @@ completions:
       --prompt: "'Git Switch > ' "
     callback: "awk '{print $1}'"
 
+  - name: git remove worktree
+    patterns:
+      - "^git worktree remove(?: .*)? $"
+    sourceCommand: "git worktree list | grep -v 'main' | awk '{print $1}'"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'Git Worktree Remove > ' "
+    callback: "awk '{print $1}'"
+
   - name: git checkout remote branch
     patterns:
       - "git checkout(?: .*)? $"

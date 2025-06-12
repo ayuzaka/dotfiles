@@ -111,41 +111,6 @@ GIT_WORKTREE_DIR=./.git/my_worktrees
 # 設定ファイルのパス
 GIT_WORKTREE_COPYFILES="$GIT_WORKTREE_DIR/copy_files.txt"
 
-# 初回セットアップ用: 設定ファイルを作成・編集
-wt-init() {
-  mkdir -p "$GIT_WORKTREE_DIR"
-  nvim "$GIT_WORKTREE_COPYFILES"
-}
-
-# 使い方: gtw-add <ブランチ名>
-wt-add() {
-  local dir branch file
-  dir=$1
-  branch=$2
-
-  if [[ -z "$dir" || -z "$branch" ]]; then
-    echo "使い方: wt-add <新ディレクトリ名> <ブランチ名>" >&2
-    return 1
-  fi
-
-  git worktree add "$GIT_WORKTREE_DIR/$dir" -b "$branch"
-  if [[ -f "$GIT_WORKTREE_COPYFILES" ]]; then
-    while IFS= read -r file; do
-      [[ "$file" =~ ^#.*$ || -z "$file" ]] && continue # コメント行・空行はスキップ
-      cp -r -- "$file" "$GIT_WORKTREE_DIR/$dir/"
-    done < "$GIT_WORKTREE_COPYFILES"
-  fi
-}
-
-# fzf でworktree一覧選択＆移動
-wt-switch() {
-  local dir
-  dir=$(git worktree list --porcelain | awk '/worktree /{print $2}' | fzf)
-  if [[ -n "$dir" ]]; then
-    cd "$dir"
-  fi
-}
-
 wt() {
   local cmd=$1
   shift

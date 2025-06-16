@@ -235,6 +235,13 @@ completions:
     options:
       --prompt: "'act --job > '"
 
+  - name: ssh login
+    patterns:
+      - "^ssh(?: .*)? $"
+    sourceCommand: "cat $HOME/.ssh/*.conf | grep '^Host' | grep -v -E '(github\\.com|[bastion])' | awk '{print $2}'"
+    options:
+      --prompt: "'ssh > ' "
+
   - name: toggle active gcloud account
     patterns:
       - "^gcloud config configurations activate(?: .*)?"

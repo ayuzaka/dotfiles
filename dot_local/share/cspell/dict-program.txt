@@ -48,6 +48,7 @@ esac
 esbuild
 exhaustivestruct
 fastify
+fdignore
 fgrep
 fira
 firacode
@@ -166,7 +167,6 @@ noinherit
 nolist
 nomod
 noopener
-noopener
 nopaste
 nord
 noreferrer
@@ -191,6 +191,7 @@ phpenv
 plemol
 plenv
 plpgsql
+pmbok
 popperjs
 posix
 psql

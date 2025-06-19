@@ -2,4 +2,6 @@
 .vscode
 .op/plugins
 .vim-lsp-settings
+.copy_files.txt
+.ayuzaka
 .claude/settings.local.json

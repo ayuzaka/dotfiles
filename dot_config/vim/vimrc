@@ -126,8 +126,6 @@ Plug 'Shougo/ddu-ui-filer'
 Plug 'ryota2357/ddu-column-icon_filename'
 Plug 'Shougo/ddu-column-filename'
 
-Plug 'vim-skk/skkeleton'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -136,22 +134,8 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-Plug 'easymotion/vim-easymotion'
-
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'leafgarland/typescript-vim'
-Plug 'airblade/vim-tailwind'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'fatih/vim-go'
-Plug 'rust-lang/rust.vim'
-Plug 'rhysd/vim-wasm'
-Plug 'ionide/Ionide-vim'
-
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cohama/lexima.vim'
-
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
@@ -159,7 +143,6 @@ Plug 'imsnif/kdl.vim'
 Plug 'machakann/vim-sandwich'
 
 Plug 'github/copilot.vim'
-Plug 'yuki-yano/ai-review.vim'
 
 call plug#end()
 

@@ -267,6 +267,7 @@ vite
 vitest
 vsnip
 vsplit
+vuejs
 vuetify
 vueuse
 wabt

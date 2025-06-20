@@ -1,6 +1,6 @@
 UsePlugin 'ddu-column-icon_filename'
 
-call ddu#custom#alias('column', 'icon_filename_for_ff', 'icon_filename')
+"call ddu#custom#alias('column', 'icon_filename_for_ff', 'icon_filename')
 call ddu#custom#patch_global(#{
   \   sourceOptions: #{
   \     file: #{

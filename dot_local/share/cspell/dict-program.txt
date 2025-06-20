@@ -185,6 +185,7 @@ omnifunc
 orgtbl
 osrelease
 ostype
+osxkeychain
 palt
 pgcli
 phpenv

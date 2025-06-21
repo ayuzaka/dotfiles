@@ -105,7 +105,8 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^o" edit-command-line
 
-alias claude=$XDG_CONFIG_HOME/claude/local/claude
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
+alias claude=~/.claude/local/claude
 
 GIT_WORKTREE_DIR_BASE=~/workspace/my_worktrees
 GIT_WORKTREE_COPYFILES=".copy_files.txt"

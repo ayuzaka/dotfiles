@@ -139,6 +139,7 @@ Plug 'cohama/lexima.vim'
 
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+Plug 'rhysd/vim-fixjson'
 Plug 'imsnif/kdl.vim'
 Plug 'machakann/vim-sandwich'
 

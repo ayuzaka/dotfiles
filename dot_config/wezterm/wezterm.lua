@@ -9,7 +9,10 @@ end)
 
 return {
   color_scheme = "GruvboxDark",
-  font = wezterm.font("UDEV Gothic nf", { weight = 'Regular' }),
+  font = wezterm.font_with_fallback {
+    { family = "UDEV Gothic nf", weight = 'Regular' },
+    { family = "Moralerspace Argon NF", weight = 'Regular' },
+  },
   use_ime = true,
   macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
   hide_tab_bar_if_only_one_tab = true,

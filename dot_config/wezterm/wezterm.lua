@@ -1,6 +1,12 @@
 local wezterm = require 'wezterm'
 local keybinds = require('keybinds')
 
+local wezterm = require 'wezterm'
+
+wezterm.on('bell', function(window, pane)
+  window:toast_notification("Claude Code", "Task completed", nil, 4000)
+end)
+
 return {
   color_scheme = "GruvboxDark",
   font = wezterm.font("UDEV Gothic nf", { weight = 'Regular' }),
@@ -11,6 +17,7 @@ return {
   show_new_tab_button_in_tab_bar = false,
   window_decorations = "RESIZE",
   disable_default_key_bindings = true,
+  audible_bell = 'SystemBeep',
   leader = keybinds.leader,
   keys = keybinds.keys,
 }

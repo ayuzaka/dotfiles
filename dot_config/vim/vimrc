@@ -106,10 +106,14 @@ Plug 'morhetz/gruvbox'
 
 Plug 'vim-denops/denops.vim'
 
+Plug 'Shougo/pum.vim'
+
 Plug 'Shougo/ddc.vim'
 Plug 'Shougo/ddc-ui-native'
+Plug 'Shougo/ddc-ui-pum'
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
+Plug 'tani/ddc-fuzzy'
 
 Plug 'Shougo/ddu.vim'
 Plug 'Shougo/ddu-ui-ff'

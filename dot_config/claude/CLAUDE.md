@@ -8,6 +8,7 @@
 * Things to do before you finish
 * Check format, lint, and types
 * Be sure to create test code as well
+* Proceed with development based on t-wada's TDD
 * Avoid excessive abstraction
 * Types over code
 * Adapt your approach to complexity
@@ -24,6 +25,7 @@
 * Assert first: work backwards from the expected result
 * Start small and grow incrementally
 * Test case names are in Japanese
+* When writing front-end tests, write them based on the ideas of Kent C. Dodds' Testing Trophy.
 * When using Vitest, use test instead of it
 
 ## TypeScript

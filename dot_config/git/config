@@ -23,8 +23,10 @@
 [rerere]
   enabled = true
 [fetch]
-prune = true
-pruneTags = true
+  prune = true
+  pruneTags = true
+[pull]
+  rebase = true
 [push]
   useForceIfIncludes = true
   autoSetupRemote = true

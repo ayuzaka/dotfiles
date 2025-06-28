@@ -186,6 +186,27 @@
       ]
     },
     {
+      "description": "ctrl-7 to Mac Vim",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "7",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a MacVim"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "ctrl-8 to 1Password",
       "manipulators": [
         {

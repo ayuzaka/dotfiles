@@ -5,6 +5,7 @@ astro
 asyncomplete
 atexit
 autocmd
+awscli
 axios
 bdel
 biomejs

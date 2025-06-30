@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = {
     vim.fn.expand('$HOME') .. '/workspace/ayuzaka/learn/*',
     vim.fn.expand('$HOME') .. '**/Documents/daily/*',
-    '**/*.env',
   },
   callback = function()
     vim.cmd('Copilot disable')

@@ -82,6 +82,14 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   end,
 })
 
+-- .env*ファイルの設定
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = ".env*",
+  callback = function()
+    vim.opt.filetype = "dotenv"
+  end,
+})
+
 -- 置換コマンドの省略形
 vim.cmd([[
 cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ":s" ? [getchar(), ""][1] .. "%s///g<Left><Left>" : "s"

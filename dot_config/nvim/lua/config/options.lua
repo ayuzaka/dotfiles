@@ -87,6 +87,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = ".env*",
   callback = function()
     vim.opt.filetype = "dotenv"
+    vim.opt.syntax = "sh"
   end,
 })
 

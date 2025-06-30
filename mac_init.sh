@@ -6,7 +6,6 @@ npm config --global set prefix "$XDG_DATA_HOME"/npm
 
 # npm global install
 npm install -g \
-  @anthropic-ai/claude-code \
   @devcontainers/cli \
   markdownlint-cli
 

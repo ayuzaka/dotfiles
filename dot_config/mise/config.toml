@@ -1,0 +1,7 @@
+[tools]
+node = "24"
+"npm:@google/gemini-cli" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
+

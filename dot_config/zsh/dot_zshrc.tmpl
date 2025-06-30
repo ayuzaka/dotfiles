@@ -36,6 +36,9 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 
+# mise
+eval "$(~/.local/bin/mise activate zsh)"
+
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PATH=$PATH:$CARGO_HOME/bin
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
@@ -51,14 +54,6 @@ export PATH="$PATH:$BUN_INSTALL/bin"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$PATH:$DENO_INSTALL/bin"
 export DENO_NO_UPDATE_CHECK=1
-
-# Node (fnm)
-{{ if eq .chezmoi.os "linux" }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-export PATH="/home/ayuzaka/.local/share/fnm:$PATH"
-{{ end }}
-{{ end }}
-eval "$(fnm env --use-on-cd)"
 
 # npm
 export PATH="$XDG_DATA_HOME"/npm/bin:$PATH

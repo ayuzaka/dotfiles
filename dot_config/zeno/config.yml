@@ -95,6 +95,10 @@ snippets:
     keyword: swh
     snippet: sips -g pixelWidth -g pixelHeight
 
+  - name: lazysql
+    keyword: sql
+    snippet: lazysql
+
 completions:
   - name: git switch
     patterns:

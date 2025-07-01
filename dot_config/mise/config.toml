@@ -3,10 +3,11 @@ node = "24"
 bun = "latest"
 deno = "latest"
 go = "latest"
+"yarn" = "4"
 "npm:@google/gemini-cli" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
 "npm:markdownlint-cli" = "latest"
 "npm:@devcontainers/cli" = "latest"
-"yarn" = "4"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

@@ -6,6 +6,7 @@ go = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:markdownlint-cli" = "latest"
 "npm:@devcontainers/cli" = "latest"
+"yarn" = "4"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

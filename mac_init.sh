@@ -4,11 +4,6 @@
 # ref: https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#recommended-create-a-new-user-writable-npm-prefix
 npm config --global set prefix "$XDG_DATA_HOME"/npm
 
-# npm global install
-npm install -g \
-  @devcontainers/cli \
-  markdownlint-cli
-
 # スクリーンショットの保存名
 defaults write com.apple.screencapture name "screenShot"
 

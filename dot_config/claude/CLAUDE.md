@@ -1,5 +1,12 @@
 # CLAUDE.md
 
+## general
+
+* When searching for information, please follow the following priority order:
+  1. Local Obsidian documentation
+  2. Official documentation connected to MCP server
+  3. Internet
+
 ## coding
 
 * What to do before you start the task

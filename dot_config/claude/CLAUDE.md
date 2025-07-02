@@ -57,3 +57,14 @@
 * Components should be defined using arrow functions and typed with `React.FC`
 * Please write logic as pure TypeScript functions as much as possible, without relying on React or Next.js.
 * When you create or edit a component, please also create or edit a Storybook.
+
+## Vue/Nuxt
+
+* Use the latest stable version of Vue and Nuxt.
+* Before creating a new composable, check if it already exists in vueuse.
+    * <https://github.com/vueuse/vueuse>
+
+## CSS
+
+* When specifying layout, think grid first
+* If you use media queries, make sure to specify the SP as the base.

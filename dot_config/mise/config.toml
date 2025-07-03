@@ -10,7 +10,9 @@ python = "3.11"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:markdownlint-cli" = "latest"
 "npm:@devcontainers/cli" = "latest"
+"go:github.com/sqls-server/sqls" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
+experimental = true
 

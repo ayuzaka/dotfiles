@@ -1,0 +1,9 @@
+.DS_Store
+.vscode
+.op/plugins
+.vim-lsp-settings
+.copy_files.txt
+.ayuzaka
+.claude/settings.local.json
+mise.local.toml
+

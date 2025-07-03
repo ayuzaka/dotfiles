@@ -1,7 +1,6 @@
 [include]
   path = ~/.config/git/config.local
 [core]
-  excludesfile = ~/.config/git/gitignore_global
   editor = nvim
   pager = less -x4
 [gpg]

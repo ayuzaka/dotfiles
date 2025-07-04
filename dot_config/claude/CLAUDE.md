@@ -13,7 +13,6 @@
 * Check the current git context with `git status`. If there are many changes unrelated to the requested content, suggest that the user start a separate task from the current changes.
 * Keep the branch up to date with `git pull`
 * Things to do before you finish
-* Check format, lint, and types
 * Be sure to create test code as well
 * Proceed with development based on t-wada's TDD
 * Avoid excessive abstraction

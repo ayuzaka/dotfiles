@@ -1,26 +1,3 @@
-vim.fn["ddc#custom#patch_global"]("ui", "pum")
-
-vim.fn["ddc#custom#patch_global"]("sources", { "skkeleton", "vim-lsp" })
-
-vim.fn["ddc#custom#patch_global"]("sourceOptions", {
-  ["_"] = {
-    matchers = { "matcher_head" },
-    sorters = { "sorter_rank" }
-  },
-  skkeleton = {
-    mark = "skkeleton",
-    matchers = {},
-    sorters = {},
-    converters = {},
-    isVolatile = true,
-    minAutoCompleteLength = 1
-  },
-  ["vim-lsp"] = {
-    matchers = { "matcher_head" },
-    mark = "lsp"
-  }
-})
-
 vim.fn["skkeleton#config"]({
   completionRankFile = "~/.config/skkeleton/rank.json"
 })
@@ -41,3 +18,4 @@ end, { expr = true })
 
 vim.fn["ddc#enable"]()
 
+vim.fn["ddc#custom#load_config"](vim.fn.expand("$XDG_CONFIG_HOME/nvim/ts/ddc.ts"))

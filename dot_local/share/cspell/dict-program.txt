@@ -231,6 +231,7 @@ shopt
 showcmd
 sixel
 sparkctl
+sqls
 structcheck
 stylelintrc
 svgr

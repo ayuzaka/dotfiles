@@ -11,6 +11,8 @@ python = "3.11"
 "npm:markdownlint-cli" = "latest"
 "npm:@devcontainers/cli" = "latest"
 "go:github.com/sqls-server/sqls" = "latest"
+"go:tailscale.com/cmd/tailscaled" = "main"
+"go:tailscale.com/cmd/tailscale" = "main"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

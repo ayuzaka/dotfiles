@@ -8,19 +8,11 @@ export class Config extends BaseConfig {
     await super.config(args);
     args.contextBuilder.patchGlobal({
       ui: "pum",
-      sources: [{ name: "skkeleton" }, { name: "vim-lsp" }],
+      sources: [{ name: "vim-lsp" }],
       sourceOptions: {
         _: {
           matchers: ["matcher_head"],
           sorters: ["sorter_rank"],
-        },
-        skkeleton: {
-          mark: "skkeleton",
-          matchers: [],
-          sorters: [],
-          converters: [],
-          isVolatile: true,
-          minAutoCompleteLength: 1,
         },
         "vim-lsp": {
           mark: "lsp",

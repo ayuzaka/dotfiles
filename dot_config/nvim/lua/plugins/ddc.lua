@@ -1,7 +1,3 @@
-vim.fn["skkeleton#config"]({
-  completionRankFile = "~/.config/skkeleton/rank.json"
-})
-
 vim.keymap.set("i", "<TAB>", function()
   if vim.fn.pumvisible() == 1 then
     return "<C-n>"

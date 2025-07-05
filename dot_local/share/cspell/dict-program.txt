@@ -1,3 +1,4 @@
+afplay
 ambiwidth
 anek
 aquaskk

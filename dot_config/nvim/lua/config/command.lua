@@ -43,21 +43,6 @@ vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "b.", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "bd", ":bd<CR>", {})
 
-local function get_current_latest_blame_hash()
-  local file = vim.fn.expand("%:p")
-  local line = vim.fn.line(".")
-  local blame = vim.fn.system(string.format("git blame -L %d,%d %s", line, line, file))
-
-  return vim.split(blame, "\n")[1]:match("^(%x+)")
-end
-
-local function run_open_pr_current_line()
-  local hash = get_current_latest_blame_hash()
-  vim.fn.system("git rev-parse " .. hash .. " | xargs gh openpr")
-end
-
-vim.api.nvim_create_user_command("OpenPRCurrentLine", run_open_pr_current_line, {})
-
 local function search_regex(text)
   vim.fn.histdel("/")
   vim.fn.setreg("/", text)
@@ -171,13 +156,6 @@ end
 vim.api.nvim_create_user_command("BufOnly", function(opts)
   buf_only(opts.args, opts.bang and "!" or "")
 end, { nargs = "?", bang = true, complete = "buffer" })
-
-local function git_browse_current()
-  local dir_path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
-  vim.fn.system("gh browse " .. dir_path)
-end
-
-vim.api.nvim_create_user_command("GitBrowse", git_browse_current, {})
 
 vim.keymap.set("n", "gf", function()
   local cfile = vim.fn.expand("<cfile>")

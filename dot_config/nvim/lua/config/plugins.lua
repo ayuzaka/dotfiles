@@ -32,6 +32,7 @@ require("jetpack.packer").add {
   { "Shougo/ddu-filter-matcher_substring" },
   { "matsui54/ddu-source-help" },
   { "kuuote/ddu-source-git_status" },
+  { "kyoh86/ddu-source-git_log" },
   { "Shougo/ddu-ui-filer" },
   { "ryota2357/ddu-column-icon_filename" },
   { "Shougo/ddu-column-filename" },

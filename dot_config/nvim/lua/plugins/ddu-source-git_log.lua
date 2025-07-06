@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("Gl", function()
+vim.api.nvim_create_user_command("FileHistory", function()
   vim.fn["ddu#start"]({
     sources = {
       {

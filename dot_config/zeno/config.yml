@@ -155,6 +155,17 @@ completions:
       --prompt: "'Git Branch Delete > ' "
     callback: "awk '{print $1}'"
 
+  - name: gh pr checkout --detach
+    patterns:
+      - "^gh pr checkout --detach(?: .*)? $"
+    sourceCommand: "gh pr list --json number,title,author --jq '.[] | [.number, .title, .author.login] | @csv'"
+    options:
+      --height: "80%"
+      --print0: true
+      --preview-window: "down"
+      --prompt: "'gh pr checkout > ' "
+    callback: "awk -F ',' '{print $1}'"
+
   - name: tmux attach
     patterns:
       - "^tmux a -t(?: .*)? $"

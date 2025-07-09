@@ -8,11 +8,74 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    co: pr checkout
-    openpr: |-
-        !gh api graphql -F owner='{owner}' -F name='{repo}' -F id="$1" -f query='
-        query($owner: String!, $name: String!, $id: GitObjectID!) { repository (owner: $owner, name: $name) { object (oid: $id) { ... on Commit { associatedPullRequests (first:1) { edges { node { number } } } } } } }
-        ' --jq '.data.repository.object.associatedPullRequests.edges[].node.number' | xargs gh browse
+  co: pr checkout
+  openpr: |-
+      !gh api graphql -F owner='{owner}' -F name='{repo}' -F id="$1" -f query='
+      query($owner: String!, $name: String!, $id: GitObjectID!) { repository (owner: $owner, name: $name) { object (oid: $id) { ... on Commit { associatedPullRequests (first:1) { edges { node { number } } } } } } }
+      ' --jq '.data.repository.object.associatedPullRequests.edges[].node.number' | xargs gh browse
+  pr-inline-comments: |
+    !f() {
+      # -----------------------------------------------------------
+      # Usage: gh pr-inline-comments [PR_NUMBER] [FILE_PATH] [owner/repo]
+      # PR_NUMBER  : Optional: If omitted, the PR of the current branch will be automatically detected.
+      # FILE_PATH  : Optional: If specified, only the comment of that file will be extracted.
+      # owner/repo : Optional: If omitted, the current repository
+      # -----------------------------------------------------------
+
+      if [[ "$1" =~ ^[0-9]+$ ]]; then
+        PR="$1"; shift
+      else
+        PR="$(gh pr view --json number --jq .number 2>/dev/null)"
+        if [[ -z "$PR" || "$PR" == "null" ]]; then
+          echo "Error: No PR associated with this branch found. Please specify PR number." 1>&2
+          return 1
+        fi
+      fi
+
+      FILE=""; if [ $# -gt 0 ]; then FILE="$1"; shift; fi
+      REPO="${1:-$(gh repo view --json nameWithOwner --jq .nameWithOwner)}"
+      OWNER="${REPO%%/*}"
+      NAME="${REPO#*/}"
+
+      gh api graphql \
+        -F owner="$OWNER" -F name="$NAME" -F number="$PR" \
+        -f query='
+          query($owner: String!, $name: String!, $number: Int!) {
+            repository(owner: $owner, name: $name) {
+              pullRequest(number: $number) {
+                reviewThreads(first: 100) {
+                  nodes {
+                    path
+                    line
+                    originalLine
+                    comments(first: 100) {
+                      nodes {
+                        author { login }
+                        createdAt
+                        body
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }' \
+        --jq '
+          .data.repository.pullRequest.reviewThreads.nodes[]
+          '"$( [ -n "$FILE" ] && echo '| select(.path==\"'$FILE'\")' )"'
+          | . as $t
+          | $t.comments.nodes[]
+          | [
+              .createdAt,
+              ($t.path + ":" + (( ($t.line // $t.originalLine) | tostring ))),
+              .author.login,
+              (.body | gsub("[\r\n\t]+";" "))
+            ]
+          | @tsv
+        ' \
+        | column -s $'\t' -t
+    }; f "$@"
+
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

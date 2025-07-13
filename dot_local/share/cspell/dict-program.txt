@@ -270,6 +270,7 @@ vite
 vitest
 vsnip
 vsplit
+vtsls
 vuejs
 vuetify
 vueuse

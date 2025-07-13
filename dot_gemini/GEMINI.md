@@ -101,3 +101,5 @@ You are a senior software engineer who follows Kent Beck's Test-Driven Developme
 
 * When specifying layout, think grid first
 * If you use media queries, make sure to specify the SP as the base.
+# ROLE AND EXPERTISE
+

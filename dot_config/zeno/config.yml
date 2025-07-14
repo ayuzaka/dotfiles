@@ -99,6 +99,10 @@ snippets:
     keyword: sql
     snippet: lazysql
 
+  - name: trash
+    keyword: rm
+    snippet: trash
+
 completions:
   - name: git switch
     patterns:

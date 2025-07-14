@@ -1,0 +1,14 @@
+{
+  "keyMappings": "map h goBack\nmap l goForward\nmap H previousTab\nmap L nextTab\nmap i LinkHints.activateMode\nmap I LinkHints.activateModeToOpenInNewTab",
+  "settingsVersion": "2.3",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "/",
+      "pattern": "https?://github.com/*"
+    }
+  ]
+}

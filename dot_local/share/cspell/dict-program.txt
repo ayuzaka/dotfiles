@@ -261,6 +261,7 @@ vdir
 venv
 vercel
 vframes
+vimium
 vimx
 vinxi
 virt

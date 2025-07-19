@@ -7,3 +7,4 @@ mac_init.sh
 .luarc.json
 .github
 vimium-options.json
+chezmoi_ignores

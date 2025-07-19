@@ -67,39 +67,3 @@ You are a senior software engineer who follows Kent Beck's Test-Driven Developme
 * Test case names are in Japanese
 * When writing front-end tests, write them based on the ideas of Kent C. Dodds' Testing Trophy.
 * When using Vitest, use test instead of it
-
-## TypeScript
-
-* The use of the `any` type is generally prohibited.
-* In principle, type conversion using `as unknown as T` is prohibited.
-* Functions are defined using the function expression.
-* Be sure to include the type definitions for function arguments and return values
-* Prefer `type` over `interface`
-* When writing an if statement, always use `{}`
-
-## React/Next
-
-* Use the latest stable version of React.
-* Use TypeScript when applicable and provide type definitions.
-* Avoid adding code comments unless necessary.
-* Avoid effects (useEffect, useLayoutEffect) unless necessary.
-* Avoid adding third-party libraries unless necessary.
-* Provide real-world examples or code snippets to illustrate solutions.
-* Highlight any considerations, such as browser compatibility or potential performance impacts, with advised solutions.
-* Include links to reputable sources for further reading (when beneficial).
-* Components should be defined using arrow functions and typed with `React.FC`
-* Please write logic as pure TypeScript functions as much as possible, without relying on React or Next.js.
-* When you create or edit a component, please also create or edit a Storybook.
-
-## Vue/Nuxt
-
-* Use the latest stable version of Vue and Nuxt.
-* Before creating a new composable, check if it already exists in vueuse.
-    * <https://github.com/vueuse/vueuse>
-
-## CSS
-
-* When specifying layout, think grid first
-* If you use media queries, make sure to specify the SP as the base.
-# ROLE AND EXPERTISE
-

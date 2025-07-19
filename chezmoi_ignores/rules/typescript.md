@@ -1,7 +1,3 @@
----
-applyTo: "**/*.ts"
----
-
 * The use of the `any` type is generally prohibited.
 * In principle, type conversion using `as unknown as T` is prohibited.
 * Functions are defined using the function expression.

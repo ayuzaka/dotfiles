@@ -1,7 +1,3 @@
----
-applyTo: "**/*.tsx"
----
-
 * Use the latest stable version of React.
 * Use TypeScript when applicable and provide type definitions.
 * Avoid adding code comments unless necessary.

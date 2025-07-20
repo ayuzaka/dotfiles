@@ -23,6 +23,7 @@ jmode
 karabiner
 keka
 kekaexternalhelper
+kiro
 kosugi
 lcel
 lcom

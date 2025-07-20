@@ -67,3 +67,5 @@ You are a senior software engineer who follows Kent Beck's Test-Driven Developme
 * Test case names are in Japanese
 * When writing front-end tests, write them based on the ideas of Kent C. Dodds' Testing Trophy.
 * When using Vitest, use test instead of it
+
+When you have completed a certain amount of work, please feel free to add your thoughts to the `times.txt` file in the current directory.

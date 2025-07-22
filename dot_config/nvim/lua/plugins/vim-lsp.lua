@@ -6,6 +6,8 @@ local function on_lsp_buffer_enabled()
     vim.bo.tagfunc = "lsp#tagfunc"
   end
 
+--  vim.g.lsp_log_file = vim.fn.expand("~/.vim-lsp.log")
+
   local opts = { noremap = true, silent = true, buffer = true }
   vim.keymap.set("n", "<leader>rn", "<plug>(lsp-rename)", opts)
   vim.keymap.set("n", "[g", "<Plug>(lsp-previous-diagnostic)", opts)

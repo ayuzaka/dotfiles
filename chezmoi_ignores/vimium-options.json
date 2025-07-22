@@ -7,7 +7,7 @@
       "pattern": "https?://mail.google.com/*"
     },
     {
-      "passKeys": "/",
+      "passKeys": "/,?,t,x",
       "pattern": "https?://github.com/*"
     }
   ]

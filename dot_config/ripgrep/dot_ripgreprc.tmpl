@@ -13,3 +13,6 @@
 -g=!.git/*
 -g=!.yarn/*
 -g=!.obsidian/*
+{{if (eq .purpose "work")}}
+-g=!assets/built/*
+{{end}}

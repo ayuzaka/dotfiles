@@ -186,6 +186,7 @@ ofetch
 ollama
 omnifunc
 orgtbl
+osascript
 osrelease
 ostype
 osxkeychain

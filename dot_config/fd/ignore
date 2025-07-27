@@ -1,2 +1,29 @@
 .git
+
+# Node
+node_modules
+npm-debug.log*
 .yarn
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.*
+.pnpm-debug.log*
+
+.next
+out
+.nuxt
+
+# production
+build
+
+# misc
+.DS_Store
+*.pem
+
+
+# vercel
+.vercel
+
+# testing
+coverage

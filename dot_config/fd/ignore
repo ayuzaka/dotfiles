@@ -14,6 +14,8 @@ yarn-error.log*
 out
 .nuxt
 
+.nxcache
+
 # production
 build
 

@@ -1,4 +1,6 @@
 {
+  "includeCoAuthoredBy": false,
+  "autoUpdates": false,
   "permissions": {
     "allow": [
       "Bash(cat:*)",
@@ -62,7 +64,6 @@
       "Write(.env*)"
     ]
   },
-  "includeCoAuthoredBy": false,
   "hooks": {
     "Stop": [
       {

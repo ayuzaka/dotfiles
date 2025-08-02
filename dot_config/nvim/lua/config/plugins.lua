@@ -8,7 +8,6 @@ require("jetpack.packer").add {
   { "vim-denops/denops.vim" },
   { "github/copilot.vim" },
   { "nvim-lua/plenary.nvim" },
-  { "joshuavial/aider.nvim" },
   { "azorng/goose.nvim" },
   { "nvim-telescope/telescope.nvim" },
   { "prabirshrestha/vim-lsp" },

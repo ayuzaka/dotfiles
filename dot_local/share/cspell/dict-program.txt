@@ -238,6 +238,7 @@ structcheck
 stylelintrc
 svgr
 swcrc
+tabler
 tagfunc
 tauri
 tavily
@@ -251,6 +252,7 @@ trror
 tseslint
 ttfb
 turborepo
+turso
 udev
 udgothic
 ugothic

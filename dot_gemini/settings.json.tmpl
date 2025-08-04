@@ -1,6 +1,6 @@
 {
   "theme": "Dracula",
-  "selectedAuthType": "oauth-personal",
+  "selectedAuthType": "{{ if eq .purpose "work" }}vertex-ai{{ else }}oauth-personal{{ end }}",
   "preferredEditor": "neovim",
   "mcpServers": {
     "serena": {

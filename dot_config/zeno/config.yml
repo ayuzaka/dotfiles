@@ -107,6 +107,10 @@ snippets:
     keyword: psp
     snippet: ps -fp "$(lsof -t -i :"{{port}}")"
 
+  - name: search history
+    keyword: h
+    snippet: cat $HISTFILE | grep -i "{{text}}"
+
 completions:
   - name: git switch
     patterns:

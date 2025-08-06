@@ -13,6 +13,11 @@
 -g=!.git/*
 -g=!.yarn/*
 -g=!.obsidian/*
+-g=!**/*.js.map
+-g=!**/*.mjs.map
+-g=!**/*.min.js
+-g=!**/*.css.map
+-g=!**/*.min.css
 {{if (eq .purpose "work")}}
 -g=!assets/built/*
 {{end}}

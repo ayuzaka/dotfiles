@@ -29,3 +29,6 @@ build
 
 # testing
 coverage
+
+# ai
+.serena

@@ -1,4 +1,4 @@
-local function grep()
+vim.api.nvim_create_user_command("Grep", function()
   local word = vim.fn.input("Search word: ")
   vim.fn["ddu#start"]({
     sources = {
@@ -10,9 +10,9 @@ local function grep()
       }
     }
   })
-end
-
-vim.api.nvim_create_user_command("Grep", grep, {})
+end,
+  {}
+)
 
 vim.api.nvim_create_user_command("GrepIgnore", function()
   vim.fn["ddu#start"]({

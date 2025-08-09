@@ -35,6 +35,7 @@ require("jetpack.packer").add {
   { "Shougo/ddu-ui-filer" },
   { "ryota2357/ddu-column-icon_filename" },
   { "Shougo/ddu-column-filename" },
+  { "nvim-tree/nvim-tree.lua" },
   { "nvim-tree/nvim-web-devicons" },
   { 'nvim-lualine/lualine.nvim' },
   { "easymotion/vim-easymotion" },

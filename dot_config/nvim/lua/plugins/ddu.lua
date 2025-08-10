@@ -10,6 +10,8 @@ vim.api.nvim_create_autocmd("FileType", {
       "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
     vim.keymap.set("n", "p",
       "<Cmd>call ddu#ui#do_action('preview')<CR>", opts)
+    vim.keymap.set("n", "P",
+      "<Cmd>call ddu#ui#do_action('closePreviewWindow')<CR>", opts)
     vim.keymap.set("n", "q",
       "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
   end

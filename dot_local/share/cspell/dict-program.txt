@@ -79,6 +79,7 @@ goenv
 golangci
 golint
 gopath
+gopls
 gpgsign
 grepprg
 gruvbox

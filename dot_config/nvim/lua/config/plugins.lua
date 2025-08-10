@@ -6,7 +6,6 @@ require("jetpack.packer").add {
   { "nvim-treesitter/nvim-treesitter" },
   { "andymass/vim-matchup" },
   { "vim-denops/denops.vim" },
-  { "github/copilot.vim" },
   { "nvim-lua/plenary.nvim" },
   { "azorng/goose.nvim" },
   { "nvim-telescope/telescope.nvim" },

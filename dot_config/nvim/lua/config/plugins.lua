@@ -42,6 +42,7 @@ require("jetpack.packer").add {
   { "mattn/emmet-vim" },
   { "rhysd/vim-fixjson" },
   { "preservim/vim-markdown" },
+  { "bullets-vim/bullets.vim" },
   { "imsnif/kdl.vim" },
   { "machakann/vim-sandwich" },
   { "folke/ts-comments.nvim", event = "VeryLazy" },

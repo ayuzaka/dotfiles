@@ -274,6 +274,7 @@ virttext
 virtualenv
 vite
 vitest
+vmap
 vsnip
 vsplit
 vtsls

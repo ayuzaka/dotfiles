@@ -1,13 +1,13 @@
 {
-  "title": "hotkeys to switch app",
+  "title": "hotkeys to switch app for work",
   "rules": [
     {
-      "description": "ctrl-1 to WezTerm",
+      "description": "ctrl-2 to Figma",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "1",
+            "key_code": "2",
             "modifiers": {
               "mandatory": [
                 "control"
@@ -16,22 +16,14 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'WezTerm'"
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "select_input_source": {
-                "input_source_id": "com.apple.keylayout.ABC",
-                "language": "en"
-              }
+              "shell_command": "open -a 'Figma'"
             }
           ]
         }
       ]
     },
     {
-      "description": "ctrl-3 to Obsidian",
+      "description": "ctrl-3 to Slack",
       "manipulators": [
         {
           "type": "basic",
@@ -45,19 +37,27 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'obsidian'"
+              "shell_command": "open -a 'Slack'"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "select_input_source": {
+                "input_source_id": "jp.sourceforge.inputmethod.aquaskk",
+                "language": "ja"
+              }
             }
           ]
         }
       ]
     },
     {
-      "description": "ctrl-4 to Dia",
+      "description": "ctrl-6 to VSCode",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "4",
+            "key_code": "6",
             "modifiers": {
               "mandatory": [
                 "control"
@@ -66,56 +66,14 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Dia'"
+              "shell_command": "open -a 'Visual Studio Code'"
             }
           ]
         }
       ]
     },
     {
-      "description": "ctrl-5 to Chrome",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "5",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -a 'Google Chrome'"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "ctrl-7 to Neovide",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "7",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -a 'Neovide'"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "ctrl-8 to 1Password",
+      "description": "ctrl-8 to Bitwarden",
       "manipulators": [
         {
           "type": "basic",
@@ -129,7 +87,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a '1Password'"
+              "shell_command": "open -a 'Bitwarden'"
             }
           ]
         }
@@ -158,3 +116,4 @@
     }
   ]
 }
+

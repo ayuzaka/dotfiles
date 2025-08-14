@@ -208,10 +208,10 @@ fi
 
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
 
-{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.username "ayuzaka")) }}
 # 1Password
-source "$XDG_CONFIG_HOME"/op/plugins.sh
-{{ end }}
+if ! command -v op >/dev/null 2>&1; then
+  source "$XDG_CONFIG_HOME"/op/plugins.sh
+fi
 
 export GHCUP_USE_XDG_DIRS=true
 [ -f "/Users/ayuzaka/.local/share/ghcup/env" ] && . "/Users/ayuzaka/.local/share/ghcup/env" # ghcup-env

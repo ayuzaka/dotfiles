@@ -96,60 +96,7 @@ onoremap a" 2i"
 onoremap a' 2i'
 onoremap a` 2i`
 
-"""""""""""""""""""""
-" Plugin
-"""""""""""""""""""""
-
-call plug#begin('~/.local/share/vim/plugged')
-
-Plug 'morhetz/gruvbox'
-
-Plug 'vim-denops/denops.vim'
-
-Plug 'Shougo/pum.vim'
-
-Plug 'Shougo/ddc.vim'
-Plug 'Shougo/ddc-ui-native'
-Plug 'Shougo/ddc-ui-pum'
-Plug 'Shougo/ddc-matcher_head'
-Plug 'Shougo/ddc-sorter_rank'
-Plug 'tani/ddc-fuzzy'
-
-Plug 'Shougo/ddu.vim'
-Plug 'Shougo/ddu-ui-ff'
-Plug 'Shougo/ddu-source-file_rec'
-Plug 'matsui54/ddu-source-file_external'
-Plug 'uga-rosa/ddu-source-lsp'
-Plug 'shun/ddu-source-rg'
-Plug 'Shougo/ddu-source-file'
-Plug 'Shougo/ddu-kind-file'
-Plug 'Shougo/ddu-filter-matcher_substring'
-Plug 'matsui54/ddu-source-help'
-Plug 'kuuote/ddu-source-git_status'
-Plug 'Shougo/ddu-ui-filer'
-Plug 'ryota2357/ddu-column-icon_filename'
-Plug 'Shougo/ddu-column-filename'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-Plug 'editorconfig/editorconfig-vim'
-Plug 'cohama/lexima.vim'
-
-Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
-Plug 'rhysd/vim-fixjson'
-Plug 'imsnif/kdl.vim'
-Plug 'machakann/vim-sandwich'
-
-Plug 'github/copilot.vim'
-
-call plug#end()
+:source ~/.config/vim/plugins.vim
 
 set background=dark
 colorscheme gruvbox

@@ -25,6 +25,7 @@ require("jetpack.packer").add {
   { "matsui54/ddu-source-file_external" },
   { "uga-rosa/ddu-source-lsp" },
   { "shun/ddu-source-rg" },
+  { "shun/ddu-source-buffer" },
   { "Shougo/ddu-source-file" },
   { "Shougo/ddu-kind-file" },
   { "Shougo/ddu-filter-matcher_substring" },

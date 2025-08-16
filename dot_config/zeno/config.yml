@@ -87,10 +87,6 @@ snippets:
     keyword: gcloud-switch
     snippet: gcloud config configurations activate
 
-  - name: force neovim
-    keyword: vim
-    snippet: nvim
-
   - name: Output image file's width and height
     keyword: swh
     snippet: sips -g pixelWidth -g pixelHeight

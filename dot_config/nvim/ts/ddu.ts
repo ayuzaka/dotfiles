@@ -147,6 +147,12 @@ export class Config extends BaseConfig {
       },
     });
 
+    args.contextBuilder.patchLocal("buffer_list", {
+      sources: [{
+        name: "buffer",
+      }],
+    });
+
     args.contextBuilder.patchLocal("filer", {
       ui: "filer",
       sources: [

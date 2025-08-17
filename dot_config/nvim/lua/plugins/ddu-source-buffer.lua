@@ -8,3 +8,6 @@ vim.api.nvim_create_user_command("Buffer", function()
   })
 end, {})
 
+vim.keymap.set("n", "<C-S-p>", function()
+  vim.fn["ddu#start"]({ name = "buffer_list" })
+end, { silent = true })

@@ -4,3 +4,4 @@
 * Be sure to include the type definitions for function arguments and return values
 * Prefer `type` over `interface`
 * When writing an if statement, always use `{}`
+* Do not use Class, but it is allowed if the existing source code is Class-based.

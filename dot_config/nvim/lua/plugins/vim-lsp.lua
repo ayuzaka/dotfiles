@@ -93,7 +93,7 @@ vim.g.lsp_document_highlight_delay = 100
 vim.g.lsp_document_code_action_signs_delay = 100
 
 vim.g.lsp_settings_filetype_javascript = { "typescript-language-server", "eslint-language-server" }
-vim.g.lsp_settings_filetype_typescript = { "typescript-language-server", "eslint-language-server", "deno", "biome" }
+vim.g.lsp_settings_filetype_typescript = { "typescript-language-server", "vtsls", "eslint-language-server", "deno", "biome" }
 vim.g.lsp_settings_filetype_typescriptreact = { "typescript-language-server", "eslint-language-server", "deno", "biome" }
 vim.g.lsp_settings_filetype_html = { "html-languageserver", "tailwindcss-intellisense" }
 vim.g.lsp_settings_filetype_css = { "vscode-css-language-server", "tailwindcss-intellisense", "biome" }
@@ -137,6 +137,32 @@ vim.api.nvim_create_autocmd("User", {
         ["biome"] = {
           disabled = 1,
           allowlist = { "typescript", "typescriptreact", "css", "json", "jsonc" }
+        }
+      }
+    end
+  end
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "lsp_setup",
+  callback = function()
+    local function is_nuxt_config_present()
+      local cwd = vim.loop.cwd()
+      local biome_path = cwd .. "/nuxt.config.ts"
+      local stat = vim.loop.fs_stat(biome_path)
+      return stat and stat.type == "file"
+    end
+
+    if is_nuxt_config_present() then
+      vim.g.lsp_settings = {
+        ["typescript-language-server"] = {
+          disabled = 1,
+        },
+      }
+    else
+      vim.g.lsp_settings = {
+        ["vtsls"] = {
+          disabled = 1,
         }
       }
     end

@@ -2,6 +2,10 @@
   "includeCoAuthoredBy": false,
   "autoUpdates": false,
   "model": "opusplan",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.config/claude/statusline.js"
+  },
   "permissions": {
     "allow": [
       "Bash(cat:*)",

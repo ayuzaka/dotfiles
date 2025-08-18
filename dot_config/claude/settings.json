@@ -1,6 +1,7 @@
 {
   "includeCoAuthoredBy": false,
   "autoUpdates": false,
+  "model": "opusplan",
   "permissions": {
     "allow": [
       "Bash(cat:*)",

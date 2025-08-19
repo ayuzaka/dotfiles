@@ -194,6 +194,7 @@ osxkeychain
 palt
 pgcli
 phpenv
+pipx
 plemol
 plenv
 plpgsql
@@ -234,6 +235,7 @@ shopt
 showcmd
 sixel
 sparkctl
+sqld
 sqls
 structcheck
 stylelintrc
@@ -243,6 +245,7 @@ tabler
 tagfunc
 tauri
 tavily
+termius
 testid
 textlintrc
 tinify
@@ -254,6 +257,7 @@ tseslint
 ttfb
 turborepo
 turso
+tursodatabase
 udev
 udgothic
 ugothic

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "description": "ctrl-7 to Neovide",
+      "description": "ctrl-7 to MacVim",
       "manipulators": [
         {
           "type": "basic",
@@ -108,7 +108,7 @@
           },
           "to": [
             {
-              "shell_command": "zsh -lic 'open -a Neovide'"
+              "shell_command": "open -a 'MacVim'"
             }
           ]
         }

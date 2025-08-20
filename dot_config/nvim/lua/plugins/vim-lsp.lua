@@ -13,6 +13,7 @@ local function on_lsp_buffer_enabled()
   vim.keymap.set("n", "[g", "<Plug>(lsp-previous-diagnostic)", opts)
   vim.keymap.set("n", "]g", "<Plug>(lsp-next-diagnostic)", opts)
   vim.keymap.set("n", "K", "<plug>(lsp-hover)", opts)
+  vim.keymap.set("n", "<leader>K", ":LspHover --ui=preview<CR>", opts)
 
   -- スクロール設定
   vim.keymap.set('n', '<c-f>', function()

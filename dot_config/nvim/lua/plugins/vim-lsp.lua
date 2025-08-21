@@ -123,49 +123,50 @@ vim.g.lsp_settings = {
   }
 }
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "lsp_setup",
-  callback = function()
-    local function is_biome_json_present()
-      local cwd = vim.loop.cwd()
-      local biome_path = cwd .. "/biome.json"
-      local stat = vim.loop.fs_stat(biome_path)
-      return stat and stat.type == "file"
-    end
-
-    if not is_biome_json_present() then
-      vim.g.lsp_settings = {
-        ["biome"] = {
-          disabled = 1,
-          allowlist = { "typescript", "typescriptreact", "css", "json", "jsonc" }
-        }
-      }
-    end
-  end
+-- Ensure Biome only starts when a config exists
+vim.g.lsp_settings = vim.tbl_deep_extend('force', vim.g.lsp_settings or {}, {
+  ["biome"] = {
+    root_markers = { "biome.json" },
+  },
 })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "lsp_setup",
   callback = function()
-    local function is_nuxt_config_present()
-      local cwd = vim.loop.cwd()
-      local biome_path = cwd .. "/nuxt.config.ts"
-      local stat = vim.loop.fs_stat(biome_path)
-      return stat and stat.type == "file"
+    local function file_exists(p)
+      local st = vim.loop.fs_stat(p)
+      return st and st.type == 'file'
     end
 
-    if is_nuxt_config_present() then
-      vim.g.lsp_settings = {
-        ["typescript-language-server"] = {
-          disabled = 1,
-        },
-      }
+    local function has_file_upward(target)
+      local buf = vim.api.nvim_get_current_buf()
+      local file = vim.api.nvim_buf_get_name(buf)
+      local dir = (file ~= '' and vim.fn.fnamemodify(file, ":p:h")) or vim.loop.cwd()
+      while dir and dir ~= '' do
+        if file_exists(dir .. '/' .. target) then return true end
+        local parent = vim.fn.fnamemodify(dir, ':h')
+        if parent == dir then break end
+        dir = parent
+      end
+      return false
+    end
+
+    local has_biome = has_file_upward('biome.json')
+    local has_nuxt = has_file_upward('nuxt.config.ts')
+
+    local patch = {}
+    if not has_biome then
+      patch["biome"] = { disabled = 1 }
+    end
+
+    if has_nuxt then
+      patch["typescript-language-server"] = { disabled = 1 }
     else
-      vim.g.lsp_settings = {
-        ["vtsls"] = {
-          disabled = 1,
-        }
-      }
+      patch["vtsls"] = { disabled = 1 }
+    end
+
+    if next(patch) ~= nil then
+      vim.g.lsp_settings = vim.tbl_deep_extend('force', vim.g.lsp_settings or {}, patch)
     end
   end
 })

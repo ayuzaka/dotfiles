@@ -38,7 +38,7 @@ require('lualine').setup {
   },
   tabline = {
     lualine_a = {
-      { 'filename', path = 4 }
+      { 'filename', path = 1 }
     },
   },
   winbar = {},

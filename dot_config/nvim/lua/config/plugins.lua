@@ -48,6 +48,7 @@ require("jetpack.packer").add {
   { "machakann/vim-sandwich" },
   { "folke/ts-comments.nvim", event = "VeryLazy" },
   { "chentoast/marks.nvim" },
+  { "akinsho/toggleterm.nvim" },
   { "barrett-ruth/import-cost.nvim", build = "sh install.sh npm" }
 }
 

@@ -98,3 +98,11 @@ cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ":s" ? [getchar(), ""][1] 
 
 -- netrwの設定
 vim.g.netrw_home = vim.env.XDG_CACHE_HOME .. "/nvim"
+
+-- :term でカーソルがずれる問題の解消
+vim.api.nvim_create_autocmd("TermOpen", {
+pattern = "*",
+callback = function()
+  vim.opt_local.ambiwidth = "single"
+  end,
+})

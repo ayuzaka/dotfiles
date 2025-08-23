@@ -3,7 +3,7 @@ require("jetpack.packer").add {
   { "tani/vim-jetpack" },
   { "tani/vim-artemis" },
   { "morhetz/gruvbox" },
-  { "nvim-treesitter/nvim-treesitter" },
+  { "nvim-treesitter/nvim-treesitter", branch  = "main" },
   { "andymass/vim-matchup" },
   { "vim-denops/denops.vim" },
   { "nvim-lua/plenary.nvim" },

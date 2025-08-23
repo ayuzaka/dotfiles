@@ -144,7 +144,7 @@ completions:
   - name: git branch delete
     patterns:
       - "^git branch -d(?: .*)? $"
-    sourceCommand: "git branch --merged | grep -v -E '(develop|master|main|^\\*)'"
+    sourceCommand: "git for-each-ref --format='%(refname:short)' refs/heads --merged | grep -v -x -F -e develop -e main -e master -e \"$(git symbolic-ref --short HEAD)\""
     options:
       --height: "80%"
       --print0: true
@@ -155,7 +155,7 @@ completions:
   - name: git branch delete force
     patterns:
       - "^git branch -D(?: .*)? $"
-    sourceCommand: "git branch | grep -v -E '(develop|master|main|^\\*)'"
+    sourceCommand: "git for-each-ref --format='%(refname:short)' refs/heads | grep -v -x -F -e develop -e main -e master -e \"$(git symbolic-ref --short HEAD)\""
     options:
       --height: "80%"
       --print0: true

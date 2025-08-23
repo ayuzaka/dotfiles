@@ -9,3 +9,5 @@ require("toggleterm").setup({
   direction = 'float',
   close_on_exit = true,
 })
+
+vim.keymap.set("n", "<C-t>", ":TermSelect<CR>", { silent = true })

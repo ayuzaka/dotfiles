@@ -196,6 +196,7 @@ palt
 pgcli
 phpenv
 pipx
+plamo
 plemol
 plenv
 plpgsql

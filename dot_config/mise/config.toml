@@ -18,6 +18,7 @@ uv = "latest"
 "go:tailscale.com/cmd/tailscale" = "main"
 "pipx:markitdown" = { version = "latest", extras = "all" }
 "pipx:plamo-translate" = "latest"
+"pipx:markitdown-mcp" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

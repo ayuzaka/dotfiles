@@ -150,6 +150,7 @@ lscolors
 lspconfig
 luaenv
 luarc
+luma
 matchparen
 mbps
 mdast

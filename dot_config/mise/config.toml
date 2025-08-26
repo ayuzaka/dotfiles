@@ -19,6 +19,7 @@ uv = "latest"
 "pipx:markitdown" = { version = "latest", extras = "all" }
 "pipx:plamo-translate" = "latest"
 "pipx:markitdown-mcp" = "latest"
+"pipx:awscli-local" = { version = "latest", extras = "ver1" }
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

@@ -1,8 +1,11 @@
 require("nvim-treesitter").setup({})
 
 require'nvim-treesitter'.install {
-  "astro", "bash", "css", "dockerfile", "fsharp", "git_config", "go", "graphql", "haskell", "html",
-  "javascript", "json", "lua", "markdown", "python", "rust", "scss", "sql", "svelte", "toml", "typescript", "vim",
+  "html", "css",
+  "javascript", "typescript", "svelte", "vue", "astro",
+  "go", "python", "rust", "fsharp", "haskell", "lua",
+  "json", "toml", "yaml", "markdown", "git_config",
+  "graphql", "dockerfile", "vim", "sql",
 }
 
 vim.api.nvim_create_autocmd("FileType", {

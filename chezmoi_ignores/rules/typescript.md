@@ -5,3 +5,4 @@
 * Prefer `type` over `interface`
 * When writing an if statement, always use `{}`
 * Do not use Class, but it is allowed if the existing source code is Class-based.
+* Processes and type definitions should be organized with collocation in mind, placing related elements close together.

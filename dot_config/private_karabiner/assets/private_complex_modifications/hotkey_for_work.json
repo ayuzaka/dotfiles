@@ -52,7 +52,7 @@
       ]
     },
     {
-      "description": "ctrl-6 to VSCode",
+      "description": "ctrl-6 to Notion",
       "manipulators": [
         {
           "type": "basic",
@@ -66,7 +66,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Visual Studio Code'"
+              "shell_command": "open -a 'Notion'"
             }
           ]
         }

@@ -1,0 +1,10 @@
+model_reasoning_effort = "high"
+tools.web_search = true
+
+[mcp_servers.docker]
+command = "docker"
+args = ["mcp", "gateway", "run"]
+
+[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]

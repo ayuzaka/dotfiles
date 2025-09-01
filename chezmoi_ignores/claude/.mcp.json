@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "docker": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "mcp",
+        "gateway",
+        "run"
+      ]
+    },
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "<project_path>"
+      ]
+    },
+    "grep": {
+      "type": "http",
+      "url": "https://mcp.grep.app"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
+    }
+  }
+}

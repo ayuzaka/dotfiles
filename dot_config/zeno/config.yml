@@ -159,9 +159,9 @@ completions:
       --prompt: "'Git Branch Delete > ' "
     callback: "awk '{print $1}'"
 
-  - name: gh pr checkout --detach
+  - name: gh pr checkout
     patterns:
-      - "^gh pr checkout --detach(?: .*)? $"
+      - "^gh pr checkout(?: .*)? $"
     sourceCommand: "gh pr list --json number,title,author --jq '.[] | [.number, .title, .author.login] | @csv'"
     options:
       --height: "80%"

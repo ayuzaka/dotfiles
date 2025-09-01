@@ -11,9 +11,12 @@ yarn-error.log*
 .pnpm-debug.log*
 
 .next
-out
 .nuxt
 .svelte-kit
+
+out
+.output
+dist
 
 .nxcache
 

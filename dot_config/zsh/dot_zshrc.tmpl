@@ -209,7 +209,7 @@ fi
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
 
 # 1Password
-if ! command -v op >/dev/null 2>&1; then
+if command -v op >/dev/null 2>&1; then
   source "$XDG_CONFIG_HOME"/op/plugins.sh
 fi
 

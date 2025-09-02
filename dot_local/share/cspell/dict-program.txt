@@ -193,6 +193,7 @@ osascript
 osrelease
 ostype
 osxkeychain
+oxlint
 palt
 pgcli
 phpenv
@@ -257,6 +258,7 @@ tput
 trac
 trror
 tseslint
+tsgolint
 ttfb
 turborepo
 turso

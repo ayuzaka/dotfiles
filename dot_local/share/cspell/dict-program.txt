@@ -32,6 +32,7 @@ ctermbg
 cwindow
 cword
 dbcli
+dbeaver
 dbname
 deno
 denoland
@@ -160,6 +161,7 @@ nargs
 nbsp
 netrw
 nextjs
+ngrok
 nmap
 nnoremap
 noautoremoveslash
@@ -185,6 +187,7 @@ numhl
 nuxt
 nuxtjs
 nvim
+nxcache
 ofetch
 ollama
 omnifunc
@@ -198,6 +201,7 @@ palt
 pgcli
 phpenv
 pipx
+pkce
 plamo
 plemol
 plenv

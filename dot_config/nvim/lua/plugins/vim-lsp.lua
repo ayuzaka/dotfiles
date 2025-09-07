@@ -92,6 +92,7 @@ vim.g.lsp_diagnostics_virtual_text_enabled = 0
 vim.g.lsp_completion_documentation_delay = 40
 vim.g.lsp_document_highlight_delay = 100
 vim.g.lsp_document_code_action_signs_delay = 100
+vim.g.lsp_experimental_workspace_folders = 1
 
 vim.g.lsp_settings_filetype_javascript = { "typescript-language-server", "eslint-language-server" }
 vim.g.lsp_settings_filetype_typescript = { "typescript-language-server", "vtsls", "eslint-language-server", "deno", "biome" }
@@ -103,6 +104,7 @@ vim.g.lsp_settings_filetype_jsonc = { "biome" }
 vim.g.lsp_settings_filetype_svelte = { "svelte-language-server", "eslint-language-server" }
 vim.g.lsp_settings_filetype_vue = { "volar-server", "vtsls", "eslint-language-server" }
 vim.g.lsp_settings_filetype_python = { "pylsp-all", "pyright-langserver" }
+vim.g.lsp_settings_filetype_rust = { "rust-analyzer", "bacon-ls" }
 
 vim.g.lsp_settings = {
   ["efm-langserver"] = {
@@ -119,6 +121,12 @@ vim.g.lsp_settings = {
           }
         }
       }
+    }
+  },
+  ["rust-analyzer"] = {
+    initialization_options = {
+      checkOnSave = false,
+      diagnostics = false,
     }
   }
 }

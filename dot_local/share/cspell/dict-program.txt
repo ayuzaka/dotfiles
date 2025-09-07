@@ -23,6 +23,7 @@ cfile
 chpwd
 chsh
 cica
+clippy
 clsx
 cmap
 cmctl

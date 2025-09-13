@@ -8,3 +8,5 @@ args = ["mcp", "gateway", "run"]
 [mcp_servers.serena]
 command = "uvx"
 args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+
+{{ include "chezmoi_ignores/private/codex_projects.toml" }}

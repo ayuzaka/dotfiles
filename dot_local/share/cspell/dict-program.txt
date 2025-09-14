@@ -185,6 +185,7 @@ nosnakecase
 nospell
 noswapfile
 numhl
+nuxi
 nuxt
 nuxtjs
 nvim
@@ -274,6 +275,7 @@ udgothic
 ugothic
 unlines
 unmarshal
+unstub
 unwords
 upglob
 valibot

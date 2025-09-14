@@ -219,6 +219,7 @@ pygments
 pylsp
 pyproject
 pyright
+pythonrc
 rdbms
 redir
 rehype

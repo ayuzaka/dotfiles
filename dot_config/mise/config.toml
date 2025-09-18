@@ -23,6 +23,7 @@ uv = "latest"
 "pipx:markitdown-mcp" = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 "cargo:bacon" = { version = "latest", locked = true }
+"cargo:tree-sitter-cli" = { version = "latest", locked = true }
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

@@ -1,7 +1,7 @@
 version: 2
 tools:
   markdown-textlint: &markdown-textlint
-    lint-command: 'bunx textlint -f unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: 'bunx --no-install textlint -f unix --stdin --stdin-filename "${INPUT}"'
     lint-ignore-exit-code: true
     lint-stdin: true
     lint-formats:
@@ -11,7 +11,7 @@ tools:
       - .textlintrc.json
 
   markdown-markdownlint: &markdown-markdownlint
-    lint-command: 'bunx markdownlint -s -c "~/.config/markdownlint/markdownlint.json"'
+    lint-command: 'markdownlint -s -c "~/.config/markdownlint/markdownlint.json"'
     lint-stdin: true
     lint-formats:
       - "%f:%l %m"
@@ -20,7 +20,7 @@ tools:
 
   stylelint-lint: &stylelint-lint
     prefix: stylelint
-    lint-command: 'bunx stylelint --formatter unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: 'bunx --no-install stylelint --formatter unix --stdin --stdin-filename "${INPUT}"'
     lint-ignore-exit-code: false
     lint-stdin: true
     lint-formats:
@@ -43,7 +43,7 @@ tools:
 
   eslint-lint: &eslint-lint
     prefix: eslint
-    lint-command: "bunx eslint -f unix --stdin --stdin-filename '${INPUT}'"
+    lint-command: "bunx --no-install eslint -f unix --stdin --stdin-filename '${INPUT}'"
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:
@@ -59,7 +59,7 @@ tools:
           - "${INPUT}"
 
   prettier: &prettier
-    format-command: 'bunx prettier --stdin-filepath "${INPUT}"'
+    format-command: 'bunx --no-install prettier --stdin-filepath "${INPUT}"'
     format-stdin: true
     root-markers:
       - .prettierrc
@@ -84,7 +84,7 @@ tools:
 
   cspell-lint: &cspell-lint
     prefix: cspell
-    lint-command: "bunx cspell lint --config ~/.config/cspell/cspell.config.json --no-progress --no-summary --no-color ${INPUT}"
+    lint-command: "cspell lint --config ~/.config/cspell/cspell.config.json --no-progress --no-summary --no-color ${INPUT}"
     lint-formats:
       - "%f:%l:%c - %m"
       - "%f:%l:%c %m"

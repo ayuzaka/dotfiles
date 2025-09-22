@@ -70,7 +70,6 @@ vim.api.nvim_create_autocmd("FileType", {
   group = abbrev_group,
   callback = function()
     local abbrevs = {
-      fn = "function",
       ex = "export",
       im = "import",
       con = "console",

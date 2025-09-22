@@ -11,11 +11,10 @@ augroup my_abbrev
   autocmd FileType sql iabbrev <buffer> null NULL
   autocmd FileType sql iabbrev <buffer> unique UNIQUE
   autocmd FileType sql iabbrev <buffer> index INDEX
-  autocmd FileType sql iabbrev <buffer> not NOT 
+  autocmd FileType sql iabbrev <buffer> not NOT
   autocmd FileType sql iabbrev <buffer> on ON
   autocmd FileType sql iabbrev <buffer> by BY
 
-  autocmd FileType typescript,typescriptreact iabbrev <buffer> fn function
   autocmd FileType typescript,typescriptreact iabbrev <buffer> ex export
   autocmd FIleType typescript,typescriptreact iabbrev <buffer> im import
   autocmd FileType typescript,typescriptreact iabbrev <buffer> con console

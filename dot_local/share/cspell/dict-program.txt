@@ -38,6 +38,7 @@ dbname
 deno
 denoland
 denols
+desm
 difft
 difftastic
 direnv

@@ -9,4 +9,8 @@ args = ["mcp", "gateway", "run"]
 command = "uvx"
 args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
 
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["chrome-devtools-mcp@latest"]
+
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

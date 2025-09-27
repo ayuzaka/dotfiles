@@ -10,6 +10,7 @@ require("jetpack.packer").add {
   { "azorng/goose.nvim" },
   { "nvim-telescope/telescope.nvim" },
   { "neovim/nvim-lspconfig" },
+  { "sbdchd/neoformat" },
   { "Shougo/pum.vim" },
   { "Shougo/ddc.vim" },
   { "Shougo/ddc-ui-native" },

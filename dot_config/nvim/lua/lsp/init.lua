@@ -33,6 +33,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         border = "rounded",
       })
     end, { buffer = args.buf, desc = "hover" })
+
+    vim.keymap.set("n", "<leader>d", function()
+      local _, winid = vim.diagnostic.open_float(nil, { focus = true, border = "rounded" })
+      if winid and vim.api.nvim_win_is_valid(winid) then
+        vim.api.nvim_set_current_win(winid)
+      end
+    end, { buffer = args.buf, desc = "hover diagnostic" })
   end,
 })
 

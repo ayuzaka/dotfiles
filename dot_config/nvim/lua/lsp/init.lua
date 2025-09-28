@@ -49,6 +49,9 @@ vim.lsp.config("lua_ls", lua_ls_opts)
 local vtsls_opts = require("lsp.vts_ls")
 vim.lsp.config("vtsls", vtsls_opts)
 
+local oxlint_opts = require("lsp.oxlint")
+vim.lsp.config("oxlint", oxlint_opts)
+
 vim.lsp.enable({
   "lua_ls",
   "gopls",
@@ -63,6 +66,7 @@ vim.lsp.enable({
   "tailwindcss",
   "eslint",
   "biome",
+  "oxlint",
   "gh_actions_ls",
   "docker_language_server",
   "efm",

@@ -12,6 +12,6 @@ vim.keymap.set("i", "<S-TAB>", function()
   return vim.fn.pumvisible() == 1 and "<C-p>" or "<C-h>"
 end, { expr = true })
 
-vim.fn["ddc#enable"]()
-
 vim.fn["ddc#custom#load_config"](vim.fn.expand("$XDG_CONFIG_HOME/nvim/ts/ddc.ts"))
+
+-- vim.fn["ddc#enable"]()

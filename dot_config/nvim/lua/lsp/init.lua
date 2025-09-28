@@ -12,6 +12,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = args.buf })
     vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = args.buf })
 
+    if client.server_capabilities.completionProvider then
+      vim.lsp.completion.enable(true, client.id, args.buf)
+    end
+
     vim.keymap.set("n", "[g", function()
       vim.diagnostic.jump({ count = -1, severity = { min = vim.diagnostic.severity.WARN }, wrap = true })
     end, { buffer = args.buf, desc = "go to previous diagnostic" })

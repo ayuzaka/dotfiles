@@ -34,6 +34,7 @@ vim.opt.listchars = {
   precedes = "«",
   nbsp = "%"
 }
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- その他の設定
 vim.opt.belloff = "all"

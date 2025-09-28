@@ -1,6 +1,6 @@
 local wezterm = require "wezterm"
 local keybinds = require("keybinds")
-local font_list = require "font_list"
+local font_list = require("font_list")
 
 local resolve_font = function()
   local ok, font_local = pcall(dofile, wezterm.config_dir .. "/font_local.lua")

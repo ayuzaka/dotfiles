@@ -65,9 +65,15 @@ vim.api.nvim_create_autocmd("FileType", {
       return
     end
 
+    -- nuxt
+    if vim.fn.findfile("nuxt.config.ts", ".;") ~= "" then
+      vim.lsp.enable("vtsls")
+      return
+    end
+
     -- node
     if vim.fn.findfile("package.json", ".;") ~= "" then
-      vim.lsp.enable("vtsls")
+      vim.lsp.enable("ts_ls")
       return
     end
 

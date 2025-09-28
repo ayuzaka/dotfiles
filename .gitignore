@@ -1,2 +1,4 @@
 Brewfile.lock.json
 chezmoi_ignores/private
+
+dot_config/wezterm/font_local.lua

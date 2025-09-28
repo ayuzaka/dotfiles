@@ -27,6 +27,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<space>fmt", function()
       vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
     end, { buffer = args.buf, desc = "Format buffer" })
+
+    vim.keymap.set("n", "K", function()
+      vim.lsp.buf.hover({
+        border = "rounded",
+      })
+    end, { buffer = args.buf, desc = "hover" })
   end,
 })
 

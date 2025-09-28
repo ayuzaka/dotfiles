@@ -1,8 +1,6 @@
 local wezterm = require 'wezterm'
 local keybinds = require('keybinds')
 
-local wezterm = require 'wezterm'
-
 return {
   color_scheme = "GruvboxDark",
   font = wezterm.font_with_fallback {

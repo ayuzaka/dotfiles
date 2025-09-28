@@ -65,6 +65,7 @@ vim.lsp.enable({
   "biome",
   "gh_actions_ls",
   "docker_language_server",
+  "efm",
 })
 
 -- vts_ls or deno

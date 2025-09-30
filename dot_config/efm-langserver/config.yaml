@@ -18,69 +18,12 @@ tools:
       - "%f:%l:%c %m"
       - "%f: %l: %m"
 
-  stylelint-lint: &stylelint-lint
-    prefix: stylelint
-    lint-command: 'bunx --no-install stylelint --formatter unix --stdin --stdin-filename "${INPUT}"'
-    lint-ignore-exit-code: false
-    lint-stdin: true
-    lint-formats:
-      - "%f:%l:%c: %m [%t%*[a-z]]"
-    root-markers:
-      - .stylelintrc.json
-      - .stylelintrc.js
-      - .stylelintrc.cjs
-      - .stylelintrc.mjs
-      - stylelint.config.cjs
-      - stylelint.config.mjs
-    commands:
-      - title: "stylelint fix"
-        command: "bunx"
-        arguments:
-          - "-no-install"
-          - "stylelint"
-          - "--fix"
-          - "${INPUT}"
-
-  eslint-lint: &eslint-lint
-    prefix: eslint
-    lint-command: "bunx --no-install eslint -f unix --stdin --stdin-filename '${INPUT}'"
-    lint-ignore-exit-code: true
-    lint-stdin: true
-    root-markers:
-      - .eslintrc.js
-      - eslint.config.mjs
-    command:
-      - title: "eslint fix"
-        command: "bunx"
-        arguments:
-          - "--no-install"
-          - "eslint"
-          - "--fix"
-          - "${INPUT}"
-
-  prettier: &prettier
-    format-command: 'bunx --no-install prettier --stdin-filepath "${INPUT}"'
-    format-stdin: true
-    root-markers:
-      - .prettierrc
-      - .prettierrc.js
-      - .prettierrc.config.js
-
   shellcheck-lint: &shellcheck-lint
     prefix: shellcheck
     lint-command: "shellcheck -f gcc -x -"
     lint-stdin: true
     lint-formats:
       - "%f:%l:%c: %t%*[^:]: %m [SC%n]"
-
-  actionlint-lint: &actionlint-lint
-    prefix: actionlint
-    lint-command: "bash -c \"[[ '${INPUT}' =~ \\\\.github/workflows/ ]]\" && actionlint -oneline -no-color -"
-    lint-stdin: true
-    lint-formats:
-      - "%f:%l:%c: %m"
-    root-markers:
-      - .github
 
   cspell-lint: &cspell-lint
     prefix: cspell
@@ -96,37 +39,9 @@ tools:
       - "%f:%l %m"
 
 languages:
-  javascript:
-    - <<: *eslint-lint
-    - <<: *prettier
-  typescript:
-    - <<: *eslint-lint
-    - <<: *prettier
-  typescriptreact:
-    - <<: *eslint-lint
-    - <<: *prettier
-  svelte:
-    - <<: *eslint-lint
-    - <<: *stylelint-lint
-    - <<: *prettier
-  vue:
-    - <<: *eslint-lint
-    - <<: *stylelint-lint
-    - <<: *prettier
-  html:
-    - <<: *prettier
-  css:
-    - <<: *stylelint-lint
-    - <<: *prettier
-  scss:
-    - <<: *stylelint-lint
-    - <<: *prettier
   markdown:
     - <<: *markdown-textlint
     - <<: *markdown-markdownlint
-  yaml:
-    - <<: *prettier
-    - <<: *actionlint-lint
   sh:
     - <<: *shellcheck-lint
   dockerfile:

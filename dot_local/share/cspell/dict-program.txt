@@ -8,6 +8,7 @@ atexit
 autocmd
 awscli
 axios
+bashls
 bdel
 biomejs
 bnext
@@ -29,6 +30,7 @@ cmap
 cmctl
 cnoreabbrev
 coep
+cssls
 ctermbg
 cwindow
 cword
@@ -174,6 +176,7 @@ nofoldenable
 nohlsearch
 nohup
 noinherit
+noinsert
 nolist
 nomod
 noopener
@@ -302,6 +305,7 @@ vueuse
 wabt
 webp
 webrtc
+winid
 xnoremap
 xtrace
 yarnrc

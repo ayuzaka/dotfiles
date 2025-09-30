@@ -1,7 +1,6 @@
 tap "localstack/tap"
 brew "act"
 brew "shellcheck"
-brew "actionlint"
 brew "sqlite"
 brew "awscli"
 brew "bat"

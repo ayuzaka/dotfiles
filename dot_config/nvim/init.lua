@@ -8,3 +8,4 @@ for _, file in ipairs(vim.fn.glob(vim.fn.stdpath('config') .. '/lua/config/comma
   require('config.commands.' .. vim.fn.fnamemodify(file, ':t:r'))
 end
 require("config.abbrev")
+require("lsp")

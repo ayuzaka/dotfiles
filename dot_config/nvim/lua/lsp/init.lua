@@ -56,6 +56,9 @@ vim.lsp.config("vtsls", vtsls_opts)
 local oxlint_opts = require("lsp.oxlint")
 vim.lsp.config("oxlint", oxlint_opts)
 
+local tailwindcss_opts = require("lsp.tailwindcss")
+vim.lsp.config("tailwindcss", tailwindcss_opts)
+
 vim.lsp.enable({
   "lua_ls",
   "gopls",

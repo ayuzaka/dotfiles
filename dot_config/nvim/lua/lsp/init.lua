@@ -76,6 +76,7 @@ vim.lsp.enable({
   "oxlint",
   "gh_actions_ls",
   "docker_language_server",
+  "jsonls",
   "efm",
 })
 

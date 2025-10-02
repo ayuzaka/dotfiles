@@ -8,6 +8,7 @@ rust = "latest"
 go = "latest"
 python = "3.12"
 uv = "latest"
+chezmoi = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:markdownlint-cli" = "latest"
@@ -31,6 +32,8 @@ uv = "latest"
 "go:tailscale.com/cmd/tailscale" = "main"
 "go:golang.org/x/tools/gopls" = "latest"
 "go:github.com/docker/docker-language-server/cmd/docker-language-server" = "latest"
+"go:github.com/jesseduffield/lazydocker" = "latest"
+"go:github.com/mattn/efm-langserver" = "latest"
 "pipx:python-lsp-server" = "latest"
 "pipx:markitdown" = { version = "latest", extras = "all" }
 "pipx:plamo-translate" = "latest"
@@ -38,6 +41,12 @@ uv = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 "cargo:bacon" = { version = "latest", locked = true }
 "cargo:tree-sitter-cli" = { version = "latest", locked = true }
+"cargo:hyperfine" = { version = "latest", locked = true }
+"cargo:zoxide" = { version = "latest", locked = true }
+"cargo:ripgrep" = { version = "latest" }
+"cargo:sheldon" = { version = "latest" }
+"cargo:lsd" = { version = "latest" }
+"cargo:fd-find" = { version = "latest" }
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

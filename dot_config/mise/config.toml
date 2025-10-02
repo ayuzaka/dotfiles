@@ -39,6 +39,7 @@ chezmoi = "latest"
 "pipx:plamo-translate" = "latest"
 "pipx:markitdown-mcp" = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
+"pipx:mdformat" = "latest"
 "cargo:bacon" = { version = "latest", locked = true }
 "cargo:tree-sitter-cli" = { version = "latest", locked = true }
 "cargo:hyperfine" = { version = "latest", locked = true }

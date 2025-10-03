@@ -13,4 +13,8 @@ args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-s
 command = "chrome-devtools-mcp"
 args = [""]
 
+[mcp_servers.aws-knowledge-mcp-server]
+command = "uvx"
+args = ["fastmcp", "run", "https://knowledge-mcp.global.api.aws"]
+
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

@@ -25,6 +25,25 @@
     "grep": {
       "type": "http",
       "url": "https://mcp.grep.app"
+    },
+    "aws-knowledge-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "fastmcp",
+        "run",
+        "https://knowledge-mcp.global.api.aws"
+      ]
+    },
+    "codex": {
+      "type": "stdio",
+      "command": "codex",
+      "args": [
+        "mcp"
+      ]
+    },
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "chrome-devtools-mcp"
     }
   }
 }

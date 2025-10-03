@@ -82,7 +82,7 @@ opr() {
   elif [[ -f "$PWD/.env.local" ]]; then
     op run --env-file="$PWD"/.env.local -- "$@"
   else
-    op run --env-file="$XDG_CONFIG_HOME"/op/.env.1password -- "$@"
+    "$@"
   fi
 }
 

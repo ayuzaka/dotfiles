@@ -47,7 +47,6 @@ chezmoi = "latest"
 "cargo:zoxide" = { version = "latest", locked = true }
 "cargo:ripgrep" = { version = "latest" }
 "cargo:sheldon" = { version = "latest" }
-"cargo:lsd" = { version = "latest" }
 "cargo:fd-find" = { version = "latest" }
 
 [settings]

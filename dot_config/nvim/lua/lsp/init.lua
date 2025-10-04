@@ -77,6 +77,7 @@ vim.lsp.enable({
   "gh_actions_ls",
   "docker_language_server",
   "jsonls",
+  "yamlls",
   "efm",
 })
 

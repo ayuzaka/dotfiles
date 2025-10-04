@@ -11,9 +11,13 @@ local resolve_font = function()
   return font_list
 end
 
+
+local resolved_font = resolve_font()
+
 return {
   color_scheme = "GruvboxDark",
-  font = wezterm.font_with_fallback(resolve_font()),
+  font = wezterm.font_with_fallback(resolved_font.font),
+  font_size = resolved_font.font_size,
   use_ime = true,
   macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
   hide_tab_bar_if_only_one_tab = true,

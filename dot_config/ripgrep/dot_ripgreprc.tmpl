@@ -18,6 +18,4 @@
 -g=!**/*.min.js
 -g=!**/*.css.map
 -g=!**/*.min.css
-{{if (eq .purpose "work")}}
--g=!assets/built/*
-{{end}}
+{{ include "chezmoi_ignores/private/ripgrep_ignore_local" }}

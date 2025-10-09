@@ -64,6 +64,9 @@ if [[ -n $ZENO_LOADED ]]; then
   # export ZENO_COMPLETION_FALLBACK=expand-or-complete
 fi
 
+# ni.zsh
+export NI_USE_SOCKET_FIREWALL=1
+
 # gibo
 export GIBO_BOILERPLATES="$XDG_CONFIG_HOME"/gibo/gitignore-boilerplates
 

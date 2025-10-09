@@ -217,6 +217,7 @@ completions:
       - "yarn run(?: .*)? $"
       - "pnpm run(?: .*)? $"
       - "bun run(?: .*)? $"
+      - "ni run(?: .*)? $"
     sourceCommand: 'jq -r ''.scripts | to_entries | .[] | .key + " = " + .value'' package.json'
     options:
       --prompt: "'npm run > '"

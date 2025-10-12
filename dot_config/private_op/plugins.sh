@@ -2,4 +2,4 @@ export OP_PLUGIN_ALIASES_SOURCED=1
 alias pgcli="op plugin run -- pgcli"
 alias localstack="op plugin run -- localstack"
 alias aws="op plugin run -- aws"
-alias ngrok="op plugin run --ngrok"
+alias ngrok="op plugin run -- ngrok"

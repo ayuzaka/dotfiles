@@ -116,6 +116,7 @@ jotai
 jquery
 jsdoc
 jsdom
+jsonls
 kaku
 keyof
 knex
@@ -191,6 +192,8 @@ noscript
 nosnakecase
 nospell
 noswapfile
+nsleft
+nsright
 numhl
 nuxi
 nuxt
@@ -254,6 +257,7 @@ showcmd
 sixel
 sparkctl
 sqld
+sqlls
 sqls
 structcheck
 stylelintrc
@@ -311,6 +315,7 @@ webrtc
 winid
 xnoremap
 xtrace
+yamlls
 yarnrc
 zcompdump
 zoxide

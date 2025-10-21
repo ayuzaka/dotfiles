@@ -95,6 +95,7 @@ gscan
 gsplit
 gsutil
 guibg
+habamax
 hadolint
 hasattr
 histignorealldups

@@ -139,5 +139,5 @@ if vim.env.EDITPROMPT then
   vim.opt.wrap = true
   -- Load a specific colorscheme
   vim.cmd('colorscheme iceberg')
-  vim.opt.background = "light"
+  vim.opt.background = "dark"
 end

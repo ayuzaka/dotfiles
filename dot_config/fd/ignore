@@ -29,8 +29,9 @@ build
 *.pem
 
 
-# vercel
+# hosting
 .vercel
+.amplify
 
 # testing
 coverage

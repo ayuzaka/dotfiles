@@ -193,6 +193,7 @@ noscript
 nosnakecase
 nospell
 noswapfile
+noto
 nsleft
 nsright
 numhl
@@ -285,6 +286,7 @@ tursodatabase
 udev
 udgothic
 ugothic
+unhead
 unlines
 unmarshal
 unstub

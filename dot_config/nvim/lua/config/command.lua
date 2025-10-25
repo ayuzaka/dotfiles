@@ -174,3 +174,14 @@ end
 
 vim.api.nvim_create_user_command('Cursor', function() open_by_another_editor('cursor') end, { range = true })
 vim.api.nvim_create_user_command('Code', function() open_by_another_editor('code') end, { range = true })
+
+local function tabs_to_spaces()
+  local original_expandtab = vim.api.nvim_get_option_value("expandtab", { scope = "local" })
+  vim.opt_local.expandtab = true
+  vim.cmd("retab")
+  if not original_expandtab then
+    vim.opt_local.expandtab = false
+  end
+end
+
+vim.api.nvim_create_user_command("TabsToSpaces", tabs_to_spaces, {})

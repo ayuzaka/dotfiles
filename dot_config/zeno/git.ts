@@ -34,6 +34,10 @@ export default defineConfig(() => ({
       snippet: "git rev-parse HEAD",
     },
     {
+      name: "git quicksave",
+      keyword: "gsave",
+      snippet: "git_quicksave",
+    },
       name: "my PR",
       keyword: "gh-pr-me",
       snippet: 'gh pr list --author "@me" --state all',

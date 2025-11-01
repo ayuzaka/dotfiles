@@ -38,6 +38,7 @@ export default defineConfig(() => ({
       keyword: "gsave",
       snippet: "git_quicksave",
     },
+    {
       name: "my PR",
       keyword: "gh-pr-me",
       snippet: 'gh pr list --author "@me" --state all',
@@ -85,41 +86,12 @@ export default defineConfig(() => ({
       callback: "awk '{print $1}'",
     },
     {
-      name: "git checkout remote branch",
-      patterns: [
-        "git checkout(?: .*)? $",
-      ],
-      sourceCommand: "git branch -r | grep -v '*' | sed 's/origin\\///'",
-      options: {
-        "--height": "80%",
-        "--print0": true,
-        "--preview-window": "down",
-        "--prompt": "'Git Switch > ' ",
-      },
-      callback: "awk '{print $1}'",
-    },
-    {
       name: "git branch delete",
       patterns: [
         "^git branch -d(?: .*)? $",
       ],
       sourceCommand:
         "git for-each-ref --format='%(refname:short)' refs/heads --merged | grep -v -x -F -e develop -e main -e master -e \"$(git symbolic-ref --short HEAD)\"",
-      options: {
-        "--height": "80%",
-        "--print0": true,
-        "--preview-window": "down",
-        "--prompt": "'Git Branch Delete > ' ",
-      },
-      callback: "awk '{print $1}'",
-    },
-    {
-      name: "git branch delete force",
-      patterns: [
-        "^git branch -D(?: .*)? $",
-      ],
-      sourceCommand:
-        "git for-each-ref --format='%(refname:short)' refs/heads | grep -v -x -F -e develop -e main -e master -e \"$(git symbolic-ref --short HEAD)\"",
       options: {
         "--height": "80%",
         "--print0": true,

@@ -1,5 +1,6 @@
 tap "localstack/tap"
 brew "act"
+brew "claude-code"
 brew "shellcheck"
 brew "sqlite"
 brew "awscli"

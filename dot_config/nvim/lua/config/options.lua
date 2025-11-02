@@ -48,6 +48,7 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.re = 0
 vim.opt.spell = false
 vim.opt.foldmethod = "manual"
+vim.opt.jumpoptions:append("stack")
 vim.cmd([[ set nofoldenable ]])
 
 vim.opt.syntax = "on"

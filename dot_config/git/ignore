@@ -9,6 +9,7 @@ mise.local.toml
 cc_kiro
 .fdignore
 .serena
+.spec
 .crush
 .crush/crush.db
 .crush/crush.db-shm

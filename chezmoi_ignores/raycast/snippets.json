@@ -1,7 +1,11 @@
 [
   {
-    "keyword" : "!impl",
-    "name" : "impl",
-    "text" : "PLANS.md に従って step by step で実装して"
+    "name": "plan",
+    "text": "以下の要件をもとにして PLANS.md を作成して。不明点はAskUserQuestion。ブランチ名と同じディレクトリを作成して、その配下に PLANS.md を作成して。ブランチ名に`/`が含まれている場合は`_`に変換して。"
+  },
+  {
+    "keyword": "!impl",
+    "name": "impl",
+    "text": "PLANS.md に従って step by step で実装して"
   }
 ]

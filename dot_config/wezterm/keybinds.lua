@@ -158,31 +158,6 @@ local config = {
         end)
       },
     },
-    {
-      key = "q",
-      mods = "OPT",
-      action = wezterm.action_callback(function(window, pane)
-        local target_pane_id = tostring(pane:pane_id())
-        window:perform_action(
-          act.SplitPane({
-            direction = "Down",
-            size = { Cells = 10 },
-          }),
-          pane
-        )
-        wezterm.time.call_after(1, function()
-          window:perform_action(
-            act.SendString(
-              string.format(
-                "editprompt --editor nvim --always-copy --mux wezterm --target-pane %s\n",
-                target_pane_id
-              )
-            ),
-            window:active_pane()
-          )
-        end)
-      end),
-    },
   },
 }
 

@@ -3,6 +3,7 @@
 # Node
 node_modules
 npm-debug.log*
+.npm-cache
 .yarn
 yarn-debug.log*
 yarn-error.log*

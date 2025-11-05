@@ -127,7 +127,7 @@ local function buf_only(buffer, bang)
   local current_buffer = buffer == "" and vim.fn.bufnr("%") or vim.fn.bufnr(buffer)
 
   if current_buffer == -1 then
-    vim.api.nvim_err_writeln("No matching buffer for " .. buffer)
+    vim.api.nvim_echo({ { "No matching buffer for " .. buffer, "ErrorMsg" } }, true, {})
     return
   end
 
@@ -137,8 +137,7 @@ local function buf_only(buffer, bang)
   for n = 1, last_buffer do
     if n ~= current_buffer and vim.fn.buflisted(n) == 1 then
       if bang == "" and vim.fn.getbufvar(n, "&modified") == 1 then
-        vim.api.nvim_err_writeln("No write since last change for buffer "
-        .. n .. " (add ! to override)")
+        vim.api.nvim_echo({ { "No write since last change for buffer " .. n .. " (add ! to override)", "ErrorMsg" } }, true, {})
       else
         vim.cmd("silent bdel" .. bang .. " " .. n)
         if vim.fn.buflisted(n) == 0 then

@@ -8,6 +8,10 @@ vim.api.nvim_create_autocmd("FileType", {
       "<Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>", opts)
     vim.keymap.set("n", "d",
       "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'delete' })<CR>", opts)
+    vim.keymap.set("n", "a",
+      "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'add' })<CR>", opts)
+    vim.keymap.set("n", "r",
+      "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'reset' })<CR>", opts)
     vim.keymap.set("n", "i",
       "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
     vim.keymap.set("n", "p",

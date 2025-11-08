@@ -26,6 +26,10 @@
       "type": "http",
       "url": "https://mcp.grep.app"
     },
+    "deepwiki": {
+      "type": "http",
+      "url": "https://mcp.deepwiki.com/sse"
+    },
     "aws-knowledge-mcp-server": {
       "command": "uvx",
       "args": [

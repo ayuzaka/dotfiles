@@ -17,4 +17,8 @@ args = [""]
 command = "uvx"
 args = ["fastmcp", "run", "https://knowledge-mcp.global.api.aws"]
 
+[mcp_servers.deepwiki]
+command = "npx"
+args = ["mcp-remote", "https://mcp.deepwiki.com/sse"]
+
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

@@ -56,6 +56,12 @@ export class Config extends BaseConfig {
       sources: [{
         name: "git_status",
       }],
+      uiParams: {
+        ff: {
+          ignoreEmpty: true,
+          previewHeight: 50,
+        },
+      },
       kindOptions: {
         git_status: {
           defaultAction: "open",

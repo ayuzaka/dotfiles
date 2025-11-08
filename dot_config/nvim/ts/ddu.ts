@@ -10,6 +10,7 @@ export class Config extends BaseConfig {
       uiParams: {
         ff: {
           ignoreEmpty: true,
+          previewHeight: 50,
         },
       },
       sourceOptions: {

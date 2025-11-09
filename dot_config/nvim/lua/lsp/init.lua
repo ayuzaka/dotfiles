@@ -69,6 +69,7 @@ vim.lsp.enable({
   "bashls",
   "html",
   "cssls",
+  "cssmodules_ls",
   "stylelint_lsp",
   "tailwindcss",
   "eslint",

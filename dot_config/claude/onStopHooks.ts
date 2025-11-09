@@ -168,8 +168,6 @@ async function main() {
       : "";
 
     if (!sessionId || !SLACK_CHANNEL || !SLACK_TOKEN) {
-      await log(`SLACK_CHANNEL: ${SLACK_CHANNEL}`);
-      await log(`SLACK_TOKEN: ${SLACK_TOKEN}`);
       await log(`Environment variables are not set.`);
       return;
     }

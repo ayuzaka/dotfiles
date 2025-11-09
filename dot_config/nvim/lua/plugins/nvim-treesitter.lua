@@ -10,3 +10,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldtext = ""

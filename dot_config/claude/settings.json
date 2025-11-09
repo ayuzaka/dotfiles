@@ -76,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh ~/.config/claude/terminal-notifier.sh"
+            "command": "deno run --allow-env --allow-read --allow-write --allow-run ~/.config/claude/onStopHooks.ts"
           }
         ]
       }

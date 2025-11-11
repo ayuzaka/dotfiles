@@ -139,7 +139,7 @@ function findRecentMessages(
   return { user, assistant };
 }
 
-const deriveProjectName = (cwd?: string): string => {
+function deriveProjectName(cwd?: string): string {
   if (!cwd) {
     return "";
   }
@@ -155,7 +155,7 @@ const deriveProjectName = (cwd?: string): string => {
     );
     return segments.at(-1) ?? "";
   }
-};
+}
 
 async function notifyToTerminal(projectName: string) {
   await $`terminal-notifier \

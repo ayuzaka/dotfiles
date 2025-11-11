@@ -184,3 +184,21 @@ local function tabs_to_spaces()
 end
 
 vim.api.nvim_create_user_command("TabsToSpaces", tabs_to_spaces, {})
+
+-- preview for glow
+vim.api.nvim_create_user_command('Glow', function()
+  local buf = vim.api.nvim_create_buf(false, true)
+  local width = math.floor(vim.o.columns * 0.9)
+  local height = math.floor(vim.o.lines * 0.9)
+  local opts = {
+    relative = 'editor',
+    width = width,
+    height = height,
+    col = math.floor((vim.o.columns - width) / 2),
+    row = math.floor((vim.o.lines - height) / 2),
+    style = 'minimal',
+    border = 'rounded'
+  }
+  vim.api.nvim_open_win(buf, true, opts)
+  vim.fn.termopen({ 'glow', vim.fn.expand('%') })
+end, {})

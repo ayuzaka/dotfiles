@@ -1,4 +1,5 @@
 #!/usr/bin/env -S deno run --allow-env --allow-read --allow-write --allow-run
+import $ from "jsr:@david/dax@0.43.2";
 import { basename, dirname, join } from "jsr:@std/path@1.1.2";
 import { notifyToSlack } from "./slackNotifier.ts";
 
@@ -156,6 +157,15 @@ const deriveProjectName = (cwd?: string): string => {
   }
 };
 
+async function notifyToTerminal(projectName: string) {
+  await $`terminal-notifier \
+    -title "🤖 Claude Code" \
+    -subtitle "プロジェクト: ${projectName}" \
+    -message "処理が完了しました" \
+    -sound "Blow" \
+    -group "claude-code-completion"`;
+}
+
 async function main() {
   try {
     const payload = await readPayload();
@@ -167,12 +177,18 @@ async function main() {
       ? payload.session_id
       : "";
 
-    if (!sessionId || !SLACK_CHANNEL || !SLACK_TOKEN) {
-      await log(`Environment variables are not set.`);
+    if (!sessionId) {
       return;
     }
 
     const projectName = deriveProjectName(payload.cwd);
+
+    if (!SLACK_CHANNEL || !SLACK_TOKEN) {
+      await notifyToTerminal(projectName);
+      await log(`Slack Environment variables are not set.`);
+      return;
+    }
+
     await notifyToSlack({
       sessionId,
       threadStatePath: THREAD_STATE_PATH,

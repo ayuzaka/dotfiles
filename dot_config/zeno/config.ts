@@ -168,8 +168,7 @@ export default defineConfig(() => ({
       patterns: [
         "^gcloud config configurations activate(?: .*)?",
       ],
-      sourceCommand:
-        "gcloud config configurations list --format 'value(name)'",
+      sourceCommand: "gcloud config configurations list --format 'value(name)'",
       "options": {
         "--prompt": "'gcloud --project > '",
       },

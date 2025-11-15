@@ -43,6 +43,7 @@ remo
 shougo
 skkeleton
 statments
+substitute
 toggl
 tpope
 unhide

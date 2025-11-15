@@ -46,6 +46,7 @@ require("jetpack.packer").add {
   { "bullets-vim/bullets.vim" },
   { "imsnif/kdl.vim" },
   { "machakann/vim-sandwich" },
+  { "johmsalas/text-case.nvim" },
   { "folke/ts-comments.nvim", event = "VeryLazy" },
   { "chentoast/marks.nvim" },
   { "Bakudankun/BackAndForward.vim" },

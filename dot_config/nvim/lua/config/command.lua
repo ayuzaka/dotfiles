@@ -1,5 +1,26 @@
+local function camel_to_kebab_text(text)
+  local kebab_text = text:gsub("([A-Z])", function(c)
+    return "-" .. c:lower()
+  end)
+
+  -- If the text starts with a capital letter, a hyphen will be added to the beginning, so delete it.
+  if kebab_text:sub(1, 1) == "-" then
+    kebab_text = kebab_text:sub(2)
+  end
+
+  return kebab_text
+end
+
 vim.api.nvim_create_user_command("CopyFile", function()
   vim.fn.setreg("*", vim.fn.expand("%:t"))
+end, {})
+
+vim.api.nvim_create_user_command("CopyFileKebab", function()
+  local filename = vim.fn.expand("%:t")
+  local extension = filename:match("(%.[^.]+)$") or ""
+  local basename = filename:gsub(extension, "")
+  local kebab_file_name = camel_to_kebab_text(basename)
+   vim.fn.setreg("*", kebab_file_name)
 end, {})
 
 vim.api.nvim_create_user_command("CopyFullPath", function()
@@ -11,33 +32,6 @@ vim.api.nvim_create_user_command("CopyPath", function()
 end, {})
 
 vim.api.nvim_create_user_command("RemoveBlankLines", "%v/\\S/d", {})
-
-function CamelToKebab()
-  local filename = vim.fn.expand('%:t')
-  if filename == '' then
-    print("No file name found.")
-    return
-  end
-
-  local extension = filename:match("(%.[^.]+)$") or ""
-  local basename = filename:gsub(extension, "")
-
-  local kebab_basename = basename:gsub("([A-Z])", function(c)
-    return "-" .. c:lower()
-  end)
-
-  -- If the file name starts with a capital letter, a hyphen will be added to the beginning, so delete it.
-  if kebab_basename:sub(1, 1) == "-" then
-    kebab_basename = kebab_basename:sub(2)
-  end
-
-  return kebab_basename
-end
-
-vim.api.nvim_create_user_command("CopyKebabFile", function()
-   local filename = CamelToKebab()
-   vim.fn.setreg("*", filename)
-end, {})
 
 vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "b.", ":bnext<CR>", { silent = true })

@@ -38,6 +38,7 @@ cword
 dbcli
 dbeaver
 dbname
+dearmor
 deno
 denoland
 denols
@@ -47,6 +48,7 @@ difftastic
 direnv
 dont
 dotenv
+dpkg
 dups
 echohl
 elif
@@ -87,6 +89,8 @@ golangci
 golint
 gopath
 gopls
+gpgcon
+gpgconff
 gpgsign
 grepprg
 gruvbox
@@ -99,6 +103,7 @@ habamax
 hadolint
 hasattr
 histignorealldups
+hkps
 hlsearch
 hoge
 hono
@@ -136,6 +141,7 @@ libc
 libdbus
 libgbm1
 libgtk
+libjemalloc2
 libncurses
 libnspr
 libnss

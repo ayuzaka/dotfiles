@@ -44,6 +44,45 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_set_current_win(winid)
       end
     end, { buffer = args.buf, desc = "hover diagnostic" })
+
+    if client.name == "ts_ls" or client.name == "vtsls" then
+      local goto_source_definition = function()
+        local offset_encoding = client.offset_encoding or "utf-16"
+        local params = vim.lsp.util.make_position_params(0, offset_encoding)
+        local uri = params.textDocument.uri
+        local position = params.position
+        local command = client.name == "vtsls" and "typescript.goToSourceDefinition" or
+        "_typescript.goToSourceDefinition"
+
+        vim.lsp.buf_request(args.buf, "workspace/executeCommand", {
+          command = command,
+          arguments = { uri, position },
+        }, function(err, result)
+          if err then
+            vim.notify("Failed to go to Source Definition." .. err.message, vim.log.levels.ERROR)
+            return
+          end
+          if not result then
+            return
+          end
+
+          if #result == 1 then
+            vim.lsp.util.show_document(result[1], offset_encoding, { focus = true })
+            return
+          end
+          local items = vim.lsp.util.locations_to_items(result, offset_encoding)
+          if not items or #items == 0 then
+            return
+          end
+
+          vim.fn.setqflist({}, " ", { title = "GoToSourceDefinition", items = items })
+          vim.cmd("copen")
+          vim.cmd("wincmd p")
+        end)
+      end
+
+      vim.keymap.set("n", "<C-d>s", goto_source_definition, { buffer = args.buf, desc = "Go to Source Definition" })
+    end
   end,
 })
 

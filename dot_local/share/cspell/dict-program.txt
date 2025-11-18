@@ -31,6 +31,7 @@ cmap
 cmctl
 cnoreabbrev
 coep
+copen
 cssls
 ctermbg
 cwindow
@@ -256,6 +257,7 @@ scanr
 scqa
 setaf
 setf
+setqflist
 setw
 shada
 shadcn

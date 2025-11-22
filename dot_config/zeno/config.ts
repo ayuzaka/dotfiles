@@ -58,11 +58,6 @@ export default defineConfig(() => ({
       snippet: "lazysql",
     },
     {
-      name: "trash",
-      keyword: "rm",
-      snippet: "trash",
-    },
-    {
       name: "search process for port",
       keyword: "psp",
       snippet: 'ps -fp "$(lsof -t -i :"{{port}}")"',

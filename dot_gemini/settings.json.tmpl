@@ -1,7 +1,4 @@
 {
-  "theme": "Dracula",
-  "selectedAuthType": "{{ if eq .purpose "work" }}vertex-ai{{ else }}oauth-personal{{ end }}",
-  "preferredEditor": "neovim",
   "mcpServers": {
     "serena": {
       "command": "uvx",
@@ -11,14 +8,18 @@
         "serena",
         "start-mcp-server"
       ]
-    },
-    "docker": {
-      "command": "docker",
-      "args": [
-        "mcp",
-        "gateway",
-        "run"
-      ]
     }
+  },
+  "general": {
+    "preferredEditor": "neovim"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "{{ if eq .purpose "work" }}vertex-ai{{ else }}oauth-personal{{ end }}"
+    }
+  },
+  "ui": {
+    "theme": "Dracula"
   }
 }
+

@@ -244,6 +244,7 @@ rdbms
 redir
 rehype
 rerere
+retab
 rgba
 ripgreprc
 rollup

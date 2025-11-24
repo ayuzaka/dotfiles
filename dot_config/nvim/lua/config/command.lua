@@ -229,7 +229,7 @@ vim.api.nvim_create_user_command('Glow', function()
   })
 
   -- glow
-  vim.fn.termopen({ 'glow', path }, { cwd = cwd })
+  vim.fn.jobstart({ 'glow', path }, { cwd = cwd, term = true })
 
   -- close
   vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = buf, silent = true })

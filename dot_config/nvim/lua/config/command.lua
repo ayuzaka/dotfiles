@@ -53,6 +53,10 @@ vim.api.nvim_create_user_command("CopyPath", function(opts)
   vim.fn.setreg("*", text)
 end, { range = true })
 
+vim.api.nvim_create_user_command("CopyBuffer", function()
+  vim.cmd([[normal! gg"+yG]])
+end, {})
+
 vim.api.nvim_create_user_command("RemoveBlankLines", "%v/\\S/d", {})
 
 vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })

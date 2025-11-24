@@ -11,25 +11,47 @@ local function camel_to_kebab_text(text)
   return kebab_text
 end
 
-vim.api.nvim_create_user_command("CopyFile", function()
-  vim.fn.setreg("*", vim.fn.expand("%:t"))
-end, {})
+local function selected_range_text(opts)
+  if opts.range == 0 then
+    return nil
+  end
+
+  return opts.line1 == opts.line2 and tostring(opts.line1)
+      or string.format("%d-%d", opts.line1, opts.line2)
+end
+
+vim.api.nvim_create_user_command("CopyFile", function(opts)
+  local filename = vim.fn.expand("%:t")
+  local range = selected_range_text(opts)
+  local text = range and (filename .. ":" .. range) or filename
+
+  vim.fn.setreg("*", text)
+end, { range = true })
 
 vim.api.nvim_create_user_command("CopyFileKebab", function()
   local filename = vim.fn.expand("%:t")
   local extension = filename:match("(%.[^.]+)$") or ""
   local basename = filename:gsub(extension, "")
   local kebab_file_name = camel_to_kebab_text(basename)
-   vim.fn.setreg("*", kebab_file_name)
+
+  vim.fn.setreg("*", kebab_file_name)
 end, {})
 
-vim.api.nvim_create_user_command("CopyFullPath", function()
-  vim.fn.setreg("*", vim.fn.expand("%:p"))
-end, {})
+vim.api.nvim_create_user_command("CopyFullPath", function(opts)
+  local path = vim.fn.expand("%:p")
+  local range = selected_range_text(opts)
+  local text = range and (path .. ":" .. range) or path
 
-vim.api.nvim_create_user_command("CopyPath", function()
-  vim.fn.setreg("*", vim.fn.fnamemodify(vim.fn.expand("%"), ":~:."))
-end, {})
+  vim.fn.setreg("*", text)
+end, { range = true })
+
+vim.api.nvim_create_user_command("CopyPath", function(opts)
+  local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+  local range = selected_range_text(opts)
+  local text = range and (path .. ":" .. range) or path
+
+  vim.fn.setreg("*", text)
+end, { range = true })
 
 vim.api.nvim_create_user_command("RemoveBlankLines", "%v/\\S/d", {})
 
@@ -131,7 +153,8 @@ local function buf_only(buffer, bang)
   for n = 1, last_buffer do
     if n ~= current_buffer and vim.fn.buflisted(n) == 1 then
       if bang == "" and vim.fn.getbufvar(n, "&modified") == 1 then
-        vim.api.nvim_echo({ { "No write since last change for buffer " .. n .. " (add ! to override)", "ErrorMsg" } }, true, {})
+        vim.api.nvim_echo({ { "No write since last change for buffer " .. n .. " (add ! to override)", "ErrorMsg" } },
+          true, {})
       else
         vim.cmd("silent bdel" .. bang .. " " .. n)
         if vim.fn.buflisted(n) == 0 then
@@ -190,19 +213,21 @@ vim.api.nvim_create_user_command('Glow', function()
 
   -- create floating window
   local buf = vim.api.nvim_create_buf(false, true)
-  local W, H = math.floor(vim.o.columns*0.8), math.floor(vim.o.lines*0.8)
+  local W, H = math.floor(vim.o.columns * 0.8), math.floor(vim.o.lines * 0.8)
   vim.api.nvim_open_win(buf, true, {
-    relative='editor', width=W, height=H,
-    col=math.floor((vim.o.columns-W)/2),
-    row=math.floor((vim.o.lines-H)/2),
-    style='minimal', border='rounded',
+    relative = 'editor',
+    width = W,
+    height = H,
+    col = math.floor((vim.o.columns - W) / 2),
+    row = math.floor((vim.o.lines - H) / 2),
+    style = 'minimal',
+    border = 'rounded',
   })
 
   -- glow
   vim.fn.termopen({ 'glow', path }, { cwd = cwd })
 
   -- close
-  vim.keymap.set('n', 'q', '<cmd>close<CR>',   { buffer = buf, silent = true })
+  vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = buf, silent = true })
   vim.keymap.set('n', '<Esc>', '<cmd>close<CR>', { buffer = buf, silent = true })
 end, {})
-

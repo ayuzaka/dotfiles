@@ -6,17 +6,9 @@ model = "gpt-5.1-codex-max"
 [features]
 web_search_request = true
 
-[mcp_servers.serena]
-command = "uvx"
-args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
-
 [mcp_servers.chrome-devtools]
 command = "chrome-devtools-mcp"
 args = [""]
-
-[mcp_servers.aws-knowledge-mcp-server]
-command = "uvx"
-args = ["fastmcp", "run", "https://knowledge-mcp.global.api.aws"]
 
 [mcp_servers.deepwiki]
 command = "npx"

@@ -16,9 +16,11 @@ bnext
 boms
 bprev
 bpython
+bufhidden
 buflisted
 bufnr
 bufs
+buftype
 buftypes
 bunx
 cfile
@@ -54,6 +56,7 @@ dups
 echohl
 elif
 emojify
+enew
 errorf
 esac
 esbuild
@@ -184,6 +187,7 @@ noautoremoveslash
 nobackup
 nodeenv
 nodenv
+nofile
 nofoldenable
 nohlsearch
 nohup

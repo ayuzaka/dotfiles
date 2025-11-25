@@ -235,3 +235,11 @@ vim.api.nvim_create_user_command('Glow', function()
   vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = buf, silent = true })
   vim.keymap.set('n', '<Esc>', '<cmd>close<CR>', { buffer = buf, silent = true })
 end, {})
+
+vim.api.nvim_create_user_command("ScratchMD", function()
+  vim.cmd("enew")
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.bo.swapfile = false
+  vim.bo.filetype = "markdown"
+end, {})

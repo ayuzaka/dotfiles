@@ -226,3 +226,7 @@ export GHCUP_USE_XDG_DIRS=true
 export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
 export CABAL_DIR="$XDG_DATA_HOME"/cabal
 export STACK_ROOT="$XDG_DATA_HOME"/stack
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "description": "ctrl-7 to WezTerm vim",
+      "description": "ctrl-7 to Alacritty vim",
       "manipulators": [
         {
           "type": "basic",
@@ -108,7 +108,7 @@
           },
           "to": [
             {
-              "shell_command": "/opt/homebrew/bin/wezterm cli spawn --new-window -- vim +'set filetype=markdown'"
+              "shell_command": "open -na Alacritty --args --command vim /tmp/edit.md"
             }
           ]
         }

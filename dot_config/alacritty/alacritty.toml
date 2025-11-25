@@ -32,24 +32,23 @@ white = '0xFEFFFF'
 size = 12.0
 
 [font.normal]
-family = "Moralerspace Argon NF"
+family = "HackGen Console NF"
 style = "Regular"
 
 [font.bold]
-family = "Moralerspace Argon NF"
+family = "HackGen Console NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "Moralerspace Argon NF"
+family = "HackGen Console NF"
 style = "Bold"
 
 [font.italic]
-family = "Moralerspace Argon NF"
+family = "HackGen Console NF"
 style = "Italic"
 
 [window]
 decorations = "full"
-startup_mode = "Maximized"
 
 [window.padding]
 x = 2

@@ -91,22 +91,21 @@ function createRichTextBlock(
 
 export function buildSlackPayload(
   params: {
+    sessionId: string;
     projectName: string;
     userText: string;
     assistantText: string;
     includeHeader: boolean;
   },
 ): SlackPayload {
-  const projectText = params.projectName;
-  const assistantLine = params.assistantText;
-  const userLine = params.userText;
+  const { sessionId, projectName, assistantText, userText } = params
 
   const textParts: string[] = [];
-  if (assistantLine) {
-    textParts.push(`AI: ${assistantLine}`);
+  if (assistantText) {
+    textParts.push(`AI: ${assistantText}`);
   }
-  if (userLine) {
-    textParts.push(`You: ${userLine}`);
+  if (userText) {
+    textParts.push(`You: ${userText}`);
   }
   const fallbackText = textParts.join("\n");
 
@@ -115,19 +114,19 @@ export function buildSlackPayload(
   if (params.includeHeader) {
     blocks.push({
       type: "header",
-      text: { type: "plain_text", text: projectText, emoji: true },
+      text: { type: "plain_text", text: `${projectName}: ${sessionId}`, emoji: true },
     });
   }
 
   blocks.push(
     createRichTextBlock([
       { type: "emoji", name: "technologist" },
-      { type: "text", text: userLine },
+      { type: "text", text: userText },
     ]),
     { type: "divider" },
     createRichTextBlock([
       { type: "emoji", name: "robot_face" },
-      { type: "text", text: assistantLine },
+      { type: "text", text: assistantText },
     ]),
   );
 

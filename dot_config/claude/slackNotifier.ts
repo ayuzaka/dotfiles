@@ -48,6 +48,7 @@ export async function notifyToSlack(request: NotifySlackRequest) {
   const threadTs = sessionId ? threads[sessionId] : undefined;
 
   const payload = buildSlackPayload({
+    sessionId,
     projectName,
     userText,
     assistantText,

@@ -52,7 +52,7 @@
       ]
     },
     {
-      "description": "ctrl-4 to Firefox",
+      "description": "ctrl-4 to Zen",
       "manipulators": [
         {
           "type": "basic",
@@ -66,7 +66,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Firefox'"
+              "shell_command": "open -a 'Zen'"
             }
           ]
         }
@@ -88,27 +88,6 @@
           "to": [
             {
               "shell_command": "open -a 'Google Chrome'"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "ctrl-7 to Alacritty vim",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "7",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -na Alacritty --args --command vim /tmp/edit.md"
             }
           ]
         }

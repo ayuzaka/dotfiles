@@ -1,3 +1,7 @@
+vim.fn["skkeleton#config"]({
+  completionRankFile = "~/.config/skkeleton/rank.json"
+})
+
 vim.keymap.set("i", "<TAB>", function()
   if vim.fn.pumvisible() == 1 then
     return "<C-n>"
@@ -12,6 +16,7 @@ vim.keymap.set("i", "<S-TAB>", function()
   return vim.fn.pumvisible() == 1 and "<C-p>" or "<C-h>"
 end, { expr = true })
 
-vim.fn["ddc#custom#load_config"](vim.fn.expand("$XDG_CONFIG_HOME/nvim/ts/ddc.ts"))
+local vimx = require("artemis")
+vim.fn["ddc#custom#load_config"](vimx.fn.expand("$XDG_CONFIG_HOME/nvim/ts/ddc.ts"))
 
--- vim.fn["ddc#enable"]()
+vim.fn["ddc#enable"]()

@@ -4,6 +4,7 @@ require("jetpack.packer").add {
   { "tani/vim-artemis" },
   { "morhetz/gruvbox" },
   { "cocopon/iceberg.vim" },
+  { "vim-skk/skkeleton"  },
   { "nvim-treesitter/nvim-treesitter", branch  = "main" },
   { "andymass/vim-matchup" },
   { "vim-denops/denops.vim" },

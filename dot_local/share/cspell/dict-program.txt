@@ -93,7 +93,9 @@ golangci
 golint
 gopath
 gopls
+gosu
 gpgcon
+gpgconf
 gpgconff
 gpgsign
 grepprg

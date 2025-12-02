@@ -9,7 +9,6 @@ require("jetpack.packer").add {
   { "andymass/vim-matchup" },
   { "vim-denops/denops.vim" },
   { "nvim-lua/plenary.nvim" },
-  { "azorng/goose.nvim" },
   { "nvim-telescope/telescope.nvim" },
   { "neovim/nvim-lspconfig" },
   { "sbdchd/neoformat" },

@@ -105,35 +105,6 @@ vim.filetype.add({
   }
 })
 
--- editprompt
--- Send buffer content while keeping the editor open
-if vim.env.EDITPROMPT then
-    vim.keymap.set("n", "<Space>x", function()
-        vim.cmd("update")
-        -- Get buffer content
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        -- Execute editprompt command
-        vim.system(
-            { "editprompt", "--", content },
-            { text = true },
-            function(obj)
-                vim.schedule(function()
-                    if obj.code == 0 then
-                        -- Clear buffer on success
-                        vim.api.nvim_buf_set_lines(0, 0, -1, false, {})
-                        vim.cmd("silent write")
-                    else
-                        -- Show error notification
-                        vim.notify("editprompt failed: " .. (obj.stderr or "unknown error"), vim.log.levels.ERROR)
-                    end
-                end)
-            end
-        )
-    end, { silent = true, desc = "Send buffer content to editprompt" })
-end
-
 -- In your Neovim config (e.g., init.lua)
 if vim.env.EDITPROMPT then
   vim.opt.wrap = true

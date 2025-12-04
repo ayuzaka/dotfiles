@@ -44,3 +44,51 @@ vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 
 vim.keymap.set("n", "<leader>gs", ":GitStatus<CR>", { silent = true })
 vim.keymap.set("n", "<leader>e", ":Filer<CR>", { silent = true })
+
+-- editprompt
+-- Send buffer content while keeping the editor open
+if vim.env.EDITPROMPT then
+    vim.keymap.set("n", "<Space>x", function()
+        vim.cmd("update")
+        -- Get buffer content
+        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+        local content = table.concat(lines, "\n")
+
+        -- Execute editprompt command
+        vim.system(
+            { "editprompt", "--", content },
+            { text = true },
+            function(obj)
+                vim.schedule(function()
+                    if obj.code == 0 then
+                        -- Clear buffer on success
+                        vim.api.nvim_buf_set_lines(0, 0, -1, false, {})
+                        vim.cmd("silent write")
+                    else
+                        -- Show error notification
+                        vim.notify("editprompt failed: " .. (obj.stderr or "unknown error"), vim.log.levels.ERROR)
+                    end
+                end)
+            end
+        )
+    end, { silent = true, desc = "Send buffer content to editprompt" })
+end
+
+vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "b.", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "bd", ":bd<CR>", {})
+vim.keymap.set("n", "gf", function()
+  local cfile = vim.fn.expand("<cfile>")
+  if cfile:match("^https?://") then
+    vim.ui.open(cfile)
+  else
+    vim.cmd("normal! gF")
+  end
+end)
+-- バッファ全体をクリップボードにコピーして、保存せずに終了します
+vim.keymap.set("n", "<Leader>Q", ":silent! %y+ | q!<CR>", {
+  noremap = true,
+  desc = "Copy buffer to clipboard and quit without saving",
+})
+
+

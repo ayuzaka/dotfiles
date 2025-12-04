@@ -59,9 +59,6 @@ end, {})
 
 vim.api.nvim_create_user_command("RemoveBlankLines", "%v/\\S/d", {})
 
-vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })
-vim.keymap.set("n", "b.", ":bnext<CR>", { silent = true })
-vim.keymap.set("n", "bd", ":bd<CR>", {})
 
 local function search_regex(text)
   vim.fn.histdel("/")
@@ -177,14 +174,7 @@ vim.api.nvim_create_user_command("BufOnly", function(opts)
   buf_only(opts.args, opts.bang and "!" or "")
 end, { nargs = "?", bang = true, complete = "buffer" })
 
-vim.keymap.set("n", "gf", function()
-  local cfile = vim.fn.expand("<cfile>")
-  if cfile:match("^https?://") then
-    vim.ui.open(cfile)
-  else
-    vim.cmd("normal! gF")
-  end
-end)
+
 
 local function open_by_another_editor(command)
   local path = vim.fn.expand('%:p')
@@ -244,8 +234,4 @@ vim.api.nvim_create_user_command("ScratchMD", function()
   vim.bo.filetype = "markdown"
 end, {})
 
--- バッファ全体をクリップボードにコピーして、保存せずに終了します
-vim.keymap.set("n", "<Leader>Q", ":silent! %y+ | q!<CR>", {
-  noremap = true,
-  desc = "Copy buffer to clipboard and quit without saving",
-})
+

@@ -41,3 +41,6 @@
   difftool = true
 [tig]
   tab-size = 4
+[ghq]
+  vcs = git
+  root = ~/workspace

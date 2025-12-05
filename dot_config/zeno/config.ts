@@ -67,6 +67,11 @@ export default defineConfig(() => ({
       keyword: "h",
       snippet: "cat $HISTFILE | fzf | pbcopy",
     },
+    {
+      name: "cd ghq",
+      keyword: "cg",
+      snippet: "cd_ghq",
+    },
   ],
   completions: [
     {

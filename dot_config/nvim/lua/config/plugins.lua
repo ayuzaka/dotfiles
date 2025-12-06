@@ -2,6 +2,7 @@ vim.cmd("packadd vim-jetpack")
 require("jetpack.packer").add {
   { "tani/vim-jetpack" },
   { "tani/vim-artemis" },
+  { "vim-jp/nvimdoc-ja" },
   { "morhetz/gruvbox" },
   { "cocopon/iceberg.vim" },
   { "vim-skk/skkeleton"  },

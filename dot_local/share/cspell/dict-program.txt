@@ -79,6 +79,7 @@ foldl
 foldr
 gcloud
 gcompat
+genpkey
 getbufvar
 getcmdline
 getcmdtype

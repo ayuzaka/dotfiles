@@ -293,6 +293,7 @@ tolower
 tput
 trac
 trror
+tsdown
 tseslint
 tsgo
 tsgolint

@@ -13,4 +13,9 @@
 # @raycast.author ayuzaka
 # @raycast.authorURL https://raycast.com/ayuzaka
 
-alacritty -e zsh -i -c "nvim /tmp/raycast-note.md"
+# Alacritty が既に起動していればフォーカス、なければ新規起動
+if pgrep -x "alacritty" > /dev/null; then
+  osascript -e 'tell application "Alacritty" to activate'
+else
+  alacritty -e zsh -i -c "nvim /tmp/raycast-note.md"
+fi

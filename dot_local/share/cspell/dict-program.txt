@@ -42,6 +42,7 @@ dbcli
 dbeaver
 dbname
 dearmor
+dedup
 deno
 denoland
 denols

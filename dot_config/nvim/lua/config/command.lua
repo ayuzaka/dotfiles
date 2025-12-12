@@ -233,5 +233,3 @@ vim.api.nvim_create_user_command("ScratchMD", function()
   vim.bo.swapfile = false
   vim.bo.filetype = "markdown"
 end, {})
-
-

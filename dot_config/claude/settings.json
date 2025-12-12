@@ -58,7 +58,8 @@
       "Read(**/.ssh/**)",
       "Read(.env.*)",
       "Write(**/secrets/**)",
-      "Write(.env*)"
+      "Write(.env*)",
+      "NotebookEdit"
     ]
   },
   "hooks": {

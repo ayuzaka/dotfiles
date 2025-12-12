@@ -87,9 +87,9 @@ vim.keymap.set("n", "gf", function()
 end)
 
 -- バッファ全体をクリップボードにコピーして、保存せずに終了します
-vim.keymap.set("n", "<Leader>Q", ":silent! %y+ | %delete _<CR>", {
+vim.keymap.set("n", "<Leader>Q", ":silent! %y+ | q!<CR>", {
   noremap = true,
-  desc = "Copy buffer to clipboard and clear buffer",
+  desc = "Copy buffer to clipboard and quit without saving",
 })
 
 

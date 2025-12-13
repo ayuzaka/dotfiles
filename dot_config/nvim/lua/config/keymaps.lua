@@ -91,5 +91,3 @@ vim.keymap.set("n", "<Leader>Q", ":silent! %y+ | q!<CR>", {
   noremap = true,
   desc = "Copy buffer to clipboard and quit without saving",
 })
-
-

@@ -154,6 +154,21 @@ export class Config extends BaseConfig {
       },
     });
 
+    args.contextBuilder.patchLocal("gh_pr_diff_file", {
+      sources: [{
+        name: "file_external",
+      }],
+      sourceParams: {
+        file_external: {
+          cmd: [
+            "gh",
+            "pr",
+            "diff",
+            "--name-only",
+          ],
+        },
+      },
+    });
     args.contextBuilder.patchLocal("buffer_list", {
       sources: [{
         name: "buffer",

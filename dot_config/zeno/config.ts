@@ -88,7 +88,20 @@ export default defineConfig(() => ({
       },
       callback: "awk -F ':' '{print $1}'",
     },
-
+    {
+      name: "tmux kill session",
+      patterns: [
+        "^tmux kill-session -t(?: .*)? $",
+      ],
+      sourceCommand: "tmux ls",
+      "options": {
+        "--height": "80%",
+        "--print0": true,
+        "--preview-window": "down",
+        "--prompt": "'tmux attach > ' ",
+      },
+      callback: "awk -F ':' '{print $1}'",
+    },
     {
       name: "ssh login",
       patterns: [

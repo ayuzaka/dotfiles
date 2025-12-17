@@ -60,3 +60,6 @@ ghq = "latest"
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
+
+[settings.npm]
+package_manager = "bun"

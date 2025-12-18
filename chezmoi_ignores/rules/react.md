@@ -1,3 +1,5 @@
+* For the latest Vue and Nuxt documentation, please refer to the following resources:
+  + `$XDG_DATA_HOME/oss-docs/react.dev`
 * Use the latest stable version of React.
 * Use TypeScript when applicable and provide type definitions.
 * Avoid adding code comments unless necessary.

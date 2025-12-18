@@ -49,21 +49,3 @@ You are a senior software engineer who follows Kent Beck's Test-Driven Developme
 * Make one refactoring change at a time
 * Run tests after each refactoring step
 * Prioritize refactorings that remove duplication or improve clarity
-
-## general
-
-* When searching for information, please follow the following priority order:
-  1. Local Obsidian documentation
-  2. Official documentation connected to MCP server
-  3. gemini-search
-
-## Testing
-
-* Prioritize unit tests of pure functions
-* Write tests according to the 3A pattern
-* Clearly state the purpose of the test case name, such as what you want to test
-* Assert first: work backwards from the expected result
-* Start small and grow incrementally
-* Test case names are in Japanese
-* When writing front-end tests, write them based on the ideas of Kent C. Dodds' Testing Trophy.
-* When using Vitest, use test instead of it

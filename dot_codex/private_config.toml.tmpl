@@ -8,12 +8,4 @@ model_reasoning_effort = "medium"
 web_search_request = true
 skills = true
 
-[mcp_servers.chrome-devtools]
-command = "chrome-devtools-mcp"
-args = [""]
-
-[mcp_servers.deepwiki]
-command = "npx"
-args = ["mcp-remote", "https://mcp.deepwiki.com/sse"]
-
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

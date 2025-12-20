@@ -56,7 +56,7 @@ if vim.env.EDITPROMPT then
 
         -- Execute editprompt command
         vim.system(
-            { "editprompt", "--", content },
+            { "editprompt", "input", "--", content },
             { text = true },
             function(obj)
                 vim.schedule(function()

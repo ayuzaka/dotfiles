@@ -9,6 +9,7 @@ tools:
     root-markers:
       - .textlintrc
       - .textlintrc.json
+      - .textlintrc.js
 
   markdown-markdownlint: &markdown-markdownlint
     lint-command: 'markdownlint -s -c "~/.config/markdownlint/markdownlint.json"'

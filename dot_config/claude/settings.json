@@ -2,6 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
+      "Read(~/.local/share/oss-docs)",
       "Bash(cat:*)",
       "Bash(find:*)",
       "Bash(gemini:*)",
@@ -26,13 +27,6 @@
       "WebFetch(domain:vueuse.org)",
       "WebFetch(domain:www.figma.com)",
       "WebFetch(domain:www.typescriptlang.org)",
-      "mcp__MCP_DOCKER__directory_tree",
-      "mcp__MCP_DOCKER__get_file_info",
-      "mcp__MCP_DOCKER__list_allowed_directories",
-      "mcp__MCP_DOCKER__list_directory",
-      "mcp__MCP_DOCKER__read_file",
-      "mcp__MCP_DOCKER__read_multiple_files",
-      "mcp__MCP_DOCKER__search_files",
       "mcp__figma-dev-mode-mcp-server__get_code",
       "mcp__figma-dev-mode-mcp-server__get_image",
       "mcp__playwright__browser_close",

@@ -78,6 +78,5 @@
   "enabledPlugins": {
     "ast-grep@ast-grep-marketplace": true
   },
-  "alwaysThinkingEnabled": false,
   "autoUpdates": false
 }

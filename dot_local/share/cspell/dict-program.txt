@@ -110,11 +110,13 @@ guibg
 habamax
 hadolint
 hasattr
+hgetall
 histignorealldups
 hkps
 hlsearch
 hoge
 hono
+hset
 hsts
 iabbrev
 iframe
@@ -170,6 +172,7 @@ libxrender
 libxss
 libxtst
 linehl
+lrange
 lscolors
 lspconfig
 luaenv
@@ -225,6 +228,7 @@ osascript
 osrelease
 ostype
 osxkeychain
+oxfmt
 oxlint
 palt
 pgcli
@@ -256,6 +260,7 @@ retab
 rgba
 ripgreprc
 rollup
+rpush
 rssi
 rustc
 rustfmt

@@ -70,7 +70,8 @@
     ]
   },
   "enabledPlugins": {
-    "ast-grep@ast-grep-marketplace": true
+    "ast-grep@ast-grep-marketplace": true,
+    "example-skills@anthropic-agent-skills": true
   },
   "autoUpdates": false
 }

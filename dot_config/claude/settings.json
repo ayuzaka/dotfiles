@@ -71,7 +71,8 @@
   },
   "enabledPlugins": {
     "ast-grep@ast-grep-marketplace": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "autoUpdates": false
 }

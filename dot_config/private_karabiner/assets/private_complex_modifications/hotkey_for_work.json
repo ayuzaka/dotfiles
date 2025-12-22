@@ -39,14 +39,6 @@
             {
               "shell_command": "open -a 'Slack'"
             }
-          ],
-          "to_after_key_up": [
-            {
-              "select_input_source": {
-                "input_source_id": "jp.sourceforge.inputmethod.aquaskk",
-                "language": "ja"
-              }
-            }
           ]
         }
       ]
@@ -116,4 +108,3 @@
     }
   ]
 }
-

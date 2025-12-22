@@ -118,7 +118,7 @@ vim.lsp.enable({
   "docker_language_server",
   "jsonls",
   "yamlls",
-  "sqlls",
+  "sqls",
   "efm",
 })
 

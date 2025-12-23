@@ -5,6 +5,7 @@
 .copy_files.txt
 .ayuzaka
 .claude/settings.local.json
+.claude/tmp
 mise.local.toml
 cc_kiro
 .fdignore

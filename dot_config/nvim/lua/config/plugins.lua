@@ -12,6 +12,7 @@ require("jetpack.packer").add {
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope.nvim" },
   { "neovim/nvim-lspconfig" },
+  { "nanotee/sqls.nvim" },
   { "sbdchd/neoformat" },
   { "Shougo/pum.vim" },
   { "Shougo/ddc.vim" },

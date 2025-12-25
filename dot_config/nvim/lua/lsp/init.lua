@@ -9,6 +9,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+    -- https://github.com/vuejs/language-tools/wiki/Neovim
+    -- Since v3.0.2, semantic tokens are handled on vue_ls side.
+    -- Disable vtsls semantic tokens for Vue files to avoid conflict.
+    if client.name == "vtsls" and client.server_capabilities.semanticTokensProvider then
+      if vim.bo[args.buf].filetype == "vue" then
+        client.server_capabilities.semanticTokensProvider.full = false
+      end
+    end
+
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = args.buf })
     vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = args.buf })
 

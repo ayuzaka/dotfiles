@@ -1,5 +1,5 @@
-local find_vue_language_server_path = function()
-  local pattern = vim.fn.expand("~/.local/share/mise/installs/npm-vue-language-server/*/lib/node_modules/@vue/language-server/")
+local find_vue_typescript_plugin_path = function()
+  local pattern = vim.fn.expand("~/.local/share/mise/installs/npm-vue-language-server/*/node_modules/@vue/typescript-plugin")
   local matches = vim.fn.glob(pattern, false, true)
   if type(matches) == "table" and #matches > 0 then
     table.sort(matches)
@@ -9,11 +9,11 @@ local find_vue_language_server_path = function()
   return pattern
 end
 
-local vue_language_server_path = find_vue_language_server_path()
+local vue_typescript_plugin_path = find_vue_typescript_plugin_path()
 local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
 local vue_plugin = {
   name = "@vue/typescript-plugin",
-  location = vue_language_server_path,
+  location = vue_typescript_plugin_path,
   languages = { "vue" },
   configNamespace = "typescript",
 }

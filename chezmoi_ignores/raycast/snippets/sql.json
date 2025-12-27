@@ -1,0 +1,26 @@
+[
+  {
+    "name": "update",
+    "text": "UPDATE <table_name> SET <column_name> = <value> WHERE "
+  },
+  {
+    "name": "table_info",
+    "text": "DESC <table_name>"
+  },
+  {
+    "name": "alter table name",
+    "text": "ALTER TABLE <old_table_name> RENAME TO <new_table_name>"
+  },
+  {
+    "name": "alter column name",
+    "text": "ALTER TABLE <table_name> RENAME COLUMN <old_column_name> TO <new_column_name>"
+  },
+  {
+    "name": "add column",
+    "text": "ALTER TABLE <table_name> ADD <column_name> <column_definition>;"
+  },
+  {
+    "name": "delete column",
+    "text": "ALTER TABLE <table_name> DROP <column_name>;"
+  }
+]

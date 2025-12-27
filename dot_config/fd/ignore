@@ -39,3 +39,4 @@ coverage
 
 # ai
 .serena
+.claude/tmp

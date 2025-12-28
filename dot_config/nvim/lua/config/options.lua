@@ -48,6 +48,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.re = 0
 vim.opt.spell = false
+vim.opt.exrc = true
+vim.opt.secure = true
 vim.opt.jumpoptions:append("stack")
 vim.cmd([[ set nofoldenable ]])
 

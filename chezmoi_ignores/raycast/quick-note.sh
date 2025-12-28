@@ -14,8 +14,11 @@
 # @raycast.authorURL https://raycast.com/ayuzaka
 
 # Alacritty が既に起動していればフォーカス、なければ新規起動
+tmp_dir="${TMPDIR:-/tmp}"
+tmp_file="${tmp_dir%/}/raycast-note-$(date +%Y%m%d%H%M%S).md"
+
 if pgrep -x "alacritty" > /dev/null; then
   osascript -e 'tell application "Alacritty" to activate'
 else
-  alacritty -e zsh -i -c "nvim /tmp/raycast-note.md"
+  alacritty -e zsh -i -c "nvim \"$tmp_file\""
 fi

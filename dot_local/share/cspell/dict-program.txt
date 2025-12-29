@@ -62,6 +62,7 @@ errorf
 esac
 esbuild
 exhaustivestruct
+exrc
 fastify
 fastmcp
 fdignore

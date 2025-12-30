@@ -136,7 +136,7 @@ export default defineConfig(() => ({
         "deno task(?: .*)? $",
       ],
       sourceCommand:
-        "jq -r '.tasks | to_entries | .[] | .key + \" = \" + .value' deno.json",
+        "jq -r '.tasks | to_entries | .[] | .key + \" = \" + .value' deno.jsonc",
       "options": {
         "--prompt": "'deno task > '",
       },

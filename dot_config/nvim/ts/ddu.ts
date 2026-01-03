@@ -35,6 +35,9 @@ export class Config extends BaseConfig {
         lsp_codeAction: {
           defaultAction: "apply",
         },
+        gh_pr_diff: {
+          defaultAction: "diff",
+        },
       },
       columnParams: {
         icon_filename: {
@@ -154,25 +157,21 @@ export class Config extends BaseConfig {
       },
     });
 
-    args.contextBuilder.patchLocal("gh_pr_diff_file", {
-      sources: [{
-        name: "file_external",
-      }],
-      sourceParams: {
-        file_external: {
-          cmd: [
-            "gh",
-            "pr",
-            "diff",
-            "--name-only",
-          ],
-        },
-      },
-    });
     args.contextBuilder.patchLocal("buffer_list", {
       sources: [{
         name: "buffer",
       }],
+    });
+
+    args.contextBuilder.patchLocal("gh_pr_diff", {
+      sources: [{
+        name: "gh_pr_diff",
+      }],
+      kindOptions: {
+        gh_pr_diff: {
+          defaultAction: "open",
+        },
+      },
     });
 
     args.contextBuilder.patchLocal("filer", {

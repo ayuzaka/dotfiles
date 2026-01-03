@@ -35,6 +35,7 @@ require("jetpack.packer").add {
   { "matsui54/ddu-source-help" },
   { "kuuote/ddu-source-git_status" },
   { "kyoh86/ddu-source-git_log" },
+  { "ayuzaka/ddu-source-gh_pr_diff" },
   { "Shougo/ddu-ui-filer" },
   { "ryota2357/ddu-column-icon_filename" },
   { "Shougo/ddu-column-filename" },

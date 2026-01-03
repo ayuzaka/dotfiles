@@ -1,3 +1,5 @@
+vim.lsp.log._set_filename('/tmp/nvim/lsp.log')
+
 vim.diagnostic.config({
   virtual_text = true
 })

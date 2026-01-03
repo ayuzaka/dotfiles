@@ -74,6 +74,7 @@ fixjson
 fluxctl
 fmap
 fmea
+fnameescape
 fnamemod
 fnamemodify
 foldexpr
@@ -331,6 +332,7 @@ virtualenv
 vite
 vitest
 vmap
+vnew
 vsnip
 vsplit
 vtsls

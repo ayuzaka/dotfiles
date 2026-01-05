@@ -17,3 +17,4 @@ cc_kiro
 .crush/crush.db-wal
 .crush/init
 .crush/logs
+.nvim.lua

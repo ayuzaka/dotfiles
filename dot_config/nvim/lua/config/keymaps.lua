@@ -85,9 +85,3 @@ vim.keymap.set("n", "gf", function()
     vim.cmd("normal! gF")
   end
 end)
-
--- バッファ全体をクリップボードにコピーして、保存せずに終了します
-vim.keymap.set("n", "<Leader>Q", ":silent! %y+ | q!<CR>", {
-  noremap = true,
-  desc = "Copy buffer to clipboard and quit without saving",
-})

@@ -21,6 +21,7 @@ require("jetpack.packer").add {
   { "Shougo/ddc-matcher_head" },
   { "Shougo/ddc-sorter_rank" },
   { "shun/ddc-source-vim-lsp" },
+  { "LumaKernel/ddc-source-file" },
   { "tani/ddc-fuzzy" },
   { "Shougo/ddu.vim" },
   { "Shougo/ddu-ui-ff" },

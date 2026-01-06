@@ -36,7 +36,7 @@ export class Config extends BaseConfig {
           defaultAction: "apply",
         },
         gh_pr_diff: {
-          defaultAction: "diff",
+          defaultAction: "open",
         },
       },
       columnParams: {

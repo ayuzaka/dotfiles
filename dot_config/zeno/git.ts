@@ -100,5 +100,19 @@ export default defineConfig(() => ({
       },
       callback: "awk '{print $1}'",
     },
+    {
+      name: "gh issue edit",
+      patterns: [
+        "^gh issue edit(?: .*)? $",
+      ],
+      sourceCommand: "gh issue list --assignee @me --state open --limit 1000",
+      options: {
+        "--height": "80%",
+        "--print0": true,
+        "--preview-window": "down",
+        "--prompt": "'gh issue edit > ' ",
+      },
+      callback: "awk '{print $1}'",
+    }
   ],
 }));

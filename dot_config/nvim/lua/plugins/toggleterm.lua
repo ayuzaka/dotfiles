@@ -15,8 +15,17 @@ local tmux_term = nil
 
 local get_project_root_name = function()
   local cwd = vim.fn.getcwd()
-  local name = vim.fn.fnamemodify(cwd, ":t")
-  local sanitized = name:gsub("%s+", "_"):gsub("[^%w%-%_%.]", "_")
+  local workspace = vim.fn.expand("~/workspace")
+  local name
+
+  if vim.startswith(cwd, workspace .. "/") then
+    -- ~/workspace 配下の場合は相対パスを使用
+    name = cwd:sub(#workspace + 2)
+  else
+    name = vim.fn.fnamemodify(cwd, ":t")
+  end
+
+  local sanitized = name:gsub("%s+", "_"):gsub("[^%w%-%_%./]", "_")
   if sanitized == "" then
     return "project"
   end

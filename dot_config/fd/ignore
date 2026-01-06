@@ -10,17 +10,18 @@ yarn-error.log*
 .pnp
 .pnp.*
 .pnpm-debug.log*
-
 .next
 .nuxt
 .svelte-kit
+.nxcache
+
+# Python
+.venv
 
 out
 .output
 dist
 target
-
-.nxcache
 
 # production
 build
@@ -28,7 +29,6 @@ build
 # misc
 .DS_Store
 *.pem
-
 
 # hosting
 .vercel

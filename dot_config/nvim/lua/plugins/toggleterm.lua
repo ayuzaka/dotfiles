@@ -15,11 +15,11 @@ local tmux_term = nil
 
 local get_project_root_name = function()
   local cwd = vim.fn.getcwd()
-  local workspace = vim.fn.expand("~/workspace")
+  local workspace = vim.fn.expand("~/github")
   local name
 
   if vim.startswith(cwd, workspace .. "/") then
-    -- ~/workspace 配下の場合は相対パスを使用
+    -- ~/github 配下の場合は相対パスを使用
     name = cwd:sub(#workspace + 2)
   else
     name = vim.fn.fnamemodify(cwd, ":t")

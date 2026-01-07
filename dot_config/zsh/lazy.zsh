@@ -77,7 +77,11 @@ export PUB_CACHE="$XDG_CONFIG_HOME"/dart/pub-cache
 opr() {
   who=$(op whoami)
   if [[ $? != 0 ]]; then
-    eval $(op signin)
+    if [[ -n "$OP_ACCOUNT" ]]; then
+      eval $(op signin --account "$OP_ACCOUNT")
+    else
+      eval $(op signin)
+    fi
   fi
 
   if [[ -f "$PWD/.env" ]]; then

@@ -18,3 +18,4 @@ cc_kiro
 .crush/init
 .crush/logs
 .nvim.lua
+.envrc

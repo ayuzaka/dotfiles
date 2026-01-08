@@ -43,7 +43,7 @@ vim.keymap.set('n', 'gan', function()
   textcase.current_word('to_constant_case')
 end, { silent = true })
 
-vim.keymap.set('n', 'gad', function()
+vim.keymap.set('n', 'ga.', function()
   textcase.current_word('to_dot_case')
 end, { silent = true })
 
@@ -91,7 +91,7 @@ vim.keymap.set('n', 'gaN', function()
   textcase.lsp_rename('to_constant_case')
 end, { silent = true })
 
-vim.keymap.set('n', 'gaD', function()
+vim.keymap.set('n', 'ga.', function()
   textcase.lsp_rename('to_dot_case')
 end, { silent = true })
 

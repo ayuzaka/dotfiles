@@ -70,9 +70,11 @@
     ]
   },
   "enabledPlugins": {
-    "ast-grep@ast-grep-marketplace": true,
-    "example-skills@anthropic-agent-skills": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "ask-plan@agent-plugins-marketplace": true,
+    "owasp-security-review@agent-plugins-marketplace": true,
+    "skill-review@agent-plugins-marketplace": true,
+    "example-skills@anthropic-agent-skills": true
   },
   "autoUpdates": false
 }

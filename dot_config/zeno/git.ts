@@ -54,6 +54,11 @@ export default defineConfig(() => ({
       keyword: "ghe",
       snippet: 'gh copilot explain "{{text}}"',
     },
+    {
+      name: "restore quicksave",
+      keyword: "restore",
+      snippet: "git checkout {{text}} -- ."
+    }
   ],
   completions: [
     {

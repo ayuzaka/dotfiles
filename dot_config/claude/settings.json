@@ -5,6 +5,7 @@
   "permissions": {
     "allow": [
       "Read(~/.local/share/oss-docs)",
+      "Read(.env.example)",
       "Bash(cat:*)",
       "Bash(find:*)",
       "Bash(gemini:*)",

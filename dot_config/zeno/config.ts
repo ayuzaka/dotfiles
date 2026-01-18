@@ -103,18 +103,6 @@ export default defineConfig(() => ({
       callback: "awk -F ':' '{print $1}'",
     },
     {
-      name: "ssh login",
-      patterns: [
-        "^ssh(?: .*)? $",
-      ],
-      sourceCommand:
-        "cat ~/.ssh/*.conf | grep -E '^Host\\s' | grep -v '*' | awk '{print $2}'",
-      "options": {
-        "--prompt": "'ssh > ' ",
-      },
-      callback: "",
-    },
-    {
       name: "npm scripts",
       patterns: [
         "npm run(?: .*)? $",
@@ -141,17 +129,6 @@ export default defineConfig(() => ({
         "--prompt": "'deno task > '",
       },
       callback: "awk -F ' = ' '{ print $1 }'",
-    },
-    {
-      name: "ollama run",
-      patterns: [
-        "^ollama run(?: .*)? $",
-      ],
-      sourceCommand: "ollama list | grep -v 'NAME' | awk -F ':' '{print $1}'",
-      "options": {
-        "--prompt": "'ollama run > '",
-      },
-      callback: "",
     },
     {
       name: "act run job",

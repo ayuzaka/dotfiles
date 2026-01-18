@@ -1,3 +1,3 @@
 return {
-  cmd = { "./node_modules/.bin/oxc_language_server" }
+  cmd = { "./node_modules/.bin/oxlint", "--lsp", "--type-aware" },
 }

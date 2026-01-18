@@ -109,3 +109,7 @@ bindkey "^o" edit-command-line
 
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
+
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi

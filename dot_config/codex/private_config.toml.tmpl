@@ -1,7 +1,7 @@
 model = "gpt-5.2-codex"
 model_reasoning_effort = "medium"
 cli_auth_credentials_store = "auto"
-notify = ["bash", "-lc", "afplay /System/Library/Sounds/Bottle.aiff"]
+notify = ["terminal-notifier", "-title", "🤖 Codex", "-message", "処理が完了しました", "-group", "codex-completion"]
 
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true

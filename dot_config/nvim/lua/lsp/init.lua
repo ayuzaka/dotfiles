@@ -106,6 +106,9 @@ vim.lsp.config("vtsls", vtsls_opts)
 local oxlint_opts = require("lsp.oxlint")
 vim.lsp.config("oxlint", oxlint_opts)
 
+local oxfmt_opts = require("lsp.oxfmt")
+vim.lsp.config("oxfmt", oxfmt_opts)
+
 local tailwindcss_opts = require("lsp.tailwindcss")
 vim.lsp.config("tailwindcss", tailwindcss_opts)
 
@@ -128,6 +131,7 @@ vim.lsp.enable({
   "eslint",
   "biome",
   "oxlint",
+  "oxfmt",
   "gh_actions_ls",
   "zizmor",
   "docker_language_server",

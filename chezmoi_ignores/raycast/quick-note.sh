@@ -15,15 +15,17 @@
 
 tmp_dir="${TMPDIR:-/tmp}"
 tmp_file="${tmp_dir%/}/raycast-note-$(date +%Y%m%d%H%M%S).md"
+target_app_file="${tmp_dir%/}/quick-note-target-app"
 
-# 空ファイルを作成して初期ハッシュを固定（未編集や :q! はペーストをスキップするため）
+# 空ファイルを作成して初期ハッシュを固定
 : > "$tmp_file"
 initial_hash="$(shasum -a 256 "$tmp_file" | awk '{print $1}')"
 
-# 起動前に前面アプリを記録（nvim 終了後に戻してペーストするため）
+# 前面アプリを記録
 front_app="$(osascript -e 'tell application "System Events" to get name of first application process whose frontmost is true')"
+echo "$front_app" > "$target_app_file"
 
-# Ghostty を新規起動して nvim を開く
+# Ghostty を起動して nvim を開く
 /Applications/Ghostty.app/Contents/MacOS/ghostty -e zsh -i -c "
 nvim '$tmp_file'
 final_hash=\"\$(shasum -a 256 '$tmp_file' | awk '{print \$1}')\"

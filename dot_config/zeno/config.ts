@@ -1,5 +1,7 @@
 import { defineConfig } from "jsr:@yuki-yano/zeno";
 
+const sshSource = "cat $HOME/.ssh/*.conf | grep '^Host' | awk '{print $2}'";
+
 export default defineConfig(() => ({
   snippets: [
     {
@@ -146,10 +148,20 @@ export default defineConfig(() => ({
       patterns: [
         "^ssh(?: .*)? $",
       ],
-      sourceCommand:
-        "cat $HOME/.ssh/*.conf | grep '^Host' | grep -v -E '(github\\.com|[bastion])' | awk '{print $2}'",
+      sourceCommand: sshSource,
       "options": {
         "--prompt": "'ssh > ' ",
+      },
+      callback: "",
+    },
+    {
+      name: "scp remote",
+      patterns: [
+        "^scp(?: .*)? $",
+      ],
+      sourceCommand: sshSource,
+      "options": {
+        "--prompt": "'scp > ' ",
       },
       callback: "",
     },

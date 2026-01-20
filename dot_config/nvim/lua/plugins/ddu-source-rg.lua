@@ -127,3 +127,22 @@ vim.api.nvim_create_user_command("GrepExclude",
   end,
   {}
 )
+
+vim.api.nvim_create_user_command("Todo", function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = "TODO:|FIXME:|NOTE:",
+          args = {
+            "--column",
+            "--no-heading",
+            "--color",
+            "never",
+          }
+        }
+      }
+    }
+  })
+end, {})

@@ -79,6 +79,29 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
   end,
 })
 
+-- TODO/FIXME コメントのハイライト
+local function define_todo_highlights()
+  vim.api.nvim_set_hl(0, "TodoComment", { fg = "#FABD2F", bold = true })
+  vim.api.nvim_set_hl(0, "FixmeComment", { fg = "#FB4934", bold = true })
+  vim.api.nvim_set_hl(0, "NoteComment", { fg = "#8EC07C", bold = true })
+end
+
+define_todo_highlights()
+
+vim.api.nvim_create_augroup("highlightTodoComments", { clear = true })
+vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+  group = "highlightTodoComments",
+  callback = define_todo_highlights,
+})
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
+  group = "highlightTodoComments",
+  callback = function()
+    vim.fn.matchadd("TodoComment", "\\<TODO:")
+    vim.fn.matchadd("FixmeComment", "\\<FIXME:")
+    vim.fn.matchadd("NoteComment", "\\<NOTE:")
+  end,
+})
+
 -- InsertLeaveでpasteモードを解除
 vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()

@@ -1,21 +1,7 @@
-local get_visual_text = function()
-  local start_pos = vim.fn.getpos("'<")
-  local end_pos = vim.fn.getpos("'>")
-  local start_line_index = start_pos[2] - 1
-  local start_col_index = start_pos[3] - 1
-  local end_line_index = end_pos[2] - 1
-  local end_col_index = end_pos[3] - 1
-  local lines = vim.api.nvim_buf_get_lines(0, start_line_index, end_line_index + 1, false)
-  if #lines == 0 then
-    return ""
-  end
-  lines[#lines] = string.sub(lines[#lines], 1, end_col_index + 1)
-  lines[1] = string.sub(lines[1], start_col_index + 1)
-  return table.concat(lines, "\n")
-end
+local utils = require("config.utils")
 
 vim.api.nvim_create_user_command("Grep", function(opts)
-    local word = opts.range > 0 and get_visual_text() or vim.fn.input("Search word: ")
+    local word = opts.range > 0 and utils.get_visual_text() or vim.fn.input("Search word: ")
     if word == "" then
       return
     end

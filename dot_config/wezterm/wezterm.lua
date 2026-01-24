@@ -14,6 +14,16 @@ end
 
 local resolved_font = resolve_font()
 
+wezterm.on("format-tab-title", function(tab)
+  local pane = tab.active_pane
+  local cwd = pane.current_working_dir
+  if cwd then
+    local dir = cwd.file_path:match("([^/]+)$") or cwd.file_path
+    return " " .. dir .. " "
+  end
+  return pane.title
+end)
+
 return {
   color_scheme = "GruvboxDark",
   font = wezterm.font_with_fallback(resolved_font.font),

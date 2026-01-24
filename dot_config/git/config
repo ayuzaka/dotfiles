@@ -44,3 +44,11 @@
 [ghq]
   vcs = git
   root = ~/github
+[wt]
+  basedir = .git-wt
+  nocd = create
+  copy = .env
+  copy = .env.local
+  copy = .envrc
+  copy = .nvim.lua
+  hook = wezterm cli spawn --cwd \"$PWD\"

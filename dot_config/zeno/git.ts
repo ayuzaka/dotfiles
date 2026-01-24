@@ -77,18 +77,32 @@ export default defineConfig(() => ({
       callback: "awk '{print $1}'",
     },
     {
-      name: "git remove worktree",
+      name: "git-wt switch",
       patterns: [
-        "^git worktree remove(?: .*)? $",
+        "^git wt? $",
       ],
-      sourceCommand: "git worktree list | grep -v 'main' | awk '{print $1}'",
+      sourceCommand: "git wt | grep -v -F -e '*' -e 'BRANCH' | awk '{print $2}'",
+      options: {
+        "--height": "80%",
+        "--print0": true,
+        "--preview-window": "down",
+        "--prompt": "'git-wt Switch > ' ",
+      },
+      callback: "",
+    },
+    {
+      name: "gw delete",
+      patterns: [
+        "^git wt -(d|D)? $",
+      ],
+      sourceCommand: "git wt | grep -v -F -e '*' -e 'BRANCH' | awk '{print $2}'",
       options: {
         "--height": "80%",
         "--print0": true,
         "--preview-window": "down",
         "--prompt": "'Git Worktree Remove > ' ",
       },
-      callback: "awk '{print $1}'",
+      callback: "",
     },
     {
       name: "git branch delete",

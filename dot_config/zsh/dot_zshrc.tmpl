@@ -72,6 +72,9 @@ export PATH="$HOME/.moon/bin:$PATH"
 # direnv
 eval "$(direnv hook zsh)"
 
+# git-wt
+eval "$(git wt --init zsh)"
+
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export ANDROID_HOME="$XDG_DATA_HOME"/android

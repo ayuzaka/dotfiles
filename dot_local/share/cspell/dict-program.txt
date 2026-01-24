@@ -353,3 +353,4 @@ zizmor
 zoxide
 zstyle
 zxcvbn
+envrc

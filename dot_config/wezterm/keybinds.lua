@@ -175,6 +175,38 @@ local config = {
         end)
       },
     },
+    {
+      key = 'g',
+      mods = 'LEADER',
+      action = wezterm.action_callback(function(window, pane)
+        local success, stdout = wezterm.run_child_process({ 'ghq', 'list' })
+        if not success then
+          return
+        end
+
+        local choices = {}
+        for line in stdout:gmatch('[^\n]+') do
+          table.insert(choices, { label = line })
+        end
+
+        window:perform_action(act.InputSelector {
+          title = 'Select ghq project',
+          choices = choices,
+          action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
+            if not label then
+              return
+            end
+            -- github.com/org/repo -> org/repo
+            local ws_name = label:gsub('^[^/]+/', '')
+            local ghq_root = wezterm.home_dir .. '/github'
+            inner_window:perform_action(act.SwitchToWorkspace {
+              name = ws_name,
+              spawn = { cwd = ghq_root .. '/' .. label }
+            }, inner_pane)
+          end)
+        }, pane)
+      end),
+    },
   },
 }
 

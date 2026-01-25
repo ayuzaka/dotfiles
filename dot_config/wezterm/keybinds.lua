@@ -194,10 +194,12 @@ local config = {
       key = 'g',
       mods = 'LEADER',
       action = wezterm.action_callback(function(window, pane)
-        local success, stdout = wezterm.run_child_process({ 'ghq', 'list' })
-        if not success then
+        local handle = io.popen('zsh -ic "ghq list"')
+        if not handle then
           return
         end
+        local stdout = handle:read('*a')
+        handle:close()
 
         local choices = {}
         for line in stdout:gmatch('[^\n]+') do

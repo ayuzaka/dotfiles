@@ -51,4 +51,4 @@
   copy = .env.local
   copy = .envrc
   copy = .nvim.lua
-  hook = wezterm cli spawn --cwd \"$PWD\"
+  hook = ~/.local/bin/wt-open-tab || true

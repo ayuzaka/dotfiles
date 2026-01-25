@@ -1,0 +1,21 @@
+#!/bin/bash
+set -uo pipefail
+
+SOCK=$(find ~/.local/share/wezterm -maxdepth 1 -name 'gui-sock-*' -print -quit 2>/dev/null)
+if [ ! -S "$SOCK" ]; then
+  exit 0
+fi
+
+export WEZTERM_UNIX_SOCKET="$SOCK"
+
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+
+# Remove .git-wt and everything after it (for git worktree directories)
+ROOT=${ROOT%%/.git-wt/*}
+
+WS=${ROOT#"$HOME"/github/}
+WIN_ID=$(wezterm cli list --format json | jq -r --arg ws "$WS" '.[] | select(.workspace == $ws) | .window_id' | head -1)
+
+if [ -n "$WIN_ID" ]; then
+  wezterm cli spawn --window-id "$WIN_ID" --cwd "$PWD"
+fi

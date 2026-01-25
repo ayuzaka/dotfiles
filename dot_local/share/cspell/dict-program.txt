@@ -182,6 +182,7 @@ lspconfig
 luaenv
 luarc
 luma
+magick
 matchparen
 mbps
 mdast
@@ -189,6 +190,7 @@ monokai
 mycli
 nargs
 nbsp
+neorg
 netrw
 nextjs
 ngrok

@@ -59,6 +59,7 @@ echohl
 elif
 emojify
 enew
+envrc
 errorf
 esac
 esbuild
@@ -234,6 +235,7 @@ osxkeychain
 oxfmt
 oxlint
 palt
+pesc
 pgcli
 phpenv
 pipx
@@ -353,4 +355,3 @@ zizmor
 zoxide
 zstyle
 zxcvbn
-envrc

@@ -1,4 +1,10 @@
-require("image").setup({
+-- image.nvim requires terminal environment (fails in headless mode)
+local ok, image = pcall(require, "image")
+if not ok then
+  return
+end
+
+image.setup({
   backend = "kitty",
   processor = "magick_cli",
   integrations = {

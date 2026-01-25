@@ -144,7 +144,7 @@ local config = {
         description = wezterm.format {
           { Attribute = { Intensity = 'Bold' } },
           { Foreground = { AnsiColor = 'Fuchsia' } },
-          { Text = 'Enter name ofr new workspace' },
+          { Text = 'Enter name for new workspace' },
         },
         action = wezterm.action_callback(function(window, pane, line)
           if line then
@@ -154,6 +154,23 @@ local config = {
               },
               pane
             )
+          end
+        end)
+      },
+    },
+    {
+      key = 'r',
+      mods = 'CTRL|SHIFT',
+      action = act.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Foreground = { AnsiColor = 'Fuchsia' } },
+          { Text = 'Enter new name for workspace' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            local current = window:active_workspace()
+            wezterm.mux.rename_workspace(current, line)
           end
         end)
       },

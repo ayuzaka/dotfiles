@@ -133,9 +133,24 @@ local config = {
     {
       key = 's',
       mods = 'LEADER',
-      action = act.ShowLauncherArgs {
-        flags = 'WORKSPACES',
-      },
+      action = wezterm.action_callback(function(window, pane)
+        local workspaces = wezterm.mux.get_workspace_names()
+        local choices = {}
+        for _, name in ipairs(workspaces) do
+          table.insert(choices, { label = name })
+        end
+
+        window:perform_action(act.InputSelector {
+          title = 'Switch workspace',
+          choices = choices,
+          fuzzy = true,
+          action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
+            if label then
+              inner_window:perform_action(act.SwitchToWorkspace { name = label }, inner_pane)
+            end
+          end)
+        }, pane)
+      end),
     },
     {
       key = 'y',
@@ -174,6 +189,41 @@ local config = {
           end
         end)
       },
+    },
+    {
+      key = 'g',
+      mods = 'LEADER',
+      action = wezterm.action_callback(function(window, pane)
+        local handle = io.popen('zsh -ic "ghq list"')
+        if not handle then
+          return
+        end
+        local stdout = handle:read('*a')
+        handle:close()
+
+        local choices = {}
+        for line in stdout:gmatch('[^\n]+') do
+          table.insert(choices, { label = line })
+        end
+
+        window:perform_action(act.InputSelector {
+          title = 'Select ghq project',
+          choices = choices,
+          fuzzy = true,
+          action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
+            if not label then
+              return
+            end
+            -- github.com/org/repo -> org/repo
+            local ws_name = label:gsub('^[^/]+/', '')
+            local ghq_root = wezterm.home_dir .. '/github'
+            inner_window:perform_action(act.SwitchToWorkspace {
+              name = ws_name,
+              spawn = { cwd = ghq_root .. '/' .. label }
+            }, inner_pane)
+          end)
+        }, pane)
+      end),
     },
   },
 }

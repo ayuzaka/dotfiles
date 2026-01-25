@@ -55,7 +55,8 @@ require("jetpack.packer").add {
   { "chentoast/marks.nvim" },
   { "Bakudankun/BackAndForward.vim" },
   { "akinsho/toggleterm.nvim" },
-  { "barrett-ruth/import-cost.nvim", build = "sh install.sh npm" }
+  { "barrett-ruth/import-cost.nvim", build = "sh install.sh npm" },
+  { "3rd/image.nvim" },
 }
 
 local function require_all_plugins()

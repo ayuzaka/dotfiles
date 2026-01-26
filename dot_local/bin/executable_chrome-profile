@@ -9,6 +9,7 @@ set -uo pipefail
 #   chrome-profile "Profile 1"
 #   chrome-profile Default
 
+# Validate command line arguments
 if [[ $# -lt 1 ]]; then
   echo "Usage: $(basename "$0") <profile-directory>" >&2
   exit 1
@@ -17,7 +18,7 @@ fi
 PROFILE_DIR="$1"
 CHROME_DATA_DIR="$HOME/Library/Application Support/Google/Chrome"
 
-# Verify profile exists
+# Verify the specified profile directory exists
 if [[ ! -d "$CHROME_DATA_DIR/$PROFILE_DIR" ]]; then
   echo "Profile not found: $PROFILE_DIR" >&2
   echo "Available profiles:" >&2
@@ -25,7 +26,8 @@ if [[ ! -d "$CHROME_DATA_DIR/$PROFILE_DIR" ]]; then
   exit 1
 fi
 
-# Get profile name from Local State
+# Extract the human-readable profile name from Chrome's Local State JSON file
+# This name is displayed in Chrome's Profiles menu
 PROFILE_NAME=$(python3 -c "
 import json
 try:
@@ -37,29 +39,38 @@ except:
     print('$PROFILE_DIR')
 " 2>/dev/null)
 
+# Use AppleScript to focus existing profile window or open a new one
 osascript <<EOF
+-- Check if Chrome is currently running
 tell application "System Events"
     set chromeRunning to (name of processes) contains "Google Chrome"
 end tell
 
 if chromeRunning then
+    -- Bring Chrome to the foreground
     tell application "Google Chrome"
         activate
     end tell
 
+    -- Navigate the Profiles menu to switch to the target profile
     tell application "System Events"
         tell process "Google Chrome"
             try
+                -- Click the Profiles menu in the menu bar
                 click menu bar item "Profiles" of menu bar 1
                 delay 0.3
+                -- Select the target profile from the dropdown menu
                 click menu item "${PROFILE_NAME}" of menu "Profiles" of menu bar 1
                 return
             on error
-                key code 53 -- Escape
+                -- Close the menu if profile selection fails
+                key code 53 -- Escape key
             end try
         end tell
     end tell
 end if
 
+-- Open Chrome with the specified profile directory
+-- This runs if Chrome is not running, or if profile menu selection failed
 do shell script "open -na 'Google Chrome' --args --profile-directory='${PROFILE_DIR}'"
 EOF

@@ -194,6 +194,14 @@ local config = {
       key = 'g',
       mods = 'LEADER',
       action = wezterm.action_callback(function(window, pane)
+        -- Get ghq root directory
+        local root_handle = io.popen('zsh -ic "ghq root"')
+        if not root_handle then
+          return
+        end
+        local ghq_root = root_handle:read('*l') or (wezterm.home_dir .. '/github')
+        root_handle:close()
+
         local handle = io.popen('zsh -ic "ghq list"')
         if not handle then
           return
@@ -216,10 +224,10 @@ local config = {
             end
             -- github.com/org/repo -> org/repo
             local ws_name = label:gsub('^[^/]+/', '')
-            local ghq_root = wezterm.home_dir .. '/github'
+            local project_path = ghq_root .. '/' .. label
             inner_window:perform_action(act.SwitchToWorkspace {
               name = ws_name,
-              spawn = { cwd = ghq_root .. '/' .. label }
+              spawn = { cwd = project_path }
             }, inner_pane)
           end)
         }, pane)

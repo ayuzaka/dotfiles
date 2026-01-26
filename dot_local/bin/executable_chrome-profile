@@ -1,187 +1,65 @@
 #!/bin/bash
 set -uo pipefail
 
-# Chrome Profile Launcher
+# Chrome Profile Launcher (macOS)
 # Opens or focuses a Chrome window with the specified profile
 #
 # Usage: chrome-profile <profile-directory>
-#   profile-directory: The profile directory name (e.g., "Default", "Profile 1")
-#
 # Example:
 #   chrome-profile "Profile 1"
 #   chrome-profile Default
 
-usage() {
-  echo "Usage: $(basename "$0") <profile-directory>" >&2
-  echo "  profile-directory: Chrome profile directory name (e.g., 'Default', 'Profile 1')" >&2
-  exit 1
-}
-
 if [[ $# -lt 1 ]]; then
-  usage
+  echo "Usage: $(basename "$0") <profile-directory>" >&2
+  exit 1
 fi
 
 PROFILE_DIR="$1"
-
-# Detect OS
-case "${OSTYPE}" in
-  darwin*)
-    CHROME_APP="/Applications/Google Chrome.app"
-    CHROME_DATA_DIR="$HOME/Library/Application Support/Google/Chrome"
-    ;;
-  linux*)
-    CHROME_CMD="google-chrome"
-    CHROME_DATA_DIR="$HOME/.config/google-chrome"
-    ;;
-  *)
-    echo "Unsupported OS: ${OSTYPE}" >&2
-    exit 1
-    ;;
-esac
+CHROME_DATA_DIR="$HOME/Library/Application Support/Google/Chrome"
 
 # Verify profile exists
 if [[ ! -d "$CHROME_DATA_DIR/$PROFILE_DIR" ]]; then
-  echo "Profile directory not found: $CHROME_DATA_DIR/$PROFILE_DIR" >&2
+  echo "Profile not found: $PROFILE_DIR" >&2
   echo "Available profiles:" >&2
   find "$CHROME_DATA_DIR" -maxdepth 1 -type d \( -name "Default" -o -name "Profile *" \) -exec basename {} \; 2>/dev/null >&2
   exit 1
 fi
 
-focus_or_open_chrome_macos() {
-  local profile_dir="$1"
-
-  # Get profile name from Local State for display
-  local profile_name
-  profile_name=$(python3 -c "
+# Get profile name from Local State
+PROFILE_NAME=$(python3 -c "
 import json
-import sys
 try:
     with open('$CHROME_DATA_DIR/Local State', 'r') as f:
         data = json.load(f)
-    info = data.get('profile', {}).get('info_cache', {}).get('$profile_dir', {})
-    print(info.get('name', '$profile_dir'))
+    info = data.get('profile', {}).get('info_cache', {}).get('$PROFILE_DIR', {})
+    print(info.get('name', '$PROFILE_DIR'))
 except:
-    print('$profile_dir')
+    print('$PROFILE_DIR')
 " 2>/dev/null)
 
-  # Use AppleScript to check if Chrome is running with the specified profile
-  # and focus or open as needed
-  osascript <<EOF
+osascript <<EOF
 tell application "System Events"
     set chromeRunning to (name of processes) contains "Google Chrome"
 end tell
 
 if chromeRunning then
     tell application "Google Chrome"
-        set profileFound to false
-        repeat with w in windows
-            try
-                -- Check if the window belongs to the target profile
-                -- by examining the window title or using profile menu
-                set windowTitle to title of w
-            end try
-        end repeat
-
-        -- Try to find and focus existing profile window via menu
         activate
     end tell
 
     tell application "System Events"
         tell process "Google Chrome"
-            -- Access People/Profile menu (typically menu bar item 4 or "Chrome" menu)
             try
                 click menu bar item "Profiles" of menu bar 1
                 delay 0.3
-                try
-                    click menu item "${profile_name}" of menu "Profiles" of menu bar 1
-                    return "focused"
-                on error
-                    -- Profile not in menu, might need to open
-                    key code 53 -- Escape to close menu
-                end try
+                click menu item "${PROFILE_NAME}" of menu "Profiles" of menu bar 1
+                return
             on error
-                -- Profiles menu doesn't exist or different structure
+                key code 53 -- Escape
             end try
         end tell
     end tell
 end if
 
--- Open Chrome with the specified profile
-do shell script "open -na 'Google Chrome' --args --profile-directory='${profile_dir}'"
-return "opened"
+do shell script "open -na 'Google Chrome' --args --profile-directory='${PROFILE_DIR}'"
 EOF
-}
-
-focus_or_open_chrome_linux() {
-  local profile_dir="$1"
-
-  # Find Chrome window with the specified profile
-  # Chrome sets WM_CLASS to include profile info, or we check process args
-
-  # First, check if Chrome with this profile is already running
-  local chrome_pid
-  chrome_pid=$(pgrep -f "chrome.*--profile-directory=$profile_dir" 2>/dev/null | head -1)
-
-  if [[ -n "$chrome_pid" ]]; then
-    # Chrome with this profile is running, try to focus its window
-
-    # Try wmctrl first (works on most X11 environments)
-    if command -v wmctrl &>/dev/null; then
-      # Get window ID for the Chrome process
-      local window_id
-      window_id=$(wmctrl -lp | awk -v pid="$chrome_pid" '$3 == pid {print $1; exit}')
-
-      if [[ -n "$window_id" ]]; then
-        wmctrl -i -a "$window_id"
-        echo "Focused existing Chrome window (profile: $profile_dir)"
-        return 0
-      fi
-
-      # Fallback: try to find by window class and activate any Chrome window
-      # This is less precise but better than nothing
-      local any_chrome_window
-      any_chrome_window=$(wmctrl -lx | grep -i "google-chrome" | head -1 | awk '{print $1}')
-      if [[ -n "$any_chrome_window" ]]; then
-        wmctrl -i -a "$any_chrome_window"
-        echo "Focused Chrome window (profile: $profile_dir)"
-        return 0
-      fi
-    fi
-
-    # Try xdotool as alternative
-    if command -v xdotool &>/dev/null; then
-      local window_id
-      window_id=$(xdotool search --pid "$chrome_pid" 2>/dev/null | head -1)
-
-      if [[ -n "$window_id" ]]; then
-        xdotool windowactivate "$window_id" 2>/dev/null
-        echo "Focused existing Chrome window (profile: $profile_dir)"
-        return 0
-      fi
-    fi
-
-    # Chrome is running but we couldn't focus it
-    echo "Chrome with profile '$profile_dir' is running but couldn't focus window"
-    echo "Opening new window..."
-  fi
-
-  # Open Chrome with the specified profile
-  if command -v "$CHROME_CMD" &>/dev/null; then
-    "$CHROME_CMD" --profile-directory="$profile_dir" &>/dev/null &
-    disown
-    echo "Opened Chrome with profile: $profile_dir"
-  else
-    echo "Chrome not found: $CHROME_CMD" >&2
-    exit 1
-  fi
-}
-
-# Main execution
-case "${OSTYPE}" in
-  darwin*)
-    focus_or_open_chrome_macos "$PROFILE_DIR"
-    ;;
-  linux*)
-    focus_or_open_chrome_linux "$PROFILE_DIR"
-    ;;
-esac

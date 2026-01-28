@@ -49,7 +49,6 @@
       "Bash(rm:*)",
       "Bash(sudo:*)",
       "Bash(wget:*)",
-      "Read(**/*key*)",
       "Read(**/*token*)",
       "Read(**/.ssh/**)",
       "Read(.env.*)",

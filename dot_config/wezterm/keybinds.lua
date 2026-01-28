@@ -222,8 +222,8 @@ local config = {
             if not label then
               return
             end
-            -- github.com/org/repo -> org/repo
-            local ws_name = label:gsub('^[^/]+/', '')
+            -- github.com/org/repo -> org/repo (extract last two segments)
+            local ws_name = label:match('([^/]+/[^/]+)$') or label
             local project_path = ghq_root .. '/' .. label
             inner_window:perform_action(act.SwitchToWorkspace {
               name = ws_name,

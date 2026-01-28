@@ -223,6 +223,7 @@ nsright
 numhl
 nuxi
 nuxt
+nuxtignore
 nuxtjs
 nvim
 nxcache

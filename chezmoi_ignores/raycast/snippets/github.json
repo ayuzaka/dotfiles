@@ -1,0 +1,32 @@
+[
+  {
+    "keyword": "!nits",
+    "name": "review-nits",
+    "text": "![nits](https://img.shields.io/badge/review-nits-inactive.svg) "
+  },
+  {
+    "keyword": "!ask",
+    "name": "review-ask",
+    "text": "![ask](https://img.shields.io/badge/review-ask-9b71ae.svg) "
+  },
+  {
+    "keyword": "!must",
+    "name": "review-must",
+    "text": "![must](https://img.shields.io/badge/review-must-critical.svg) "
+  },
+  {
+    "keyword": "!imo",
+    "name": "review-imo",
+    "text": "![imo](https://img.shields.io/badge/review-imo-yellow.svg) "
+  },
+  {
+    "keyword": "!good",
+    "name": "review-good",
+    "text": "![good](https://img.shields.io/badge/review-good-success.svg) "
+  },
+  {
+    "keyword": "!thank",
+    "name": "Thank you for Japanese",
+    "text": "ありがとうございます！"
+  }
+]

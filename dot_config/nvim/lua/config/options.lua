@@ -138,3 +138,9 @@ if vim.env.EDITPROMPT then
   vim.cmd('colorscheme iceberg')
   vim.opt.background = "dark"
 end
+
+vim.filetype.add({
+  pattern = {
+    [".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghactions",
+  },
+})

@@ -1,0 +1,37 @@
+[
+  {
+    "keyword": "!thanks",
+    "name": "Thank you for Japanese",
+    "text": "ありがとうございます！"
+  },
+  {
+    "keyword": "!otsukare",
+    "name": "Otsukare",
+    "text": "お疲れ様です！"
+  },
+  {
+    "keyword": "!yoroshiku",
+    "name": "Yoroshiku",
+    "text": "よろしくお願いします！"
+  },
+  {
+    "keyword": "!sorry",
+    "name": "Sorry",
+    "text": "お手数おかけしますが、よろしくお願いいたします。"
+  },
+  {
+    "keyword": "!shochi",
+    "name": "Acknowledged",
+    "text": "承知しました！"
+  },
+  {
+    "keyword": "!kakunin",
+    "name": "Will check",
+    "text": "確認します！"
+  },
+  {
+    "keyword": "!taiou",
+    "name": "Will handle",
+    "text": "対応します！"
+  }
+]

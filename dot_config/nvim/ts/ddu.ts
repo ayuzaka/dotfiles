@@ -174,6 +174,17 @@ export class Config extends BaseConfig {
       },
     });
 
+    args.contextBuilder.patchLocal("marks", {
+      sources: [{
+        name: "marks",
+      }],
+      kindOptions: {
+        marks: {
+          defaultAction: "open",
+        },
+      },
+    });
+
     args.contextBuilder.patchLocal("filer", {
       ui: "filer",
       sources: [

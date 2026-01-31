@@ -88,7 +88,12 @@ end
 
 vim.api.nvim_create_autocmd({ "TabEnter", "CursorHold", "FocusGained" }, {
   callback = function()
-    vim.fn["ddu#ui#do_action"]("checkItems")
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "ddu-filer" then
+        vim.fn["ddu#ui#do_action"]("checkItems")
+        return
+      end
+    end
   end
 })
 

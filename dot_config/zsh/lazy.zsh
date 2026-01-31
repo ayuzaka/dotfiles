@@ -95,13 +95,19 @@ opr() {
 
 export PATH="$PATH:/opt/homebrew/Cellar/icu4c/74.2/bin"
 
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+source /opt/homebrew/share/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
 
 export WASMTIME_HOME="$XDG_DATA_HOME/wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
-eval "$(zoxide init zsh)"
+_zoxide_cache="$XDG_CACHE_HOME/zsh/zoxide.zsh"
+_lazy_zsh="$XDG_CONFIG_HOME/zsh/lazy.zsh"
+if [[ ! -r "$_zoxide_cache" || "$_lazy_zsh" -nt "$_zoxide_cache" ]]; then
+  zoxide init zsh >| "$_zoxide_cache"
+fi
+source "$_zoxide_cache"
+unset _zoxide_cache _lazy_zsh
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -111,5 +117,16 @@ export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
 
 if command -v ngrok &>/dev/null; then
-  eval "$(ngrok completion)"
+  _ngrok_cache="$XDG_CACHE_HOME/zsh/ngrok.zsh"
+  _lazy_zsh="$XDG_CONFIG_HOME/zsh/lazy.zsh"
+  if [[ ! -r "$_ngrok_cache" || "$_lazy_zsh" -nt "$_ngrok_cache" ]]; then
+    ngrok completion >| "$_ngrok_cache"
+  fi
+  source "$_ngrok_cache"
+  unset _ngrok_cache _lazy_zsh
+fi
+
+# 1Password
+if command -v op >/dev/null 2>&1; then
+  source "$XDG_CONFIG_HOME"/op/plugins.sh
 fi

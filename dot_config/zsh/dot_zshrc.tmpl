@@ -36,8 +36,8 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 
-# mise
-eval "$(~/.local/bin/mise activate zsh)"
+# mise (shims は同期的に PATH 追加、activate は sheldon 読み込み後に遅延実行)
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PATH=$PATH:$CARGO_HOME/bin
@@ -69,11 +69,7 @@ export CABAL_DIR="$XDG_DATA_HOME"/cabal
 # Moonbit
 export PATH="$HOME/.moon/bin:$PATH"
 
-# direnv
-eval "$(direnv hook zsh)"
-
-# git-wt
-eval "$(git wt --init zsh)"
+# direnv / git-wt (zsh-defer で遅延実行、sheldon 読み込み後に実行)
 
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
@@ -164,7 +160,13 @@ ulimit -c 0
 # -----------------------------
 # 自動補完を有効にする
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+zcompdump="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+if [[ -f "$zcompdump" && $(date +'%j') == $(date -r "$zcompdump" +'%j') ]]; then
+  compinit -C -d "$zcompdump"
+else
+  compinit -d "$zcompdump"
+fi
+unset zcompdump
 
 # 補完の選択を楽にする
 zstyle ':completion:*' menu select
@@ -222,13 +224,11 @@ if [[ -f "$XDG_CONFIG_HOME/fzf/fzf.zsh" ]]; then
   source "$XDG_CONFIG_HOME/fzf/fzf.zsh"
 fi
 
+zsh-defer -c 'eval "$(~/.local/bin/mise activate zsh)"'
+zsh-defer -c 'eval "$(direnv hook zsh)"'
+zsh-defer -c 'eval "$(git wt --init zsh)"'
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/git-commands.zsh
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
-
-# 1Password
-if command -v op >/dev/null 2>&1; then
-  source "$XDG_CONFIG_HOME"/op/plugins.sh
-fi
 
 export GHCUP_USE_XDG_DIRS=true
 [ -f "/Users/ayuzaka/.local/share/ghcup/env" ] && . "/Users/ayuzaka/.local/share/ghcup/env" # ghcup-env

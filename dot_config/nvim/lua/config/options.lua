@@ -58,9 +58,6 @@ vim.opt.syntax = "on"
 -- ファイルタイプの設定
 vim.cmd("filetype plugin indent on")
 
--- matchit.vimの読み込み
-vim.cmd("runtime macros/matchit.vim")
-
 -- 全角スペースの可視化
 vim.api.nvim_create_augroup("highlightIdeographicSpace", { clear = true })
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {

@@ -8,7 +8,12 @@ image.setup({
   backend = "kitty",
   processor = "magick_cli",
   integrations = {
-    markdown = { enabled = false },
+    markdown = {
+      enabled = true,
+      clear_in_insert_mode = true,
+      download_remote_images = false,
+      only_render_image_at_cursor = true,
+    },
     neorg = { enabled = false },
     html = { enabled = false },
     css = { enabled = false },

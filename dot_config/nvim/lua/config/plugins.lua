@@ -46,7 +46,7 @@ require("jetpack.packer").add {
   { "godlygeek/tabular" },
   { "preservim/vim-markdown", ft = "markdown" },
   { "imsnif/kdl.vim", ft = "kdl" },
-  { "3rd/image.nvim", event = "VeryLazy",
+  { "3rd/image.nvim", ft = "markdown",
     config = function() require("plugins.image") end },
   { "barrett-ruth/import-cost.nvim", build = "sh install.sh npm",
     ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },

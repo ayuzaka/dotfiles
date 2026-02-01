@@ -31,8 +31,6 @@ require("jetpack.packer").add {
   { "nvim-lua/plenary.nvim", event = "VeryLazy" },
   { "nvim-telescope/telescope.nvim", cmd = "Telescope",
     config = function() require("plugins.telescope") end },
-  { "akinsho/toggleterm.nvim", keys = "<C-\\>",
-    config = function() require("plugins.toggleterm") end },
   { "sbdchd/neoformat", cmd = { "Neoformat", "Prettier", "BiomeFormat", "FixJson", "SQLFormatter" },
     config = function()
       vim.api.nvim_create_user_command("Prettier", "Neoformat prettier", {})
@@ -92,6 +90,7 @@ require("jetpack.packer").add {
 
 -- Immediate config
 require("plugins.gruvbox")
+require("config.float-term")
 
 -- vim.g settings (must be set before plugin loads)
 require("plugins.vim-matchup")

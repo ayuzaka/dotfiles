@@ -28,7 +28,7 @@ require("jetpack.packer").add {
   { "cocopon/iceberg.vim", event = "VeryLazy" },
 
   -- Command / FileType
-  { "nvim-lua/plenary.nvim", cmd = "Telescope" },
+  { "nvim-lua/plenary.nvim", event = "VeryLazy" },
   { "nvim-telescope/telescope.nvim", cmd = "Telescope",
     config = function() require("plugins.telescope") end },
   { "akinsho/toggleterm.nvim", keys = "<C-\\>",
@@ -51,6 +51,12 @@ require("jetpack.packer").add {
   { "barrett-ruth/import-cost.nvim", build = "sh install.sh npm",
     ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     config = function() require("plugins.import-cost") end },
+
+  -- Test runner
+  { "nvim-neotest/nvim-nio", event = "VeryLazy" },
+  { "nvim-neotest/neotest", event = "VeryLazy",
+    config = function() require("plugins.neotest") end },
+  { "marilari88/neotest-vitest", event = "VeryLazy" },
 
   -- denops ecosystem (deferred Deno runtime startup)
   { "vim-denops/denops.vim", event = "VeryLazy" },

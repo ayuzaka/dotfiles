@@ -70,6 +70,10 @@ local function clear_image()
 end
 
 local function preview_image(path)
+  -- Close existing preview first to avoid toggle behavior
+  clear_image()
+  vim.fn["ddu#ui#do_action"]("closePreviewWindow")
+
   local filer_win = vim.api.nvim_get_current_win()
   local wins_before = {}
   for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -120,6 +124,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "p", function()
       local item = vim.fn["ddu#ui#get_item"]()
       if not item or item.isTree then
+        clear_image()
         vim.fn["ddu#ui#do_action"]("preview")
         return
       end
@@ -128,6 +133,7 @@ vim.api.nvim_create_autocmd("FileType", {
       if is_image_file(path) then
         preview_image(path)
       else
+        clear_image()
         vim.fn["ddu#ui#do_action"]("preview")
       end
     end, opts)

@@ -33,11 +33,15 @@ image.setup({
   window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
 })
 
--- 編集可能なバッファでは画像を表示しない（プレビュー専用）
-vim.api.nvim_create_autocmd("BufEnter", {
+-- ノーマルモード以外では画像を非表示にする
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "n:*",
+  callback = function() image.clear() end,
+})
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "*:n",
   callback = function()
-    if vim.bo.modifiable then
-      image.clear()
-    end
+    -- image.nvim の integrations に再描画させるため BufEnter を発火
+    vim.cmd("doautocmd BufEnter")
   end,
 })

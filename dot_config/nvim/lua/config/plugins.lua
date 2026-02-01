@@ -14,8 +14,7 @@ require("jetpack.packer").add {
   { "nvim-lualine/lualine.nvim", event = "VeryLazy",
     config = function() require("plugins.lualine") end },
   { "andymass/vim-matchup", event = "BufReadPost" },
-  { "chentoast/marks.nvim", event = "BufReadPost",
-    config = function() require("plugins.marks") end },
+
   { "johmsalas/text-case.nvim", event = "BufReadPost",
     config = function() require("plugins.text-case") end },
   { "Bakudankun/BackAndForward.vim", event = "BufReadPost" },
@@ -91,6 +90,7 @@ require("jetpack.packer").add {
 -- Immediate config
 require("plugins.gruvbox")
 require("config.float-term")
+require("plugins.marks")
 
 -- vim.g settings (must be set before plugin loads)
 require("plugins.vim-matchup")

@@ -1,44 +1,54 @@
-require 'marks'.setup {
-  -- whether to map keybinds or not. default true
-  default_mappings = false,
-  -- which builtin marks to show. default {}
-  builtin_marks = {},
-  -- whether movements cycle back to the beginning/end of buffer. default true
-  cyclic = true,
-  -- whether the shada file is updated after modifying uppercase marks. default false
-  force_write_shada = false,
-  -- how often (in ms) to redraw signs/recompute mark positions.
-  -- higher values will have better performance but may cause visual lag,
-  -- while lower values may cause performance penalties. default 150.
-  refresh_interval = 250,
-  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
-  -- marks, and bookmarks.
-  -- can be either a table with all/none of the keys, or a single number, in which case
-  -- the priority applies to all marks.
-  -- default 10.
-  sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
-  -- disables mark tracking for specific filetypes. default {}
-  excluded_filetypes = {},
-  -- disables mark tracking for specific buftypes. default {}
-  excluded_buftypes = {},
-  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
-  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
-  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
-  -- default virt_text is "".
-  bookmark_0 = {
-    sign = "⚑",
-    -- virt_text = "hello world",
-    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
-    -- defaults to false.
-    annotate = false,
-  },
-  mappings = {
-    set_bookmark0 = "m0",
-    set_bookmark1 = "m1",
-    delete_bookmark0 = "dm0",
-    delete_bookmark1 = "dm1",
-    next_bookmark = "m}",
-    prev_bookmark = "m{",
-    delete_bookmark = "dm="
-  }
-}
+-- Native mark signs: display lowercase (a-z) and uppercase (A-Z) marks
+-- in the sign column using extmarks. Replaces chentoast/marks.nvim.
+
+local ns = vim.api.nvim_create_namespace("native_marks")
+
+local function refresh_marks(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  if not vim.api.nvim_buf_is_valid(bufnr) then
+    return
+  end
+
+  vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+
+  local marks = {}
+
+  -- lowercase marks (a-z): buffer-local
+  for i = 0, 25 do
+    local letter = string.char(string.byte("a") + i)
+    local mark = vim.api.nvim_buf_get_mark(bufnr, letter)
+    if mark[1] ~= 0 then
+      marks[#marks + 1] = { letter = letter, line = mark[1] }
+    end
+  end
+
+  -- uppercase marks (A-Z): global, show only if in current buffer
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  for i = 0, 25 do
+    local letter = string.char(string.byte("A") + i)
+    local mark = vim.api.nvim_get_mark(letter, {})
+    if mark[1] ~= 0 and mark[4] == bufname then
+      marks[#marks + 1] = { letter = letter, line = mark[1] }
+    end
+  end
+
+  local line_count = vim.api.nvim_buf_line_count(bufnr)
+  for _, m in ipairs(marks) do
+    if m.line >= 1 and m.line <= line_count then
+      vim.api.nvim_buf_set_extmark(bufnr, ns, m.line - 1, 0, {
+        sign_text = m.letter,
+        sign_hl_group = "Identifier",
+        priority = 10,
+      })
+    end
+  end
+end
+
+local group = vim.api.nvim_create_augroup("NativeMarkSigns", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "CursorHold" }, {
+  group = group,
+  callback = function(args)
+    refresh_marks(args.buf)
+  end,
+})

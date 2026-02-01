@@ -84,7 +84,7 @@ require("jetpack.packer").add {
 
 -- Immediate config
 require("plugins.gruvbox")
-require("plugins.toggleterm")
+require("config.float-term")
 
 -- vim.g settings (must be set before plugin loads)
 require("plugins.vim-matchup")

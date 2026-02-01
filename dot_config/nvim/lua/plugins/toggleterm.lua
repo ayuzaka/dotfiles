@@ -1,17 +1,5 @@
-require("toggleterm").setup({
-  size = 100,
-  open_mapping = nil,
-  shade_filetypes = {},
-  shade_terminals = false,
-  start_in_insert = true,
-  insert_mappings = true,
-  persist_size = true,
-  direction = "float",
-  close_on_exit = true,
-})
-
-local Terminal = require("toggleterm.terminal").Terminal
-local tmux_term = nil
+local term_buf = nil
+local term_win = nil
 
 local get_project_root_name = function()
   local cwd = vim.fn.getcwd()
@@ -32,10 +20,29 @@ local get_project_root_name = function()
   return sanitized
 end
 
+local function open_float_win(buf)
+  local width = math.floor(vim.o.columns * 0.9)
+  local height = math.floor(vim.o.lines * 0.9)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
+    border = "single",
+  })
+  return win
+end
+
 local open_tmux_session = function()
-  -- toggletermが開いている場合は閉じるだけ（tmuxの確認/起動はしない）
-  if tmux_term ~= nil and tmux_term:is_open() then
-    tmux_term:toggle()
+  -- フローティングウィンドウが開いている場合は閉じるだけ
+  if term_win and vim.api.nvim_win_is_valid(term_win) then
+    vim.api.nvim_win_close(term_win, true)
+    term_win = nil
     return
   end
 
@@ -53,18 +60,24 @@ local open_tmux_session = function()
     return
   end
 
-  if tmux_term == nil then
-    -- 端末インスタンスを使い回してtoggle時だけtmuxを起動する
-    tmux_term = Terminal:new({
-      cmd = vim.o.shell,
-      hidden = true,
-      direction = "float",
+  -- バッファが生きていればそのまま再利用、なければ新規作成
+  if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+    term_win = open_float_win(term_buf)
+    vim.cmd("startinsert")
+  else
+    term_buf = vim.api.nvim_create_buf(false, true)
+    term_win = open_float_win(term_buf)
+    vim.fn.termopen("tmux new-session -A -s " .. vim.fn.shellescape(session_name), {
+      on_exit = function()
+        if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+          vim.api.nvim_buf_delete(term_buf, { force = true })
+        end
+        term_buf = nil
+        term_win = nil
+      end,
     })
+    vim.cmd("startinsert")
   end
-
-  -- toggletermを開くタイミングでtmuxセッションを起動/アタッチする
-  tmux_term.cmd = "tmux new-session -A -s " .. vim.fn.shellescape(session_name)
-  tmux_term:toggle()
 end
 
-vim.keymap.set({ "n", "t" }, "<C-\\>", open_tmux_session, { silent = true, desc = "ToggleTerm tmux session" })
+vim.keymap.set({ "n", "t" }, "<C-\\>", open_tmux_session, { silent = true, desc = "Toggle floating tmux session" })

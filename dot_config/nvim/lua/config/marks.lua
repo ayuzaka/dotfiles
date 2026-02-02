@@ -23,11 +23,10 @@ local function refresh_marks(bufnr)
   end
 
   -- uppercase marks (A-Z): global, show only if in current buffer
-  local bufname = vim.api.nvim_buf_get_name(bufnr)
   for i = 0, 25 do
     local letter = string.char(string.byte("A") + i)
     local mark = vim.api.nvim_get_mark(letter, {})
-    if mark[1] ~= 0 and mark[4] == bufname then
+    if mark[1] ~= 0 and mark[3] == bufnr then
       marks[#marks + 1] = { letter = letter, line = mark[1] }
     end
   end
@@ -43,6 +42,15 @@ local function refresh_marks(bufnr)
     end
   end
 end
+
+-- m{letter} keymap: set mark then refresh signs immediately
+vim.keymap.set("n", "m", function()
+  local letter = vim.fn.getcharstr()
+  if letter:match("[a-zA-Z]") then
+    vim.cmd("normal! m" .. letter)
+    refresh_marks()
+  end
+end)
 
 local group = vim.api.nvim_create_augroup("NativeMarkSigns", { clear = true })
 

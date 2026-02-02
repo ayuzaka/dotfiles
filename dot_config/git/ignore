@@ -18,3 +18,4 @@ cc_kiro
 .crush/logs
 .nvim.lua
 .envrc
+.claude/plans

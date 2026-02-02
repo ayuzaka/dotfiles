@@ -58,6 +58,17 @@
     ]
   },
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/lint-github-actions.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",

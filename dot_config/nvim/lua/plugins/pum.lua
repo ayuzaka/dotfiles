@@ -1,3 +1,5 @@
+vim.fn['pum#set_option']({ auto_select = false })
+
 vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>', { noremap = true })
 vim.keymap.set('i', '<C-p>', '<Cmd>call pum#map#insert_relative(-1)<CR>', { noremap = true })
 vim.keymap.set('i', '<C-y>', '<Cmd>call pum#map#confirm()<CR>', { noremap = true })

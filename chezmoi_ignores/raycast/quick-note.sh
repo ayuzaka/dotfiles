@@ -22,40 +22,7 @@ echo "$front_app" > "$target_app_file"
 
 window_title="Quick Note → ${front_app}"
 
-# 同じターゲットアプリの Ghostty ウィンドウが既にあればフォーカスする
-existing_window="$(osascript -e "
-tell application \"System Events\"
-  if exists (application process \"Ghostty\") then
-    tell application process \"Ghostty\"
-      repeat with w in windows
-        if name of w starts with \"Quick Note → ${front_app}\" then
-          return \"found\"
-        end if
-      end repeat
-    end tell
-  end if
-  return \"\"
-end tell
-" 2>/dev/null)"
-
-if [ "$existing_window" = "found" ]; then
-  # 既存ウィンドウにフォーカス
-  osascript -e "
-  tell application \"System Events\"
-    tell application process \"Ghostty\"
-      repeat with w in windows
-        if name of w starts with \"Quick Note → ${front_app}\" then
-          perform action \"AXRaise\" of w
-        end if
-      end repeat
-      set frontmost to true
-    end tell
-  end tell
-  "
-  exit 0
-fi
-
-# 新規: 一時ファイルを作成
+# 一時ファイルを作成
 tmp_file="${tmp_dir%/}/raycast-note-$(date +%Y%m%d%H%M%S).md"
 : > "$tmp_file"
 initial_hash="$(shasum -a 256 "$tmp_file" | awk '{print $1}')"

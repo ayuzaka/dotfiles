@@ -63,7 +63,7 @@ require("jetpack.packer").add {
   { "Shougo/ddc-ui-pum", event = "VeryLazy" },
   { "Shougo/ddc-matcher_head", event = "VeryLazy" },
   { "Shougo/ddc-sorter_rank", event = "VeryLazy" },
-  { "shun/ddc-source-vim-lsp", event = "VeryLazy" },
+  { "Shougo/ddc-source-lsp", event = "VeryLazy" },
   { "LumaKernel/ddc-source-file", event = "VeryLazy" },
   { "tani/ddc-fuzzy", event = "VeryLazy" },
   { "vim-skk/skkeleton", event = "VeryLazy" },

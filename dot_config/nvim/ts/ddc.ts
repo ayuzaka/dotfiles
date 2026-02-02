@@ -8,11 +8,16 @@ export class Config extends BaseConfig {
     await super.config(args);
     args.contextBuilder.patchGlobal({
       ui: "pum",
-      sources: [{ name: "skkeleton" }, { name: "file" }],
+      sources: [{ name: "lsp" }, { name: "skkeleton" }, { name: "file" }],
       sourceOptions: {
         _: {
           matchers: ["matcher_head"],
           sorters: ["sorter_rank"],
+        },
+        lsp: {
+          mark: "LSP",
+          forceCompletionPattern: "\\.\\w*|:\\w*|->\\w*",
+          dup: "force",
         },
         skkeleton: {
           mark: "skkeleton",
@@ -26,6 +31,13 @@ export class Config extends BaseConfig {
           mark: "F",
           isVolatile: true,
           forceCompletionPattern: "\\S\\\\\\S*",
+        },
+      },
+      sourceParams: {
+        lsp: {
+          snippetEngine: "",
+          enableResolveItem: true,
+          enableAdditionalTextEdit: true,
         },
       },
     });

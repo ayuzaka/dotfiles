@@ -51,9 +51,9 @@
       "Bash(wget:*)",
       "Read(**/*token*)",
       "Read(**/.ssh/**)",
-      "Read(.env.*)",
+      "Read(.env)",
       "Write(**/secrets/**)",
-      "Write(.env*)",
+      "Write(.env)",
       "NotebookEdit"
     ]
   },

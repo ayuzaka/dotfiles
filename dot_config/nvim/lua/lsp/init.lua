@@ -137,7 +137,6 @@ vim.lsp.enable({
   "jsonls",
   "yamlls",
   "ember",
-  "sqls",
   "efm",
 })
 

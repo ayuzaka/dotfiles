@@ -1,10 +1,17 @@
-vim.cmd("packadd vim-jetpack")
-require("jetpack.packer").add {
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({ "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
   -- Immediate loading (required for first render)
-  { "tani/vim-jetpack" },
-  { "tani/vim-artemis" },
-  { "morhetz/gruvbox" },
-  { "neovim/nvim-lspconfig" },
+  { "morhetz/gruvbox", lazy = false, priority = 1000,
+    config = function() require("plugins.gruvbox") end },
+  { "neovim/nvim-lspconfig", lazy = false },
+  { "tani/vim-artemis", lazy = false },
 
   -- BufReadPost / VeryLazy (on edit start)
   { "nvim-treesitter/nvim-treesitter", branch = "main", event = "BufReadPost",
@@ -17,13 +24,13 @@ require("jetpack.packer").add {
 
   { "johmsalas/text-case.nvim", event = "BufReadPost",
     config = function() require("plugins.text-case") end },
-  { "Bakudankun/BackAndForward.vim", event = "BufReadPost" },
+  { "Bakudankun/BackAndForward.vim", event = "BufReadPost",
+    config = function() require("plugins.BackAndForward") end },
   { "machakann/vim-sandwich", event = "BufReadPost" },
   { "easymotion/vim-easymotion", event = "BufReadPost" },
   { "bullets-vim/bullets.vim", event = "BufReadPost" },
   { "cohama/lexima.vim", event = "InsertEnter" },
   { "folke/ts-comments.nvim", event = "VeryLazy" },
-  { "vim-jp/nvimdoc-ja", event = "VeryLazy" },
   { "cocopon/iceberg.vim", event = "VeryLazy" },
 
   -- Command / FileType
@@ -85,10 +92,9 @@ require("jetpack.packer").add {
   { "Shougo/ddu-ui-filer", event = "VeryLazy" },
   { "ryota2357/ddu-column-icon_filename", event = "VeryLazy" },
   { "Shougo/ddu-column-filename", event = "VeryLazy" },
-}
+})
 
 -- Immediate config
-require("plugins.gruvbox")
 require("config.float-term")
 require("config.marks")
 
@@ -98,29 +104,6 @@ require("plugins.vim-markdown")
 require("plugins.bullets")
 require("plugins.emmet")
 require("plugins.neoformat")
-
--- VimScript plugins deferred to VimEnter
--- jetpack's event option does not work for VimScript plugins when files
--- are opened at startup (BufReadPost fires before VimEnter, causing
--- jetpack#load_plugin to defer to JetpackPre:init which already fired).
--- Lua plugins work because their config callbacks use require().
-vim.api.nvim_create_autocmd("VimEnter", {
-  once = true,
-  callback = function()
-    local vimscript_plugins = {
-      "vim-matchup",
-      "vim-sandwich",
-      "vim-easymotion",
-      "BackAndForward.vim",
-      "bullets.vim",
-    }
-    for _, name in ipairs(vimscript_plugins) do
-      vim.cmd("packadd " .. name)
-    end
-    require("plugins.BackAndForward")
-    vim.cmd("doautocmd FileType")
-  end,
-})
 
 -- denops ecosystem: configure after DenopsReady
 vim.api.nvim_create_autocmd("User", {

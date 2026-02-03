@@ -25,8 +25,13 @@
     "text": "![good](https://img.shields.io/badge/review-good-success.svg) "
   },
   {
-    "keyword": "!review",
-    "name": "review-comment",
+    "keyword": "!review-please",
+    "name": "レビュー依頼",
+    "text": "レビューお願いします！"
+  },
+  {
+    "keyword": "!review-comment",
+    "name": "レビューコメント",
     "text": "ありがとうございます！\nコメントしましたので、ご確認お願いします！"
   }
 ]

@@ -105,6 +105,21 @@ export default defineConfig(() => ({
       callback: "awk -F ':' '{print $1}'",
     },
     {
+      name: "tmux send-keys",
+      patterns: [
+        "^tmux send-keys -t(?: .*)? $",
+      ],
+      sourceCommand:
+        "tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{session_name}:#{window_name} [#{pane_current_command}]'",
+      options: {
+        "--height": "80%",
+        "--print0": true,
+        "--preview-window": "down",
+        "--prompt": "'tmux send-keys -t > ' ",
+      },
+      callback: "awk '{print $1}'",
+    },
+    {
       name: "npm scripts",
       patterns: [
         "npm run(?: .*)? $",

@@ -77,7 +77,7 @@ require("lazy").setup({
   { "Shougo/ddu.vim", event = "VeryLazy" },
   { "Shougo/ddu-ui-ff", event = "VeryLazy" },
   { "Shougo/ddu-source-file_rec", event = "VeryLazy" },
-  { "matsui54/ddu-source-file_external", event = "VeryLazy" },
+  { "matsui54/ddu-source-file_external", lazy = false },
   { "uga-rosa/ddu-source-lsp", event = "VeryLazy" },
   { "shun/ddu-source-rg", event = "VeryLazy" },
   { "shun/ddu-source-buffer", event = "VeryLazy" },
@@ -85,7 +85,7 @@ require("lazy").setup({
   { "Shougo/ddu-kind-file", event = "VeryLazy" },
   { "Shougo/ddu-filter-matcher_substring", event = "VeryLazy" },
   { "matsui54/ddu-source-help", event = "VeryLazy" },
-  { "kuuote/ddu-source-git_status", event = "VeryLazy" },
+  { "kuuote/ddu-source-git_status", lazy = false },
   { "kyoh86/ddu-source-git_log", event = "VeryLazy" },
   { "ayuzaka/ddu-source-gh_pr_diff", event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks", event = "VeryLazy" },
@@ -104,8 +104,6 @@ require("plugins.vim-markdown")
 require("plugins.bullets")
 require("plugins.emmet")
 require("plugins.neoformat")
-require("plugins.ddu-source")
-require("plugins.ddu-source-git_status")
 
 -- denops ecosystem: configure after DenopsReady
 vim.api.nvim_create_autocmd("User", {
@@ -118,9 +116,11 @@ vim.api.nvim_create_autocmd("User", {
     require("plugins.ddc")
     require("plugins.ddu")
     require("plugins.ddu-keymaps")
+    require("plugins.ddu-source")
     require("plugins.ddu-source-buffer")
     require("plugins.ddu-source-lsp")
     require("plugins.ddu-source-git_log")
+    require("plugins.ddu-source-git_status")
     require("plugins.ddu-source-rg")
     require("plugins.ddu-source-gh_pr_diff")
     require("plugins.ddu-source-marks")

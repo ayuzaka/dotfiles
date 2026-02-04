@@ -104,6 +104,8 @@ require("plugins.vim-markdown")
 require("plugins.bullets")
 require("plugins.emmet")
 require("plugins.neoformat")
+require("plugins.ddu-source")
+require("plugins.ddu-source-git_status")
 
 -- denops ecosystem: configure after DenopsReady
 vim.api.nvim_create_autocmd("User", {
@@ -117,10 +119,8 @@ vim.api.nvim_create_autocmd("User", {
     require("plugins.ddu")
     require("plugins.ddu-keymaps")
     require("plugins.ddu-source-buffer")
-    require("plugins.ddu-source")
     require("plugins.ddu-source-lsp")
     require("plugins.ddu-source-git_log")
-    require("plugins.ddu-source-git_status")
     require("plugins.ddu-source-rg")
     require("plugins.ddu-source-gh_pr_diff")
     require("plugins.ddu-source-marks")

@@ -65,6 +65,10 @@
           {
             "type": "command",
             "command": "$HOME/.config/claude/hooks/lint-github-actions.sh"
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.config/claude/hooks/lint-shell.sh"
           }
         ]
       }

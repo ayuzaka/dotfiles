@@ -21,7 +21,8 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
-    event = "BufReadPost",
+    lazy = false,
+    build = ":TSUpdate",
     config = function() require("plugins.nvim-treesitter") end
   },
   {

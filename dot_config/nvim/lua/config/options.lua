@@ -141,3 +141,9 @@ vim.filetype.add({
     [".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghactions",
   },
 })
+
+vim.filetype.add({
+  extension = {
+    mbt = "moonbit",
+  },
+})

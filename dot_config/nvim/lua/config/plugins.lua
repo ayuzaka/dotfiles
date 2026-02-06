@@ -59,12 +59,6 @@ require("lazy").setup({
   -- Command / FileType
   { "nvim-lua/plenary.nvim", lazy = true },
   {
-    "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function() require("plugins.telescope") end
-  },
-  {
     "sbdchd/neoformat",
     cmd = { "Neoformat", "Prettier", "BiomeFormat", "FixJson", "SQLFormatter" },
     config = function()

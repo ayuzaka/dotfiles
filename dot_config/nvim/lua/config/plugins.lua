@@ -103,7 +103,22 @@ require("lazy").setup({
     },
     config = function() require("plugins.neotest") end
   },
-
+  {
+    "moonbit-community/moonbit.nvim",
+    ft = "moonbit",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {
+      mooncakes = {
+        virtual_text = true, -- virtual text showing suggestions
+        use_local = true,    -- recommended, use index under ~/.moon
+      },
+      treesitter = { enabled = true, auto_install = true },
+      lsp = {
+        on_attach = function() end,
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+      }
+    }
+  },
   -- denops ecosystem (deferred Deno runtime startup)
   { "vim-denops/denops.vim",               event = "VeryLazy" },
   { "Shougo/pum.vim",                      event = "VeryLazy" },

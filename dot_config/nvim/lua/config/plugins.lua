@@ -30,9 +30,11 @@ require("lazy").setup({
     event = "BufReadPost",
     config = function() require("plugins.gitsigns") end
   },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("plugins.lualine") end
   },
   { "andymass/vim-matchup",      event = "BufReadPost" },
@@ -55,12 +57,7 @@ require("lazy").setup({
   { "cocopon/iceberg.vim",       event = "VeryLazy" },
 
   -- Command / FileType
-  { "nvim-lua/plenary.nvim",     event = "VeryLazy" },
-  {
-    "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    config = function() require("plugins.telescope") end
-  },
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "sbdchd/neoformat",
     cmd = { "Neoformat", "Prettier", "BiomeFormat", "FixJson", "SQLFormatter" },
@@ -93,13 +90,19 @@ require("lazy").setup({
   },
 
   -- Test runner
-  { "nvim-neotest/nvim-nio",               event = "VeryLazy" },
+  { "nvim-neotest/nvim-nio", lazy = true },
+  { "marilari88/neotest-vitest", lazy = true },
   {
     "nvim-neotest/neotest",
     event = "VeryLazy",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "marilari88/neotest-vitest",
+    },
     config = function() require("plugins.neotest") end
   },
-  { "marilari88/neotest-vitest",           event = "VeryLazy" },
 
   -- denops ecosystem (deferred Deno runtime startup)
   { "vim-denops/denops.vim",               event = "VeryLazy" },

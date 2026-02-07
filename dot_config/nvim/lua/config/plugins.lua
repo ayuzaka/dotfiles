@@ -37,7 +37,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("plugins.lualine") end
   },
-  { "andymass/vim-matchup",      event = "BufReadPost" },
+  { "andymass/vim-matchup",        event = "BufReadPost" },
 
   {
     "johmsalas/text-case.nvim",
@@ -57,7 +57,6 @@ require("lazy").setup({
   { "cocopon/iceberg.vim",       event = "VeryLazy" },
 
   -- Command / FileType
-  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "sbdchd/neoformat",
     cmd = { "Neoformat", "Prettier", "BiomeFormat", "FixJson", "SQLFormatter" },
@@ -90,7 +89,7 @@ require("lazy").setup({
   },
 
   -- Test runner
-  { "nvim-neotest/nvim-nio", lazy = true },
+  { "nvim-neotest/nvim-nio",     lazy = true },
   { "marilari88/neotest-vitest", lazy = true },
   {
     "nvim-neotest/neotest",

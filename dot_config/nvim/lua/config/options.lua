@@ -122,11 +122,6 @@ callback = function()
   end,
 })
 
-vim.filetype.add({
-  pattern = {
-    ['.env.*'] = 'dotenv'
-  }
-})
 
 -- In your Neovim config (e.g., init.lua)
 if vim.env.EDITPROMPT then
@@ -138,12 +133,11 @@ end
 
 vim.filetype.add({
   pattern = {
+    ['.env.*'] = 'dotenv',
     [".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghactions",
   },
-})
-
-vim.filetype.add({
   extension = {
     mbt = "moonbit",
+    tfstate = "json",
   },
 })

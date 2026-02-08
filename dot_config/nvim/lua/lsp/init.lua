@@ -136,6 +136,7 @@ vim.lsp.enable({
   "docker_language_server",
   "jsonls",
   "yamlls",
+  "terraformls",
   "ember",
   "efm",
 })

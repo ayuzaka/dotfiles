@@ -300,9 +300,11 @@ tabler
 tagfunc
 tauri
 tavily
+tenv
 termius
 testid
 textlintrc
+tfstate
 tinify
 tolower
 tput

@@ -98,6 +98,8 @@ export PATH="$PATH:/opt/homebrew/Cellar/icu4c/74.2/bin"
 source /opt/homebrew/share/google-cloud-sdk/path.zsh.inc
 source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
 
+source $HOME/.tenv/tenv.completion.zsh
+
 export WASMTIME_HOME="$XDG_DATA_HOME/wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 

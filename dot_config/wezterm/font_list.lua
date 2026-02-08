@@ -1,5 +1,6 @@
 return {
   font = {
+    { family = "CommitMono Nerd Font", weight = "Regular" },
     { family = "PlemolJP35 Console",    weight = "Regular" },
     { family = "Explex Console NF",     weight = "Regular" },
     { family = "Explex35 Console NF",   weight = "Regular" },

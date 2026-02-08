@@ -79,6 +79,7 @@ require("lazy").setup({
   {
     "3rd/image.nvim",
     event = "VeryLazy",
+    build = false,
     config = function() require("plugins.image") end
   },
   {

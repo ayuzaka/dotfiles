@@ -137,6 +137,7 @@ vim.lsp.enable({
   "jsonls",
   "yamlls",
   "terraformls",
+  "tflint",
   "ember",
   "efm",
 })

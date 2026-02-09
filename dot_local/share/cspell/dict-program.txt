@@ -302,8 +302,10 @@ tauri
 tavily
 tenv
 termius
+terraformls
 testid
 textlintrc
+tflint
 tfstate
 tinify
 tolower

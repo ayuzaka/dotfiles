@@ -17,12 +17,15 @@ yarn-error.log*
 
 # Python
 .venv
+.mypy_cache
+*.pyc
 
 out
 .output
 dist
 target
 .git-wt
+**/db/data
 
 # production
 build

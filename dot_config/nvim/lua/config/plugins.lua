@@ -98,7 +98,7 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       "marilari88/neotest-vitest",
     },
-    opts = function() require("plugins.neotest") end
+    config = function() require("plugins.neotest") end
   },
   {
     "moonbit-community/moonbit.nvim",

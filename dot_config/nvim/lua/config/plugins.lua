@@ -89,9 +89,6 @@ require("lazy").setup({
     config = function() require("plugins.import-cost") end
   },
 
-  -- Test runner
-  { "nvim-neotest/nvim-nio",     lazy = true },
-  { "marilari88/neotest-vitest", lazy = true },
   {
     "nvim-neotest/neotest",
     event = "VeryLazy",
@@ -101,7 +98,7 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       "marilari88/neotest-vitest",
     },
-    config = function() require("plugins.neotest") end
+    opts = function() require("plugins.neotest") end
   },
   {
     "moonbit-community/moonbit.nvim",

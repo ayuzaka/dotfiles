@@ -1,1 +1,3 @@
-require("import-cost").setup()
+vim.g.import_cost = {
+   package_manager = "bun",
+}

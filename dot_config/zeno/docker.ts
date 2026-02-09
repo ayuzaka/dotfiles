@@ -47,6 +47,7 @@ export default defineConfig(() => ({
       name: "docker (running) container operation",
       patterns: [
         "^docker container exec -it(?: .*)? $",
+        "^docker exec(?: .*)? $",
         "^docker container stop(?: .*)? $",
       ],
       sourceCommand: "docker container ls --format '{{.Names}}'",

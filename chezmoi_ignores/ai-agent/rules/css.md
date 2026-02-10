@@ -7,3 +7,6 @@
   * Don't implement media queries without instructions.
 * Shorthands are prohibited unless explicitly specified.
   * For example, if you want to add `margin` to the top and bottom, write `margin-block: 1rem;` instead of `margin: 1rem 0;`.
+* Minimize the specificity of base CSS.
+  + Use cascade layers (`@layer`) as much as possible.
+  + If it's difficult, utilize `:where`.

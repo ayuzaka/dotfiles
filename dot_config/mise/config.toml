@@ -46,7 +46,6 @@ opencode = "latest"
 "go:github.com/mattn/efm-langserver" = "latest"
 "go:github.com/k1LoW/git-wt" = "latest"
 "pipx:python-lsp-server" = "latest"
-"pipx:ruff" = "latest"
 "pipx:markitdown" = { version = "latest", extras = "all" }
 "pipx:plamo-translate" = "latest"
 "pipx:markitdown-mcp" = "latest"

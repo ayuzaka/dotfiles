@@ -131,6 +131,7 @@ inoremap
 ipython
 isdirectory
 isearch
+isort
 istioctl
 jenv
 jotai
@@ -189,6 +190,7 @@ mbps
 mdast
 monokai
 mycli
+mypy
 nargs
 nbsp
 neorg
@@ -260,6 +262,7 @@ pygments
 pylsp
 pyproject
 pyright
+pytest
 pythonrc
 rdbms
 redir

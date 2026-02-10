@@ -2,6 +2,9 @@ require("neotest").setup({
   adapters = {
     require("neotest-vitest"),
     require("neotest-moonbit"),
+    require("neotest-python")({
+      python = vim.g.neotest_python_command or "python",
+    }),
   },
 })
 

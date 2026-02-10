@@ -65,6 +65,8 @@ require("lazy").setup({
       vim.api.nvim_create_user_command("BiomeFormat", "Neoformat biome", {})
       vim.api.nvim_create_user_command("FixJson", "Neoformat fixjson", {})
       vim.api.nvim_create_user_command("SQLFormatter", "Neoformat sqlformatter", {})
+      vim.api.nvim_create_user_command("Black", "Neoformat black", {})
+      vim.api.nvim_create_user_command("Isort", "Neoformat isort", {})
     end
   },
   {
@@ -97,6 +99,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-python",
     },
     config = function() require("plugins.neotest") end
   },

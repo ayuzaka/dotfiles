@@ -1340,6 +1340,8 @@
   typeset -g POWERLEVEL9K_TERRAFORM_VERSION_FOREGROUND=38
   # Custom icon.
   # typeset -g POWERLEVEL9K_TERRAFORM_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # Only show terraform version when there are terraform files in the current directory or above.
+  typeset -g POWERLEVEL9K_TERRAFORM_VERSION_SHOW_ON_UPGLOB='*.tf|*.tf.json|.terraform-version'
 
   #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
   # Show aws only when the command you are typing invokes one of these tools.

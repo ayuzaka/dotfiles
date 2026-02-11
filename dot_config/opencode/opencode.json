@@ -7,9 +7,18 @@
       "sudo": "deny",
       "git push *": "deny",
       "git reset *": "deny",
+      "find": "deny",
       "cat": "allow",
       "fd": "allow",
-      "rg": "allow"
+      "grep": "allow",
+      "rg": "allow",
+      "mkdir": "allow",
+      "ls": "allow",
+      "lsd": "allow",
+      "which": "allow",
+      "touch": "allow",
+      "wc": "allow",
+      "ghq *": "allow"
     },
     "read": {
       "*": "allow",

@@ -20,6 +20,10 @@ yarn-error.log*
 .mypy_cache
 *.pyc
 
+# moonbit
+.mooncakes
+_build
+
 out
 .output
 dist

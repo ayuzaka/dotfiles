@@ -114,6 +114,9 @@ vim.lsp.config("actionsls", actions_ls_opts)
 local zizmor_opts = require("lsp.zizmor")
 vim.lsp.config("zizmor", zizmor_opts)
 
+local yamlls_opts = require("lsp.yamlls")
+vim.lsp.config("yamlls", yamlls_opts)
+
 vim.lsp.enable({
   "lua_ls",
   "gopls",

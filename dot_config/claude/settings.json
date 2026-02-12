@@ -87,9 +87,6 @@
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
-    "ask-plan@agent-plugins-marketplace": true,
-    "owasp-security-review@agent-plugins-marketplace": true,
-    "skill-review@agent-plugins-marketplace": true,
     "example-skills@anthropic-agent-skills": true,
     "lua-lsp@claude-plugins-official": true,
     "codex-review@claude-plugin-marketplace": true

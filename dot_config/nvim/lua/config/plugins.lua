@@ -67,6 +67,7 @@ require("lazy").setup({
       vim.api.nvim_create_user_command("SQLFormatter", "Neoformat sqlformatter", {})
       vim.api.nvim_create_user_command("Black", "Neoformat black", {})
       vim.api.nvim_create_user_command("Isort", "Neoformat isort", {})
+      vim.api.nvim_create_user_command("Shfmt", "Neoformat shfmt", {})
     end
   },
   {

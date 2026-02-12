@@ -288,6 +288,7 @@ setw
 shada
 shadcn
 shellenv
+shfmt
 shopt
 showcmd
 sixel

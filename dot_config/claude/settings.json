@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "language": "japanese",
-  "plansDirectory": ".claude/plans",
+  "plansDirectory": ".agents/plans",
   "permissions": {
     "allow": [
       "Read(.env.example)",

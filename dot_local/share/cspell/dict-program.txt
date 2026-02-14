@@ -233,6 +233,7 @@ nxcache
 ofetch
 ollama
 omnifunc
+onbuild
 orgtbl
 osascript
 osrelease

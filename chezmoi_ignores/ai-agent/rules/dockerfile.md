@@ -1,6 +1,5 @@
 # Building best practices
 
-
 ## Use multi-stage builds
 
 Multi-stage builds let you reduce the size of your final image, by creating a
@@ -360,8 +359,7 @@ For more information about `RUN`, see [Dockerfile reference for the RUN instruct
 #### apt-get
 
 One common use case for `RUN` instructions in Debian-based images is to install
-software using `apt-get`. Because `apt-get` installs packages, the `RUN
-apt-get` command has several counter-intuitive behaviors to look out for.
+software using `apt-get`. Because `apt-get` installs packages, the `RUN apt-get` command has several counter-intuitive behaviors to look out for.
 
 Always combine `RUN apt-get update` with `apt-get install` in the same `RUN`
 statement. For example:
@@ -439,8 +437,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ```
 
 The `s3cmd` argument specifies a version `1.1.*`. If the image previously
-used an older version, specifying the new one causes a cache bust of `apt-get
-update` and ensures the installation of the new version. Listing packages on
+used an older version, specifying the new one causes a cache bust of `apt-get update` and ensures the installation of the new version. Listing packages on
 each line can also prevent mistakes in package duplication.
 
 In addition, when you clean up the apt cache by removing `/var/lib/apt/lists` it
@@ -488,13 +485,11 @@ RUN set -o pipefail && wget -O - https://some.site | wc -l > /number
 The `CMD` instruction should be used to run the software contained in your
 image, along with any arguments. `CMD` should almost always be used in the form
 of `CMD ["executable", "param1", "param2"]`. Thus, if the image is for a
-service, such as Apache and Rails, you would run something like `CMD
-["apache2","-DFOREGROUND"]`. Indeed, this form of the instruction is recommended
+service, such as Apache and Rails, you would run something like `CMD ["apache2","-DFOREGROUND"]`. Indeed, this form of the instruction is recommended
 for any service-based image.
 
 In most other cases, `CMD` should be given an interactive shell, such as bash,
-Python and perl. For example, `CMD ["perl", "-de0"]`, `CMD ["python"]`, or `CMD
-["php", "-a"]`. Using this form means that when you execute something like
+Python and perl. For example, `CMD ["perl", "-de0"]`, `CMD ["python"]`, or `CMD ["php", "-a"]`. Using this form means that when you execute something like
 `docker run -it python`, you窶冤l get dropped into a usable shell, ready to go.
 `CMD` should rarely be used in the manner of `CMD ["param", "param"]` in
 conjunction with [`ENTRYPOINT`](/reference/dockerfile/#entrypoint), unless
@@ -767,13 +762,13 @@ RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres
 > Go archive/tar package's handling of sparse files, attempting to create a user
 > with a significantly large UID inside a Docker container can lead to disk
 > exhaustion because `/var/log/faillog` in the container layer is filled with
-> NULL (\0) characters. A workaround is to pass the `--no-log-init` flag to
+> NULL (\\0) characters. A workaround is to pass the `--no-log-init` flag to
 > `useradd`. The Debian/Ubuntu `adduser` wrapper does not support this flag.
 
 Avoid installing or using `sudo` as it has unpredictable TTY and
 signal-forwarding behavior that can cause problems. If you absolutely need
 functionality similar to `sudo`, such as initializing the daemon as `root` but
-running it as non-`root`, consider using [窶徃osu窶拆(https://github.com/tianon/gosu).
+running it as non-`root`, consider using \[窶徃osu窶拆(https://github.com/tianon/gosu).
 
 Lastly, to reduce layers and complexity, avoid switching `USER` back and forth
 frequently.
@@ -813,5 +808,3 @@ added. Adding a separate tag, as recommended above, helps mitigate this by
 allowing the Dockerfile author to make a choice.
 
 For more information about `ONBUILD`, see [Dockerfile reference for the ONBUILD instruction](/reference/dockerfile/#onbuild).
-
-

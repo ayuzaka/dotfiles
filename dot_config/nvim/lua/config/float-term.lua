@@ -84,3 +84,7 @@ local open_tmux_session = function()
 end
 
 vim.keymap.set({ "n", "t" }, "<C-\\>", open_tmux_session, { silent = true, desc = "Toggle floating tmux session" })
+
+vim.api.nvim_create_user_command("FloatTerm", open_tmux_session, {
+  desc = "Toggle floating tmux session",
+})

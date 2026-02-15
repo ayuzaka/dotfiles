@@ -79,7 +79,20 @@
         "hooks": [
           {
             "type": "command",
-            "command": "agent-slack-log"
+            "command": "agent-slack-log",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-slack-log",
+            "async": true
           }
         ]
       }

@@ -67,15 +67,18 @@ local open_tmux_session = function()
   else
     term_buf = vim.api.nvim_create_buf(false, true)
     term_win = open_float_win(term_buf)
-    vim.fn.termopen("tmux new-session -A -s " .. vim.fn.shellescape(session_name), {
-      on_exit = function()
-        if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-          vim.api.nvim_buf_delete(term_buf, { force = true })
-        end
-        term_buf = nil
-        term_win = nil
-      end,
-    })
+    vim.api.nvim_buf_call(term_buf, function()
+      vim.fn.jobstart("tmux new-session -A -s " .. vim.fn.shellescape(session_name), {
+        term = true,
+        on_exit = function()
+          if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+            vim.api.nvim_buf_delete(term_buf, { force = true })
+          end
+          term_buf = nil
+          term_win = nil
+        end,
+      })
+    end)
     vim.cmd("startinsert")
   end
 end

@@ -30,6 +30,7 @@ Research the industry-standard approach to this problem use it to guide yours
 * Start by writing a failing test that defines a small increment of functionality
 * Use meaningful test names that describe behavior (e.g., "shouldSumTwoPositiveNumbers")
 * Make test failures clear and informative
+* In test code, add explicit `// Arrange`, `// Act`, and `// Assert` comments to clarify AAA structure
 * Write just enough code to make the test pass - no more
 * Once tests pass, consider if refactoring is needed
 * Repeat the cycle for new functionality

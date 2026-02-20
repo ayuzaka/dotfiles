@@ -34,5 +34,9 @@
   {
     "name": "Search RFC",
     "link": "https://www.rfc-editor.org/rfc/rfc{argument name=\"query\"}"
+  },
+  {
+    "name": "Search npm",
+    "link": "https://npmx.dev/search?q=\"query\""
   }
 ]

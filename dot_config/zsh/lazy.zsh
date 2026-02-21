@@ -88,6 +88,8 @@ opr() {
     op run --env-file="$PWD"/.env -- "$@"
   elif [[ -f "$PWD/.env.local" ]]; then
     op run --env-file="$PWD"/.env.local -- "$@"
+  elif [[ -f "$XDG_CONFIG_HOME/op/.env" ]]; then
+    op run --env-file="$XDG_CONFIG_HOME"/op/.env -- "$@"
   else
     "$@"
   fi

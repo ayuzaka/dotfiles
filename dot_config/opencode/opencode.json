@@ -35,5 +35,8 @@
       "*.env.*.example": "allow"
     }
   },
-  "mcp": {}
+  "mcp": {},
+  "tools": {
+    "web_search": false
+  }
 }

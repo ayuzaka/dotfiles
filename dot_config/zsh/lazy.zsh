@@ -107,6 +107,7 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 
 _zoxide_cache="$XDG_CACHE_HOME/zsh/zoxide.zsh"
 _lazy_zsh="$XDG_CONFIG_HOME/zsh/lazy.zsh"
+[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
 if [[ ! -r "$_zoxide_cache" || "$_lazy_zsh" -nt "$_zoxide_cache" ]]; then
   zoxide init zsh >| "$_zoxide_cache"
 fi

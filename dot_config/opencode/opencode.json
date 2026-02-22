@@ -17,6 +17,8 @@
       "lsd": "allow",
       "which": "allow",
       "touch": "allow",
+      "echo": "allow",
+      "sort": "allow",
       "wc": "allow",
       "ghq *": "allow"
     },

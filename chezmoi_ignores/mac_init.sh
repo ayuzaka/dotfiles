@@ -16,3 +16,18 @@ defaults write com.apple.dashboard mcx-disabled -bool true
 
 # .DS_Store ファイルを作らない
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Dock を右側に配置
+defaults write com.apple.dock orientation -string right
+
+# Dock のサイズを小さくする
+defaults write com.apple.dock tilesize -int 16
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Dock からアプリを削除
+defaults write com.apple.dock persistent-apps -array
+
+# Dock の設定を反映
+killall Dock

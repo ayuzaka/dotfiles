@@ -37,6 +37,6 @@
   },
   {
     "name": "Search npm",
-    "link": "https://npmx.dev/search?q=\"query\""
+    "link": "https://npmx.dev/search?q={argument name=\"query\"}"
   }
 ]

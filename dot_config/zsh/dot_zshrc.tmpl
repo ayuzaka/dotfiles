@@ -76,7 +76,13 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export TERMINFO="$XDG_DATA_HOME"/terminfo
-export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+
+typeset -a terminfo_dirs
+terminfo_dirs=("$XDG_DATA_HOME/terminfo" "/usr/share/terminfo")
+[[ -d /Applications/Ghostty.app/Contents/Resources/terminfo ]] && terminfo_dirs+=("/Applications/Ghostty.app/Contents/Resources/terminfo")
+[[ -d /opt/homebrew/share/terminfo ]] && terminfo_dirs+=("/opt/homebrew/share/terminfo")
+export TERMINFO_DIRS="${(j/:/)terminfo_dirs}"
+
 export MANPAGER="col -b -x|nvim -R -c 'set ft=man nolist nomod noma' -"
 export MINIKUBE_HOME="$XDG_DATA_HOME"/minikube
 

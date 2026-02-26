@@ -231,7 +231,7 @@ if [[ -f "$XDG_CONFIG_HOME/fzf/fzf.zsh" ]]; then
 fi
 
 zsh-defer -c 'eval "$(~/.local/bin/mise activate zsh)"'
-zsh-defer -c 'eval "$(direnv hook zsh)"'
+eval "$(direnv hook zsh)"
 zsh-defer -c 'eval "$(git wt --init zsh)"'
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/git-commands.zsh
 zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh

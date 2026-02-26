@@ -18,14 +18,6 @@ defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.zeno-zsh]
-github = "yuki-yano/zeno.zsh"
-apply = ["defer"]
-
-[plugins.fast-syntax-highlighting]
-github = "zdharma-continuum/fast-syntax-highlighting"
-apply = ["defer"]
-
 [plugins.powerlevel10k]
 github = "romkatv/powerlevel10k"
 

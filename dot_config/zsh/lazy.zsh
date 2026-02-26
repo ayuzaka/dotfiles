@@ -43,27 +43,6 @@ if is-at-least 4.3.11; then
   zstyle ':completion:*' recent-dirs-insert both
 fi
 
-# zeno.zsh
-export ZENO_HOME="$XDG_CONFIG_HOME/zeno"
-
-if [[ -n $ZENO_LOADED ]]; then
-  bindkey ' ' zeno-auto-snippet
-
-  # fallback if snippet not matched (default: self-insert)
-  # export ZENO_AUTO_SNIPPET_FALLBACK=self-insert
-
-  # if you use zsh's incremental search
-  # bindkey -M isearch ' ' self-insert
-
-  bindkey '^m' zeno-auto-snippet-and-accept-line
-
-  bindkey '^i' zeno-completion
-
-  # fallback if completion not matched
-  # (default: fzf-completion if exists; otherwise expand-or-complete)
-  # export ZENO_COMPLETION_FALLBACK=expand-or-complete
-fi
-
 # ni.zsh
 export NI_USE_SOCKET_FIREWALL=1
 

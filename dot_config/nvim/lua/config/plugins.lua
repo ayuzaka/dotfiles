@@ -30,6 +30,7 @@ require("lazy").setup({
     event = "BufReadPost",
     config = function() require("plugins.gitsigns") end
   },
+  { "rhysd/conflict-marker.vim", event = { "BufReadPost", "BufNewFile" } },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "nvim-lualine/lualine.nvim",

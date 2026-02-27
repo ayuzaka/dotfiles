@@ -2,8 +2,7 @@
 # zeno.zsh の completion 相当機能を純粋な zsh + fzf で実装
 #
 # ルールは fzf-comp.yaml に記述する。
-# 起動時は YAML → zsh スクリプトのコンパイル結果をキャッシュするため、
-# ルール変更時のみ Python3 が走り、通常起動のコストは mtime 比較のみ。
+# 起動時に純粋な zsh で読み込むため、外部ツール不要・キャッシュ不要。
 
 typeset -ga _FZF_COMP_PATTERNS=()
 typeset -ga _FZF_COMP_COMMANDS=()
@@ -48,43 +47,17 @@ bindkey -M viins '^I' _fzf_complete
 bindkey -M emacs  '^I' _fzf_complete
 
 # ---------------------------------------------------------------------------
-# YAML ルールのロード（変更時のみコンパイル、通常は生成済みキャッシュを使用）
+# fzf-comp.yaml をパースしてルールを登録（純粋な zsh、外部コマンド不要）
 # ---------------------------------------------------------------------------
 () {
   local yaml="${ZDOTDIR:-$HOME/.config/zsh}/fzf-comp.yaml"
-  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/fzf-comp.zsh"
+  [[ ! -f "$yaml" ]] && return
 
-  # YAML が存在しキャッシュより新しい場合のみ再コンパイル
-  if [[ -f "$yaml" ]] && { [[ ! -f "$cache" ]] || [[ "$yaml" -nt "$cache" ]] }; then
-    mkdir -p "${cache:h}"
-    python3 - "$yaml" "$cache" <<'PYTHON'
-import sys
-
-try:
-    import yaml
-except ImportError:
-    print("fzf-comp: PyYAML が見つかりません。pip3 install pyyaml でインストールしてください", file=sys.stderr)
-    sys.exit(1)
-
-
-def zsh_sq(s):
-    """zsh のシングルクォート安全文字列に変換する"""
-    return "'" + s.replace("'", "'\\''") + "'"
-
-
-try:
-    with open(sys.argv[1]) as f:
-        rules = yaml.safe_load(f)
-
-    with open(sys.argv[2], "w") as f:
-        f.write("# auto-generated from fzf-comp.yaml — do not edit directly\n")
-        for rule in rules:
-            f.write(f"_fzf_comp_add {zsh_sq(rule['pattern'])} {zsh_sq(rule['command'])}\n")
-except Exception as e:
-    print(f"fzf-comp: {e}", file=sys.stderr)
-    sys.exit(1)
-PYTHON
-  fi
-
-  [[ -f "$cache" ]] && source "$cache"
+  local line current_pattern
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    case "$line" in
+      'pattern: '*)  current_pattern="${line#pattern: }" ;;
+      'command: '*)  _fzf_comp_add "$current_pattern" "${line#command: }" ;;
+    esac
+  done < "$yaml"
 }

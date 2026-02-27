@@ -1,0 +1,68 @@
+# fzf completion rules
+# pattern : LBUFFER に照合する拡張正規表現 (ERE)
+# command : 候補生成・fzf・出力加工を含む完全なパイプライン
+#           _fzf_run を fzf の代わりに使うと共通オプションとプロンプトが付く
+#           $1 や ' など、シェルエスケープは不要
+
+# --- tmux ---
+- pattern: "^tmux (a|attach) -t( .*)? $"
+  command: "tmux ls | _fzf_run | awk -F ':' '{print $1}'"
+
+- pattern: "^tmux kill-session -t( .*)? $"
+  command: "tmux ls | _fzf_run | awk -F ':' '{print $1}'"
+
+- pattern: "^tmux send-keys -t( .*)? $"
+  command: "tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{session_name}:#{window_name} [#{pane_current_command}]' | _fzf_run | awk '{print $1}'"
+
+# --- npm / yarn / pnpm / bun / ni ---
+- pattern: "^(npm|yarn|pnpm|bun|ni) run( .*)? $"
+  command: "jq -r '.scripts | to_entries | .[] | .key + \" = \" + .value' package.json | _fzf_run | awk -F ' = ' '{print $1}'"
+
+# --- deno ---
+- pattern: "^deno task( .*)? $"
+  command: "jq -r '.tasks | to_entries | .[] | .key + \" = \" + .value' deno.jsonc | _fzf_run | awk -F ' = ' '{print $1}'"
+
+# --- act ---
+- pattern: "^act --job( .*)?$"
+  command: "act --list 2>/dev/null | grep -v Stage | awk '{print $2}' | _fzf_run"
+
+# --- ssh / scp ---
+- pattern: "^ssh( .*)? $"
+  command: "cat $HOME/.ssh/*.conf 2>/dev/null | grep '^Host' | awk '{print $2}' | _fzf_run"
+
+- pattern: "^scp( .*)? $"
+  command: "cat $HOME/.ssh/*.conf 2>/dev/null | grep '^Host' | awk '{print $2}' | _fzf_run"
+
+# --- gcloud ---
+- pattern: "^gcloud config configurations activate( .*)?$"
+  command: "gcloud config configurations list --format 'value(name)' | _fzf_run"
+
+# --- git ---
+- pattern: "^git switch( .*)? $"
+  command: "git for-each-ref --format='%(refname:short) - %(contents:subject)' refs/heads/ | _fzf_run | awk '{print $1}'"
+
+- pattern: "^git wt?( )$"
+  command: "git wt 2>/dev/null | grep -v -F -e '*' -e 'BRANCH' | awk '{print $2}' | _fzf_run"
+
+- pattern: "^git wt -(d|D)( .*)? $"
+  command: "git wt 2>/dev/null | grep -v -F -e '*' -e 'BRANCH' | awk '{print $2}' | _fzf_run"
+
+- pattern: "^git branch -d( .*)? $"
+  command: "git for-each-ref --format='%(refname:short)' refs/heads --merged | grep -v -x -F -e develop -e main -e master -e \"$(git symbolic-ref --short HEAD 2>/dev/null)\" | _fzf_run"
+
+# --- GitHub CLI ---
+- pattern: "^gh issue edit( .*)? $"
+  command: "gh issue list --assignee @me --state open --limit 1000 | _fzf_run | awk '{print $1}'"
+
+- pattern: "^gh pr checkout( .*)? $"
+  command: "gh pr list --json number,title,author --jq '.[] | [(.number | tostring), .title, .author.login] | join(\",\")' | _fzf_run | awk -F ',' '{print $1}'"
+
+# --- docker ---
+- pattern: "^docker (container exec( -it)?|exec|container stop)( .*)? $"
+  command: "docker container ls --format '{{.Names}}' | _fzf_run"
+
+- pattern: "^docker container rm( .*)? $"
+  command: "docker container ls -a --format '{{.Names}}' | _fzf_run"
+
+- pattern: "^docker image rm( .*)? $"
+  command: "docker image ls --format '{{.Repository}}:{{.Tag}}:{{.ID}}' | _fzf_run | awk -F ':' '{print $3}'"

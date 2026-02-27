@@ -6,7 +6,7 @@
 #
 #   pattern  : LBUFFER にマッチさせる ERE 正規表現
 #   source   : fzf に渡す候補を生成するシェルコマンド（eval される）
-#   prompt   : fzf のプロンプト文字列
+#   prompt   : fzf のプロンプト文字列（$lbuf を含めると LBUFFER の内容が展開される）
 #   callback : fzf の出力を加工するコマンド（省略時はそのまま）
 #
 # 新しいルールを追加したい場合は _fzf_comp_add を呼ぶだけでよい。
@@ -39,7 +39,7 @@ _fzf_complete() {
       local result
       result=$(
         eval "${_FZF_COMP_SOURCES[$i]}" 2>/dev/null \
-          | fzf --height 80% --border --prompt="${_FZF_COMP_PROMPTS[$i]}" \
+          | fzf --height 80% --border --prompt="${(e)_FZF_COMP_PROMPTS[$i]}" \
           | eval "${_FZF_COMP_CALLBACKS[$i]}"
       )
       if [[ -n "$result" ]]; then

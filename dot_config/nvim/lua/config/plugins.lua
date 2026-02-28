@@ -80,6 +80,7 @@ require("lazy").setup({
   { "godlygeek/tabular" },
   { "preservim/vim-markdown", ft = "markdown" },
   { "imsnif/kdl.vim",         ft = "kdl" },
+  { "arto-app/arto.vim" },
   {
     "3rd/image.nvim",
     event = "VeryLazy",

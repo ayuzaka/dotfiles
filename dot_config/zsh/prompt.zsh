@@ -22,36 +22,64 @@ typeset -g _git_prompt_fd=-1
 
 # バックグラウンドで実行: git ステータス文字列を stdout に出力して終了する
 _git_prompt_compute() {
-  # ブランチ名を取得。detached HEAD の場合は短縮コミットハッシュを使う
-  local branch
-  branch=$(git symbolic-ref --short HEAD 2>/dev/null) \
-    || branch=$(git rev-parse --short HEAD 2>/dev/null) \
-    || { print -r -- ""; return }
+  local branch='' oid='' has_upstream=0
+  local staged=0 unstaged=0 untracked=0 conflicts=0
+  local ahead=0 behind=0
+  local line
 
-  # `git status --porcelain` の各行を解析してカウントする
-  # 行の 1 文字目 (x) = インデックス状態、2 文字目 (y) = 作業ツリー状態
-  local staged=0 unstaged=0 untracked=0 conflicts=0 line x y
-  while IFS= read -r line; do
-    x="${line[1]}" y="${line[2]}"
-    if   [[ $x == '?' && $y == '?' ]]; then ((untracked++))
-    elif [[ $x == 'U' || $y == 'U' || ($x == 'A' && $y == 'A') || ($x == 'D' && $y == 'D') ]]; then ((conflicts++))
-    else
-      [[ $x != ' ' ]] && ((staged++))
-      [[ $y != ' ' ]] && ((unstaged++))
-    fi
-  done < <(git --no-optional-locks status --porcelain 2>/dev/null)
+  # `--porcelain=v2 --branch` の 1 回の呼び出しでブランチ・upstream・ahead/behind・
+  # 作業ツリー状態を全て取得 (旧実装の git 7 呼び出しを 1 回に集約)
   # --no-optional-locks: FETCH_HEAD 等の任意ロック取得を省略して高速化
+  while IFS= read -r line; do
+    case $line in
+      '# branch.oid '*)
+        # コミットハッシュ (detached HEAD 時にブランチ名として使用)
+        oid="${line#\# branch.oid }"
+        ;;
+      '# branch.head '*)
+        # ブランチ名。detached HEAD 時は "(detached)" という文字列になる
+        branch="${line#\# branch.head }"
+        [[ $branch == '(detached)' ]] && branch=''
+        ;;
+      '# branch.upstream '*)
+        has_upstream=1
+        ;;
+      '# branch.ab '*)
+        # "+N -M" 形式: ahead/behind のコミット数
+        local ab="${line#\# branch.ab }"
+        ahead="${${ab%% *}#+}"  # "+3 -2" → "3"
+        behind="${ab##* -}"     # "+3 -2" → "2"
+        ;;
+      '1 '* | '2 '*)
+        # 通常変更・リネーム/コピー行: 3文字目 = index 状態、4文字目 = worktree 状態
+        # porcelain v2 では変更なしを '.' で表す (v1 はスペース)
+        [[ ${line[3]} != '.' ]] && ((staged++))
+        [[ ${line[4]} != '.' ]] && ((unstaged++))
+        ;;
+      'u '*)
+        # unmerged (コンフリクト)
+        ((conflicts++))
+        ;;
+      '? '*)
+        ((untracked++))
+        ;;
+    esac
+  done < <(git --no-optional-locks status --porcelain=v2 --branch 2>/dev/null)
 
-  local stash=0
-  stash=$(git stash list 2>/dev/null | wc -l)
-
-  # upstream が設定されている場合のみ ahead/behind を計算
-  local ahead=0 behind=0 tracking
-  tracking=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
-  if [[ -n $tracking ]]; then
-    ahead=$(git rev-list --count @{u}..HEAD 2>/dev/null)
-    behind=$(git rev-list --count HEAD..@{u} 2>/dev/null)
+  # ブランチ名が空 = detached HEAD → oid 先頭 7 文字を使用
+  if [[ -z $branch ]]; then
+    [[ -z $oid || $oid == '(initial)' ]] && { print -r -- ""; return }
+    branch="${oid[1,7]}"
   fi
+
+  # upstream なしなら ahead/behind を非表示
+  (( has_upstream == 0 )) && ahead=0 && behind=0
+
+  # stash 数: wc -l を使わず純粋 zsh でカウント
+  # (git worktree 対応のため logs/refs/stash 直読みではなく git stash list を維持)
+  local _stash_out stash=0
+  _stash_out=$(git stash list 2>/dev/null)
+  [[ -n $_stash_out ]] && stash=${#${(f)_stash_out}}
 
   # PROMPT_SUBST で展開される %F{color}...%f 形式の文字列を組み立てる
   local out=" %F{cyan} ${branch}%f"

@@ -17,7 +17,7 @@ _fzf_comp_add() {
 # 一貫したオプションと LBUFFER ベースのプロンプトを提供する。
 # $lbuf は _fzf_complete の local 変数で、動的スコープにより参照できる。
 _fzf_run() {
-  fzf --height 80% --border --prompt="${lbuf}> "
+  fzf --height 80% --border --prompt="${lbuf}> " "$@"
 }
 
 # ---------------------------------------------------------------------------

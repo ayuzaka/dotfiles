@@ -39,7 +39,7 @@ command: gcloud config configurations list --format 'value(name)' | _fzf_run
 
 # --- git ---
 pattern: ^git rebase( .*)? $
-command: git for-each-ref --format='%(refname:short)' refs/heads/ refs/tags/ | _fzf_run
+command: git for-each-ref --format='%(refname:short)' refs/heads/ refs/tags/ | _fzf_run --header 'ctrl-b: branches/tags  ctrl-l: commits' --bind 'ctrl-l:reload(git log --format="%h  %s" --color=never)+change-header(commits  ctrl-b: branches/tags)' --bind 'ctrl-b:reload(git for-each-ref --format="%(refname:short)" refs/heads/ refs/tags/)+change-header(branches/tags  ctrl-l: commits)' | awk '{print $1}'
 
 pattern: ^git switch( .*)? $
 command: git for-each-ref --format='%(refname:short) - %(contents:subject)' refs/heads/ | _fzf_run | awk '{print $1}'

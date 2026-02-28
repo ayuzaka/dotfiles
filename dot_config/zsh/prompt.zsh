@@ -9,6 +9,7 @@
 # 【表示内容】
 #   %~                カレントディレクトリ (ホームは ~ に省略)
 #    ブランチ名      git ブランチ (detached HEAD 時はコミットハッシュ)
+#   rebase-i N/M      進行中のアクション種別と進行状況 (rebase-i/rebase/merge 等)
 #   ~N                コンフリクト数
 #   ✚N                staged (インデックスに追加済みの変更) 数
 #   !N                unstaged (作業ツリーの変更) 数
@@ -22,6 +23,7 @@ typeset -g _git_prompt_fd=-1
 
 # バックグラウンドで実行: git ステータス文字列を stdout に出力して終了する
 _git_prompt_compute() {
+  local git_dir=$1
   local branch='' oid='' has_upstream=0
   local staged=0 unstaged=0 untracked=0 conflicts=0
   local ahead=0 behind=0
@@ -81,8 +83,38 @@ _git_prompt_compute() {
   _stash_out=$(git stash list 2>/dev/null)
   [[ -n $_stash_out ]] && stash=${#${(f)_stash_out}}
 
+  # アクション状態と進行状況を git 内部ファイルから読み取る (subprocess 不要)
+  local action='' step='' total=''
+  if [[ -d "$git_dir/rebase-merge" ]]; then
+    step=$(<"$git_dir/rebase-merge/msgnum" 2>/dev/null)
+    total=$(<"$git_dir/rebase-merge/end" 2>/dev/null)
+    if [[ -f "$git_dir/rebase-merge/interactive" ]]; then
+      action="rebase-i"
+    else
+      action="rebase-m"
+    fi
+  elif [[ -d "$git_dir/rebase-apply" ]]; then
+    step=$(<"$git_dir/rebase-apply/next" 2>/dev/null)
+    total=$(<"$git_dir/rebase-apply/last" 2>/dev/null)
+    if [[ -f "$git_dir/rebase-apply/rebasing" ]]; then
+      action="rebase"
+    elif [[ -f "$git_dir/rebase-apply/applying" ]]; then
+      action="am"
+    else
+      action="rebase/am"
+    fi
+  elif [[ -f "$git_dir/MERGE_HEAD" ]];       then action="merge"
+  elif [[ -f "$git_dir/CHERRY_PICK_HEAD" ]]; then action="cherry-pick"
+  elif [[ -f "$git_dir/REVERT_HEAD" ]];      then action="revert"
+  elif [[ -f "$git_dir/BISECT_LOG" ]];       then action="bisect"
+  fi
+
   # PROMPT_SUBST で展開される %F{color}...%f 形式の文字列を組み立てる
   local out=" %F{cyan} ${branch}%f"
+  if [[ -n $action ]]; then
+    out+=" %F{yellow}${action}%f"
+    [[ -n $step && -n $total ]] && out+=" %F{yellow}${step}/${total}%f"
+  fi
   ((conflicts > 0)) && out+=" %F{red}~${conflicts}%f"
   ((staged > 0))    && out+=" %F{yellow}✚${staged}%f"
   ((unstaged > 0))  && out+=" %F{red}!${unstaged}%f"
@@ -118,13 +150,11 @@ _git_prompt_precmd() {
   fi
 
   # git リポジトリ外なら即座にクリアして終了
-  if ! git rev-parse --git-dir &>/dev/null; then
-    _PROMPT_GIT=""
-    return
-  fi
+  local git_dir
+  git_dir=$(git rev-parse --git-dir 2>/dev/null) || { _PROMPT_GIT=""; return }
 
-  # バックグラウンドプロセスを起動し fd を登録
-  exec {_git_prompt_fd}< <(_git_prompt_compute)
+  # git_dir をアクション検出に使うため引数として渡す
+  exec {_git_prompt_fd}< <(_git_prompt_compute "$git_dir")
   zle -F $_git_prompt_fd _git_prompt_callback
 }
 

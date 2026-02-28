@@ -133,7 +133,6 @@ add-zsh-hook precmd _git_prompt_precmd
 
 # PROMPT_SUBST: プロンプト文字列内の ${...} や %(...) を毎回展開する
 setopt PROMPT_SUBST
-# 1行目: %~ = カレントディレクトリ, ${_PROMPT_GIT} = git ステータス (非同期で更新)
-# 2行目: %(?.ok.fail) = 直前コマンドの終了コードで色を切り替えた ❯
-PROMPT='%F{31}%~%f${_PROMPT_GIT}
-%(?.%F{76}❯%f.%F{196}❯%f) '
+# %~ = カレントディレクトリ, ${_PROMPT_GIT} = git ステータス (非同期で更新)
+# %(?.ok.fail) = 直前コマンドの終了コードで色を切り替えた ❯
+PROMPT='%F{31}%~%f${_PROMPT_GIT} %(?.%F{76}❯%f.%F{196}❯%f) '

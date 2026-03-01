@@ -17,6 +17,3 @@ defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source 
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
-
-[plugins.ni]
-github = "azu/ni.zsh"

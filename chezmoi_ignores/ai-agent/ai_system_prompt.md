@@ -7,11 +7,6 @@ I'll handle the file deletion, so please provide a list of files to be deleted a
 
 Always prefer simplicity over pathological correctness. YAGNI, KISS, DRY. No backward-compat shims or fallback paths unless they come free without adding cyclomatic complexity.
 
-## Skills
-
-Before proceeding with any task, invoke the `find-skills` skill to scan for available skills. If any are found, prioritize their use over other actions.
-During task execution, if you detect opportunities to create skills, proactively suggest them to the user.
-
 ## Research
 
 Research the industry-standard approach to this problem use it to guide yours

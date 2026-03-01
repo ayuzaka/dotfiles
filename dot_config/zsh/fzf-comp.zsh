@@ -67,8 +67,15 @@ bindkey -M emacs  '^I' _fzf_complete
   local line current_pattern
   while IFS= read -r line || [[ -n "$line" ]]; do
     case "$line" in
-      'pattern: '*)  current_pattern="${line#pattern: }" ;;
-      'command: '*)  _fzf_comp_add "$current_pattern" "${line#command: }" ;;
+      '- pattern: '*|'pattern: '*)
+        current_pattern="${line#- pattern: }"
+        current_pattern="${current_pattern#pattern: }"
+        ;;
+      '  command: '*|'command: '*)
+        local current_command="${line#  command: }"
+        current_command="${current_command#command: }"
+        _fzf_comp_add "$current_pattern" "$current_command"
+        ;;
     esac
   done < "$yaml"
 }

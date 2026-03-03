@@ -23,12 +23,18 @@ _fzf_run() {
 # ブランチ・タグ・コミットを切り替えながら選択するヘルパー。
 # git rebase / git checkout など複数のルールから共有する。
 _fzf_git_ref() {
-  git for-each-ref --format='%(refname:short)' refs/heads/ refs/tags/ \
+  local ref escaped_ref
+  ref=$(
+    git for-each-ref --format='%(refname:short)' refs/heads/ refs/tags/ \
     | _fzf_run \
         --header 'ctrl-b: branches/tags  ctrl-l: commits' \
         --bind 'ctrl-l:reload(git log --format="%h  %s" --color=never)+change-header(commits  ctrl-b: branches/tags)' \
         --bind 'ctrl-b:reload(git for-each-ref --format="%(refname:short)" refs/heads/ refs/tags/)+change-header(branches/tags  ctrl-l: commits)' \
     | awk '{print $1}'
+  )
+
+  escaped_ref="${ref//\'/\'\\\'\'}"
+  printf "'%s'\n" "$escaped_ref"
 }
 
 # ---------------------------------------------------------------------------

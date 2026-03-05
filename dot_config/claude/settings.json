@@ -102,5 +102,8 @@
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true
   },
-  "autoUpdates": false
+  "autoUpdates": false,
+  "env": {
+    "ENABLE_TOOL_SEARCH": "1"
+  }
 }

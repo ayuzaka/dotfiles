@@ -51,8 +51,8 @@ mkdir -p "$HOME/.config/skk" && curl -fL "https://skk-dev.github.io/dict/SKK-JIS
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [user]
-  email = ayuzaka.f@gmail.com
-  name = ayuzaka
+  email = 
+  name =
   signingkey = ssh-xxxx
 ```
 

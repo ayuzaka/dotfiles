@@ -18,6 +18,10 @@
 - pattern: ^(npm|yarn|pnpm|bun|ni) run( .*)? $
   command: jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json | _fzf_run | awk -F ' = ' '{print $1}'
 
+# --- make ---
+- pattern: ^make( .*)? $
+  command: awk '/^\.PHONY:/ {for (i = 2; i <= NF; i++) {print $i}}' Makefile | sort -u | _fzf_run
+
 # --- deno ---
 - pattern: ^deno task( .*)? $
   command: jq -r '.tasks | to_entries | .[] | .key + " = " + .value' deno.jsonc | _fzf_run | awk -F ' = ' '{print $1}'

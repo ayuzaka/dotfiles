@@ -206,6 +206,7 @@ _fzf_complete() {
   for (( i = 1; i <= n; i++ )); do
     if [[ "$match_lbuf" =~ ${_FZF_COMP_PATTERNS[$i]} ]]; then
       local result
+      zle -I
       result=$(eval "${_FZF_COMP_COMMANDS[$i]}" 2>/dev/null)
       if [[ -n "$result" ]]; then
         LBUFFER+="${result} "

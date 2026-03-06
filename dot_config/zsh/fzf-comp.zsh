@@ -217,6 +217,11 @@ _fzf_complete() {
   local match_lbuf="$lbuf"
   local i n="${#_FZF_COMP_PATTERNS[@]}"
 
+  # ;, |, & などで連結された場合は、最後のコマンド断片だけを対象にする。
+  match_lbuf="${match_lbuf##*[;&|]}"
+  # 断片先頭の空白を除去する。
+  match_lbuf="${match_lbuf#"${match_lbuf%%[![:space:]]*}"}"
+
   # 先頭に付与された環境変数代入（KEY=VALUE）を取り除いてマッチ判定する。
   # 例: COPYFILE_DISABLE=1 yarn  -> yarn
   while [[ "$match_lbuf" =~ ^[A-Za-z_][A-Za-z0-9_]*=[^[:space:]]+[[:space:]]+.+$ ]]; do
@@ -224,20 +229,26 @@ _fzf_complete() {
   done
 
   for (( i = 1; i <= n; i++ )); do
-    if [[ "$match_lbuf" =~ ${_FZF_COMP_PATTERNS[$i]} ]]; then
-      local result
-      zle -I
-      result=$(eval "${_FZF_COMP_COMMANDS[$i]}" 2>/dev/null)
-      if [[ -n "$result" ]]; then
-        if [[ "$LBUFFER" == *" " ]]; then
-          LBUFFER+="${result} "
-        else
-          LBUFFER+=" ${result} "
+    local candidate="$match_lbuf"
+    while true; do
+      if [[ "$candidate" =~ ${_FZF_COMP_PATTERNS[$i]} ]]; then
+        local result
+        zle -I
+        result=$(eval "${_FZF_COMP_COMMANDS[$i]}" 2>/dev/null)
+        if [[ -n "$result" ]]; then
+          if [[ "$LBUFFER" == *" " ]]; then
+            LBUFFER+="${result} "
+          else
+            LBUFFER+=" ${result} "
+          fi
+          zle reset-prompt
         fi
-        zle reset-prompt
+        return
       fi
-      return
-    fi
+
+      [[ "$candidate" != *" "* ]] && break
+      candidate="${candidate#* }"
+    done
   done
 
   zle expand-or-complete

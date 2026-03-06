@@ -10,6 +10,7 @@ yarn-error.log*
 .pnp
 .pnp.*
 .pnpm-debug.log*
+.pnpm-store
 .next
 .nuxt
 .svelte-kit

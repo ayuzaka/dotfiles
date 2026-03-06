@@ -37,15 +37,174 @@ _fzf_git_ref() {
   printf "'%s'\n" "$escaped_ref"
 }
 
+# package.json の workspaces 設定から各 workspace の package.json を列挙する。
+_fzf_workspace_package_jsons() {
+  emulate -L zsh
+  setopt typeset_silent
+  unsetopt xtrace
+
+  local package_json="package.json"
+  [[ ! -f "$package_json" ]] && return 0
+
+  local -a workspace_globs workspace_package_jsons
+  workspace_globs=("${(@f)$(jq -r '
+    .workspaces as $w
+    | if ($w | type) == "array" then
+        $w[]
+      elif ($w | type) == "object" and ($w.packages | type) == "array" then
+        $w.packages[]
+      else
+        empty
+      end
+  ' "$package_json")}")
+
+  local workspace_glob
+  for workspace_glob in "${workspace_globs[@]}"; do
+    workspace_package_jsons+=(${~workspace_glob}/package.json(N))
+  done
+
+  print -r -l ${(u)workspace_package_jsons}
+}
+
+_fzf_root_scripts() {
+  emulate -L zsh
+  setopt typeset_silent
+  unsetopt xtrace
+
+  local package_json="package.json"
+  [[ ! -f "$package_json" ]] && return 0
+
+  jq -r '
+    (.scripts // {}) | to_entries[]?
+    | .key + " = root / " + .key + " = " + .value
+  ' "$package_json"
+}
+
+# run 系コマンド向けに、ルートと workspaces の scripts を候補化する。
+# 選択結果は `* run ...` の引数としてそのまま追記できる形式で返す。
+_fzf_workspace_run_target() {
+  emulate -L zsh
+  setopt typeset_silent
+  unsetopt xtrace
+
+  local root_prefix="$1"
+  local workspace_prefix_format="$2"
+  local include_root="$3"
+
+  local package_json="package.json"
+  [[ ! -f "$package_json" ]] && return 0
+
+  local candidates=""
+  if [[ "$include_root" == "1" ]]; then
+    local root_candidates
+    root_candidates=$(
+      jq -r --arg root_prefix "$root_prefix" '
+        (.scripts // {}) | to_entries[]?
+        | ($root_prefix + .key) + " = root / " + .key + " = " + .value
+      ' "$package_json"
+    )
+    candidates+="$root_candidates"$'\n'
+  fi
+
+  local -a workspace_package_jsons
+  workspace_package_jsons=("${(@f)$(_fzf_workspace_package_jsons)}")
+
+  local workspace_package
+  for workspace_package in "${workspace_package_jsons[@]}"; do
+    local workspace_name
+    workspace_name=$(jq -r '.name // empty' "$workspace_package")
+    [[ -z "$workspace_name" ]] && continue
+
+    local workspace_prefix
+    workspace_prefix=$(printf "$workspace_prefix_format" "$workspace_name")
+
+    local workspace_candidates
+    workspace_candidates=$(
+      jq -r --arg workspace_name "$workspace_name" --arg workspace_prefix "$workspace_prefix" '
+        (.scripts // {}) | to_entries[]?
+        | ($workspace_prefix + .key) + " = " + $workspace_name + " / " + .key + " = " + .value
+      ' "$workspace_package"
+    )
+    [[ -n "$workspace_candidates" ]] && candidates+="$workspace_candidates"$'\n'
+  done
+
+  printf '%s' "$candidates" \
+    | awk 'NF' \
+    | _fzf_run \
+    | awk -F ' = ' '{print $1}'
+}
+
+_fzf_root_run_target() {
+  emulate -L zsh
+  setopt typeset_silent
+  unsetopt xtrace
+
+  local script_prefix="$1"
+  _fzf_root_scripts \
+    | _fzf_run \
+    | awk -F ' = ' -v script_prefix="$script_prefix" '{print script_prefix $1}'
+}
+
+_fzf_npm_run_target() {
+  _fzf_workspace_run_target '' '-w %s ' 1
+}
+
+_fzf_npm_workspace_target() {
+  _fzf_workspace_run_target '' '%s run ' 0
+}
+
+_fzf_npm_root_target() {
+  _fzf_root_run_target 'run '
+}
+
+_fzf_pnpm_run_target() {
+  _fzf_workspace_run_target '' '--filter %s ' 1
+}
+
+_fzf_pnpm_filter_target() {
+  _fzf_workspace_run_target '' '%s run ' 0
+}
+
+_fzf_pnpm_root_target() {
+  _fzf_root_run_target ''
+}
+
+_fzf_bun_run_target() {
+  _fzf_workspace_run_target '' '--filter %s ' 1
+}
+
+_fzf_bun_filter_target() {
+  _fzf_workspace_run_target '' '%s run ' 0
+}
+
+_fzf_bun_root_target() {
+  _fzf_root_run_target 'run '
+}
+
+_fzf_yarn_workspace_run_target() {
+  _fzf_workspace_run_target '' '%s run ' 0
+}
+
+_fzf_yarn_root_target() {
+  _fzf_root_run_target ''
+}
+
 # ---------------------------------------------------------------------------
 # ウィジェット本体
 # ---------------------------------------------------------------------------
 _fzf_complete() {
   local lbuf="$LBUFFER"
+  local match_lbuf="$lbuf"
   local i n="${#_FZF_COMP_PATTERNS[@]}"
 
+  # 先頭に付与された環境変数代入（KEY=VALUE）を取り除いてマッチ判定する。
+  # 例: COPYFILE_DISABLE=1 yarn  -> yarn
+  while [[ "$match_lbuf" =~ ^[A-Za-z_][A-Za-z0-9_]*=[^[:space:]]+[[:space:]]+.+$ ]]; do
+    match_lbuf="${match_lbuf#* }"
+  done
+
   for (( i = 1; i <= n; i++ )); do
-    if [[ "$lbuf" =~ ${_FZF_COMP_PATTERNS[$i]} ]]; then
+    if [[ "$match_lbuf" =~ ${_FZF_COMP_PATTERNS[$i]} ]]; then
       local result
       result=$(eval "${_FZF_COMP_COMMANDS[$i]}" 2>/dev/null)
       if [[ -n "$result" ]]; then

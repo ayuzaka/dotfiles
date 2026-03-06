@@ -14,9 +14,42 @@
 - pattern: ^tmux send-keys -t( .*)? $
   command: tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{session_name}:#{window_name} [#{pane_current_command}]' | _fzf_run | awk '{print $1}'
 
-# --- npm / yarn / pnpm / bun / ni ---
-- pattern: ^(npm|yarn|pnpm|bun|ni) run( .*)? $
-  command: jq -r '.scripts | to_entries | .[] | .key + " = " + .value' package.json | _fzf_run | awk -F ' = ' '{print $1}'
+# --- npm / yarn / pnpm / bun ---
+- pattern: ^npm run( .*)? $
+  command: _fzf_npm_run_target
+
+- pattern: ^npm workspace( .*)? $
+  command: _fzf_npm_workspace_target
+
+- pattern: ^npm( .*)? $
+  command: _fzf_npm_root_target
+
+- pattern: ^pnpm run( .*)? $
+  command: _fzf_pnpm_run_target
+
+- pattern: ^pnpm --filter( .*)? $
+  command: _fzf_pnpm_filter_target
+
+- pattern: ^pnpm( .*)? $
+  command: _fzf_pnpm_root_target
+
+- pattern: ^bun run( .*)? $
+  command: _fzf_bun_run_target
+
+- pattern: ^bun --filter( .*)? $
+  command: _fzf_bun_filter_target
+
+- pattern: ^bun( .*)? $
+  command: _fzf_bun_root_target
+
+- pattern: ^yarn run( .*)? $
+  command: _fzf_yarn_root_target
+
+- pattern: ^yarn workspace( .*)? $
+  command: _fzf_yarn_workspace_run_target
+
+- pattern: ^yarn( .*)? $
+  command: _fzf_yarn_root_target
 
 # --- make ---
 - pattern: ^make( .*)? $

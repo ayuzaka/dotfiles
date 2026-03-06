@@ -37,26 +37,48 @@ _fzf_git_ref() {
   printf "'%s'\n" "$escaped_ref"
 }
 
-# package.json の workspaces 設定から各 workspace の package.json を列挙する。
+# package.json の workspaces 設定と pnpm-workspace.yaml から
+# 各 workspace の package.json を列挙する。
 _fzf_workspace_package_jsons() {
   emulate -L zsh
   setopt typeset_silent
   unsetopt xtrace
 
-  local package_json="package.json"
-  [[ ! -f "$package_json" ]] && return 0
-
   local -a workspace_globs workspace_package_jsons
-  workspace_globs=("${(@f)$(jq -r '
-    .workspaces as $w
-    | if ($w | type) == "array" then
-        $w[]
-      elif ($w | type) == "object" and ($w.packages | type) == "array" then
-        $w.packages[]
-      else
-        empty
-      end
-  ' "$package_json")}")
+
+  local package_json="package.json"
+  if [[ -f "$package_json" ]]; then
+    workspace_globs+=("${(@f)$(jq -r '
+      .workspaces as $w
+      | if ($w | type) == "array" then
+          $w[]
+        elif ($w | type) == "object" and ($w.packages | type) == "array" then
+          $w.packages[]
+        else
+          empty
+        end
+    ' "$package_json")}")
+  fi
+
+  local pnpm_workspace_yaml="pnpm-workspace.yaml"
+  if [[ -f "$pnpm_workspace_yaml" ]]; then
+    workspace_globs+=("${(@f)$(awk '
+      /^packages:[[:space:]]*$/ {
+        in_packages = 1
+        next
+      }
+      in_packages == 1 && /^[^[:space:]-]/ {
+        in_packages = 0
+      }
+      in_packages == 1 && /^[[:space:]]*-[[:space:]]*/ {
+        line = $0
+        sub(/^[[:space:]]*-[[:space:]]*/, "", line)
+        sub(/^["\047]/, "", line)
+        sub(/["\047]$/, "", line)
+        print line
+      }
+    ' "$pnpm_workspace_yaml")}")
+  fi
 
   local workspace_glob
   for workspace_glob in "${workspace_globs[@]}"; do
@@ -65,7 +87,6 @@ _fzf_workspace_package_jsons() {
 
   print -r -l ${(u)workspace_package_jsons}
 }
-
 _fzf_root_scripts() {
   emulate -L zsh
   setopt typeset_silent
@@ -91,11 +112,11 @@ _fzf_workspace_run_target() {
   local workspace_prefix_format="$2"
   local include_root="$3"
 
-  local package_json="package.json"
-  [[ ! -f "$package_json" ]] && return 0
-
   local candidates=""
   if [[ "$include_root" == "1" ]]; then
+    local package_json="package.json"
+    [[ ! -f "$package_json" ]] && return 0
+
     local root_candidates
     root_candidates=$(
       jq -r --arg root_prefix "$root_prefix" '
@@ -133,7 +154,6 @@ _fzf_workspace_run_target() {
     | _fzf_run \
     | awk -F ' = ' '{print $1}'
 }
-
 _fzf_root_run_target() {
   emulate -L zsh
   setopt typeset_silent
@@ -209,7 +229,11 @@ _fzf_complete() {
       zle -I
       result=$(eval "${_FZF_COMP_COMMANDS[$i]}" 2>/dev/null)
       if [[ -n "$result" ]]; then
-        LBUFFER+="${result} "
+        if [[ "$LBUFFER" == *" " ]]; then
+          LBUFFER+="${result} "
+        else
+          LBUFFER+=" ${result} "
+        fi
         zle reset-prompt
       fi
       return

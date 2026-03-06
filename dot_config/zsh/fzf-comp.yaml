@@ -27,7 +27,7 @@
 - pattern: ^pnpm run( .*)? $
   command: _fzf_pnpm_run_target
 
-- pattern: ^pnpm --filter( .*)? $
+- pattern: ^pnpm --filter( .*)?$
   command: _fzf_pnpm_filter_target
 
 - pattern: ^pnpm( .*)? $
@@ -36,7 +36,7 @@
 - pattern: ^bun run( .*)? $
   command: _fzf_bun_run_target
 
-- pattern: ^bun --filter( .*)? $
+- pattern: ^bun --filter( .*)?$
   command: _fzf_bun_filter_target
 
 - pattern: ^bun( .*)? $

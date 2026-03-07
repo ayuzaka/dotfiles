@@ -106,5 +106,9 @@
   "autoUpdates": false,
   "env": {
     "ENABLE_TOOL_SEARCH": "1"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "$HOME/.config/claude/statusline-command.sh"
   }
 }

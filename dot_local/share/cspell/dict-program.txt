@@ -143,6 +143,7 @@ jsonls
 kaku
 keyof
 knex
+knip
 kogito
 kubecolor
 kubecontext
@@ -259,6 +260,7 @@ psql
 pulumi
 pumvisible
 pushd
+pycache
 pyenv
 pygments
 pylsp

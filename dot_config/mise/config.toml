@@ -49,9 +49,7 @@ opencode = "latest"
 "go:github.com/k1LoW/git-wt" = "latest"
 "go:github.com/ayuzaka/sqls" = "ayuzaka"
 "pipx:python-lsp-server" = "latest"
-"pipx:markitdown" = { version = "latest", extras = "all" }
 "pipx:plamo-translate" = "latest"
-"pipx:markitdown-mcp" = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 "pipx:mdformat" = { version = "latest", uvx_args = "--with mdformat-frontmatter" }
 "pipx:pdfplumber" = "latest"

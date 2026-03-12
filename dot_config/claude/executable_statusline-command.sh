@@ -24,8 +24,10 @@ get_usage_data() {
     current_time=$(date +%s)
     [ $((current_time - mod_time)) -lt $CACHE_TTL ] && { cat "$CACHE_FILE"; return; }
   fi
-  local credentials access_token response
-  credentials=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null) || return 1
+  local credentials access_token response service_name
+  service_name=$(security dump-keychain 2>/dev/null | grep -o '"Claude Code-credentials[^"]*"' | head -1 | tr -d '"')
+  [ -z "$service_name" ] && return 1
+  credentials=$(security find-generic-password -s "$service_name" -w 2>/dev/null) || return 1
   access_token=$(echo "$credentials" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
   [ -z "$access_token" ] && return 1
   response=$(curl -sf --max-time 5 \
@@ -38,14 +40,17 @@ get_usage_data() {
 
 format_reset_time() {
   local resets_at="$1"
-  local today reset_date reset_time display_date
+  local today reset_date reset_time display_date normalized_at
+  normalized_at="${resets_at%%.*}Z"
+  local epoch
+  epoch=$(TZ=UTC date -j -f "%Y-%m-%dT%H:%M:%SZ" "$normalized_at" "+%s" 2>/dev/null) || return
   today=$(TZ=Asia/Tokyo date "+%m/%d")
-  reset_date=$(TZ=Asia/Tokyo date -j -f "%Y-%m-%dT%H:%M:%SZ" "$resets_at" "+%m/%d" 2>/dev/null) || return
-  reset_time=$(TZ=Asia/Tokyo date -j -f "%Y-%m-%dT%H:%M:%SZ" "$resets_at" "+%H:%M" 2>/dev/null)
+  reset_date=$(TZ=Asia/Tokyo date -r "$epoch" "+%m/%d" 2>/dev/null) || return
+  reset_time=$(TZ=Asia/Tokyo date -r "$epoch" "+%H:%M" 2>/dev/null)
   if [ "$today" = "$reset_date" ]; then
     echo "(🔄 ${reset_time})"
   else
-    display_date=$(echo "$reset_date" | sed 's|^0||')
+    display_date="${reset_date#0}"
     echo "(🔄 ${display_date} ${reset_time})"
   fi
 }
@@ -70,8 +75,8 @@ printf "%s🤖 %s%s %s│%s %s📊 %s%%%s %s│%s ✏️  +%s/-%s %s│%s 🌿 %
 
 usage_data=$(get_usage_data 2>/dev/null)
 if [ -n "$usage_data" ]; then
-  five_h=$(echo "$usage_data" | jq -r '.five_hour.utilization // 0')
-  seven_d=$(echo "$usage_data" | jq -r '.seven_day.utilization // 0')
+  five_h=$(echo "$usage_data" | jq -r '.five_hour.utilization // 0' | xargs printf "%.0f")
+  seven_d=$(echo "$usage_data" | jq -r '.seven_day.utilization // 0' | xargs printf "%.0f")
   five_h_resets=$(echo "$usage_data" | jq -r '.five_hour.resets_at // ""')
   seven_d_resets=$(echo "$usage_data" | jq -r '.seven_day.resets_at // ""')
   five_h_reset_str=$(format_reset_time "$five_h_resets")

@@ -13,7 +13,8 @@ ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 # Remove .git-wt and everything after it (for git worktree directories)
 ROOT=${ROOT%%/.git-wt/*}
 
-WS=${ROOT#"$HOME"/github/}
+WS=${ROOT#"$HOME"/workspace/}
+WS=${WS#github.com/}
 WIN_ID=$(wezterm cli list --format json | jq -r --arg ws "$WS" '.[] | select(.workspace == $ws) | .window_id' | head -1)
 
 if [ -n "$WIN_ID" ]; then

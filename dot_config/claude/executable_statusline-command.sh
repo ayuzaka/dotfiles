@@ -120,7 +120,7 @@ if [ -n "$usage_data" ]; then
   seven_d_reset_str=$(format_reset_time "$seven_d_resets")
   five_h_color=$(get_color "$five_h")
   seven_d_color=$(get_color "$seven_d")
-  printf " %s│%s %s5h: %s%%%s %s %s│%s %s7d: %s%%%s %s" \
+  printf " %s│%s %sCurrent session: %s%%%s %s %s│%s %sCurrent week: %s%%%s %s" \
     "$GRAY" "$RESET" \
     "$five_h_color" "$five_h" "$RESET" "$five_h_reset_str" \
     "$GRAY" "$RESET" \

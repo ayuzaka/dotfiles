@@ -1,0 +1,92 @@
+# XDG Base Directories
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_CONFIG_HOME $HOME/.config
+set -gx XDG_STATE_HOME $HOME/.local/state
+set -gx XDG_CACHE_HOME $HOME/.cache
+
+# Homebrew（macOS のみ）
+{{ if eq .chezmoi.os "darwin" -}}
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
+set -gx HOMEBREW_CASK_OPTS --appdir=/Applications
+{{ end -}}
+
+# PATH
+fish_add_path $HOME/bin
+fish_add_path $HOME/.local/bin
+{{ if eq .chezmoi.os "darwin" -}}
+fish_add_path /Applications/MacVim.app/Contents/bin
+{{ end -}}
+fish_add_path $HOME/.local/share/mise/shims
+
+# Cargo / Rust
+set -gx CARGO_HOME $XDG_DATA_HOME/cargo
+set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
+fish_add_path $CARGO_HOME/bin
+
+# Go
+set -gx GOPATH $XDG_DATA_HOME/go
+fish_add_path $GOPATH/bin
+
+# Bun
+set -gx BUN_INSTALL $HOME/.bun
+fish_add_path $BUN_INSTALL/bin
+
+# Deno
+set -gx DENO_INSTALL $HOME/.deno
+set -gx DENO_NO_UPDATE_CHECK 1
+fish_add_path $DENO_INSTALL/bin
+
+# npm（XDG）
+set -gx NPM_CONFIG_PREFIX $XDG_DATA_HOME/npm
+fish_add_path $XDG_DATA_HOME/npm/bin
+
+# Python
+set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/pythonrc
+
+# Haskell / ghcup（XDG）
+set -gx GHCUP_USE_XDG_DIRS true
+set -gx CABAL_CONFIG $XDG_CONFIG_HOME/cabal/config
+set -gx CABAL_DIR $XDG_DATA_HOME/cabal
+set -gx STACK_ROOT $XDG_DATA_HOME/stack
+fish_add_path $XDG_DATA_HOME/ghcup/bin
+fish_add_path $XDG_DATA_HOME/cabal/bin
+
+# Moonbit
+fish_add_path $HOME/.moon/bin
+
+# TERMINFO_DIRS
+set -gx TERMINFO $XDG_DATA_HOME/terminfo
+set -gx TERMINFO_DIRS $XDG_DATA_HOME/terminfo /usr/share/terminfo
+{{ if eq .chezmoi.os "darwin" -}}
+if test -d /Applications/Ghostty.app/Contents/Resources/terminfo
+    set -gx TERMINFO_DIRS $TERMINFO_DIRS /Applications/Ghostty.app/Contents/Resources/terminfo
+end
+if test -d /opt/homebrew/share/terminfo
+    set -gx TERMINFO_DIRS $TERMINFO_DIRS /opt/homebrew/share/terminfo
+end
+{{ end -}}
+
+# その他環境変数
+set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/.ripgreprc
+set -gx AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
+set -gx AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
+set -gx LESSHISTFILE $XDG_STATE_HOME/less/history
+set -gx NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
+set -gx ANDROID_HOME $XDG_DATA_HOME/android
+set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
+set -gx MINIKUBE_HOME $XDG_DATA_HOME/minikube
+set -gx EDITOR nvim
+set -gx MANPAGER "col -b -x|nvim -R -c 'set ft=man nolist nomod noma' -"
+set -gx RSYNC_RSH ssh
+set -gx GIBO_BOILERPLATES $XDG_CONFIG_HOME/gibo/gitignore-boilerplates
+set -gx PUB_CACHE $XDG_CONFIG_HOME/dart/pub-cache
+set -gx NI_USE_SOCKET_FIREWALL 1
+set -gx WASMTIME_HOME $XDG_DATA_HOME/wasmtime
+fish_add_path $WASMTIME_HOME/bin
+set -gx CLAUDE_CONFIG_DIR $XDG_CONFIG_HOME/claude
+set -gx CODEX_HOME $XDG_CONFIG_HOME/codex
+{{ if eq .chezmoi.os "darwin" -}}
+fish_add_path /opt/homebrew/Cellar/icu4c/74.2/bin
+{{ end -}}

@@ -1,14 +1,6 @@
 # setup for Mac
 
-## 1. `/etc/zshenv` の変更
-
-```sh
-echo 'ZDOTDIR=$HOME/.config/zsh' | sudo tee /etc/zshenv > /dev/null
-```
-
-参考：[A Users' Guid to the Z-Shell](https://zsh.sourceforge.io/Guide/zshguide02.html#l6)
-
-## 2. Homebrew のインストール
+## 1. Homebrew のインストール
 
 公式サイトからインストール
 
@@ -26,9 +18,21 @@ chezmoi init https://github.com/ayuzaka/dotfiles.git --apply
 ## Homebrew で管理しているツールのインストール
 
 ```sh
-# ~/.Brefile からインストール
+# ~/.Brewfile からインストール
 brew bundle --global
 ```
+
+## fish をデフォルトシェルに設定
+
+```sh
+# fish を許可済みシェルに追加
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+
+# デフォルトシェルを変更
+chsh -s /opt/homebrew/bin/fish
+```
+
+ターミナルを再起動すると fish が起動する。
 
 ## 1Password
 

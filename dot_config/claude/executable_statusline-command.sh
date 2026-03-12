@@ -18,22 +18,59 @@ get_color() {
 }
 
 get_usage_data() {
+  local cached_data=""
   if [ -f "$CACHE_FILE" ]; then
     local mod_time current_time
+    cached_data=$(cat "$CACHE_FILE" 2>/dev/null || true)
     mod_time=$(stat -f %m "$CACHE_FILE" 2>/dev/null)
     current_time=$(date +%s)
-    [ $((current_time - mod_time)) -lt $CACHE_TTL ] && { cat "$CACHE_FILE"; return; }
+    [ $((current_time - mod_time)) -lt $CACHE_TTL ] && {
+      [ -n "$cached_data" ] && printf '%s\n' "$cached_data"
+      return
+    }
   fi
+
   local credentials access_token response service_name
-  service_name=$(security dump-keychain 2>/dev/null | grep -o '"Claude Code-credentials[^"]*"' | head -1 | tr -d '"')
-  [ -z "$service_name" ] && return 1
-  credentials=$(security find-generic-password -s "$service_name" -w 2>/dev/null) || return 1
-  access_token=$(echo "$credentials" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
-  [ -z "$access_token" ] && return 1
+  local -a service_candidates=(
+    "Claude Code-credentials"
+    "Claude Code credentials"
+  )
+
+  for service_name in "${service_candidates[@]}"; do
+    credentials=$(security find-generic-password -s "$service_name" -w 2>/dev/null) || continue
+    access_token=$(echo "$credentials" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+    [ -n "$access_token" ] && break
+  done
+
+  if [ -z "$access_token" ]; then
+    while IFS= read -r service_name; do
+      credentials=$(security find-generic-password -s "$service_name" -w 2>/dev/null) || continue
+      access_token=$(echo "$credentials" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+      [ -n "$access_token" ] && break
+    done < <(
+      security dump-keychain 2>/dev/null \
+        | grep -Eo '"[^"]+"' \
+        | tr -d '"' \
+        | grep -Ei 'claude.*credential|credential.*claude' \
+        | sort -u
+    )
+  fi
+
+  if [ -z "$access_token" ]; then
+    [ -n "$cached_data" ] && { printf '%s\n' "$cached_data"; return; }
+    return 1
+  fi
+
   response=$(curl -sf --max-time 5 \
     -H "Authorization: Bearer ${access_token}" \
     -H "anthropic-beta: oauth-2025-04-20" \
     "https://api.anthropic.com/api/oauth/usage" 2>/dev/null) || return 1
+
+  echo "$response" | jq -e '.five_hour.utilization, .seven_day.utilization' >/dev/null 2>&1 || {
+    [ -n "$cached_data" ] && { printf '%s\n' "$cached_data"; return; }
+    return 1
+  }
+
   echo "$response" > "$CACHE_FILE"
   echo "$response"
 }

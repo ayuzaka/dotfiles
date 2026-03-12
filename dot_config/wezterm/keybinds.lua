@@ -199,7 +199,7 @@ local config = {
         if not root_handle then
           return
         end
-        local ghq_root = root_handle:read('*l') or (wezterm.home_dir .. '/github')
+        local ghq_root = root_handle:read('*l') or (wezterm.home_dir .. '/workspace')
         root_handle:close()
 
         local handle = io.popen('zsh -ic "ghq list"')
@@ -211,20 +211,24 @@ local config = {
 
         local choices = {}
         for line in stdout:gmatch('[^\n]+') do
-          table.insert(choices, { label = line })
+          local ws_name = line:match('([^/]+/[^/]+)$') or line
+          table.insert(choices, {
+            id = line,
+            label = ws_name,
+          })
         end
 
         window:perform_action(act.InputSelector {
           title = 'Select ghq project',
           choices = choices,
           fuzzy = true,
-          action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
-            if not label then
+          action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
+            local repo = id or label
+            if not repo then
               return
             end
-            -- github.com/org/repo -> org/repo (extract last two segments)
-            local ws_name = label:match('([^/]+/[^/]+)$') or label
-            local project_path = ghq_root .. '/' .. label
+            local ws_name = label or (repo:match('([^/]+/[^/]+)$') or repo)
+            local project_path = ghq_root .. '/' .. repo
             inner_window:perform_action(act.SwitchToWorkspace {
               name = ws_name,
               spawn = { cwd = project_path }

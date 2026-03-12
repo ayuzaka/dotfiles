@@ -43,7 +43,7 @@
   tab-size = 4
 [ghq]
   vcs = git
-  root = ~/github
+  root = ~/workspace
 [wt]
   basedir = .git-wt
   nocd = create

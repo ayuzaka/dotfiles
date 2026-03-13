@@ -48,6 +48,7 @@ opencode = "latest"
 "go:github.com/mattn/efm-langserver" = "latest"
 "go:github.com/k1LoW/git-wt" = "latest"
 "go:github.com/ayuzaka/sqls" = "ayuzaka"
+"go:github.com/rhysd/actionlint/cmd/actionlint" = "latest"
 "pipx:python-lsp-server" = "latest"
 "pipx:plamo-translate" = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }

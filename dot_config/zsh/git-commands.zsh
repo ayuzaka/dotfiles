@@ -10,7 +10,7 @@ function git_quicksave() {
 
 function cd_ghq() {
   local ghq_root=$(ghq root)
-  local project_dir=$(ghq list | fzf --preview "bat $ghq_root/{}/README.md")
+  local project_dir=$(ghq list | fzf --delimiter "/" --with-nth "2.." --preview "bat $ghq_root/{}/README.md")
   if [ "$project_dir" = "" ];then
     return 0
   fi

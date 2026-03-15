@@ -1,42 +1,33 @@
 local utils = require("config.utils")
 
-local function url_encode(value)
-  return (value:gsub("([^%w%-_%.~])", function(char)
-    return string.format("%%%02X", string.byte(char))
-  end))
-end
-
-local function get_search_query(opts)
-  local search_query
-
-  if opts.range > 0 then
-    search_query = utils.get_visual_query_text()
-  else
-    local line = vim.api.nvim_get_current_line()
-    local col = vim.api.nvim_win_get_cursor(0)[2] + 1
-    search_query = utils.get_quoted_text_under_cursor(line, col)
-  end
-
-  if not search_query or search_query == "" then
-    vim.notify("Could not determine npm search query", vim.log.levels.WARN)
-    return nil
-  end
-
-  return search_query
-end
-
 local function open_npmx(opts)
-  local search_query = get_search_query(opts)
+  local search_query = utils.resolve_search_query(opts, {
+    empty_message = "Could not determine npm search query",
+    get_fallback_query = function()
+      local line = vim.api.nvim_get_current_line()
+      local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+      return utils.get_quoted_text_under_cursor(line, col)
+    end,
+  })
+
   if not search_query then
     return
   end
 
-  local url = "https://npmx.dev/" .. url_encode(search_query)
+  local url = "https://npmx.dev/" .. utils.url_encode(search_query)
   vim.ui.open(url)
 end
 
 local function open_npm_browser_command(subcommand, opts)
-  local search_query = get_search_query(opts)
+  local search_query = utils.resolve_search_query(opts, {
+    empty_message = "Could not determine npm search query",
+    get_fallback_query = function()
+      local line = vim.api.nvim_get_current_line()
+      local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+      return utils.get_quoted_text_under_cursor(line, col)
+    end,
+  })
+
   if not search_query then
     return
   end

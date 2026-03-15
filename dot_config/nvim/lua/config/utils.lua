@@ -75,6 +75,97 @@ local function normalize_query_text(text)
   return table.concat(terms, " ")
 end
 
+local function is_escaped(line, index)
+  local backslash_count = 0
+  local cursor = index - 1
+
+  while cursor >= 1 and line:sub(cursor, cursor) == "\\" do
+    backslash_count = backslash_count + 1
+    cursor = cursor - 1
+  end
+
+  return backslash_count % 2 == 1
+end
+
+local function get_enclosed_text_under_cursor(line, col)
+  local delimiters = {
+    ["'"] = { close = "'", kind = "quote" },
+    ['"'] = { close = '"', kind = "quote" },
+    ["`"] = { close = "`", kind = "quote" },
+    ["("] = { close = ")", kind = "pair" },
+    ["["] = { close = "]", kind = "pair" },
+    ["{"] = { close = "}", kind = "pair" },
+    ["<"] = { close = ">", kind = "pair" },
+  }
+  local closing_to_opening = {
+    [")"] = "(",
+    ["]"] = "[",
+    ["}"] = "{",
+    [">"] = "<",
+  }
+  local candidates = {}
+  local stack = {}
+  local index = 1
+  local line_length = #line
+
+  while index <= line_length do
+    local char = line:sub(index, index)
+    local current = stack[#stack]
+
+    if current and current.kind == "quote" then
+      if char == current.close and not is_escaped(line, index) then
+        table.insert(candidates, {
+          start_col = current.start_col,
+          end_col = index,
+        })
+        table.remove(stack)
+      end
+    else
+      local delimiter = delimiters[char]
+      if delimiter then
+        table.insert(stack, {
+          close = delimiter.close,
+          kind = delimiter.kind,
+          open = char,
+          start_col = index,
+        })
+      elseif closing_to_opening[char] then
+        local expected_open = closing_to_opening[char]
+        if current and current.kind == "pair" and current.open == expected_open then
+          table.insert(candidates, {
+            start_col = current.start_col,
+            end_col = index,
+          })
+          table.remove(stack)
+        end
+      end
+    end
+
+    index = index + 1
+  end
+
+  local best_match = nil
+  for _, candidate in ipairs(candidates) do
+    if col >= candidate.start_col and col <= candidate.end_col then
+      if not best_match then
+        best_match = candidate
+      else
+        local candidate_width = candidate.end_col - candidate.start_col
+        local best_width = best_match.end_col - best_match.start_col
+        if candidate_width < best_width then
+          best_match = candidate
+        end
+      end
+    end
+  end
+
+  if not best_match then
+    return nil
+  end
+
+  return line:sub(best_match.start_col + 1, best_match.end_col - 1)
+end
+
 M.get_visual_text = function()
   return get_visual_text_internal({ block_mode = "legacy" })
 end
@@ -84,39 +175,43 @@ M.get_visual_query_text = function()
   return normalize_query_text(text)
 end
 
+M.url_encode = function(value)
+  return (value:gsub("([^%w%-_%.~])", function(char)
+    return string.format("%%%02X", string.byte(char))
+  end))
+end
+
 M.get_quoted_text_under_cursor = function(line, col)
-  local start_col = nil
-  local quote_char = nil
-  local index = 1
-  local line_length = #line
+  return get_enclosed_text_under_cursor(line, col)
+end
 
-  while index <= line_length do
-    local char = line:sub(index, index)
-
-    if not quote_char and (char == '"' or char == "'") then
-      start_col = index
-      quote_char = char
-    elseif quote_char and char == quote_char then
-      local backslash_count = 0
-      local cursor = index - 1
-      while cursor >= 1 and line:sub(cursor, cursor) == "\\" do
-        backslash_count = backslash_count + 1
-        cursor = cursor - 1
-      end
-
-      if backslash_count % 2 == 0 then
-        local end_col = index
-        if col >= start_col and col <= end_col then
-          return line:sub(start_col + 1, end_col - 1)
-        end
-        start_col = nil
-        quote_char = nil
-      end
+M.resolve_search_query = function(opts, options)
+  if opts.range > 0 then
+    local visual_query = M.get_visual_query_text()
+    if visual_query ~= "" then
+      return visual_query
     end
-
-    index = index + 1
   end
 
+  if opts.args and opts.args ~= "" then
+    return table.concat(opts.fargs, " ")
+  end
+
+  if options.get_fallback_query then
+    local fallback_query = options.get_fallback_query()
+    if fallback_query and fallback_query ~= "" then
+      return fallback_query
+    end
+  end
+
+  if options.prompt then
+    local input_query = vim.trim(vim.fn.input(options.prompt))
+    if input_query ~= "" then
+      return input_query
+    end
+  end
+
+  vim.notify(options.empty_message or "Search query is empty", vim.log.levels.WARN)
   return nil
 end
 

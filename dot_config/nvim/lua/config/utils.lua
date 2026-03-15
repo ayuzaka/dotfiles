@@ -185,6 +185,23 @@ M.get_quoted_text_under_cursor = function(line, col)
   return get_enclosed_text_under_cursor(line, col)
 end
 
+M.get_diagnostic_namespace_name = function(diagnostic)
+  if type(diagnostic.namespace) ~= "number" then
+    return nil
+  end
+
+  local ok, namespace = pcall(vim.diagnostic.get_namespace, diagnostic.namespace)
+  if not ok or type(namespace) ~= "table" then
+    return nil
+  end
+
+  if type(namespace.name) ~= "string" or namespace.name == "" then
+    return nil
+  end
+
+  return namespace.name
+end
+
 M.resolve_search_query = function(opts, options)
   if opts.range > 0 then
     local visual_query = M.get_visual_query_text()

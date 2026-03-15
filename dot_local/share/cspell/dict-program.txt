@@ -180,6 +180,7 @@ libxrender
 libxss
 libxtst
 linehl
+lnum
 lrange
 lscolors
 lspconfig

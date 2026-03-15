@@ -6,8 +6,8 @@ local function url_encode(value)
   end))
 end
 
-local function npm_search(opts)
-  local search_query = ""
+local function get_search_query(opts)
+  local search_query
 
   if opts.range > 0 then
     search_query = utils.get_visual_query_text()
@@ -19,6 +19,15 @@ local function npm_search(opts)
 
   if not search_query or search_query == "" then
     vim.notify("Could not determine npm search query", vim.log.levels.WARN)
+    return nil
+  end
+
+  return search_query
+end
+
+local function open_npmx(opts)
+  local search_query = get_search_query(opts)
+  if not search_query then
     return
   end
 
@@ -26,4 +35,24 @@ local function npm_search(opts)
   vim.ui.open(url)
 end
 
-vim.api.nvim_create_user_command("NpmSearch", npm_search, { range = true })
+local function open_npm_browser_command(subcommand, opts)
+  local search_query = get_search_query(opts)
+  if not search_query then
+    return
+  end
+
+  if vim.fn.executable("npm") ~= 1 then
+    vim.notify("npm not found", vim.log.levels.ERROR)
+    return
+  end
+
+  vim.fn.jobstart({ "npm", subcommand, search_query }, { detach = true })
+end
+
+vim.api.nvim_create_user_command("NpmxDev", open_npmx, { range = true })
+vim.api.nvim_create_user_command("NpmRepo", function(opts)
+  open_npm_browser_command("repo", opts)
+end, { range = true })
+vim.api.nvim_create_user_command("NpmDocs", function(opts)
+  open_npm_browser_command("docs", opts)
+end, { range = true })

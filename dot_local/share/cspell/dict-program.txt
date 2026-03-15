@@ -223,6 +223,7 @@ nosnakecase
 nospell
 noswapfile
 noto
+npmx
 nsleft
 nsright
 numhl
@@ -256,6 +257,7 @@ plpgsql
 pmbok
 popperjs
 posix
+println
 psql
 pulumi
 pumvisible
@@ -349,6 +351,7 @@ virt
 virttext
 virtualenv
 vite
+vitejs
 vitest
 vmap
 vnew

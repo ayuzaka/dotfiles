@@ -23,6 +23,7 @@ ZSH_ABBR_MAP=(
   gc 'git checkout'
   gch 'git rev-parse HEAD'
   gsave 'git_quicksave'
+  gh-pr-create 'gh_pr_create'
   gh-pr-me 'gh pr list --author "@me" --state all'
   gh-pr-search "gh pr list --state all --json number,title --jq \".[] | [.number,.title] | @csv\" --search \"__CURSOR__\" | fzf | awk -F ',' '{print \$1}' | xargs gh browse"
   ghe 'gh copilot explain "__CURSOR__"'

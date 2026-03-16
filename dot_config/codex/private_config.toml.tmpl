@@ -1,4 +1,4 @@
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "medium"
 cli_auth_credentials_store = "auto"
 notify = ["terminal-notifier", "-title", "🤖 Codex", "-message", "処理が完了しました", "-group", "codex-completion"]
@@ -11,7 +11,7 @@ skills = true
 multi_agent = true
 
 [tui]
-status_line = ["model-with-reasoning", "context-remaining", "model-name", "project-root", "git-branch", "five-hour-limit", "weekly-limit"]
+status_line = ["model-with-reasoning", "context-remaining", "model-name", "project-root", "git-branch", "context-used", "five-hour-limit", "weekly-limit"]
 
 
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

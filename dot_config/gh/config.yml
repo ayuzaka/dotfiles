@@ -9,6 +9,8 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
   co: pr checkout
+  pr-create: |
+    !f() { if [ -n "$BASE_BRANCH" ]; then gh pr create --base "$BASE_BRANCH" "$@"; else gh pr create "$@"; fi }; f "$@"
   openpr: |-
       !gh api graphql -F owner='{owner}' -F name='{repo}' -F id="$1" -f query='
       query($owner: String!, $name: String!, $id: GitObjectID!) { repository (owner: $owner, name: $name) { object (oid: $id) { ... on Commit { associatedPullRequests (first:1) { edges { node { number } } } } } } }

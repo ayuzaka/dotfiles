@@ -8,14 +8,6 @@ function git_quicksave() {
   git reset HEAD~
 }
 
-function gh_pr_create() {
-  if [[ -n "$BASE_BRANCH" ]]; then
-    gh pr create --base "$BASE_BRANCH" "$@"
-  else
-    gh pr create "$@"
-  fi
-}
-
 function cd_ghq() {
   local ghq_root=$(ghq root)
   local project_dir=$(ghq list | fzf --delimiter "/" --with-nth "2.." --preview "bat $ghq_root/{}/README.md")

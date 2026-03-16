@@ -20,12 +20,14 @@
 
 # バックグラウンドプロセスとの通信に使う fd。-1 = 未使用
 typeset -g _git_prompt_fd=-1
-# カレントディレクトリ表示用。worktree 配下では相対パスに切り替わる
+# カレントディレクトリ表示用。ghq root 配下では org/repo 形式、worktree 配下では相対パスに切り替わる
 typeset -g _PROMPT_PATH='%~'
+# worktree マーカー。worktree 配下では '[wt] '、それ以外は空文字
+typeset -g _PROMPT_WTM=''
 
 # バックグラウンドで実行: git ステータス文字列を stdout に出力して終了する
 _git_prompt_compute() {
-  local git_dir=$1 is_worktree=$2
+  local git_dir=$1
   local branch='' oid='' has_upstream=0
   local staged=0 unstaged=0 untracked=0 conflicts=0
   local ahead=0 behind=0
@@ -112,9 +114,7 @@ _git_prompt_compute() {
   fi
 
   # PROMPT_SUBST で展開される %F{color}...%f 形式の文字列を組み立てる
-  local wt_mark=''
-  (( is_worktree )) && wt_mark=' %F{magenta}[wt]%f'
-  local out="${wt_mark} %F{cyan} ${branch}%f"
+  local out=" %F{cyan} ${branch}%f"
   if [[ -n $action ]]; then
     out+=" %F{yellow}${action}%f"
     [[ -n $step && -n $total ]] && out+=" %F{yellow}${step}/${total}%f"
@@ -153,33 +153,64 @@ _git_prompt_precmd() {
     _git_prompt_fd=-1
   fi
 
-  # git リポジトリ外なら即座にクリアして終了
-  local git_dir
-  git_dir=$(git rev-parse --git-dir 2>/dev/null) || { _PROMPT_GIT=""; _PROMPT_PATH='%~'; return }
+  # パス表示を決定する (_GHQ_ROOT は初期化時にキャッシュ済み)
+  local git_dir toplevel
+  git_dir=$(git rev-parse --git-dir 2>/dev/null)
 
-  # worktree 判定: git-wt は basedir=.git-wt なので toplevel が /.git-wt/ を含む場合が worktree
-  local toplevel is_worktree=0
+  if [[ -z $git_dir ]]; then
+    # git リポジトリ外: ghq root 配下なら org/repo 形式、それ以外は %~
+    _PROMPT_GIT=""
+    _PROMPT_WTM=''
+    if [[ -n $_GHQ_ROOT && $PWD == $_GHQ_ROOT/* ]]; then
+      local ghq_rel="${PWD#$_GHQ_ROOT/}"
+      _PROMPT_PATH="${ghq_rel#*/}"  # host 部分を除去して org/repo/... 形式に
+    else
+      _PROMPT_PATH='%~'
+    fi
+    return
+  fi
+
   toplevel=$(git rev-parse --show-toplevel 2>/dev/null)
+
   if [[ $toplevel == */.git-wt/* ]]; then
-    is_worktree=1
-    local rel_path="${PWD#$toplevel}"
-    rel_path="${rel_path#/}"
-    [[ -z $rel_path ]] && rel_path='.'
-    _PROMPT_PATH="$rel_path"
+    # git-wt worktree: [wt] を左端に表示し org/repo + worktree 内相対パスを表示
+    _PROMPT_WTM='%F{magenta}[wt]%f '
+    local main_root="${toplevel%%/.git-wt/*}"
+    local ghq_rel="${main_root#$_GHQ_ROOT/}"
+    local org_repo="${ghq_rel#*/}"  # host 部分を除去して org/repo 形式に
+    local rel_path="${PWD#$toplevel/}"
+    if [[ $rel_path == $PWD ]]; then
+      # PWD == toplevel の場合 (worktree root にいる)
+      _PROMPT_PATH="${org_repo}"
+    else
+      _PROMPT_PATH="${org_repo}/${rel_path}"
+    fi
+  elif [[ -n $_GHQ_ROOT && $PWD == $_GHQ_ROOT/* ]]; then
+    # ghq root 配下の通常リポジトリ: org/repo/... 形式
+    _PROMPT_WTM=''
+    local ghq_rel="${PWD#$_GHQ_ROOT/}"
+    _PROMPT_PATH="${ghq_rel#*/}"  # host 部分を除去
   else
+    _PROMPT_WTM=''
     _PROMPT_PATH='%~'
   fi
 
-  # git_dir とworktree フラグをアクション検出・マーカー表示に使うため引数として渡す
-  exec {_git_prompt_fd}< <(_git_prompt_compute "$git_dir" "$is_worktree")
+  # git_dir をアクション検出に使うため引数として渡す
+  exec {_git_prompt_fd}< <(_git_prompt_compute "$git_dir")
   zle -F $_git_prompt_fd _git_prompt_callback
 }
 
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd _git_prompt_precmd
 
+# ghq root を一度だけ取得してキャッシュ (precmd のたびに呼ばないようにする)
+typeset -g _GHQ_ROOT
+_GHQ_ROOT=$(ghq root 2>/dev/null || true)
+
 # PROMPT_SUBST: プロンプト文字列内の ${...} や %(...) を毎回展開する
 setopt PROMPT_SUBST
-# %~ = カレントディレクトリ, ${_PROMPT_GIT} = git ステータス (非同期で更新)
-# %(?.ok.fail) = 直前コマンドの終了コードで色を切り替えた ❯
-PROMPT='%F{31}${_PROMPT_PATH}%f${_PROMPT_GIT} %(?.%F{76}❯%f.%F{196}❯%f) '
+# ${_PROMPT_WTM}    = worktree マーカー (非同期ではなく precmd で同期更新)
+# ${_PROMPT_PATH}   = パス表示 (ghq root 配下では org/repo 形式、worktree 配下では相対パス)
+# ${_PROMPT_GIT}    = git ステータス (非同期で更新)
+# %(?.ok.fail)      = 直前コマンドの終了コードで色を切り替えた ❯
+PROMPT='${_PROMPT_WTM}%F{31}${_PROMPT_PATH}%f${_PROMPT_GIT} %(?.%F{76}❯%f.%F{196}❯%f) '

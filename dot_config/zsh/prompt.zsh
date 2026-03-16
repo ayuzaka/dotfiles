@@ -20,10 +20,12 @@
 
 # バックグラウンドプロセスとの通信に使う fd。-1 = 未使用
 typeset -g _git_prompt_fd=-1
+# カレントディレクトリ表示用。worktree 配下では相対パスに切り替わる
+typeset -g _PROMPT_PATH='%~'
 
 # バックグラウンドで実行: git ステータス文字列を stdout に出力して終了する
 _git_prompt_compute() {
-  local git_dir=$1
+  local git_dir=$1 is_worktree=$2
   local branch='' oid='' has_upstream=0
   local staged=0 unstaged=0 untracked=0 conflicts=0
   local ahead=0 behind=0
@@ -110,7 +112,9 @@ _git_prompt_compute() {
   fi
 
   # PROMPT_SUBST で展開される %F{color}...%f 形式の文字列を組み立てる
-  local out=" %F{cyan} ${branch}%f"
+  local wt_mark=''
+  (( is_worktree )) && wt_mark=' %F{magenta}[wt]%f'
+  local out="${wt_mark} %F{cyan} ${branch}%f"
   if [[ -n $action ]]; then
     out+=" %F{yellow}${action}%f"
     [[ -n $step && -n $total ]] && out+=" %F{yellow}${step}/${total}%f"
@@ -151,10 +155,23 @@ _git_prompt_precmd() {
 
   # git リポジトリ外なら即座にクリアして終了
   local git_dir
-  git_dir=$(git rev-parse --git-dir 2>/dev/null) || { _PROMPT_GIT=""; return }
+  git_dir=$(git rev-parse --git-dir 2>/dev/null) || { _PROMPT_GIT=""; _PROMPT_PATH='%~'; return }
 
-  # git_dir をアクション検出に使うため引数として渡す
-  exec {_git_prompt_fd}< <(_git_prompt_compute "$git_dir")
+  # worktree 判定: git-wt は basedir=.git-wt なので toplevel が /.git-wt/ を含む場合が worktree
+  local toplevel is_worktree=0
+  toplevel=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ $toplevel == */.git-wt/* ]]; then
+    is_worktree=1
+    local rel_path="${PWD#$toplevel}"
+    rel_path="${rel_path#/}"
+    [[ -z $rel_path ]] && rel_path='.'
+    _PROMPT_PATH="$rel_path"
+  else
+    _PROMPT_PATH='%~'
+  fi
+
+  # git_dir とworktree フラグをアクション検出・マーカー表示に使うため引数として渡す
+  exec {_git_prompt_fd}< <(_git_prompt_compute "$git_dir" "$is_worktree")
   zle -F $_git_prompt_fd _git_prompt_callback
 }
 
@@ -165,4 +182,4 @@ add-zsh-hook precmd _git_prompt_precmd
 setopt PROMPT_SUBST
 # %~ = カレントディレクトリ, ${_PROMPT_GIT} = git ステータス (非同期で更新)
 # %(?.ok.fail) = 直前コマンドの終了コードで色を切り替えた ❯
-PROMPT='%F{31}%~%f${_PROMPT_GIT} %(?.%F{76}❯%f.%F{196}❯%f) '
+PROMPT='%F{31}${_PROMPT_PATH}%f${_PROMPT_GIT} %(?.%F{76}❯%f.%F{196}❯%f) '

@@ -7,7 +7,6 @@
       "Read(.env.example)",
       "Bash(cat:*)",
       "Bash(gemini:*)",
-      "Bash(grep:*)",
       "Bash(ls:*)",
       "Bash(npm run:lint)",
       "Bash(npm run:test)",

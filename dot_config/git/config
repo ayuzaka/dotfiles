@@ -51,4 +51,5 @@
   copy = .env.local
   copy = .envrc
   copy = .nvim.lua
+  copy = .claude/settings.local.json
   hook = ~/.local/bin/wt-open-tab || true

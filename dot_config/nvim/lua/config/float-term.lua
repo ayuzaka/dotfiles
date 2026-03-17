@@ -3,11 +3,11 @@ local term_win = nil
 
 local get_project_root_name = function()
   local cwd = vim.fn.getcwd()
-  local workspace = vim.fn.expand("~/github")
+  local workspace = vim.fn.expand("~/workspace/github.com")
   local name
 
   if vim.startswith(cwd, workspace .. "/") then
-    -- ~/github 配下の場合は相対パスを使用
+    -- workspace 配下の場合は相対パスを使用
     name = cwd:sub(#workspace + 2)
   else
     name = vim.fn.fnamemodify(cwd, ":t")

@@ -70,6 +70,10 @@
 - pattern: ^scp( .*)? $
   command: cat $HOME/.ssh/*.conf 2>/dev/null | grep '^Host' | awk '{print $2}' | _fzf_run
 
+# --- aws ---
+- pattern: ^aws sso login --profile( .*)?$
+  command: _fzf_aws_sso_profile
+
 # --- gcloud ---
 - pattern: ^gcloud config configurations activate( .*)?$
   command: gcloud config configurations list --format 'value(name)' | _fzf_run

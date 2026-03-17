@@ -6,6 +6,16 @@
 - Set a timeout for all workflows.
 - When using publicly exposed actions, please specify the commit hash of the latest available version
 
+最新ハッシュの取得手順:
+
+```sh
+# 1. 最新リリースのタグ名を確認する
+gh release list -R <owner>/<repo> --limit 1 --json tagName
+
+# 2. タグに対応するコミットハッシュを取得する（アノテーテッドタグにも対応）
+gh api repos/<owner>/<repo>/commits/<tagName> --jq '.sha'
+```
+
 Example:
 
 ```yaml

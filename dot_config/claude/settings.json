@@ -110,7 +110,8 @@
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "slack@claude-plugins-official": true
   },
   "autoUpdates": false,
   "env": {

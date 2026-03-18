@@ -17,10 +17,6 @@ Always make changes on the source side and apply them with `chezmoi apply`.
 |-----------------------|--------|
 | `dot_config/` | `~/.config/` |
 
-## Git Guidelines
-
-Write all commit messages in English.
-
 ## Testing Guidelines
 
 No tests are required for this project.

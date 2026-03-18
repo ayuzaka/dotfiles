@@ -1,26 +1,26 @@
 #!/bin/bash
-# grep → rg に変換（フラグはほぼ互換）
-# find → ブロック（fd はフラグ体系が異なるため手動で書き直す）
-# rm   → ブロック（trash はフラグ体系が異なるため手動で書き直す）
+# grep → rg (flags are mostly compatible)
+# find → block (fd has a different flag system, rewrite manually)
+# rm   → block (trash has a different flag system, rewrite manually)
 
 input=$(cat)
 cmd=$(echo "$input" | jq -r '.tool_input.command // empty')
 
 [ -z "$cmd" ] && exit 0
 
-# find はブロック
+# block find
 if echo "$cmd" | grep -qE '\bfind\b'; then
-  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"find は使用禁止です。fd を使って書き直してください。例: fd -e sh . (find . -name \"*.sh\" -type f の代わり)"}}'
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"find is not allowed. Use fd instead. Example: fd -e sh . (instead of find . -name \"*.sh\" -type f)"}}'
   exit 0
 fi
 
-# rm はブロック
+# block rm
 if echo "$cmd" | grep -qE '\brm\b'; then
-  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"rm は使用禁止です。trash を使って書き直してください。例: trash file.txt (rm file.txt の代わり)"}}'
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"rm is not allowed. Use trash instead. Example: trash file.txt (instead of rm file.txt)"}}'
   exit 0
 fi
 
-# grep → rg に変換
+# convert grep → rg
 new_cmd=$(echo "$cmd" | sed 's/\bgrep\b/rg/g')
 
 if [ "$cmd" != "$new_cmd" ]; then

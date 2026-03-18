@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "language": "japanese",
-  "plansDirectory": ".agents/plans",
+  "env": {
+    "ENABLE_TOOL_SEARCH": "1"
+  },
   "permissions": {
     "allow": [
       "Read(.env.example)",
@@ -107,18 +108,19 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "$HOME/.config/claude/statusline-command.sh"
+  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "slack@claude-plugins-official": true
+    "slack@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
   },
-  "autoUpdates": false,
-  "env": {
-    "ENABLE_TOOL_SEARCH": "1"
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "$HOME/.config/claude/statusline-command.sh"
-  }
+  "language": "japanese",
+  "plansDirectory": ".agents/plans",
+  "autoUpdates": false
 }
+

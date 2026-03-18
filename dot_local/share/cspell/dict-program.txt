@@ -127,6 +127,7 @@ hsts
 iabbrev
 iframe
 imap
+imds
 indentexpr
 inoremap
 ipython
@@ -136,6 +137,7 @@ isort
 istioctl
 jenv
 jotai
+journalctl
 jquery
 jsdoc
 jsdom
@@ -267,6 +269,7 @@ pycache
 pyenv
 pygments
 pylsp
+pypi
 pyproject
 pyright
 pytest

@@ -62,7 +62,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/claude/hooks/redirect-commands.sh"
+            "command": "$HOME/.config/claude/hooks/guard-commands.sh"
           }
         ]
       }

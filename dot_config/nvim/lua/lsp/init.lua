@@ -117,6 +117,9 @@ vim.lsp.config("zizmor", zizmor_opts)
 local yamlls_opts = require("lsp.yamlls")
 vim.lsp.config("yamlls", yamlls_opts)
 
+local version_lsp_opts = require("lsp.version_lsp")
+vim.lsp.config("version_lsp", version_lsp_opts)
+
 vim.lsp.enable({
   "lua_ls",
   "gopls",
@@ -143,6 +146,7 @@ vim.lsp.enable({
   "tflint",
   "ember",
   "efm",
+  "version_lsp",
 })
 
 -- vts_ls or deno

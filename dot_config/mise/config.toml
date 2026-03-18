@@ -54,6 +54,7 @@ opencode = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 "pipx:mdformat" = { version = "latest", uvx_args = "--with mdformat-frontmatter" }
 "pipx:pdfplumber" = "latest"
+"cargo:version-lsp" = { version = "latest", locked = true }
 "cargo:bacon" = { version = "latest", locked = true }
 "cargo:tree-sitter-cli" = { version = "latest", locked = true }
 "cargo:hyperfine" = { version = "latest", locked = true }

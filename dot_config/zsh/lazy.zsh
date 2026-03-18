@@ -97,7 +97,7 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^o" edit-command-line
 
-export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$XDG_CONFIG_HOME/claude}"
+export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$XDG_HOME/.claude}"
 export CODEX_HOME="${CODEX_HOME:-$XDG_CONFIG_HOME/codex}"
 
 if command -v ngrok &>/dev/null; then

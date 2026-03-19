@@ -63,7 +63,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/claude/hooks/guard-commands.sh"
+            "command": "$CLAUDE_CONFIG_DIR/hooks/guard-commands.sh"
           }
         ]
       }
@@ -74,11 +74,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/claude/hooks/lint-github-actions.sh"
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh"
           },
           {
             "type": "command",
-            "command": "$HOME/.config/claude/hooks/lint-shell.sh"
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh"
           }
         ]
       }
@@ -94,27 +94,16 @@
           }
         ]
       }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-slack-log",
-            "async": true
-          }
-        ]
-      }
     ]
   },
   "statusLine": {
     "type": "command",
-    "command": "$HOME/.config/claude/statusline-command.sh"
+    "command": "$CLAUDE_CONFIG_DIR/statusline-command.sh"
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "slack@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true

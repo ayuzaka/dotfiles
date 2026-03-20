@@ -5,6 +5,7 @@ local ESLINT_CORE_URL_PREFIX = "https://eslint.org/docs/latest/rules/"
 
 local PLUGIN_URL_PATTERNS = {
   ["@typescript-eslint"] = "https://typescript-eslint.io/rules/%s",
+  ["@next/next"] = "https://nextjs.org/docs/app/api-reference/config/eslint",
   ["react"] = "https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/%s.md",
   ["react-hooks"] = "https://react.dev/reference/eslint-plugin-react-hooks/lints/%s",
   ["import"] = "https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/%s.md",

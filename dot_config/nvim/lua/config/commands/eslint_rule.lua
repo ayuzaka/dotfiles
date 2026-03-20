@@ -1,7 +1,19 @@
 local utils = require("config.utils")
 
 local ESLINT_SOURCE = "eslint"
-local ESLINT_RULE_URL_PREFIX = "https://eslint.org/docs/latest/rules/"
+local ESLINT_CORE_URL_PREFIX = "https://eslint.org/docs/latest/rules/"
+
+local PLUGIN_URL_PATTERNS = {
+  ["@typescript-eslint"] = "https://typescript-eslint.io/rules/%s",
+  ["react"] = "https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/%s.md",
+  ["react-hooks"] = "https://react.dev/reference/eslint-plugin-react-hooks/lints/%s",
+  ["import"] = "https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/%s.md",
+  ["jsx-a11y"] = "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/%s.md",
+  ["unicorn"] = "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/%s.md",
+  ["n"] = "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/%s.md",
+  ["vue"] = "https://eslint.vuejs.org/rules/%s.html",
+  ["tailwindcss"] = "https://github.com/francoismassart/eslint-plugin-tailwindcss/blob/master/docs/rules/%s.md",
+}
 
 local function is_cursor_in_diagnostic(diagnostic, line, col)
   if diagnostic.lnum > line or diagnostic.end_lnum < line then
@@ -19,6 +31,39 @@ local function is_cursor_in_diagnostic(diagnostic, line, col)
   return true
 end
 
+-- Returns plugin, rule_name from an ESLint rule code.
+-- Examples:
+--   "no-unused-vars"                    -> nil, "no-unused-vars"
+--   "react/jsx-key"                     -> "react", "jsx-key"
+--   "@typescript-eslint/no-unused-vars" -> "@typescript-eslint", "no-unused-vars"
+--   "@next/next/no-html-link-for-pages" -> "@next/next", "no-html-link-for-pages"
+local function parse_rule_code(code)
+  if type(code) ~= "string" or code == "" then
+    return nil, nil
+  end
+
+  if code:sub(1, 1) == "@" then
+    local scope, rest = code:match("^(@[^/]+)/(.+)$")
+    if scope == nil then
+      return nil, nil
+    end
+
+    local package, rule = rest:match("^([^/]+)/(.+)$")
+    if package ~= nil then
+      return scope .. "/" .. package, rule
+    end
+
+    return scope, rest
+  end
+
+  local plugin, rule = code:match("^([^/]+)/(.+)$")
+  if plugin ~= nil then
+    return plugin, rule
+  end
+
+  return nil, code
+end
+
 local function resolve_eslint_rule_url(diagnostic)
   local lsp_diagnostic = vim.tbl_get(diagnostic, "user_data", "lsp")
   local href = vim.tbl_get(lsp_diagnostic, "codeDescription", "href")
@@ -27,9 +72,17 @@ local function resolve_eslint_rule_url(diagnostic)
     return href
   end
 
-  local code = diagnostic.code
-  if type(code) == "string" and code ~= "" and not code:match("[/@]") then
-    return ESLINT_RULE_URL_PREFIX .. code
+  local plugin, rule = parse_rule_code(diagnostic.code)
+
+  if plugin == nil and rule ~= nil then
+    return ESLINT_CORE_URL_PREFIX .. rule
+  end
+
+  if plugin ~= nil and rule ~= nil then
+    local pattern = PLUGIN_URL_PATTERNS[plugin]
+    if pattern ~= nil then
+      return string.format(pattern, rule)
+    end
   end
 
   return nil

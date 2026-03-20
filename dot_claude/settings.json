@@ -98,7 +98,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "$CLAUDE_CONFIG_DIR/statusline-command.sh"
+    "command": "$CLAUDE_CONFIG_DIR/statusline.py"
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,

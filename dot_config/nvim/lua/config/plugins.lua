@@ -83,6 +83,11 @@ require("lazy").setup({
   { "imsnif/kdl.vim",         ft = "kdl" },
   { "arto-app/arto.vim" },
   {
+    "chrisgrieser/nvim-rulebook",
+    event = "VeryLazy",
+    config = function() require("plugins.nvim-rulebook") end
+  },
+  {
     "3rd/image.nvim",
     event = "VeryLazy",
     build = false,

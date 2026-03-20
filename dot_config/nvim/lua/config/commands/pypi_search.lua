@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("lib.utils")
 
 local function resolve_search_query(opts)
   return utils.resolve_search_query(opts, {

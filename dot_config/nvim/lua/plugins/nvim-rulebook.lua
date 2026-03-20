@@ -1,16 +1,35 @@
-require("rulebook").setup({
-  ruleDocs = {
-    oxlint = function(diag)
+local function oxlint_rule_url(diag)
       local href = vim.tbl_get(diag, "user_data", "lsp", "codeDescription", "href")
       if type(href) == "string" and href ~= "" then
         return href
       end
 
+      local base = "https://oxc.rs/docs/guide/usage/linter/rules/"
       local code = type(diag.code) == "string" and diag.code or ""
+
+      -- category/rule 形式
       if code:match("^[%w%-_]+/[%w%-_]+$") then
-        return "https://oxc.rs/docs/guide/usage/linter/rules/" .. code .. ".html"
+        return base .. code .. ".html"
       end
-    end,
+
+      -- eslint-plugin-NAME(RULE) 形式
+      local plugin, rule = code:match("^eslint%-plugin%-([%w%-_]+)%(([%w%-_]+)%)$")
+      if plugin and rule then
+        return base .. plugin .. "/" .. rule .. ".html"
+      end
+
+      -- message から category/rule を抽出
+      local msg = type(diag.message) == "string" and diag.message or ""
+      local rule_path = msg:match("([%w%-_]+/[%w%-_]+)")
+      if rule_path then
+        return base .. rule_path .. ".html"
+      end
+end
+
+require("rulebook").setup({
+  ruleDocs = {
+    oxlint = oxlint_rule_url,
+    oxc = oxlint_rule_url,
   },
 })
 

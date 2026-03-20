@@ -1,4 +1,4 @@
-local utils = require("lib.utils")
+local utils = require("config.utils")
 
 local translate_async = function(text, callback)
   if vim.fn.executable("plamo-translate") ~= 1 then

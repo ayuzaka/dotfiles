@@ -50,6 +50,8 @@ opencode = "latest"
 "go:github.com/ayuzaka/sqls" = "ayuzaka"
 "go:github.com/rhysd/actionlint/cmd/actionlint" = "latest"
 "pipx:python-lsp-server" = "latest"
+"pipx:ruff" = "latest"
+"pipx:ruff-lsp" = "latest"
 "pipx:plamo-translate" = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 "pipx:mdformat" = { version = "latest", uvx_args = "--with mdformat-frontmatter" }

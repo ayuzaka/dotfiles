@@ -127,6 +127,7 @@ vim.lsp.enable({
   "svelte",
   "rust_analyzer",
   "pylsp",
+  "ruff_lsp",
   "bashls",
   "html",
   "cssls",

@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("lib.utils")
 
 vim.api.nvim_create_user_command("Grep", function(opts)
     local word = opts.range > 0 and utils.get_visual_text() or vim.fn.input("Search word: ")

@@ -1,5 +1,5 @@
-local lsp = require("config.lsp")
-local utils = require("config.utils")
+local lsp = require("lib.lsp")
+local utils = require("lib.utils")
 
 local OXLINT_SOURCE = "oxlint"
 local OXLINT_RULE_URL_PREFIX = "https://oxc.rs/docs/guide/usage/linter/rules/"

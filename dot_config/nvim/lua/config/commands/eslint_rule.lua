@@ -1,5 +1,5 @@
-local lsp = require("config.lsp")
-local utils = require("config.utils")
+local lsp = require("lib.lsp")
+local utils = require("lib.utils")
 
 local ESLINT_SOURCE = "eslint"
 local ESLINT_CORE_URL_PREFIX = "https://eslint.org/docs/latest/rules/"

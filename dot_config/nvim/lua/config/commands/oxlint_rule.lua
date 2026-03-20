@@ -1,23 +1,8 @@
+local lsp = require("config.lsp")
 local utils = require("config.utils")
 
 local OXLINT_SOURCE = "oxlint"
 local OXLINT_RULE_URL_PREFIX = "https://oxc.rs/docs/guide/usage/linter/rules/"
-
-local function is_cursor_in_diagnostic(diagnostic, line, col)
-  if diagnostic.lnum > line or diagnostic.end_lnum < line then
-    return false
-  end
-
-  if diagnostic.lnum == line and diagnostic.col > col then
-    return false
-  end
-
-  if diagnostic.end_lnum == line and diagnostic.end_col <= col then
-    return false
-  end
-
-  return true
-end
 
 local function normalize_rule_path(rule_path)
   local normalized_rule_path = rule_path
@@ -89,7 +74,7 @@ local function collect_oxlint_diagnostics_at_cursor(bufnr, line, col)
   local diagnostics = vim.diagnostic.get(bufnr)
   local oxlint_diagnostics = vim.tbl_filter(is_oxlint_diagnostic, diagnostics)
   local cursor_diagnostics = vim.tbl_filter(function(diagnostic)
-    return is_cursor_in_diagnostic(diagnostic, line, col)
+    return lsp.is_cursor_in_diagnostic(diagnostic, line, col)
   end, oxlint_diagnostics)
 
   if #cursor_diagnostics > 0 then
@@ -99,13 +84,6 @@ local function collect_oxlint_diagnostics_at_cursor(bufnr, line, col)
   return vim.tbl_filter(function(diagnostic)
     return diagnostic.lnum <= line and diagnostic.end_lnum >= line
   end, oxlint_diagnostics)
-end
-
-local function format_diagnostic_choice(diagnostic)
-  local code = type(diagnostic.code) == "string" and diagnostic.code or "unknown-rule"
-  local message = diagnostic.message:gsub("%s+", " ")
-
-  return string.format("%s: %s", code, message)
 end
 
 local function open_oxlint_rule()
@@ -138,7 +116,7 @@ local function open_oxlint_rule()
 
   vim.ui.select(diagnostics, {
     prompt = "開く oxlint ルールを選択",
-    format_item = format_diagnostic_choice,
+    format_item = lsp.format_diagnostic_choice,
   }, function(selected_diagnostic)
     if selected_diagnostic == nil then
       return

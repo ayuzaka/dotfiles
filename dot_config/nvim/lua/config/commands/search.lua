@@ -1,4 +1,4 @@
-local utils = require("lib.utils")
+local utils = require("config.utils")
 
 local function open_search(provider, opts)
   local search_query = utils.resolve_search_query(opts, { prompt = provider.prompt })

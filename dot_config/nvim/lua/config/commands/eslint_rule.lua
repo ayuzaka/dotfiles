@@ -14,6 +14,8 @@ local PLUGIN_URL_PATTERNS = {
   ["n"] = "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/%s.md",
   ["vue"] = "https://eslint.vuejs.org/rules/%s.html",
   ["tailwindcss"] = "https://github.com/francoismassart/eslint-plugin-tailwindcss/blob/master/docs/rules/%s.md",
+  ["playwright"] = "https://github.com/playwright-community/eslint-plugin-playwright/blob/main/docs/rules/%s.md",
+  ["storybook"] = "https://github.com/storybookjs/eslint-plugin-storybook/blob/main/docs/rules/%s.md",
 }
 
 local function is_cursor_in_diagnostic(diagnostic, line, col)

@@ -1,3 +1,4 @@
+local lsp = require("config.lsp")
 local utils = require("config.utils")
 
 local ESLINT_SOURCE = "eslint"
@@ -5,7 +6,7 @@ local ESLINT_CORE_URL_PREFIX = "https://eslint.org/docs/latest/rules/"
 
 local PLUGIN_URL_PATTERNS = {
   ["@typescript-eslint"] = "https://typescript-eslint.io/rules/%s",
-  ["react"] ="https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/%s.md",
+  ["react"] = "https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/%s.md",
   ["react-hooks"] = "https://react.dev/reference/eslint-plugin-react-hooks/lints/%s",
   ["import"] = "https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/%s.md",
   ["jsx-a11y"] = "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/%s.md",
@@ -16,22 +17,6 @@ local PLUGIN_URL_PATTERNS = {
   ["playwright"] = "https://github.com/playwright-community/eslint-plugin-playwright/blob/main/docs/rules/%s.md",
   ["storybook"] = "https://github.com/storybookjs/eslint-plugin-storybook/blob/main/docs/rules/%s.md",
 }
-
-local function is_cursor_in_diagnostic(diagnostic, line, col)
-  if diagnostic.lnum > line or diagnostic.end_lnum < line then
-    return false
-  end
-
-  if diagnostic.lnum == line and diagnostic.col > col then
-    return false
-  end
-
-  if diagnostic.end_lnum == line and diagnostic.end_col <= col then
-    return false
-  end
-
-  return true
-end
 
 -- Returns plugin, rule_name from an ESLint rule code.
 -- Examples:
@@ -112,7 +97,7 @@ local function collect_eslint_diagnostics_at_cursor(bufnr, line, col)
   local diagnostics = vim.diagnostic.get(bufnr)
   local eslint_diagnostics = vim.tbl_filter(is_eslint_diagnostic, diagnostics)
   local cursor_diagnostics = vim.tbl_filter(function(diagnostic)
-    return is_cursor_in_diagnostic(diagnostic, line, col)
+    return lsp.is_cursor_in_diagnostic(diagnostic, line, col)
   end, eslint_diagnostics)
 
   if #cursor_diagnostics > 0 then
@@ -122,13 +107,6 @@ local function collect_eslint_diagnostics_at_cursor(bufnr, line, col)
   return vim.tbl_filter(function(diagnostic)
     return diagnostic.lnum <= line and diagnostic.end_lnum >= line
   end, eslint_diagnostics)
-end
-
-local function format_diagnostic_choice(diagnostic)
-  local code = type(diagnostic.code) == "string" and diagnostic.code or "unknown-rule"
-  local message = diagnostic.message:gsub("%s+", " ")
-
-  return string.format("%s: %s", code, message)
 end
 
 local function open_eslint_rule()
@@ -161,7 +139,7 @@ local function open_eslint_rule()
 
   vim.ui.select(diagnostics, {
     prompt = "開く ESLint ルールを選択",
-    format_item = format_diagnostic_choice,
+    format_item = lsp.format_diagnostic_choice,
   }, function(selected_diagnostic)
     if selected_diagnostic == nil then
       return

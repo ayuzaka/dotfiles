@@ -53,6 +53,7 @@
       "Read(.env)",
       "Write(**/secrets/**)",
       "Write(.env)",
+      "Write(oxlint.config.ts)",
       "NotebookEdit"
     ]
   },

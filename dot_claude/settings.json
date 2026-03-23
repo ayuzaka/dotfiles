@@ -67,6 +67,17 @@
             "command": "$CLAUDE_CONFIG_DIR/hooks/guard-commands.sh"
           }
         ]
+      },
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/tavily-search.sh",
+            "timeout": 30,
+            "statusMessage": "Tavilyで検索中..."
+          }
+        ]
       }
     ],
     "PostToolUse": [

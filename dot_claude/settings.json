@@ -72,10 +72,11 @@
         "matcher": "WebSearch",
         "hooks": [
           {
-            "type": "command",
-            "command": "$CLAUDE_CONFIG_DIR/hooks/tavily-search.sh",
+            "type": "agent",
+            "prompt": "WebSearchツールが「$ARGUMENTS」というクエリで呼ばれました。代わりに /tavily スキルを使って検索を実行し、結果を返してください。",
+            "model": "haiku",
             "timeout": 30,
-            "statusMessage": "Tavilyで検索中..."
+            "statusMessage": "Tavilyサブエージェントで検索中..."
           }
         ]
       }

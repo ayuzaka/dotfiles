@@ -65,6 +65,7 @@ envrc
 errorf
 esac
 esbuild
+evals
 exhaustivestruct
 exrc
 fastify

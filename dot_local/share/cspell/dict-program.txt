@@ -370,6 +370,7 @@ wabt
 webp
 webrtc
 winid
+workerd
 xnoremap
 xtrace
 yamlls

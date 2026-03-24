@@ -52,6 +52,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
     end, { buffer = args.buf, desc = "hover diagnostic" })
 
+    local function copy_lsp_error_prompt(action)
+      local file = vim.fn.expand("%:p")
+      local line = vim.fn.line(".")
+      local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+
+      if #diagnostics == 0 then
+        return
+      end
+
+      local messages = {}
+      for _, d in ipairs(diagnostics) do
+        table.insert(messages, d.message)
+      end
+
+      local prompt = string.format(
+        "%s:%d で下記のエラーが発生しています。内容を確認して、%s\n```\n%s\n```",
+        file, line, action, table.concat(messages, "\n")
+      )
+      vim.fn.setreg("+", prompt)
+      vim.notify("LSP エラーをクリップボードにコピーしました", vim.log.levels.INFO)
+    end
+
+    vim.api.nvim_buf_create_user_command(args.buf, "LspCheckPrompt", function()
+      copy_lsp_error_prompt("原因を調査してください。")
+    end, { desc = "Copy LSP error prompt (調査)" })
+
+    vim.api.nvim_buf_create_user_command(args.buf, "LspFixPrompt", function()
+      copy_lsp_error_prompt("修正してください。")
+    end, { desc = "Copy LSP error prompt (修正)" })
+
     if client.name == "ts_ls" or client.name == "vtsls" then
       local goto_source_definition = function()
         local offset_encoding = client.offset_encoding or "utf-16"

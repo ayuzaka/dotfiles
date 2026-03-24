@@ -3,7 +3,7 @@ local keybinds = require("keybinds")
 local font_list = require("font_list")
 
 local resolve_font = function()
-  local ok, font_local = pcall(dofile, wezterm.config_dir .. "/font_local.lua")
+  local ok, font_local = pcall(dofile, wezterm.config_dir .. "/font_list.lua")
   if ok and type(font_local) == "table" then
     return font_local
   end

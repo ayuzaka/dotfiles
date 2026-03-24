@@ -16,18 +16,6 @@
       "Bash(rg:*)",
       "Bash(yarn lint:*)",
       "Bash(yarn test:*)",
-      "WebFetch(domain:developer.mozilla.org)",
-      "WebFetch(domain:developers.cloudflare.com)",
-      "WebFetch(domain:ghost.org)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:nextjs.org)",
-      "WebFetch(domain:nuxt.com)",
-      "WebFetch(domain:react.dev)",
-      "WebFetch(domain:svelte.dev)",
-      "WebFetch(domain:vuejs.org)",
-      "WebFetch(domain:vueuse.org)",
-      "WebFetch(domain:www.figma.com)",
-      "WebFetch(domain:www.typescriptlang.org)",
       "mcp__figma-dev-mode-mcp-server__get_code",
       "mcp__figma-dev-mode-mcp-server__get_image",
       "mcp__playwright__browser_close",
@@ -55,7 +43,8 @@
       "Write(.env)",
       "Write(oxlint.config.ts)",
       "NotebookEdit",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch"
     ]
   },
   "hooks": {

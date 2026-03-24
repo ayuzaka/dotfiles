@@ -4,16 +4,16 @@
 - Utilize the `GITHUB_OUTPUT` environment variable for data sharing between steps.
 - Use the `GITHUB_ENV` environment variable when referencing the same value across different multiple steps.
 - Set a timeout for all workflows.
-- When using publicly exposed actions, please specify the commit hash of the latest available version
+- When using publicly exposed actions, pin each `uses:` reference to a full-length commit SHA with a trailing version comment. Use [pinact](https://github.com/suzuki-shunsuke/pinact) to apply or refresh pins instead of resolving hashes manually (for example with `gh`).
 
-最新ハッシュの取得手順:
+pinact の利用:
 
 ```sh
-# 1. 最新リリースのタグ名を確認する
-gh release list -R <owner>/<repo> --limit 1 --json tagName
+# リポジトリルートで実行（既定の対象: .github/workflows/*.yml など）
+pinact run
 
-# 2. タグに対応するコミットハッシュを取得する（アノテーテッドタグにも対応）
-gh api repos/<owner>/<repo>/commits/<tagName> --jq '.sha'
+# アクションを最新に更新しつつコミットハッシュへ固定する
+pinact run -u
 ```
 
 Example:

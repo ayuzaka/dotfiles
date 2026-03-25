@@ -74,11 +74,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.notify("LSP エラーをクリップボードにコピーしました", vim.log.levels.INFO)
     end
 
-    vim.api.nvim_buf_create_user_command(args.buf, "LspCheckPrompt", function()
+    vim.api.nvim_buf_create_user_command(args.buf, "PromptCopyLspCheck", function()
       copy_lsp_error_prompt("原因を調査してください。")
     end, { desc = "Copy LSP error prompt (調査)" })
 
-    vim.api.nvim_buf_create_user_command(args.buf, "LspFixPrompt", function()
+    vim.api.nvim_buf_create_user_command(args.buf, "PromptLspFixPrompt", function()
       copy_lsp_error_prompt("修正してください。")
     end, { desc = "Copy LSP error prompt (修正)" })
 

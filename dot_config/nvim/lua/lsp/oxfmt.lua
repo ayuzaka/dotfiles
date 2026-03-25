@@ -8,5 +8,5 @@ return {
     "typescriptreact",
     "typescript.tsx",
   },
-  root_markers = { ".oxfmtrc.json" }
+  root_markers = { ".oxfmtrc.json", "oxfmt.config.ts" },
 }

@@ -38,6 +38,7 @@ mattn
 mece
 nisa
 noitalics
+notionhq
 prabirshrestha
 privia
 remo

@@ -3,11 +3,6 @@ set -euo pipefail
 
 file_path=$(jq -r '.tool_input.file_path // empty')
 
-case "$file_path" in
-  */.github/workflows/*.yml | */.github/workflows/*.yaml) ;;
-  *) exit 0 ;;
-esac
-
 errors=""
 
 if ! actionlint_output=$(actionlint "$file_path" 2>&1); then

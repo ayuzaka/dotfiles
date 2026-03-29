@@ -55,6 +55,7 @@
         "hooks": [
           {
             "type": "command",
+            "if": "Bash(find *)|Bash(rm *)|Bash(grep *)",
             "command": "$CLAUDE_CONFIG_DIR/hooks/guard-commands.sh"
           }
         ]
@@ -66,10 +67,12 @@
         "hooks": [
           {
             "type": "command",
+            "if": "Edit(**/.github/workflows/*.yml)|Edit(**/.github/workflows/*.yaml)|Write(**/.github/workflows/*.yml)|Write(**/.github/workflows/*.yaml)",
             "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh"
           },
           {
             "type": "command",
+            "if": "Edit(**/*.sh)|Write(**/*.sh)",
             "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh"
           }
         ]

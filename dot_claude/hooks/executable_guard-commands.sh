@@ -6,8 +6,6 @@
 input=$(cat)
 cmd=$(echo "$input" | jq -r '.tool_input.command // empty')
 
-[ -z "$cmd" ] && exit 0
-
 # block find
 if echo "$cmd" | grep -qE '\bfind\b'; then
   jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"find is not allowed. Use fd instead. Example: fd -e sh . (instead of find . -name \"*.sh\" -type f)"}}'
@@ -21,6 +19,7 @@ if echo "$cmd" | grep -qE '\brm\b'; then
 fi
 
 # convert grep → rg
+# shellcheck disable=SC2001
 new_cmd=$(echo "$cmd" | sed 's/\bgrep\b/rg/g')
 
 if [ "$cmd" != "$new_cmd" ]; then

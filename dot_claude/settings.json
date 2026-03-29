@@ -22,6 +22,14 @@
       "Bash(npm run*)",
       "Bash(pnpm run*)",
       "Bash(yarn run*)",
+      "Bash(moon check*)",
+      "Bash(moon fmt*)",
+      "Bash(moon info*)",
+      "Bash(moon test*)",
+      "Bash(deno check*)",
+      "Bash(deno fmt*)",
+      "Bash(deno info*)",
+      "Bash(deno test*)",
       "Read(.env.example)"
     ],
     "deny": [

@@ -228,8 +228,20 @@ end, {})
 
 vim.api.nvim_create_user_command("ScratchMD", function()
   vim.cmd("enew")
-  vim.bo.buftype = "nofile"
-  vim.bo.bufhidden = "wipe"
+  -- buftype="" にすることで modified フラグが quit 保護として機能する
+  vim.bo.bufhidden = "hide"
   vim.bo.swapfile = false
   vim.bo.filetype = "markdown"
+  vim.b.is_scratch_md = true
+  -- :w をインターセプトしてディスクに保存しない
+  vim.api.nvim_create_autocmd("BufWriteCmd", {
+    buffer = 0,
+    callback = function()
+      vim.bo.modified = false
+      vim.notify("ScratchMD: 保存をスキップしました", vim.log.levels.INFO)
+    end,
+  })
+  vim.keymap.set("n", "<leader>sx", "<cmd>bd!<cr>", { buffer = 0, desc = "Discard ScratchMD" })
 end, {})
+
+vim.keymap.set("n", "<leader>sm", "<cmd>ScratchMD<cr>", { desc = "Open ScratchMD" })

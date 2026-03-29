@@ -195,6 +195,7 @@ matchparen
 mbps
 mdast
 monokai
+moonfmt
 mycli
 mypy
 nargs

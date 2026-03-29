@@ -60,11 +60,12 @@ require("lazy").setup({
   -- Command / FileType
   {
     "sbdchd/neoformat",
-    cmd = { "Neoformat", "Prettier", "BiomeFormat", "Oxfmt", "FixJson", "SQLFormatter", "Ruff", "Shfmt" },
+    cmd = { "Neoformat", "Prettier", "BiomeFormat", "Oxfmt", "MoonFmt", "FixJson", "SQLFormatter", "Ruff", "Shfmt" },
     config = function()
       vim.api.nvim_create_user_command("Prettier", "Neoformat prettier", {})
       vim.api.nvim_create_user_command("BiomeFormat", "Neoformat biome", {})
       vim.api.nvim_create_user_command("Oxfmt", "Neoformat oxfmt", {})
+      vim.api.nvim_create_user_command("MoonFmt", "Neoformat moon_fmt", {})
       vim.api.nvim_create_user_command("FixJson", "Neoformat fixjson", {})
       vim.api.nvim_create_user_command("SQLFormatter", "Neoformat sqlformatter", {})
       vim.api.nvim_create_user_command("Ruff", "Neoformat ruff", {})

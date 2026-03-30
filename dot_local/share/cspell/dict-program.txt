@@ -46,6 +46,7 @@ dbeaver
 dbname
 dearmor
 dedup
+dedupe
 deno
 denoland
 denols
@@ -308,6 +309,7 @@ sparkctl
 sqld
 sqlls
 sqls
+strconv
 structcheck
 stylelintrc
 svgr
@@ -333,6 +335,7 @@ tseslint
 tsgo
 tsgolint
 ttfb
+tuist
 turborepo
 turso
 tursodatabase

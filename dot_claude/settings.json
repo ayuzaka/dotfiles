@@ -109,7 +109,19 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "slack@claude-plugins-official": true,
-    "discord@claude-plugins-official": true
+    "discord@claude-plugins-official": true,
+    "aws-serverless@agent-plugins-for-aws": true,
+    "databases-on-aws@agent-plugins-for-aws": true,
+    "deploy-on-aws@agent-plugins-for-aws": true,
+    "migration-to-aws@agent-plugins-for-aws": true
+  },
+  "extraKnownMarketplaces": {
+    "agent-plugins-for-aws": {
+      "source": {
+        "source": "github",
+        "repo": "awslabs/agent-plugins"
+      }
+    }
   },
   "language": "japanese",
   "plansDirectory": ".agents/plans",

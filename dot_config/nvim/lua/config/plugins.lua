@@ -30,7 +30,7 @@ require("lazy").setup({
     event = "BufReadPost",
     config = function() require("plugins.gitsigns") end
   },
-  { "rhysd/conflict-marker.vim", event = { "BufReadPost", "BufNewFile" } },
+  { "rhysd/conflict-marker.vim",   event = { "BufReadPost", "BufNewFile" } },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "nvim-lualine/lualine.nvim",
@@ -38,7 +38,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("plugins.lualine") end
   },
-  { "andymass/vim-matchup",        event = "BufReadPost" },
+  { "andymass/vim-matchup",      event = "BufReadPost" },
 
   {
     "johmsalas/text-case.nvim",
@@ -157,9 +157,10 @@ require("lazy").setup({
   { "kyoh86/ddu-source-git_log",           event = "VeryLazy" },
   { "ayuzaka/ddu-source-gh_pr_diff",       event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks",            event = "VeryLazy" },
-  { "Shougo/ddu-ui-filer",                 event = "VeryLazy" },
-  { "ryota2357/ddu-column-icon_filename",  event = "VeryLazy" },
-  { "Shougo/ddu-column-filename",          event = "VeryLazy" },
+  { "ayuzaka/ddu-source-git_blame",        event = "VeryLazy" },
+  { "Shougo/ddu-ui-filer",                event = "VeryLazy"  },
+  { "ryota2357/ddu-column-icon_filename", event = "VeryLazy"  },
+  { "Shougo/ddu-column-filename",         event = "VeryLazy"  },
 })
 
 -- Immediate config
@@ -189,6 +190,7 @@ vim.api.nvim_create_autocmd("User", {
     require("plugins.ddu-source-lsp")
     require("plugins.ddu-source-git_log")
     require("plugins.ddu-source-git_status")
+    require("plugins.ddu-source-git_blame")
     require("plugins.ddu-source-rg")
     require("plugins.ddu-source-gh_pr_diff")
     require("plugins.ddu-source-marks")

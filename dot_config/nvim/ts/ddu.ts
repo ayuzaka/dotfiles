@@ -185,6 +185,28 @@ export class Config extends BaseConfig {
       },
     });
 
+    args.contextBuilder.patchLocal("git_blame", {
+      kindOptions: {
+        git_blame: {
+          defaultAction: "jump",
+        },
+      },
+      uiParams: {
+        ff: {
+          columns: [
+            "git_blame:commit",
+            "git_blame:author",
+            "git_blame:date",
+          ],
+          split: "vertical",
+          splitDirection: "topleft",
+          previewSplit: "vertical",
+          previewWidth: 120,
+          winWidth: 60,
+        },
+      },
+    });
+
     args.contextBuilder.patchLocal("filer", {
       ui: "filer",
       sources: [

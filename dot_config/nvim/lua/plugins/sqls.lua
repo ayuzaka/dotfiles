@@ -1,12 +1,19 @@
 vim.lsp.config("sqls", {})
 vim.lsp.enable("sqls")
 
-vim.keymap.set("v", "<leader>sq", "<Plug>(sqls-execute-query)", {
-  silent = true,
-  desc = "Execute SQL query (visual)",
-})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sql",
+  callback = function(args)
+    vim.keymap.set("v", "<leader>sq", "<Plug>(sqls-execute-query)", {
+      buffer = args.buf,
+      silent = true,
+      desc = "Execute SQL query (visual)",
+    })
 
-vim.keymap.set("n", "<leader>sc", "<Cmd>SqlsSwitchConnection<CR>", {
-  silent = true,
-  desc = "Switch SQL connection",
+    vim.keymap.set("n", "<leader>sc", "<Cmd>SqlsSwitchConnection<CR>", {
+      buffer = args.buf,
+      silent = true,
+      desc = "Switch SQL connection",
+    })
+  end,
 })

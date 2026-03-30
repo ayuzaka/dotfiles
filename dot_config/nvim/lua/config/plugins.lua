@@ -26,9 +26,9 @@ require("lazy").setup({
     config = function() require("plugins.nvim-treesitter") end
   },
   {
-    "lewis6991/gitsigns.nvim",
+    "echasnovski/mini.diff",
     event = "BufReadPost",
-    config = function() require("plugins.gitsigns") end
+    config = function() require("plugins.mini-diff") end
   },
   { "rhysd/conflict-marker.vim",   event = { "BufReadPost", "BufNewFile" } },
   { "nvim-tree/nvim-web-devicons", lazy = true },

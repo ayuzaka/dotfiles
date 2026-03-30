@@ -86,6 +86,7 @@ fnamemodify
 foldexpr
 foldl
 foldr
+forw
 gcloud
 gcompat
 genpkey

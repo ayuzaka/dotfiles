@@ -1,3 +1,14 @@
+local function deno_lint_rule_url(diag)
+  local href = vim.tbl_get(diag, "user_data", "lsp", "codeDescription", "href")
+  if type(href) == "string" and href ~= "" then
+    return href
+  end
+  local code = type(diag.code) == "string" and diag.code or ""
+  if code ~= "" then
+    return "https://docs.deno.com/lint/rules/" .. code
+  end
+end
+
 local function oxlint_rule_url(diag)
   local href = vim.tbl_get(diag, "user_data", "lsp", "codeDescription", "href")
   if type(href) == "string" and href ~= "" then
@@ -28,11 +39,20 @@ end
 
 require("rulebook").setup({
   forwSearchLines = 10,
-  ignoreComments = require("rulebook.data.add-ignore-rule-comment"),
-  ruleDocs = vim.tbl_deep_extend("force", require("rulebook.data.rule-docs"), {
+  ignoreComments = {
+    ["deno-lint"] = {
+      comment = "// deno-lint-ignore %s",
+      location = "prevLine",
+      multiRuleIgnore = true,
+      multiRuleSeparator = " ",
+      docs = "https://docs.deno.com/runtime/fundamentals/linting/#ignore-directives",
+    },
+  },
+  ruleDocs = {
     oxlint = oxlint_rule_url,
     oxc = oxlint_rule_url,
-  }),
+    ["deno-lint"] = deno_lint_rule_url,
+  },
   suppressFormatter = require("rulebook.data.suppress-formatter-comment"),
   prettifyError = require("rulebook.data.prettify-error"),
 })

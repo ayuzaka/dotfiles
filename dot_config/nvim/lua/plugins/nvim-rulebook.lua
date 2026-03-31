@@ -47,6 +47,20 @@ require("rulebook").setup({
       multiRuleSeparator = " ",
       docs = "https://docs.deno.com/runtime/fundamentals/linting/#ignore-directives",
     },
+    oxlint = {
+      comment = "// oxlint-disable-next-line %s",
+      location = "prevLine",
+      multiRuleIgnore = true,
+      multiRuleSeparator = ", ",
+      docs = "https://oxc.rs/docs/guide/usage/linter/ignore-comments",
+    },
+    oxc = {
+      comment = "// oxlint-disable-next-line %s",
+      location = "prevLine",
+      multiRuleIgnore = true,
+      multiRuleSeparator = ", ",
+      docs = "https://oxc.rs/docs/guide/usage/linter/ignore-comments",
+    },
   },
   ruleDocs = {
     oxlint = oxlint_rule_url,

@@ -193,11 +193,6 @@ export class Config extends BaseConfig {
       },
       uiParams: {
         ff: {
-          columns: [
-            "git_blame:commit",
-            "git_blame:author",
-            "git_blame:date",
-          ],
           split: "vertical",
           splitDirection: "topleft",
           previewSplit: "vertical",

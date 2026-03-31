@@ -14,6 +14,14 @@ vim.api.nvim_create_user_command("GitBlame", function()
         params = {
           filename = filename,
         },
+        options = {
+          columns = {
+            { name = "git_blame", params = { kind = "commit"  } },
+            { name = "git_blame", params = { kind = "author", authorWidth = 8 } },
+            { name = "git_blame", params = { kind = "date"    } },
+            { name = "git_blame", params = { kind = "summary" } },
+          },
+        },
       },
     },
   })

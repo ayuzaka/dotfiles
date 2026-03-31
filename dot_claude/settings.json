@@ -63,8 +63,8 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Bash(find *)|Bash(rm *)|Bash(grep *)",
-            "command": "$CLAUDE_CONFIG_DIR/hooks/guard-commands.sh"
+            "command": "$CLAUDE_CONFIG_DIR/hooks/guard-commands.sh",
+            "if": "Bash(find *)|Bash(rm *)|Bash(grep *)"
           }
         ]
       }
@@ -75,13 +75,13 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Edit(**/.github/workflows/*.yml)|Edit(**/.github/workflows/*.yaml)|Write(**/.github/workflows/*.yml)|Write(**/.github/workflows/*.yaml)",
-            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh"
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh",
+            "if": "Edit(**/.github/workflows/*.yml)|Edit(**/.github/workflows/*.yaml)|Write(**/.github/workflows/*.yml)|Write(**/.github/workflows/*.yaml)"
           },
           {
             "type": "command",
-            "if": "Edit(**/*.sh)|Write(**/*.sh)",
-            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh"
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh",
+            "if": "Edit(**/*.sh)|Write(**/*.sh)"
           }
         ]
       }
@@ -113,13 +113,20 @@
     "aws-serverless@agent-plugins-for-aws": true,
     "databases-on-aws@agent-plugins-for-aws": true,
     "deploy-on-aws@agent-plugins-for-aws": true,
-    "migration-to-aws@agent-plugins-for-aws": true
+    "migration-to-aws@agent-plugins-for-aws": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {
       "source": {
         "source": "github",
         "repo": "awslabs/agent-plugins"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   },

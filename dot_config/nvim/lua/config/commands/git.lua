@@ -29,9 +29,9 @@ end
 vim.api.nvim_create_user_command("OpenPRCurrentLine", run_open_pr_current_line, {})
 vim.api.nvim_create_user_command("OpenPR", run_open_pr_by_hash, {})
 
-local function git_browse_current()
+local function gh_browse_current()
   local dir_path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
   vim.fn.system("gh browse " .. dir_path)
 end
 
-vim.api.nvim_create_user_command("GitBrowse", git_browse_current, {})
+vim.api.nvim_create_user_command("GhBrowse", gh_browse_current, {})

@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd({ "TabEnter", "CursorHold", "FocusGained" }, {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "ddu-filer",
   callback = function()
-    local opts = { buffer = true, silent = true }
+    local opts = { buf = 0, silent = true }
     local keymaps = require("plugins.ddu-keymaps")
 
     vim.keymap.set("n", "<CR>", function()

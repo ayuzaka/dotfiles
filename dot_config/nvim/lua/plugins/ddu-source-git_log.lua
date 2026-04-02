@@ -1,5 +1,6 @@
 vim.api.nvim_create_user_command("GitLog", function()
   vim.fn["ddu#start"]({
+    name = "git_log",
     ui = "ff",
     uiParams = {
       ff = {
@@ -20,6 +21,7 @@ end, {})
 
 vim.api.nvim_create_user_command("GitQuicksave", function()
   vim.fn["ddu#start"]({
+    name = "git_log",
     ui = "ff",
     uiParams = {
       ff = {
@@ -43,6 +45,7 @@ end, {})
 
 vim.api.nvim_create_user_command("FileHistory", function()
   vim.fn["ddu#start"]({
+    name = "git_log",
     ui = "ff",
     uiParams = {
       ff = {

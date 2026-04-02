@@ -15,6 +15,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "ddu-ff-git_blame", "ddu-ff-git_log" },
+  callback = function()
+    local opts = { buffer = true, silent = true }
+    vim.keymap.set("n", "y", "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'yank' })<CR>", opts)
+  end
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "ddu-ff-gh_pr_diff",
   callback = function()
     local opts = { buffer = true, silent = true }

@@ -48,8 +48,8 @@ local show_floating_window = function(cursor_pos)
     border = "rounded",
   })
 
-  vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
-  vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buffer = buf, silent = true })
+  vim.keymap.set("n", "q", "<cmd>close<CR>", { buf = buf, silent = true })
+  vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buf = buf, silent = true })
 
   return { buf = buf, win = win }
 end
@@ -77,7 +77,7 @@ local update_floating_window = function(float, content)
     vim.fn.setreg("+", content)
     vim.api.nvim_win_close(float.win, true)
     vim.notify("Copied to clipboard", vim.log.levels.INFO)
-  end, { buffer = float.buf, silent = true })
+  end, { buf = float.buf, silent = true })
 end
 
 vim.api.nvim_create_user_command("Translate", function()

@@ -30,7 +30,7 @@ vim.api.nvim_create_user_command("ScratchMD", function()
       vim.notify("ScratchMD: 保存をスキップしました", vim.log.levels.INFO)
     end,
   })
-  vim.keymap.set("n", "<leader>sx", "<cmd>bd!<cr>", { buffer = 0, desc = "Discard ScratchMD" })
+  vim.keymap.set("n", "<leader>sx", "<cmd>bd!<cr>", { buf = 0, desc = "Discard ScratchMD" })
 end, {})
 
 vim.keymap.set("n", "<leader>sm", "<cmd>ScratchMD<cr>", { desc = "Open ScratchMD" })

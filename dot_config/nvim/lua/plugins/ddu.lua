@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "ddu-ff",
   callback = function()
-    local opts = { buffer = true, silent = true }
+    local opts = { buf = 0, silent = true }
     local keymaps = require("plugins.ddu-keymaps")
     keymaps.apply_common_normal(opts)
 
@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "ddu-ff-git_blame", "ddu-ff-git_log" },
   callback = function()
-    local opts = { buffer = true, silent = true }
+    local opts = { buf = 0, silent = true }
     vim.keymap.set("n", "y", "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'yank' })<CR>", opts)
   end
 })
@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "ddu-ff-gh_pr_diff",
   callback = function()
-    local opts = { buffer = true, silent = true }
+    local opts = { buf = 0, silent = true }
     vim.keymap.set("n", "v", "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'markAsViewed' })<CR>", opts)
   end
 })
@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "ddu-ff-filter",
   callback = function()
-    local opts = { buffer = true, silent = true }
+    local opts = { buf = 0, silent = true }
     vim.keymap.set("i", "<CR>",
       "<Esc><Cmd>close<CR>", opts)
     vim.keymap.set("n", "<CR>",

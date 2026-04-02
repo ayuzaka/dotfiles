@@ -25,32 +25,32 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     vim.keymap.set("n", "[g", function()
       vim.diagnostic.jump({ count = -1, severity = { min = vim.diagnostic.severity.WARN }, wrap = true })
-    end, { buffer = args.buf, desc = "go to previous diagnostic" })
+    end, { buf = args.buf, desc = "go to previous diagnostic" })
 
     vim.keymap.set("n", "]g", function()
       vim.diagnostic.jump({ count = 1, severity = { min = vim.diagnostic.severity.WARN }, wrap = true })
-    end, { buffer = args.buf, desc = "go to next diagnostic" })
+    end, { buf = args.buf, desc = "go to next diagnostic" })
 
     vim.keymap.set("n", "<leader>rn", function()
       vim.lsp.buf.rename()
-    end, { buffer = args.buf, desc = "vim.lsp.buf.rename()" })
+    end, { buf = args.buf, desc = "vim.lsp.buf.rename()" })
 
     vim.keymap.set("n", "<space>fmt", function()
       vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-    end, { buffer = args.buf, desc = "Format buffer" })
+    end, { buf = args.buf, desc = "Format buffer" })
 
     vim.keymap.set("n", "K", function()
       vim.lsp.buf.hover({
         border = "rounded",
       })
-    end, { buffer = args.buf, desc = "hover" })
+    end, { buf = args.buf, desc = "hover" })
 
     vim.keymap.set("n", "<leader>d", function()
       local _, winid = vim.diagnostic.open_float(nil, { focus = true, border = "rounded" })
       if winid and vim.api.nvim_win_is_valid(winid) then
         vim.api.nvim_set_current_win(winid)
       end
-    end, { buffer = args.buf, desc = "hover diagnostic" })
+    end, { buf = args.buf, desc = "hover diagnostic" })
 
     local function copy_lsp_error_prompt(action)
       local file = vim.fn.expand("%:p")
@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end)
       end
 
-      vim.keymap.set("n", "<C-d>s", goto_source_definition, { buffer = args.buf, desc = "Go to Source Definition" })
+      vim.keymap.set("n", "<C-d>s", goto_source_definition, { buf = args.buf, desc = "Go to Source Definition" })
     end
   end,
 })

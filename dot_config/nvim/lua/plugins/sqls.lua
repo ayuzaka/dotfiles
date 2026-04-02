@@ -5,13 +5,13 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "sql",
   callback = function(args)
     vim.keymap.set("v", "<leader>sq", "<Plug>(sqls-execute-query)", {
-      buffer = args.buf,
+      buf = args.buf,
       silent = true,
       desc = "Execute SQL query (visual)",
     })
 
     vim.keymap.set("n", "<leader>sc", "<Cmd>SqlsSwitchConnection<CR>", {
-      buffer = args.buf,
+      buf = args.buf,
       silent = true,
       desc = "Switch SQL connection",
     })

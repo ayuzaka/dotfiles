@@ -166,7 +166,7 @@ M.setup = function(opts)
         vim.lsp.config("sqls", settings)
         for _, client in ipairs(vim.lsp.get_clients({ name = "sqls" })) do
             client.config.settings = settings.settings
-            client.notify("workspace/didChangeConfiguration", {
+            client:notify("workspace/didChangeConfiguration", {
                 settings = settings.settings,
             })
         end

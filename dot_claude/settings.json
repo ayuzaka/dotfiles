@@ -115,20 +115,13 @@
     "aws-serverless@agent-plugins-for-aws": true,
     "databases-on-aws@agent-plugins-for-aws": true,
     "deploy-on-aws@agent-plugins-for-aws": true,
-    "migration-to-aws@agent-plugins-for-aws": true,
-    "codex@openai-codex": true
+    "migration-to-aws@agent-plugins-for-aws": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {
       "source": {
         "source": "github",
         "repo": "awslabs/agent-plugins"
-      }
-    },
-    "openai-codex": {
-      "source": {
-        "source": "github",
-        "repo": "openai/codex-plugin-cc"
       }
     }
   },

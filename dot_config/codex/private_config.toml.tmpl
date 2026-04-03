@@ -22,4 +22,14 @@ enabled = true
 [plugins."gmail@openai-curated"]
 enabled = true
 
+[mcp_servers.chrome-devtools]
+command = "chrome-devtools-mcp"
+args = ["--autoConnect"]
+
+[mcp_servers.chrome-devtools.tools.new_page]
+approval_mode = "approve"
+
+[mcp_servers.chrome-devtools.tools.performance_start_trace]
+approval_mode = "approve"
+
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

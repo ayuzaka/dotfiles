@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "ENABLE_TOOL_SEARCH": "1"
+    "ENABLE_TOOL_SEARCH": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "permissions": {
     "allow": [
@@ -127,5 +128,6 @@
   },
   "language": "japanese",
   "plansDirectory": ".agents/plans",
-  "autoUpdates": false
+  "autoUpdates": false,
+  "cleanupPeriodDays": 9999
 }

@@ -48,12 +48,9 @@
       "Bash(wget:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
-      "Read(**/*token*)",
       "Read(**/.ssh/**)",
       "Read(.env)",
-      "Write(**/secrets/**)",
       "Write(.env)",
-      "Write(oxlint.config.ts)",
       "NotebookEdit",
       "WebSearch",
       "WebFetch"

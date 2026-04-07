@@ -27,6 +27,8 @@ buftype
 buftypes
 bunx
 cfile
+cqmax
+cqmin
 chpwd
 chsh
 cica

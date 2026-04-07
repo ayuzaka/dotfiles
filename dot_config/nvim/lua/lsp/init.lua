@@ -135,6 +135,9 @@ vim.lsp.config("oxlint", oxlint_opts)
 local oxfmt_opts = require("lsp.oxfmt")
 vim.lsp.config("oxfmt", oxfmt_opts)
 
+local stylelint_opts = require("lsp.stylelint_lsp")
+vim.lsp.config("stylelint_lsp", stylelint_opts)
+
 local tailwindcss_opts = require("lsp.tailwindcss")
 vim.lsp.config("tailwindcss", tailwindcss_opts)
 

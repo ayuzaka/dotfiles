@@ -9,6 +9,8 @@ notify = ["terminal-notifier", "-title", "🤖 Codex", "-message", "処理が完
 [features]
 skills = true
 multi_agent = true
+smart_approvals = true
+codex_hooks = true
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "model-name", "project-root", "git-branch", "context-used", "five-hour-limit", "weekly-limit"]
@@ -20,6 +22,12 @@ enabled = true
 enabled = true
 
 [plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."notion@openai-curated"]
 enabled = true
 
 [mcp_servers.chrome-devtools]

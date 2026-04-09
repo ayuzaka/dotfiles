@@ -27,8 +27,6 @@ buftype
 buftypes
 bunx
 cfile
-cqmax
-cqmin
 chpwd
 chsh
 cica
@@ -39,6 +37,8 @@ cmctl
 cnoreabbrev
 coep
 copen
+cqmax
+cqmin
 cssls
 ctermbg
 cwindow
@@ -198,6 +198,7 @@ luma
 magick
 matchparen
 mbps
+mbti
 mdast
 monokai
 moonfmt

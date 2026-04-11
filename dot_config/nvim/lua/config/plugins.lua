@@ -105,7 +105,7 @@ require("lazy").setup({
   {
     "moonbit-community/moonbit.nvim",
     ft = "moonbit",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
     opts = {
       mooncakes = {
         virtual_text = true, -- virtual text showing suggestions

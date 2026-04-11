@@ -102,19 +102,6 @@ require("lazy").setup({
     ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     config = function() require("plugins.import-cost") end
   },
-
-  {
-    "nvim-neotest/neotest",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "marilari88/neotest-vitest",
-      "nvim-neotest/neotest-python",
-    },
-    config = function() require("plugins.neotest") end
-  },
   {
     "moonbit-community/moonbit.nvim",
     ft = "moonbit",

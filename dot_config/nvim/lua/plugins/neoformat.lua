@@ -24,3 +24,13 @@ local moon_fmt = {
 
 vim.g.neoformat_moonbit_moon_fmt = moon_fmt
 vim.g.neoformat_enabled_moonbit = { "moon_fmt" }
+
+local tombi = {
+  exe = "tombi",
+  args = { "format", "--stdin-filename", "%:p", "-" },
+  stdin = 1,
+  try_node_exe = 0,
+}
+
+vim.g.neoformat_toml_tombi = tombi
+vim.g.neoformat_enabled_toml = { "tombi" }

@@ -176,6 +176,7 @@ vim.lsp.enable({
   "docker_language_server",
   "jsonls",
   "yamlls",
+  "tombi",
   "terraformls",
   "tflint",
   "ember",

@@ -60,7 +60,7 @@ require("lazy").setup({
   -- Command / FileType
   {
     "sbdchd/neoformat",
-    cmd = { "Neoformat", "Prettier", "BiomeFormat", "Oxfmt", "MoonFmt", "FixJson", "SQLFormatter", "Ruff", "Shfmt" },
+    cmd = { "Neoformat", "Prettier", "BiomeFormat", "Oxfmt", "MoonFmt", "FixJson", "SQLFormatter", "Ruff", "Shfmt", "TombiFormat" },
     config = function()
       vim.api.nvim_create_user_command("Prettier", "Neoformat prettier", {})
       vim.api.nvim_create_user_command("BiomeFormat", "Neoformat biome", {})
@@ -72,6 +72,7 @@ require("lazy").setup({
       vim.api.nvim_create_user_command("Black", "Neoformat black", {})
       vim.api.nvim_create_user_command("Isort", "Neoformat isort", {})
       vim.api.nvim_create_user_command("Shfmt", "Neoformat shfmt", {})
+      vim.api.nvim_create_user_command("TombiFormat", "Neoformat tombi", {})
     end
   },
   {
@@ -158,9 +159,9 @@ require("lazy").setup({
   { "ayuzaka/ddu-source-gh_pr_diff",       event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks",            event = "VeryLazy" },
   { "ayuzaka/ddu-source-git_blame",        event = "VeryLazy" },
-  { "Shougo/ddu-ui-filer",                event = "VeryLazy"  },
-  { "ryota2357/ddu-column-icon_filename", event = "VeryLazy"  },
-  { "Shougo/ddu-column-filename",         event = "VeryLazy"  },
+  { "Shougo/ddu-ui-filer",                 event = "VeryLazy" },
+  { "ryota2357/ddu-column-icon_filename",  event = "VeryLazy" },
+  { "Shougo/ddu-column-filename",          event = "VeryLazy" },
 })
 
 -- Immediate config

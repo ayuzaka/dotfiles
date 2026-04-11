@@ -126,5 +126,6 @@
   "language": "japanese",
   "plansDirectory": ".agents/plans",
   "autoUpdates": false,
+  "effortLevel": "high",
   "cleanupPeriodDays": 9999
 }

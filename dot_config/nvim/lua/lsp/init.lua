@@ -159,6 +159,7 @@ vim.lsp.enable({
   "vue_ls",
   "svelte",
   "rust_analyzer",
+  "sourcekit",
   "pylsp",
   "ruff_lsp",
   "bashls",

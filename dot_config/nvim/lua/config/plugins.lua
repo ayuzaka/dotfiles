@@ -84,7 +84,6 @@ require("lazy").setup({
   { "godlygeek/tabular" },
   { "preservim/vim-markdown", ft = "markdown" },
   { "imsnif/kdl.vim",         ft = "kdl" },
-  { "arto-app/arto.vim" },
   {
     "chrisgrieser/nvim-rulebook",
     event = "VeryLazy",

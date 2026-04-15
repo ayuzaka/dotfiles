@@ -1,6 +1,5 @@
 {
   "BackAndForward.vim": { "branch": "master", "commit": "09c067217d408b99e8b2b2ccc4170ac32daef934" },
-  "arto.vim": { "branch": "main", "commit": "5a00f0e977a035f8b098e0c4142e968a64f8efd2" },
   "bullets.vim": { "branch": "master", "commit": "89294b8930e660936374fb763ac48a1ac51dd29c" },
   "conflict-marker.vim": { "branch": "master", "commit": "62742b2ffe7a433988759c67b5c5a22eff74a14b" },
   "ddc-fuzzy": { "branch": "main", "commit": "095bc2c1dd1fb9ee4d35a2dbd3094f7346ac9594" },

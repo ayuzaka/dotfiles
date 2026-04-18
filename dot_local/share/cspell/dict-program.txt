@@ -383,6 +383,7 @@ webp
 webrtc
 winid
 workerd
+xcuserdata
 xnoremap
 xtrace
 yamlls

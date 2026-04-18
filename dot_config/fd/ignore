@@ -26,6 +26,10 @@ yarn-error.log*
 .mooncakes
 _build
 
+# Swift
+BuildTools/.build
+xcuserdata/
+
 # git
 .git-wt
 

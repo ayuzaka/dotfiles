@@ -26,15 +26,15 @@ yarn-error.log*
 .mooncakes
 _build
 
+# git
+.git-wt
+
+# production
+build
 out
 .output
 dist
 target
-.git-wt
-**/db/data
-
-# production
-build
 
 # misc
 .DS_Store
@@ -47,6 +47,10 @@ build
 # testing
 coverage
 
+# db
+**/db/data
+
 # ai
 .serena
-.claude/tmp
+.agents/skills
+.claude/skills

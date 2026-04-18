@@ -38,6 +38,12 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("plugins.lualine") end
   },
+  {
+    "sindrets/diffview.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function() require("plugins.diffview") end
+  },
   { "andymass/vim-matchup",      event = "BufReadPost" },
 
   {

@@ -108,6 +108,7 @@
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "slack@claude-plugins-official": true,
     "discord@claude-plugins-official": true,

@@ -41,7 +41,6 @@ require("diffview").setup({
       { "n", "<2-LeftMouse>", false },
       { "n", "l",             false },
       { "n", "o",             false },
-      { "n", "X",             false },
       { "n", "<c-f>",         false },
       { "n", "<c-b>",         false },
       { "n", "-",             false },

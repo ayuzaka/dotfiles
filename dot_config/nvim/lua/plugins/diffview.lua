@@ -43,7 +43,6 @@ require("diffview").setup({
       { "n", "o",             false },
       { "n", "<c-f>",         false },
       { "n", "<c-b>",         false },
-      { "n", "-",             false },
       { "n", "i",             false },
       { "n", "za",            false },
       { "n", "gf",            goto_file_and_close },

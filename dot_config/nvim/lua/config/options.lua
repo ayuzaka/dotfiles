@@ -129,6 +129,7 @@ if vim.env.EDITPROMPT then
   -- Load a specific colorscheme
   vim.cmd('colorscheme iceberg')
   vim.opt.background = "dark"
+  vim.api.nvim_set_hl(0, "ComplHint", { fg = "#4F9185", italic = true })
 end
 
 vim.filetype.add({

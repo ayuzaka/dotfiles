@@ -26,6 +26,10 @@ yarn-error.log*
 .mooncakes
 _build
 
+# Expo
+ios
+android
+
 # Swift
 BuildTools/.build
 xcuserdata/

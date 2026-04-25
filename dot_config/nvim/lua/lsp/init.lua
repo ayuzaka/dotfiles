@@ -169,6 +169,7 @@ vim.lsp.config("version_lsp", version_lsp_opts)
 vim.lsp.enable({
   "lua_ls",
   "gopls",
+  "golangci_lint_ls",
   "vue_ls",
   "svelte",
   "rust_analyzer",

@@ -1,25 +1,3 @@
-local function open_commit_diffview()
-  local lib = require("diffview.lib")
-  local FileHistoryView = require("diffview.scene.views.file_history.file_history_view").FileHistoryView
-
-  local view = lib.get_current_view()
-  if not view or not view:instanceof(FileHistoryView) then return end
-  ---@cast view FileHistoryView
-
-  local commit
-  if view.cur_entry then
-    commit = view.cur_entry.commit
-  end
-  if not commit and view.panel then
-    local item = view.panel:get_current_item()
-    if item then commit = item.commit end
-  end
-  if not commit or not commit.hash then return end
-
-  vim.cmd("DiffviewClose")
-  vim.cmd("DiffviewOpen " .. commit.hash .. "^.." .. commit.hash)
-end
-
 local function goto_file_and_close()
   local lib = require("diffview.lib")
   local DiffView = require("diffview.scene.views.diff.diff_view").DiffView
@@ -52,9 +30,6 @@ require("diffview").setup({
     view = {
       { "n", "gf",         goto_file_and_close },
       { "n", "<C-w><C-f>", false },
-    },
-    file_history_panel = {
-      { "n", "<CR>", open_commit_diffview },
     },
     file_panel = {
       { "n", "g<C-x>",        false },

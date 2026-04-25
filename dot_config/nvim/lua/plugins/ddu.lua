@@ -23,6 +23,28 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "ddu-ff-git_log",
+  callback = function()
+    local opts = { buf = 0, silent = true }
+    vim.keymap.set("n", "<CR>", function()
+      local item = vim.fn["ddu#ui#get_item"]()
+      if not item or vim.tbl_isempty(item) then return end
+
+      local hash = item.action and item.action.hash
+      if not hash then
+        hash = item.word and item.word:match("^(%x+)")
+      end
+      if not hash then return end
+
+      vim.fn["ddu#ui#do_action"]("quit")
+      vim.schedule(function()
+        vim.cmd("DiffviewOpen " .. hash .. "^.." .. hash)
+      end)
+    end, opts)
+  end
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "ddu-ff-gh_pr_diff",
   callback = function()
     local opts = { buf = 0, silent = true }

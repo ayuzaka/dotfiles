@@ -26,6 +26,16 @@ local function goto_file_and_close()
 end
 
 require("diffview").setup({
+  file_panel = {
+    win_config = {
+      position = "left",
+    },
+  },
+  file_history_panel = {
+    win_config = {
+      position = "left",
+    },
+  },
   keymaps = {
     view = {
       { "n", "gf",         goto_file_and_close },
@@ -55,3 +65,5 @@ require("diffview").setup({
 vim.keymap.set("n", "<leader>do", "<cmd>DiffviewOpen<CR>", { desc = "DiffviewOpen" })
 vim.keymap.set("n", "<leader>dc", "<cmd>DiffviewClose<CR>", { desc = "DiffviewClose" })
 vim.keymap.set("n", "<leader>db", "<cmd>DiffviewOpen origin/HEAD...HEAD<CR>", { desc = "Diff with base branch" })
+vim.keymap.set("n", "<leader>df", "<cmd>DiffviewFileHistory %<CR>", { desc = "Diffview Log" })
+vim.keymap.set("n", "<leader>dl", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffviewFileHistory" })

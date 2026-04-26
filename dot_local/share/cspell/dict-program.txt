@@ -193,6 +193,7 @@ lnum
 lrange
 lscolors
 lspconfig
+ltrimstr
 luaenv
 luarc
 luma

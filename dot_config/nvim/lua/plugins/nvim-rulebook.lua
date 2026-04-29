@@ -1,75 +1,38 @@
-local function deno_lint_rule_url(diag)
-  local href = vim.tbl_get(diag, "user_data", "lsp", "codeDescription", "href")
-  if type(href) == "string" and href ~= "" then
-    return href
-  end
-  local code = type(diag.code) == "string" and diag.code or ""
-  if code ~= "" then
-    return "https://docs.deno.com/lint/rules/" .. code
-  end
-end
+local deno_lint = require("plugins.nvim_rulebook.deno_lint")
+local golangci_lint = require("plugins.nvim_rulebook.golangci_lint")
+local oxlint = require("plugins.nvim_rulebook.oxlint")
+local rulebook = require("rulebook")
 
-local function oxlint_rule_url(diag)
-  local href = vim.tbl_get(diag, "user_data", "lsp", "codeDescription", "href")
-  if type(href) == "string" and href ~= "" then
-    return href
-  end
-
-  local base = "https://oxc.rs/docs/guide/usage/linter/rules/"
-  local code = type(diag.code) == "string" and diag.code or ""
-
-  -- category/rule 形式
-  if code:match("^[%w%-_]+/[%w%-_]+$") then
-    return base .. code .. ".html"
-  end
-
-  -- eslint-plugin-NAME(RULE) 形式
-  local plugin, rule = code:match("^eslint%-plugin%-([%w%-_]+)%(([%w%-_]+)%)$")
-  if plugin and rule then
-    return base .. plugin .. "/" .. rule .. ".html"
-  end
-
-  -- message から category/rule を抽出
-  local msg = type(diag.message) == "string" and diag.message or ""
-  local rule_path = msg:match("([%w%-_]+/[%w%-_]+)")
-  if rule_path then
-    return base .. rule_path .. ".html"
-  end
-end
-
-require("rulebook").setup({
+rulebook.setup({
   forwSearchLines = 10,
   ignoreComments = {
-    ["deno-lint"] = {
-      comment = "// deno-lint-ignore %s",
-      location = "prevLine",
-      multiRuleIgnore = true,
-      multiRuleSeparator = " ",
-      docs = "https://docs.deno.com/runtime/fundamentals/linting/#ignore-directives",
-    },
-    oxlint = {
-      comment = "// oxlint-disable-next-line %s",
-      location = "prevLine",
-      multiRuleIgnore = true,
-      multiRuleSeparator = ", ",
-      docs = "https://oxc.rs/docs/guide/usage/linter/ignore-comments",
-    },
-    oxc = {
-      comment = "// oxlint-disable-next-line %s",
-      location = "prevLine",
-      multiRuleIgnore = true,
-      multiRuleSeparator = ", ",
-      docs = "https://oxc.rs/docs/guide/usage/linter/ignore-comments",
-    },
+    ["golangci-lint"] = golangci_lint.ignore_comment,
+    golangci_lint_ls = golangci_lint.ignore_comment,
+    ["deno-lint"] = deno_lint.ignore_comment,
+    oxlint = oxlint.ignore_comment,
+    oxc = oxlint.ignore_comment,
   },
   ruleDocs = {
-    oxlint = oxlint_rule_url,
-    oxc = oxlint_rule_url,
-    ["deno-lint"] = deno_lint_rule_url,
+    ["golangci-lint"] = golangci_lint.rule_url,
+    golangci_lint_ls = golangci_lint.rule_url,
+    oxlint = oxlint.rule_url,
+    oxc = oxlint.rule_url,
+    ["deno-lint"] = deno_lint.rule_url,
   },
   suppressFormatter = require("rulebook.data.suppress-formatter-comment"),
   prettifyError = require("rulebook.data.prettify-error"),
 })
 
-vim.keymap.set("n", "<leader>rl", function() require("rulebook").lookupRule() end, { desc = "Lookup linter rule" })
-vim.keymap.set("n", "<leader>ri", function() require("rulebook").ignoreRule() end, { desc = "Ignore linter rule" })
+local rulebook_config = require("rulebook.config").config
+
+for _, linter_name in ipairs(golangci_lint.get_linter_names()) do
+  if rulebook_config.ignoreComments[linter_name] == nil then
+    rulebook_config.ignoreComments[linter_name] = golangci_lint.ignore_comment
+  end
+  if rulebook_config.ruleDocs[linter_name] == nil then
+    rulebook_config.ruleDocs[linter_name] = golangci_lint.rule_url
+  end
+end
+
+vim.keymap.set("n", "<leader>rl", function() rulebook.lookupRule() end, { desc = "Lookup linter rule" })
+vim.keymap.set("n", "<leader>ri", function() rulebook.ignoreRule() end, { desc = "Ignore linter rule" })

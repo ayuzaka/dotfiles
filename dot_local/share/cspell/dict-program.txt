@@ -100,10 +100,13 @@ ghci
 ghcup
 gibo
 gitui
+gocache
 gochecknoinits
 goenv
 golangci
 golint
+gomod
+gomodcache
 gopath
 gopls
 gosu
@@ -225,6 +228,7 @@ nohlsearch
 nohup
 noinherit
 noinsert
+nolint
 nolist
 nomod
 noopener

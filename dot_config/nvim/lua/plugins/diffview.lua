@@ -31,11 +31,6 @@ require("diffview").setup({
       position = "left",
     },
   },
-  file_history_panel = {
-    win_config = {
-      position = "left",
-    },
-  },
   keymaps = {
     view = {
       { "n", "gf",         goto_file_and_close },
@@ -62,8 +57,17 @@ require("diffview").setup({
   },
 })
 
+local function diff_with_base()
+  local branch = vim.fn.system("detect-best-branch.sh"):gsub("%s+", "")
+  if vim.v.shell_error ~= 0 or branch == "" then
+    vim.notify("Base branch not found", vim.log.levels.WARN)
+    return
+  end
+  vim.cmd("DiffviewOpen " .. branch .. "...HEAD")
+end
+
 vim.keymap.set("n", "<leader>do", "<cmd>DiffviewOpen<CR>", { desc = "DiffviewOpen" })
 vim.keymap.set("n", "<leader>dq", "<cmd>DiffviewClose<CR>", { desc = "DiffviewClose" })
-vim.keymap.set("n", "<leader>db", "<cmd>DiffviewOpen origin/HEAD...HEAD<CR>", { desc = "Diff with base branch" })
+vim.keymap.set("n", "<leader>db", diff_with_base, { desc = "Diff with base branch" })
 vim.keymap.set("n", "<leader>df", "<cmd>DiffviewFileHistory %<CR>", { desc = "Diffview Log" })
 vim.keymap.set("n", "<leader>dl", "<cmd>DiffviewFileHistory<CR>", { desc = "DiffviewFileHistory" })

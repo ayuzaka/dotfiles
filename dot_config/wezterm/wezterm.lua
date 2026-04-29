@@ -25,7 +25,7 @@ wezterm.on("format-tab-title", function(tab)
 end)
 
 return {
-  color_scheme = "GruvboxDark",
+  color_scheme = "Everforest Dark (Gogh)",
   font = wezterm.font_with_fallback(resolved_font.font),
   font_size = resolved_font.font_size,
   use_ime = true,

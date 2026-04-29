@@ -8,6 +8,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Immediate loading (required for first render)
+  { "sainnhe/everforest",    lazy = false, priority = 1000, config = function() require("plugins.everforest") end },
   {
     "morhetz/gruvbox",
     lazy = false,

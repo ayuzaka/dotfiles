@@ -115,12 +115,6 @@ require("lazy").setup({
     config = function() require("plugins.image") end
   },
   {
-    "barrett-ruth/import-cost.nvim",
-    build = "sh install.sh npm",
-    ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-    config = function() require("plugins.import-cost") end
-  },
-  {
     "moonbit-community/moonbit.nvim",
     ft = "moonbit",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },

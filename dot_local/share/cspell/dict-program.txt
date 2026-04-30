@@ -47,6 +47,7 @@ dbcli
 dbeaver
 dbname
 dearmor
+deauthorize
 dedup
 dedupe
 deno

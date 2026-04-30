@@ -32,7 +32,10 @@
       "Bash(deno fmt*)",
       "Bash(deno info*)",
       "Bash(deno test*)",
-      "Read(.env.example)"
+      "Read(.env.example)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Read"
     ],
     "deny": [
       "Bash(git push:*)",
@@ -47,8 +50,6 @@
       "Bash(rm:*)",
       "Bash(sudo:*)",
       "Bash(wget:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
       "Read(**/.ssh/**)",
       "Read(.env)",
       "Write(.env)",
@@ -139,6 +140,8 @@
   },
   "language": "japanese",
   "effortLevel": "high",
+  "advisorModel": "opus",
   "plansDirectory": ".agents/plans",
-  "advisorModel": "opus"
+  "agentPushNotifEnabled": true
 }
+

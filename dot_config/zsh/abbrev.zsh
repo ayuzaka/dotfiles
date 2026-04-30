@@ -15,6 +15,7 @@ ZSH_ABBR_MAP=(
   psp 'ps -fp "$(lsof -t -i :__CURSOR__)"'
   h 'cat $HISTFILE | fzf | pbcopy'
   cg 'cd_ghq'
+  cr: 'cd_root'
   dc-exec 'docker container exec -it'
   gpf 'git push --force-with-lease'
   git-tree "git log --graph --pretty=format:'%x09%C(auto) %h %Cgreen %cd %Creset%x09%C(cyan ul)%an%Creset %x09%C(auto)%s %d' --date=format:'%Y-%m-%d (%a)'"

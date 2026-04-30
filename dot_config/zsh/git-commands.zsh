@@ -17,3 +17,12 @@ function cd_ghq() {
 
   cd "$ghq_root/$project_dir"
 }
+
+function cd_root() {
+  local dir=$(roots | fzf --delimiter "/" --with-nth "2.." --preview "glow {}/README.md")
+  if [ "$dir" = "" ];then
+    return 0
+  fi
+
+  cd "$dir"
+}

@@ -1,6 +1,25 @@
 vim.lsp.config("sqls", {})
 vim.lsp.enable("sqls")
 
+local _original_ui_select = vim.ui.select
+---@diagnostic disable-next-line: duplicate-set-field
+vim.ui.select = function(items, opts, on_choice)
+  if opts and opts.prompt == "sqls.nvim" then
+    local display_items = vim.tbl_map(function(item)
+      return vim.split(item, " ")[3] or item
+    end, items)
+    _original_ui_select(display_items, opts, function(display_item, idx)
+      if display_item == nil then
+        on_choice(nil)
+      else
+        on_choice(items[idx])
+      end
+    end)
+  else
+    _original_ui_select(items, opts, on_choice)
+  end
+end
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "SqlsConnectionChoice",
   callback = function(args)

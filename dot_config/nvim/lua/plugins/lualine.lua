@@ -1,3 +1,7 @@
+local function sqls_status()
+  return vim.g.sqls_current_connection or ""
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -24,7 +28,16 @@ require('lualine').setup {
     lualine_c = {
       { 'filename', path = 1 }
     },
-    lualine_x = {},
+    lualine_x = {
+      {
+        sqls_status,
+        icon = '󰆼',
+        color = 'lualine_b_normal',
+        cond = function()
+          return vim.bo.filetype == "sql" and vim.g.sqls_current_connection ~= nil
+        end,
+      },
+    },
     lualine_y = {},
     lualine_z = {},
   },

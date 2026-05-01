@@ -1,6 +1,14 @@
 vim.lsp.config("sqls", {})
 vim.lsp.enable("sqls")
 
+vim.api.nvim_create_autocmd("User", {
+  pattern = "SqlsConnectionChoice",
+  callback = function(args)
+    local choice = args.data and args.data.choice
+    vim.g.sqls_current_connection = choice and vim.split(choice, " ")[3]
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "sql",
   callback = function(args)

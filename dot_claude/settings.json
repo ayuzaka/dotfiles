@@ -69,6 +69,18 @@
             "if": "Bash(find *)|Bash(rm *)|Bash(grep *)"
           }
         ]
+      },
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "WebSearchツールが「$ARGUMENTS」というクエリで呼ばれました。代わりに /tavily スキルを使って検索を実行し、結果を返してください。",
+            "model": "haiku",
+            "timeout": 30,
+            "statusMessage": "Tavilyサブエージェントで検索中..."
+          }
+        ]
       }
     ],
     "PostToolUse": [

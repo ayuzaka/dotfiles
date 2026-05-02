@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pattern 4: Fine-grained progress bar with true color gradient"""
 
-import json, sys
+import json, sys, os
 
 data = json.load(sys.stdin)
 
@@ -9,14 +9,36 @@ BLOCKS = " ▏▎▍▌▋▊▉█"
 R = "\033[0m"
 DIM = "\033[2m"
 
+def _read_theme():
+    try:
+        with open(os.path.expanduser("~/.config/theme")) as f:
+            return f.read().strip()
+    except Exception:
+        return "dark"
+
+_theme = _read_theme()
 
 def gradient(pct):
-    if pct < 50:
-        r = int(pct * 5.1)
-        return f"\033[38;2;{r};200;80m"
+    if _theme == "light":
+        # Everforest Light: green(141,161,1) → yellow(223,160,0) → red(248,85,82)
+        if pct < 50:
+            ratio = pct / 50
+            r = int(141 * ratio)
+            g = int(141 + 19 * ratio)
+            return f"\033[38;2;{r};{g};1m"
+        else:
+            ratio = (pct - 50) / 50
+            r = int(223 + 25 * ratio)
+            g = int(160 - 160 * ratio)
+            b = int(82 * ratio)
+            return f"\033[38;2;{r};{max(g, 0)};{b}m"
     else:
-        g = int(200 - (pct - 50) * 4)
-        return f"\033[38;2;255;{max(g, 0)};60m"
+        if pct < 50:
+            r = int(pct * 5.1)
+            return f"\033[38;2;{r};200;80m"
+        else:
+            g = int(200 - (pct - 50) * 4)
+            return f"\033[38;2;255;{max(g, 0)};60m"
 
 
 def bar(pct, width=10):

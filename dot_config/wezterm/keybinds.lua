@@ -191,6 +191,11 @@ local config = {
       },
     },
     {
+      key = 'r',
+      mods = 'LEADER',
+      action = act.ReloadConfiguration,
+    },
+    {
       key = 'g',
       mods = 'LEADER',
       action = wezterm.action_callback(function(window, pane)

@@ -1,4 +1,5 @@
-vim.opt.background = "dark"
+local ok, lines = pcall(vim.fn.readfile, vim.fn.expand("~/.config/theme"))
+vim.opt.background = (ok and lines[1] and vim.trim(lines[1]) == "dark") and "dark" or "light"
 
 vim.g.everforest_background = "soft"
 vim.g.everforest_enable_italic = true

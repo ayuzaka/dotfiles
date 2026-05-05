@@ -202,6 +202,15 @@ export class Config extends BaseConfig {
       },
     });
 
+    args.contextBuilder.patchLocal("sqls_connection", {
+      sources: [{ name: "sqls" }],
+      kindOptions: {
+        sqls: {
+          defaultAction: "select",
+        },
+      },
+    });
+
     args.contextBuilder.patchLocal("filer", {
       ui: "filer",
       sources: [

@@ -14,6 +14,13 @@ function M.handle_selection(idx)
   end
 end
 
+local private_ok, private_sqls = pcall(require, "private.sqls")
+if private_ok and type(private_sqls.connection_configs) == "table" then
+  require("config.sqls_dynamic_connections").setup({
+    connection_configs = private_sqls.connection_configs,
+  })
+end
+
 vim.lsp.config("sqls", {})
 vim.lsp.enable("sqls")
 

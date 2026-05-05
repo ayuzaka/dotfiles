@@ -1,3 +1,19 @@
+local M = {}
+
+local _pending_items = {}
+local _pending_callback = nil
+
+function M.handle_selection(idx)
+  local callback = _pending_callback
+  local items = _pending_items
+  _pending_callback = nil
+  _pending_items = {}
+
+  if callback then
+    callback(idx > 0 and items[idx] or nil)
+  end
+end
+
 vim.lsp.config("sqls", {})
 vim.lsp.enable("sqls")
 
@@ -8,13 +24,25 @@ vim.ui.select = function(items, opts, on_choice)
     local display_items = vim.tbl_map(function(item)
       return vim.split(item, " ")[3] or item
     end, items)
-    _original_ui_select(display_items, opts, function(display_item, idx)
-      if display_item == nil then
-        on_choice(nil)
-      else
-        on_choice(items[idx])
-      end
-    end)
+
+    _pending_items = items
+    _pending_callback = on_choice
+    vim.g.sqls_ddu_items = display_items
+
+    vim.fn["ddu#start"]({ name = "sqls_connection" })
+
+    vim.api.nvim_create_autocmd("BufDelete", {
+      pattern = "ddu-ff-sqls_connection",
+      once = true,
+      callback = function()
+        if _pending_callback then
+          local cb = _pending_callback
+          _pending_callback = nil
+          _pending_items = {}
+          cb(nil)
+        end
+      end,
+    })
   else
     _original_ui_select(items, opts, on_choice)
   end
@@ -44,3 +72,5 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+return M

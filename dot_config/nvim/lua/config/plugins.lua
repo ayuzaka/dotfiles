@@ -166,6 +166,7 @@ require("lazy").setup({
 
 -- Immediate config
 require("config.float-term")
+require("config.bookmark_comments")
 require("config.marks")
 
 -- vim.g settings (must be set before plugin loads)

@@ -51,6 +51,7 @@ target
 # hosting
 .vercel
 .amplify
+.wrangler
 
 # testing
 coverage

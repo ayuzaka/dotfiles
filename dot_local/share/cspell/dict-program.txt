@@ -343,6 +343,7 @@ tinify
 tolower
 tput
 trac
+trgm
 trror
 tsdown
 tseslint

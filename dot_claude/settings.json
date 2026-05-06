@@ -142,6 +142,7 @@
   "effortLevel": "high",
   "advisorModel": "opus",
   "plansDirectory": ".agents/plans",
+  "theme": "auto",
   "agentPushNotifEnabled": true
 }
 

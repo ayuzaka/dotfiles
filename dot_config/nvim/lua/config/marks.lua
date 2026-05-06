@@ -2,6 +2,7 @@
 -- in the sign column using extmarks. Replaces chentoast/marks.nvim.
 
 local ns = vim.api.nvim_create_namespace("native_marks")
+local bookmark_comments = require("config.bookmark_comments")
 
 local function refresh_marks(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
@@ -48,6 +49,9 @@ vim.keymap.set("n", "m", function()
   local letter = vim.fn.getcharstr()
   if letter:match("[a-zA-Z]") then
     vim.cmd("normal! m" .. letter)
+    if letter:match("[A-Z]") then
+      bookmark_comments.clear(letter)
+    end
     refresh_marks()
   end
 end)

@@ -178,9 +178,19 @@ export class Config extends BaseConfig {
       sources: [{
         name: "marks",
       }],
+      sourceOptions: {
+        _: {
+          converters: ["converter_marks_comment"],
+        },
+      },
       kindOptions: {
         marks: {
           defaultAction: "open",
+        },
+      },
+      actionOptions: {
+        comment: {
+          quit: false,
         },
       },
     });

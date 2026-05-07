@@ -98,18 +98,6 @@
           }
         ]
       }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-slack-log",
-            "async": true
-          }
-        ]
-      }
     ]
   },
   "statusLine": {
@@ -145,4 +133,3 @@
   "theme": "auto",
   "agentPushNotifEnabled": true
 }
-

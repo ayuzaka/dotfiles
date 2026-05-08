@@ -391,6 +391,7 @@ webrtc
 winid
 workerd
 xcuserdata
+xcworkspace
 xnoremap
 xtrace
 yamlls

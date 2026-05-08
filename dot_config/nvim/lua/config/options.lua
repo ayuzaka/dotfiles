@@ -11,6 +11,9 @@ vim.opt.statusline = "%F"
 vim.opt.history = 200
 vim.opt.backup = false
 vim.opt.swapfile = false
+-- ShaDa: 多重起動時の競合・破損を防ぐため保存量を最小化
+-- (Neovim はデフォルトで終了時にのみ ShaDa を書き込む)
+vim.opt.shada = { "'100", "<50", "s10", "h" }
 vim.opt.autoread = true
 vim.opt.hidden = true
 vim.opt.showcmd = true

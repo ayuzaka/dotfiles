@@ -1,4 +1,5 @@
 .git
+.cache
 
 # Node
 node_modules

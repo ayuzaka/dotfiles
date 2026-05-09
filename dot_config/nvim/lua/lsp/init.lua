@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, { buf = args.buf, desc = "hover diagnostic" })
 
     local function copy_lsp_error_prompt(action)
-      local file = vim.fn.expand("%:p")
+      local file = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
       local line = vim.fn.line(".")
       local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
 

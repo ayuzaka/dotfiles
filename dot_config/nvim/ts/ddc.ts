@@ -32,6 +32,14 @@ export class Config extends BaseConfig {
           isVolatile: true,
           forceCompletionPattern: "\\S\\\\\\S*",
         },
+        todoist: {
+          mark: "T",
+          matchers: ["matcher_head"],
+          sorters: ["sorter_rank"],
+          converters: ["converter_remove_overlap"],
+          minAutoCompleteLength: 1,
+          forceCompletionPattern: "\\s+",
+        },
       },
       sourceParams: {
         lsp: {
@@ -40,6 +48,9 @@ export class Config extends BaseConfig {
           enableAdditionalTextEdit: true,
         },
       },
+    });
+    args.contextBuilder.patchFiletype("todoist", {
+      sources: [{ name: "todoist" }],
     });
     ["ps1", "dosbatch", "autohotkey", "registry"].forEach((filetype) => {
       args.contextBuilder.patchFiletype(filetype, {

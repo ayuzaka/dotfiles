@@ -3,6 +3,7 @@
   "budoux.lua": { "branch": "main", "commit": "7f23658b127b9a74aae5b388fefcd997be30cbfc" },
   "bullets.vim": { "branch": "master", "commit": "89294b8930e660936374fb763ac48a1ac51dd29c" },
   "conflict-marker.vim": { "branch": "master", "commit": "62742b2ffe7a433988759c67b5c5a22eff74a14b" },
+  "ddc-converter_remove_overlap": { "branch": "main", "commit": "965503e08e33c505e54ee132fc4ae623bf78c88d" },
   "ddc-fuzzy": { "branch": "main", "commit": "095bc2c1dd1fb9ee4d35a2dbd3094f7346ac9594" },
   "ddc-matcher_head": { "branch": "main", "commit": "7a955d2f6a44e39687459f8f3a22f4daa063a981" },
   "ddc-sorter_rank": { "branch": "main", "commit": "eed3cb33b3ae3f9128257fcfb95e0511d1b13891" },

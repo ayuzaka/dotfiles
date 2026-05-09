@@ -176,6 +176,8 @@ vim.lsp.enable({
   "sourcekit",
   "pylsp",
   "ruff_lsp",
+  "phpactor",
+  "laravel-ls",
   "bashls",
   "html",
   "cssls",

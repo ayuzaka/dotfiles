@@ -72,6 +72,7 @@ pinact = "latest"
 "cargo:ripgrep" = { version = "latest" }
 "cargo:sheldon" = { version = "latest" }
 "cargo:fd-find" = { version = "latest" }
+"github:microsoft/waza" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

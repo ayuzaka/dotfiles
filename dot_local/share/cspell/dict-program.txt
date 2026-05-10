@@ -5,6 +5,7 @@ ampx
 anek
 aquaskk
 astro
+astrojs
 asyncomplete
 atexit
 autocmd

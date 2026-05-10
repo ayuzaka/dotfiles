@@ -163,6 +163,9 @@ vim.lsp.config("zizmor", zizmor_opts)
 local yamlls_opts = require("lsp.yamlls")
 vim.lsp.config("yamlls", yamlls_opts)
 
+local astro_opts = require("lsp.astro")
+vim.lsp.config("astro", astro_opts)
+
 local version_lsp_opts = require("lsp.version_lsp")
 vim.lsp.config("version_lsp", version_lsp_opts)
 
@@ -172,6 +175,7 @@ vim.lsp.enable({
   "golangci_lint_ls",
   "vue_ls",
   "svelte",
+  "astro",
   "rust_analyzer",
   "sourcekit",
   "pylsp",

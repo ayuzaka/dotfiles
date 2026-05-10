@@ -1,17 +1,40 @@
+version: "2"
 linters:
-  enable-all: true
+  default: all
   disable:
     - varnamelen
     - lll
     - depguard
-    - deadcode
-    - exhaustivestruct
-    - golint
-    - ifshort
-    - interfacer
-    - maligned
-    - nosnakecase
-    - scopelint
-    - structcheck
-    - varcheck
     - gochecknoinits
+    - testpackage
+    - wsl
+    - exhaustruct
+    - godoclint
+    - tagliatelle
+    - wrapcheck
+    - err113
+    - exhaustive
+    - funcorder
+    - cyclop
+    - gosmopolitan
+    - mnd
+    - ireturn
+    - gosec
+    - gocognit
+    - goconst
+    - noinlineerr
+    - modernize
+    - unparam
+    - funlen
+    - gocritic
+    - gocyclo
+    - noctx
+    - perfsprint
+    - gomodguard
+  enable:
+    - wsl_v5
+  settings:
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2

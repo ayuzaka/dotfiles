@@ -35,6 +35,9 @@ android
 BuildTools/.build
 xcuserdata/
 
+# PHP
+vendor/
+
 # git
 .git-wt
 
@@ -59,6 +62,8 @@ coverage
 
 # db
 **/db/data
+**/*.sdi
+**/*.ibd
 
 # ai
 .serena

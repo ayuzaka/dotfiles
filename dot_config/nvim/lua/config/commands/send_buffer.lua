@@ -23,5 +23,5 @@ vim.api.nvim_create_user_command("SendTo", function(opts)
   send_to_app(opts.args)
 end, { nargs = 1, desc = "Send buffer to specified app" })
 
-vim.keymap.set("n", "<leader>s4", "<cmd>SendTo Google Chrome Canary<cr>", { desc = "Send buffer to Chrome Canary" })
+vim.keymap.set("n", "<leader>s4", "<cmd>SendTo Google Chrome<cr>", { desc = "Send buffer to Chrome" })
 vim.keymap.set("n", "<leader>s3", "<cmd>SendTo Slack<cr>", { desc = "Send buffer to Slack" })

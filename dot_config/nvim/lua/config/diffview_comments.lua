@@ -232,7 +232,12 @@ local function get_current_info()
     return nil
   end
   local file = layout.b.file
-  if not file or file.rev.type ~= RevType.LOCAL then
+  if not file then
+    return nil
+  end
+  local is_local = file.rev.type == RevType.LOCAL
+  local is_commit = file.rev.type == RevType.COMMIT
+  if not (is_local or is_commit) then
     return nil
   end
 
@@ -385,7 +390,12 @@ function M.setup()
       return
     end
     local file = layout.b.file
-    if not file or file.rev.type ~= RevType.LOCAL then
+    if not file then
+      return
+    end
+    local is_local = file.rev.type == RevType.LOCAL
+    local is_commit = file.rev.type == RevType.COMMIT
+    if not (is_local or is_commit) then
       return
     end
 

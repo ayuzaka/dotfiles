@@ -25,6 +25,11 @@
     "text": "![good](https://img.shields.io/badge/review-good-success.svg) "
   },
   {
+    "keyword": "!details",
+    "name": "expand section",
+    "text": "<details><summary></summary></details>"
+  },
+  {
     "keyword": "!review-please",
     "name": "レビュー依頼",
     "text": "レビューお願いします！"

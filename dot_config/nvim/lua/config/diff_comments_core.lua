@@ -5,6 +5,8 @@ local M = {}
 
 -- コメント JSON の保存先
 local state_path = vim.fn.stdpath("state") .. "/diff_comments.json"
+-- メモリキャッシュ（単一プロセス前提）
+local cache = nil
 
 -- ヘルパー: vim.notify のラッパー
 local function notify(message, level)
@@ -16,27 +18,37 @@ end
 -- ───────────────────────────────────────────────────────────────
 
 -- JSON ファイルから全コメントを読み込む
+-- メモリキャッシュがあればそれを返し、なければファイルから読み込む
 -- ファイルが存在しない・空・破損している場合は空テーブルを返す
 function M.read_all()
+  if cache ~= nil then
+    return cache
+  end
+
   if vim.fn.filereadable(state_path) == 0 then
-    return {}
+    cache = {}
+    return cache
   end
 
   local lines = vim.fn.readfile(state_path)
   if #lines == 0 then
-    return {}
+    cache = {}
+    return cache
   end
 
   local ok, decoded = pcall(vim.json.decode, table.concat(lines, "\n"))
   if not ok or type(decoded) ~= "table" then
     notify("Failed to read diff comments: " .. state_path)
-    return {}
+    cache = {}
+    return cache
   end
 
-  return decoded
+  cache = decoded
+  return cache
 end
 
 -- JSON ファイルに全コメントを書き出す
+-- 書き込み成功後にメモリキャッシュも更新する
 -- 親ディレクトリが存在しない場合は自動作成
 local function write_all(data)
   local mkdir_ok, mkdir_err = pcall(vim.fn.mkdir, vim.fn.fnamemodify(state_path, ":h"), "p")
@@ -57,6 +69,7 @@ local function write_all(data)
     return false
   end
 
+  cache = data
   return true
 end
 

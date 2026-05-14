@@ -119,8 +119,8 @@ vim.api.nvim_create_user_command("CommentShow", show_comment, { desc = "Show com
 vim.api.nvim_create_user_command("CommentDelete", delete_comment, { desc = "Delete comment on current line" })
 
 -- グローバルキーマップ（全バッファ）
-vim.keymap.set("n", "gc", edit_comment, { desc = "Add/edit comment" })
-vim.keymap.set("n", "gC", show_comment, { desc = "Show comment" })
+vim.keymap.set("n", "gc", edit_comment, { desc = "Add/edit comment", nowait = true })
+vim.keymap.set("n", "gC", show_comment, { desc = "Show comment", nowait = true })
 
 -- autocmd
 local group = vim.api.nvim_create_augroup("CommentsAutoRender", { clear = true })

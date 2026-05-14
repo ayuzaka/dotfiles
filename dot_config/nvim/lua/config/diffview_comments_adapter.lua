@@ -221,8 +221,8 @@ function M.setup()
 
     ui.render_comments(bufnr, toplevel, relpath)
 
-    vim.keymap.set("n", "gc", edit_comment, { buffer = bufnr, silent = true })
-    vim.keymap.set("n", "gC", show_comment, { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gc", edit_comment, { buffer = bufnr, silent = true, nowait = true })
+    vim.keymap.set("n", "gC", show_comment, { buffer = bufnr, silent = true, nowait = true })
   end)
 
   -- ファイルパネル（左側のファイル一覧）のバッファ変更を監視し、

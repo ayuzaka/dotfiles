@@ -77,7 +77,6 @@ function M.show_comment_editor(toplevel, relpath, line, existing, callback)
 
   local buf = vim.api.nvim_create_buf(false, true)
   vim.bo[buf].buftype = "acwrite"
-  vim.bo[buf].filetype = "markdown"
   vim.bo[buf].swapfile = false
 
   local lines = existing ~= "" and vim.split(existing, "\n") or { "" }
@@ -90,13 +89,15 @@ function M.show_comment_editor(toplevel, relpath, line, existing, callback)
     border = "rounded",
     col = math.floor((vim.o.columns - width) / 2),
     height = height,
+    noautocmd = true,
     relative = "editor",
     row = math.floor((vim.o.lines - height) / 2),
     style = "minimal",
     width = width,
   })
 
-  vim.api.nvim_buf_set_name(buf, "comment://" .. toplevel .. "/" .. relpath .. ":" .. line)
+  -- バッファ名を comment:// プロトコル形式ではなく単純な名前に変更
+  vim.api.nvim_buf_set_name(buf, "[comment] " .. relpath .. ":" .. line)
 
   vim.cmd("startinsert")
 

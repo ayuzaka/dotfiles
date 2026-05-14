@@ -106,40 +106,54 @@ local function show_comment()
   end)
 end
 
--- 現在の diffview 右ペイン（ワークツリー）の情報を取得する
+-- 現在の diffview ペインの情報を取得する
+-- DiffView の右ペイン（b）または FileHistoryView の現在ファイルに対応
 function M.get_current_info()
   local lib = require("diffview.lib")
   local DiffView = require("diffview.scene.views.diff.diff_view").DiffView
+  local FileHistoryView = require("diffview.scene.views.file_history.file_history_view").FileHistoryView
   local RevType = require("diffview.vcs.rev").RevType
 
   local view = lib.get_current_view()
   if not view then
     return nil
   end
-  if not view:instanceof(DiffView) then
-    return nil
-  end
-  ---@cast view DiffView
 
-  local layout = view.cur_layout
-  ---@cast layout Diff2
-  if not layout or not layout.b then
-    return nil
-  end
-  local file = layout.b.file
-  if not file then
-    return nil
-  end
-  local is_local = file.rev.type == RevType.LOCAL
-  local is_commit = file.rev.type == RevType.COMMIT
-  if not (is_local or is_commit) then
+  local file
+  local toplevel
+
+  if view:instanceof(DiffView) then
+    ---@cast view DiffView
+    local layout = view.cur_layout
+    ---@cast layout Diff2
+    if not layout or not layout.b then
+      return nil
+    end
+    file = layout.b.file
+    if not file then
+      return nil
+    end
+    local is_local = file.rev.type == RevType.LOCAL
+    local is_commit = file.rev.type == RevType.COMMIT
+    if not (is_local or is_commit) then
+      return nil
+    end
+    toplevel = view.adapter.ctx.toplevel
+  elseif view:instanceof(FileHistoryView) then
+    ---@cast view FileHistoryView
+    file = view:infer_cur_file()
+    if not file then
+      return nil
+    end
+    toplevel = view.adapter.ctx.toplevel
+  else
     return nil
   end
 
   return {
-    toplevel = view.adapter.ctx.toplevel,
+    toplevel = toplevel,
     relpath = file.path,
-    bufnr = file.bufnr,
+    bufnr = vim.api.nvim_get_current_buf(),
   }
 end
 
@@ -155,39 +169,55 @@ function M.setup()
 
   local lib = require("diffview.lib")
   local DiffView = require("diffview.scene.views.diff.diff_view").DiffView
+  local FileHistoryView = require("diffview.scene.views.file_history.file_history_view").FileHistoryView
   local RevType = require("diffview.vcs.rev").RevType
 
-  -- diffview の右ペイン（ワークツリー側）が開かれるたびに:
+  -- diffview の diff バッファが開かれるたびに:
   --   1. 既存コメントの virtual text を描画
   --   2. gc / gC のバッファローカルキーマップを設定
   DiffviewGlobal.emitter:on("diff_buf_win_enter", function(_, bufnr, _winid, ctx)
-    if not ctx or ctx.symbol ~= "b" then
-      return
-    end
-
     local view = lib.get_current_view()
-    if not view or not view:instanceof(DiffView) then
-      return
-    end
-    ---@cast view DiffView
-
-    local layout = view.cur_layout
-    ---@cast layout Diff2
-    if not layout or not layout.b then
-      return
-    end
-    local file = layout.b.file
-    if not file then
-      return
-    end
-    local is_local = file.rev.type == RevType.LOCAL
-    local is_commit = file.rev.type == RevType.COMMIT
-    if not (is_local or is_commit) then
+    if not view then
       return
     end
 
-    local toplevel = view.adapter.ctx.toplevel
-    local relpath = file.path
+    local toplevel
+    local relpath
+
+    if view:instanceof(DiffView) then
+      ---@cast view DiffView
+      if not ctx or ctx.symbol ~= "b" then
+        return
+      end
+
+      local layout = view.cur_layout
+      ---@cast layout Diff2
+      if not layout or not layout.b then
+        return
+      end
+      local file = layout.b.file
+      if not file then
+        return
+      end
+      local is_local = file.rev.type == RevType.LOCAL
+      local is_commit = file.rev.type == RevType.COMMIT
+      if not (is_local or is_commit) then
+        return
+      end
+
+      toplevel = view.adapter.ctx.toplevel
+      relpath = file.path
+    elseif view:instanceof(FileHistoryView) then
+      ---@cast view FileHistoryView
+      local file = view:infer_cur_file()
+      if not file then
+        return
+      end
+      toplevel = view.adapter.ctx.toplevel
+      relpath = file.path
+    else
+      return
+    end
 
     ui.render_comments(bufnr, toplevel, relpath)
 

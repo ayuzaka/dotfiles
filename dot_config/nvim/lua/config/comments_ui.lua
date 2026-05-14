@@ -3,12 +3,12 @@
 
 local M = {}
 
-local core = require("config.diff_comments_core")
+local core = require("config.comments_core")
 
 -- extmark namespace（diff バッファ・通常バッファ用）
-local ns = vim.api.nvim_create_namespace("diff_comments")
+local ns = vim.api.nvim_create_namespace("comments")
 -- ファイルパネル・インジケータ用 namespace
-local panel_ns = vim.api.nvim_create_namespace("diff_comments_panel")
+local panel_ns = vim.api.nvim_create_namespace("comments_panel")
 
 -- ───────────────────────────────────────────────────────────────
 -- extmark 描画（バッファ用）
@@ -96,7 +96,7 @@ function M.show_comment_editor(toplevel, relpath, line, existing, callback)
     width = width,
   })
 
-  vim.api.nvim_buf_set_name(buf, "diff-comment://" .. toplevel .. "/" .. relpath .. ":" .. line)
+  vim.api.nvim_buf_set_name(buf, "comment://" .. toplevel .. "/" .. relpath .. ":" .. line)
 
   vim.cmd("startinsert")
 

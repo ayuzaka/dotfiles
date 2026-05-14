@@ -4,7 +4,7 @@
 local M = {}
 
 -- コメント JSON の保存先
-local state_path = vim.fn.stdpath("state") .. "/diff_comments.json"
+local state_path = vim.fn.stdpath("state") .. "/comments.json"
 -- メモリキャッシュ（単一プロセス前提）
 local cache = nil
 
@@ -38,7 +38,7 @@ function M.read_all()
 
   local ok, decoded = pcall(vim.json.decode, table.concat(lines, "\n"))
   if not ok or type(decoded) ~= "table" then
-    notify("Failed to read diff comments: " .. state_path)
+    notify("Failed to read comments: " .. state_path)
     cache = {}
     return cache
   end
@@ -53,19 +53,19 @@ end
 local function write_all(data)
   local mkdir_ok, mkdir_err = pcall(vim.fn.mkdir, vim.fn.fnamemodify(state_path, ":h"), "p")
   if not mkdir_ok then
-    notify("Failed to create directory for diff comments: " .. tostring(mkdir_err), vim.log.levels.ERROR)
+    notify("Failed to create directory for comments: " .. tostring(mkdir_err), vim.log.levels.ERROR)
     return false
   end
 
   local ok, encoded = pcall(vim.json.encode, data)
   if not ok then
-    notify("Failed to encode diff comments", vim.log.levels.ERROR)
+    notify("Failed to encode comments", vim.log.levels.ERROR)
     return false
   end
 
   local write_ok, err = pcall(vim.fn.writefile, vim.split(encoded, "\n"), state_path)
   if not write_ok then
-    notify("Failed to save diff comments: " .. err, vim.log.levels.ERROR)
+    notify("Failed to save comments: " .. err, vim.log.levels.ERROR)
     return false
   end
 

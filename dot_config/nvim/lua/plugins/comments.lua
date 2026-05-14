@@ -1,8 +1,8 @@
---- diff_comments プラグイン設定
+--- comments プラグイン設定
 -- 通常バッファで gc/gC やユーザーコマンドを利用可能にする
 
-local core = require("config.diff_comments_core")
-local ui = require("config.diff_comments_ui")
+local core = require("config.comments_core")
+local ui = require("config.comments_ui")
 
 -- カーソル行のコメントを追加・編集・削除
 local function edit_comment()
@@ -114,16 +114,16 @@ local function auto_render()
 end
 
 -- ユーザーコマンド定義
-vim.api.nvim_create_user_command("DiffCommentAdd", edit_comment, { desc = "Add/edit diff comment on current line" })
-vim.api.nvim_create_user_command("DiffCommentShow", show_comment, { desc = "Show diff comment on current line" })
-vim.api.nvim_create_user_command("DiffCommentDelete", delete_comment, { desc = "Delete diff comment on current line" })
+vim.api.nvim_create_user_command("CommentAdd", edit_comment, { desc = "Add/edit comment on current line" })
+vim.api.nvim_create_user_command("CommentShow", show_comment, { desc = "Show comment on current line" })
+vim.api.nvim_create_user_command("CommentDelete", delete_comment, { desc = "Delete comment on current line" })
 
 -- グローバルキーマップ（全バッファ）
-vim.keymap.set("n", "gc", edit_comment, { desc = "Add/edit diff comment" })
-vim.keymap.set("n", "gC", show_comment, { desc = "Show diff comment" })
+vim.keymap.set("n", "gc", edit_comment, { desc = "Add/edit comment" })
+vim.keymap.set("n", "gC", show_comment, { desc = "Show comment" })
 
 -- autocmd
-local group = vim.api.nvim_create_augroup("DiffCommentsAutoRender", { clear = true })
+local group = vim.api.nvim_create_augroup("CommentsAutoRender", { clear = true })
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
   group = group,
   callback = auto_render,

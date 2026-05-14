@@ -3,8 +3,8 @@
 
 local M = {}
 
-local core = require("config.diff_comments_core")
-local ui = require("config.diff_comments_ui")
+local core = require("config.comments_core")
+local ui = require("config.comments_ui")
 
 -- 現在アクティブな diffview のファイルパネルを再描画する
 local function refresh_current_panel()

@@ -170,7 +170,7 @@ require("lazy").setup({
 require("config.float-term")
 require("config.bookmark_comments")
 require("config.marks")
-require("plugins.diff_comments")
+require("plugins.comments")
 
 -- vim.g settings (must be set before plugin loads)
 require("plugins.vim-matchup")

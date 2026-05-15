@@ -103,6 +103,13 @@ function M.get_comments(toplevel, relpath)
   return repo[relpath]
 end
 
+-- 指定リポジトリの全ファイルコメントを取得する
+-- 返値: { ["relpath"] = { ["line"] = "body" }, ... } または nil
+function M.get_repo(toplevel)
+  local data = M.read_all()
+  return data[toplevel]
+end
+
 -- コメントを追加・更新する
 function M.set_comment(toplevel, relpath, line, body)
   local data = M.read_all()

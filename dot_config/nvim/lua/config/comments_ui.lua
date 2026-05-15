@@ -50,7 +50,7 @@ end
 function M.render_indicators(bufnr, entries, toplevel)
   vim.api.nvim_buf_clear_namespace(bufnr, panel_ns, 0, -1)
 
-  local repo = core.get_comments(toplevel)
+  local repo = core.get_repo(toplevel)
   if not repo then
     return
   end

@@ -161,6 +161,7 @@ require("lazy").setup({
   { "ayuzaka/ddu-source-gh_pr_diff",       event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks",            event = "VeryLazy" },
   { "ayuzaka/ddu-source-git_blame",        event = "VeryLazy" },
+  { "ayuzaka/ddu-source-comments",         event = "VeryLazy" },
   { "Shougo/ddu-ui-filer",                 event = "VeryLazy" },
   { "ryota2357/ddu-column-icon_filename",  event = "VeryLazy" },
   { "Shougo/ddu-column-filename",          event = "VeryLazy" },
@@ -170,6 +171,7 @@ require("lazy").setup({
 require("config.float-term")
 require("config.bookmark_comments")
 require("config.marks")
+require("plugins.comments")
 
 -- vim.g settings (must be set before plugin loads)
 require("plugins.vim-matchup")
@@ -198,6 +200,7 @@ vim.api.nvim_create_autocmd("User", {
     require("plugins.ddu-source-rg")
     require("plugins.ddu-source-gh_pr_diff")
     require("plugins.ddu-source-marks")
+    require("plugins.ddu-source-comments")
     require("plugins.ddu-ui-filer")
   end,
 })

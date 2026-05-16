@@ -57,7 +57,7 @@ require("diffview").setup({
   },
 })
 
-require("config.diffview_comments").setup()
+require("config.diffview_comments_adapter").setup()
 
 local function diff_with_base()
   local branch = vim.fn.system("detect-best-branch.sh"):gsub("%s+", "")

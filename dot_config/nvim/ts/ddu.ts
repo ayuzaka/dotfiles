@@ -174,6 +174,15 @@ export class Config extends BaseConfig {
       },
     });
 
+    args.contextBuilder.patchLocal("comments", {
+      sources: [{ name: "comments" }],
+      kindOptions: {
+        comments: {
+          defaultAction: "open",
+        },
+      },
+    });
+
     args.contextBuilder.patchLocal("marks", {
       sources: [{
         name: "marks",

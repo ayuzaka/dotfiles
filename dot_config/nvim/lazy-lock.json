@@ -18,6 +18,7 @@
   "ddu-filter-matcher_substring": { "branch": "main", "commit": "661e9383d9cdd7e4f07e5c3f4ce7e675e8cb38b3" },
   "ddu-kind-file": { "branch": "main", "commit": "162dcd350cbea0cfa4556121ae6ee9ef4d7eeb71" },
   "ddu-source-buffer": { "branch": "main", "commit": "1238c09bccb1d4814f36d83ef864cbb2b2ca9895" },
+  "ddu-source-comments": { "branch": "main", "commit": "d3fa9dfc5c6c10181cb971d8e9d4529c41df20e5" },
   "ddu-source-file": { "branch": "main", "commit": "fb95bdc3d34fc2405ca47a562267bb4e09817b06" },
   "ddu-source-file_external": { "branch": "main", "commit": "62b0fb4623ad07d549e8269ef4f51f09cf1b7500" },
   "ddu-source-file_rec": { "branch": "main", "commit": "81fb15d9fa49e36de528a784ef0e1655a137d273" },

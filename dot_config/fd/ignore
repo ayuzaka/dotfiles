@@ -38,6 +38,9 @@ xcuserdata/
 # PHP
 vendor/
 
+# Go
+.gocache
+
 # git
 .git-wt
 

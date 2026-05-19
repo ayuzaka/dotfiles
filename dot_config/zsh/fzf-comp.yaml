@@ -51,6 +51,10 @@
 - pattern: ^yarn( .*)? $
   command: _fzf_yarn_root_target
 
+# --- composer ---
+- pattern: ^composer (run|run-script)( .*)? $
+  command: _fzf_composer_run_target
+
 # --- make ---
 - pattern: ^make( .*)? $
   command: awk '/^\.PHONY:/ {for (i = 2; i <= NF; i++) {print $i}}' Makefile | sort -u | _fzf_run

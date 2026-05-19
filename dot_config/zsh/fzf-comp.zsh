@@ -209,6 +209,18 @@ _fzf_yarn_root_target() {
   _fzf_root_run_target ''
 }
 
+_fzf_composer_run_target() {
+  local composer_json="composer.json"
+  [[ ! -f "$composer_json" ]] && return 0
+
+  jq -r '
+    (.scripts // {}) | to_entries[]?
+    | .key + " = " + (.value | if type == "array" then join(" && ") elif type == "string" then . else tostring end)
+  ' "$composer_json" \
+    | _fzf_run \
+    | awk -F ' = ' '{print $1}'
+}
+
 _fzf_aws_sso_profile() {
   grep '^\[profile ' "$AWS_CONFIG_FILE" | sed 's/^\[profile //;s/\]$//' | _fzf_run
 }

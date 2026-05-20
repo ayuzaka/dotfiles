@@ -342,6 +342,7 @@ testid
 textlintrc
 tflint
 tfstate
+timestamptz
 tinify
 tolower
 tput

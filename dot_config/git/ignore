@@ -19,3 +19,5 @@ cc_kiro
 .nvim.lua
 .envrc
 .agents/plans
+.agents/implementation-notes.html
+.agents/implementation-notes.md

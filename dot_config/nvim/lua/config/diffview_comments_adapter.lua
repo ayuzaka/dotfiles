@@ -106,8 +106,30 @@ local function show_comment()
   end)
 end
 
+-- 通常バッファからgit情報を取得するフォールバック
+local function get_info_from_buffer()
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if bufname == "" then
+    return nil
+  end
+  local dir = vim.fn.fnamemodify(bufname, ":h")
+  local result = vim.fn.systemlist("git -C " .. vim.fn.shellescape(dir) .. " rev-parse --show-toplevel")
+  if vim.v.shell_error ~= 0 or not result[1] or result[1] == "" then
+    return nil
+  end
+  local toplevel = result[1]
+  local abspath = vim.fn.fnamemodify(bufname, ":p")
+  local relpath = abspath:sub(#toplevel + 2)
+  return {
+    toplevel = toplevel,
+    relpath = relpath,
+    bufnr = vim.api.nvim_get_current_buf(),
+  }
+end
+
 -- 現在の diffview ペインの情報を取得する
--- DiffView の右ペイン（b）または FileHistoryView の現在ファイルに対応
+-- DiffView の右ペイン（b）または FileHistoryView の現在ファイル、
+-- または通常バッファ（gf でファイルを開いた後など）に対応
 function M.get_current_info()
   local lib = require("diffview.lib")
   local DiffView = require("diffview.scene.views.diff.diff_view").DiffView
@@ -116,7 +138,7 @@ function M.get_current_info()
 
   local view = lib.get_current_view()
   if not view then
-    return nil
+    return get_info_from_buffer()
   end
 
   local file
@@ -155,6 +177,12 @@ function M.get_current_info()
     relpath = file.path,
     bufnr = vim.api.nvim_get_current_buf(),
   }
+end
+
+-- バッファに gc/gC キーマップを設定する（gf でファイルを開いた後に呼ぶ）
+function M.setup_buffer_keymaps(bufnr)
+  vim.keymap.set("n", "gc", edit_comment, { buffer = bufnr, silent = true, nowait = true })
+  vim.keymap.set("n", "gC", show_comment, { buffer = bufnr, silent = true, nowait = true })
 end
 
 -- ───────────────────────────────────────────────────────────────

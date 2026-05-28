@@ -48,9 +48,10 @@ export class Config extends BaseConfig {
         github: {
           mark: "GH",
           sorters: [],
+          matchers: ["matcher_fuzzy"],
           matcherKey: "matcherKey",
-          sorters: ["sorter_rank"],
-          converters: ["converter_remove_overlap"],
+          sorters: ["sorter_fuzzy"],
+          converters: ["converter_fuzzy"],
           minAutoCompleteLength: 1,
           forceCompletionPattern: "[@#]",
         },

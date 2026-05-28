@@ -123,19 +123,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client or client.name ~= "copilot" then return end
-    vim.lsp.inline_completion.enable(true)
-    vim.keymap.set('i', '<tab>', function()
-      if not vim.lsp.inline_completion.get() then
-        return '<tab>'
-      end
-    end, { expr = true, silent = true })
-  end
-})
-
 local lua_ls_opts = require("lsp.lua_ls")
 vim.lsp.config("lua_ls", lua_ls_opts)
 
@@ -202,7 +189,6 @@ vim.lsp.enable({
   "tflint",
   "ember",
   "efm",
-  "copilot",
   "version_lsp",
 })
 

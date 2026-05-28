@@ -142,6 +142,7 @@ require("lazy").setup({
   { "Shougo/ddc-converter_remove_overlap", event = "VeryLazy" },
   { "Shougo/ddc-source-lsp",               event = "VeryLazy" },
   { "ayuzaka/ddc-source-todoist",          event = "VeryLazy" },
+  { "ayuzaka/ddc-source-github",          event = "VeryLazy" },
   { "LumaKernel/ddc-source-file",          event = "VeryLazy" },
   { "tani/ddc-fuzzy",                      event = "VeryLazy" },
   { "vim-skk/skkeleton",                   event = "VeryLazy" },

@@ -8,7 +8,12 @@ export class Config extends BaseConfig {
     await super.config(args);
     args.contextBuilder.patchGlobal({
       ui: "pum",
-      sources: [{ name: "lsp" }, { name: "skkeleton" }, { name: "file" }],
+      sources: [
+        { name: "lsp" },
+        { name: "skkeleton" },
+        { name: "file" },
+        { name: "github" },
+      ],
       sourceOptions: {
         _: {
           matchers: ["matcher_head"],
@@ -39,6 +44,15 @@ export class Config extends BaseConfig {
           converters: ["converter_remove_overlap"],
           minAutoCompleteLength: 1,
           forceCompletionPattern: "\\s+",
+        },
+        github: {
+          mark: "GH",
+          sorters: [],
+          matcherKey: "matcherKey",
+          sorters: ["sorter_rank"],
+          converters: ["converter_remove_overlap"],
+          minAutoCompleteLength: 1,
+          forceCompletionPattern: "[@#]",
         },
       },
       sourceParams: {

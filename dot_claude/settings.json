@@ -105,6 +105,7 @@
     "command": "$CLAUDE_CONFIG_DIR/statusline.py"
   },
   "enabledPlugins": {
+    "security-guidance@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
@@ -123,6 +124,12 @@
       "source": {
         "source": "github",
         "repo": "awslabs/agent-plugins"
+      }
+    },
+    "laravel": {
+      "source": {
+        "source": "github",
+        "repo": "laravel/agent-skills"
       }
     }
   },

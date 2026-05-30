@@ -156,6 +156,9 @@ vim.lsp.config("astro", astro_opts)
 local version_lsp_opts = require("lsp.version_lsp")
 vim.lsp.config("version_lsp", version_lsp_opts)
 
+local knip_opts = require("lsp.knip")
+vim.lsp.config("knip", knip_opts)
+
 vim.lsp.enable({
   "lua_ls",
   "gopls",
@@ -190,6 +193,7 @@ vim.lsp.enable({
   "ember",
   "efm",
   "version_lsp",
+  "knip",
 })
 
 -- vts_ls or deno

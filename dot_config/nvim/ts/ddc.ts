@@ -54,6 +54,7 @@ export class Config extends BaseConfig {
           converters: ["converter_fuzzy"],
           minAutoCompleteLength: 1,
           forceCompletionPattern: "[@#]",
+          enabledIf: "exists('$GH_CONTEXT') && $GH_CONTEXT ==# '1'",
         },
       },
       sourceParams: {

@@ -195,33 +195,3 @@ local function tabs_to_spaces()
 end
 
 vim.api.nvim_create_user_command("TabsToSpaces", tabs_to_spaces, {})
-
--- preview for glow
-vim.api.nvim_create_user_command('Glow', function()
-  -- 先に元バッファの絶対パスを取得
-  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p')
-  if path == '' then
-    return
-  end
-  local cwd = vim.fn.fnamemodify(path, ':h')
-
-  -- create floating window
-  local buf = vim.api.nvim_create_buf(false, true)
-  local W, H = math.floor(vim.o.columns * 0.8), math.floor(vim.o.lines * 0.8)
-  vim.api.nvim_open_win(buf, true, {
-    relative = 'editor',
-    width = W,
-    height = H,
-    col = math.floor((vim.o.columns - W) / 2),
-    row = math.floor((vim.o.lines - H) / 2),
-    style = 'minimal',
-    border = 'rounded',
-  })
-
-  -- glow
-  vim.fn.jobstart({ 'glow', path }, { cwd = cwd, term = true })
-
-  -- close
-  vim.keymap.set('n', 'q', '<cmd>close<CR>', { buf = buf, silent = true })
-  vim.keymap.set('n', '<Esc>', '<cmd>close<CR>', { buf = buf, silent = true })
-end, {})

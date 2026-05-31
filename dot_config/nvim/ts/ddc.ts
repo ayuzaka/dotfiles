@@ -33,12 +33,12 @@ export class Config extends BaseConfig {
           minAutoCompleteLength: 1,
         },
         file: {
-          mark: "F",
+          mark: "File",
           isVolatile: true,
           forceCompletionPattern: "\\S\\\\\\S*",
         },
         todoist: {
-          mark: "T",
+          mark: "Todoist",
           matchers: ["matcher_head"],
           sorters: ["sorter_rank"],
           converters: ["converter_remove_overlap"],
@@ -46,7 +46,7 @@ export class Config extends BaseConfig {
           forceCompletionPattern: "\\s+",
         },
         github: {
-          mark: "GH",
+          mark: "GitHub",
           sorters: [],
           matchers: ["matcher_fuzzy"],
           matcherKey: "matcherKey",

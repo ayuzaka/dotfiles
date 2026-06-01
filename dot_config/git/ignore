@@ -4,6 +4,7 @@
 .vim-lsp-settings
 .ayuzaka
 .claude/settings.local.json
+**/.claude/settings.local.json
 .claude/tmp
 mise.local.toml
 cc_kiro

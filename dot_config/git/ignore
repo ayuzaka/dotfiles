@@ -19,6 +19,6 @@ cc_kiro
 .crush/logs
 .nvim.lua
 .envrc
-.agents/plans
-.agents/implementation-notes.html
-.agents/implementation-notes.md
+**/.agents/plans
+**/.agents/implementation-notes.html
+**/.agents/implementation-notes.md

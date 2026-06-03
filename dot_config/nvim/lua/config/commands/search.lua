@@ -47,6 +47,12 @@ local search_providers = {
     end,
     prompt = "search RFC number: ",
   },
+  XSearch = {
+    build_url = function(search_query)
+      return "https://x.com/search?q=" .. utils.url_encode(search_query)
+    end,
+    prompt = "search X search: ",
+  },
 }
 
 for command_name, provider in pairs(search_providers) do

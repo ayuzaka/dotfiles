@@ -29,6 +29,12 @@ local search_providers = {
     end,
     prompt = "search google: ",
   },
+  ChatGPTAsk = {
+    build_url = function(search_query)
+      return "https://chatgpt.com?q=" .. utils.url_encode(search_query)
+    end,
+    prompt = "Ask ChatGPT: ",
+  },
   NpmxSearch = {
     build_url = function(search_query)
       return "https://npmx.dev/search?q=" .. utils.url_encode(search_query)

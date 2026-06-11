@@ -115,7 +115,8 @@
     "aws-serverless@agent-plugins-for-aws": true,
     "databases-on-aws@agent-plugins-for-aws": true,
     "deploy-on-aws@agent-plugins-for-aws": true,
-    "migration-to-aws@agent-plugins-for-aws": true
+    "migration-to-aws@agent-plugins-for-aws": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {
@@ -128,6 +129,12 @@
       "source": {
         "source": "github",
         "repo": "laravel/agent-skills"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   },

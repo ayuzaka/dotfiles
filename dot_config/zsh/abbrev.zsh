@@ -26,8 +26,6 @@ ZSH_ABBR_MAP=(
   gsave 'git_quicksave'
   gh-pr-me 'gh pr list --author "@me" --state all'
   gh-pr-search "gh pr list --state all --json number,title --jq \".[] | [.number,.title] | @csv\" --search \"__CURSOR__\" | fzf | awk -F ',' '{print \$1}' | xargs gh browse"
-  ghe 'gh copilot explain "__CURSOR__"'
-  restore 'git checkout __CURSOR__ -- .'
 )
 
 function _zle_abbr_expand() {

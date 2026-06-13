@@ -63,7 +63,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_CONFIG_DIR/hooks/guard-commands.sh",
+            "command": "~/.local/bin/guard-commands.sh",
             "if": "Bash(find *)|Bash(rm *)|Bash(grep *)"
           }
         ]

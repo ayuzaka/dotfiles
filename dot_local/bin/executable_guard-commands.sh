@@ -1,4 +1,5 @@
 #!/bin/bash
+# Shared PreToolUse hook for Claude Code / Codex / OpenCode-compatible agents
 # grep → rg (flags are mostly compatible)
 # find → block (fd has a different flag system, rewrite manually)
 # rm   → block (trash has a different flag system, rewrite manually)
@@ -24,5 +25,6 @@ new_cmd=$(echo "$cmd" | sed 's/\bgrep\b/rg/g')
 
 if [ "$cmd" != "$new_cmd" ]; then
   jq -n --arg cmd "$new_cmd" \
-    '{"hookSpecificOutput":{"hookEventName":"PreToolUse","updatedInput":{"command":$cmd}}}'
+    '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"allow","updatedInput":{"command":$cmd}}}'
+  exit 0
 fi

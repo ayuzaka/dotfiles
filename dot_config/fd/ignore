@@ -70,5 +70,3 @@ coverage
 
 # ai
 .serena
-.agents/skills
-.claude/skills

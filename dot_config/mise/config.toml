@@ -108,6 +108,16 @@ zoxide = "latest"
 "pipx:ruff-lsp" = "latest"
 "pipx:tavily-cli" = "latest"
 
+[bootstrap.packages]
+"brew:docker" = "latest"
+"brew:git" = "latest"
+"brew:vim" = "latest"
+"brew:gnu-time" = "latest"
+"brew:libsixel" = "latest"
+"brew:terminal-notifier" = "latest"
+"brew:tree" = "latest"
+"brew:xdg-ninja" = "latest"
+
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true

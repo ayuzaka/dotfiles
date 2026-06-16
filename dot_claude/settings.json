@@ -42,6 +42,7 @@
       "Bash(git reset:*)",
       "Bash(gh auth:*)",
       "Bash(mongod:*)",
+      "Bash(supabase reset:*)",
       "Bash(mysql:*)",
       "Bash(nc:*)",
       "Bash(psql:*)",
@@ -116,7 +117,9 @@
     "databases-on-aws@agent-plugins-for-aws": true,
     "deploy-on-aws@agent-plugins-for-aws": true,
     "migration-to-aws@agent-plugins-for-aws": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "supabase@claude-plugins-official": true,
+    "chrome-devtools-mcp@chrome-devtools-plugins": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {
@@ -135,6 +138,18 @@
       "source": {
         "source": "github",
         "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
       }
     }
   },

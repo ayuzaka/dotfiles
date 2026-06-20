@@ -39,7 +39,14 @@
       "*.env.*.example": "allow"
     }
   },
-  "mcp": {},
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "chrome-devtools-mcp"
+      ]
+    }
+  },
   "tools": {
     "web_search": false
   }

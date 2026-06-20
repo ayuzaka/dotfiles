@@ -40,6 +40,9 @@
     "deny": [
       "Bash(git push:*)",
       "Bash(git reset:*)",
+      "Bash(git clean -f:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git restore:*)",
       "Bash(gh auth:*)",
       "Bash(mongod:*)",
       "Bash(supabase reset:*)",
@@ -76,6 +79,41 @@
             "type": "command",
             "command": "~/.local/bin/guard-commands.sh",
             "if": "Bash(grep *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git push *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git reset --hard *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git clean -fd *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git clean -f *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git branch -D *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git checkout \\. *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(git restore \\. *)"
           }
         ]
       }

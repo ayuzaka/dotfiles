@@ -19,6 +19,42 @@ if echo "$cmd" | grep -qE '\brm\b'; then
   exit 0
 fi
 
+# block git push
+if echo "$cmd" | grep -qE '\bgit push\b'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git push is not allowed."}}'
+  exit 0
+fi
+
+# block git reset --hard
+if echo "$cmd" | grep -qE '\bgit reset --hard\b'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git reset --hard is not allowed."}}'
+  exit 0
+fi
+
+# block git clean
+if echo "$cmd" | grep -qE '\bgit clean -f\b'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git clean is not allowed."}}'
+  exit 0
+fi
+
+# block git branch -D
+if echo "$cmd" | grep -qE '\bgit branch -D\b'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git branch -D is not allowed."}}'
+  exit 0
+fi
+
+# block git checkout .
+if echo "$cmd" | grep -qE '\bgit checkout \.'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git checkout . is not allowed."}}'
+  exit 0
+fi
+
+# block git restore .
+if echo "$cmd" | grep -qE '\bgit restore \.'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git restore . is not allowed."}}'
+  exit 0
+fi
+
 # convert grep → rg
 # shellcheck disable=SC2001
 new_cmd=$(echo "$cmd" | sed 's/\bgrep\b/rg/g')

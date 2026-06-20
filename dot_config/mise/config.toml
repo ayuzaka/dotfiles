@@ -123,6 +123,7 @@ idiomatic_version_file_enable_tools = ["node"]
 experimental = true
 minimum_release_age = "7d"
 lockfile = true
+not_found_auto_install = false
 
 [settings.npm]
 package_manager = "bun"

@@ -65,7 +65,17 @@
           {
             "type": "command",
             "command": "~/.local/bin/guard-commands.sh",
-            "if": "Bash(find *)|Bash(rm *)|Bash(grep *)"
+            "if": "Bash(find *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(rm *)"
+          },
+          {
+            "type": "command",
+            "command": "~/.local/bin/guard-commands.sh",
+            "if": "Bash(grep *)"
           }
         ]
       }
@@ -77,12 +87,32 @@
           {
             "type": "command",
             "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh",
-            "if": "Edit(**/.github/workflows/*.yml)|Edit(**/.github/workflows/*.yaml)|Write(**/.github/workflows/*.yml)|Write(**/.github/workflows/*.yaml)"
+            "if": "Edit(**/.github/workflows/*.yml)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh",
+            "if": "Edit(**/.github/workflows/*.yaml)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh",
+            "if": "Write(**/.github/workflows/*.yml)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-github-actions.sh",
+            "if": "Write(**/.github/workflows/*.yaml)"
           },
           {
             "type": "command",
             "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh",
-            "if": "Edit(**/*.sh)|Write(**/*.sh)"
+            "if": "Edit(**/*.sh)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh",
+            "if": "Write(**/*.sh)"
           }
         ]
       }

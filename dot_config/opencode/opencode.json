@@ -39,6 +39,7 @@
       "*.env.*.example": "allow"
     }
   },
+  "lsp": true,
   "mcp": {
     "chrome-devtools": {
       "type": "local",

@@ -106,6 +106,7 @@ zoxide = "latest"
 "pipx:python-lsp-server" = "latest"
 "pipx:ruff-lsp" = "latest"
 "pipx:tavily-cli" = "latest"
+"pipx:headroom-ai" = { version = "latest", extras = "all" }
 
 [bootstrap.packages]
 "brew:docker" = "latest"

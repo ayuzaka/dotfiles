@@ -187,7 +187,9 @@
     "migration-to-aws@agent-plugins-for-aws": true,
     "codex@openai-codex": true,
     "supabase@claude-plugins-official": true,
-    "chrome-devtools-mcp@chrome-devtools-plugins": true
+    "chrome-devtools-mcp@chrome-devtools-plugins": true,
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {

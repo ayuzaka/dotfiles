@@ -83,6 +83,9 @@
   command: gcloud config configurations list --format 'value(name)' | _fzf_run
 
 # --- git ---
+- pattern: ^git history fixup( .*)? $
+  command: _fzf_git_commit
+
 - pattern: ^git rebase( .*)? $
   command: _fzf_git_ref
 

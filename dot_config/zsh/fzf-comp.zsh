@@ -225,6 +225,19 @@ _fzf_aws_sso_profile() {
   grep '^\[profile ' "$AWS_CONFIG_FILE" | sed 's/^\[profile //;s/\]$//' | _fzf_run
 }
 
+# git history fixup 向け: コミットログのみを fzf 表示する
+_fzf_git_commit() {
+  local commit escaped_commit
+  commit=$(
+    git log --format='%h  %s' --color=never \
+    | _fzf_run \
+    | awk '{print $1}'
+  )
+
+  escaped_commit="${commit//\'/\'\\\'\'}"
+  printf "'%s'\n" "$escaped_commit"
+}
+
 # ---------------------------------------------------------------------------
 # ウィジェット本体
 # ---------------------------------------------------------------------------

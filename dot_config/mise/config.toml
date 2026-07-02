@@ -39,7 +39,6 @@ pnpm = "latest"
 python = "latest"
 resvg = "latest"
 ripgrep = "latest"
-rtk = "latest"
 ruff = "latest"
 rust = "latest"
 shfmt = "latest"
@@ -107,7 +106,6 @@ zoxide = "latest"
 "pipx:python-lsp-server" = "latest"
 "pipx:ruff-lsp" = "latest"
 "pipx:tavily-cli" = "latest"
-"pipx:headroom-ai" = { version = "latest", extras = "all" }
 
 [bootstrap.packages]
 "brew:docker" = "latest"

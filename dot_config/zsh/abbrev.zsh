@@ -25,8 +25,6 @@ ZSH_ABBR_MAP=(
   gsave 'git_quicksave'
   gh-pr-me 'gh pr list --author "@me" --state all'
   gh-pr-search "gh pr list --state all --json number,title --jq \".[] | [.number,.title] | @csv\" --search \"__CURSOR__\" | fzf | awk -F ',' '{print \$1}' | xargs gh browse"
-  cl 'ANTHROPIC_BASE_URL=http://localhost:8787 claude'
-  cx 'OPENAI_BASE_URL=http://localhost:8787 codex'
 )
 
 function _zle_abbr_expand() {

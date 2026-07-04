@@ -114,3 +114,9 @@ fi
 if command -v op >/dev/null 2>&1; then
   source "$XDG_CONFIG_HOME"/op/plugins.sh
 fi
+
+# @antfu/ni
+mkdir -p ~/.zim/custom/ni-completions
+nr --completion-zsh > ~/.zim/custom/ni-completions/_ni
+echo "zmodule $HOME/.zim/custom/ni-completions --fpath ." >> ~/.zimrc
+zimfw install

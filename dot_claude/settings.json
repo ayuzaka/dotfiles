@@ -36,7 +36,9 @@
       "Read(.env.example)",
       "Bash(grep:*)",
       "Bash(find:*)",
-      "Read"
+      "Read",
+      "Bash(tvly search *)",
+      "Bash(tvly extract *)"
     ],
     "deny": [
       "Bash(git push:*)",
@@ -61,6 +63,7 @@
       "WebFetch"
     ]
   },
+  "model": "claude-opus-4-6[1m]",
   "hooks": {
     "PreToolUse": [
       {

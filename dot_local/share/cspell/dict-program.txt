@@ -321,6 +321,7 @@ shellenv
 shfmt
 shopt
 showcmd
+simctl
 sixel
 sparkctl
 sqld
@@ -394,6 +395,7 @@ webp
 webrtc
 winid
 workerd
+xcrun
 xcuserdata
 xcworkspace
 xnoremap

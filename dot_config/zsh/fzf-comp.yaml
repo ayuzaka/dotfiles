@@ -5,11 +5,15 @@
 #           $1 や ' などのシェルエスケープは不要
 
 # --- tmux ---
+# セッション名に "." が含まれると tmux が window/pane 区切りと誤解釈するため、
+# 補完候補には session_name ではなく session_id を使う。
+# また $N をそのままLBUFFERに挿入すると実行時にzshが変数展開してしまうため、
+# _fzf_tmux_session_target 側で単一引用符付きにして返す。
 - pattern: ^tmux (a|attach) -t( .*)? $
-  command: tmux ls | _fzf_run | awk -F ':' '{print $1}'
+  command: _fzf_tmux_session_target
 
 - pattern: ^tmux kill-session -t( .*)? $
-  command: tmux ls | _fzf_run | awk -F ':' '{print $1}'
+  command: _fzf_tmux_session_target
 
 - pattern: ^tmux send-keys -t( .*)? $
   command: tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{session_name}:#{window_name} [#{pane_current_command}]' | _fzf_run | awk '{print $1}'

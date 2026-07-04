@@ -225,6 +225,20 @@ _fzf_aws_sso_profile() {
   grep '^\[profile ' "$AWS_CONFIG_FILE" | sed 's/^\[profile //;s/\]$//' | _fzf_run
 }
 
+# tmux セッション選択: session_id ($N 形式) を選ばせる。
+# LBUFFER に生の $N を挿入すると、実行時に zsh が未設定の位置パラメータとして
+# 展開し空文字になってしまうため、単一引用符で囲んで返す。
+_fzf_tmux_session_target() {
+  local id
+  id=$(
+    tmux list-sessions -F '#{session_id} #{session_name}' \
+    | _fzf_run \
+    | awk '{print $1}'
+  )
+  [[ -z "$id" ]] && return
+  printf "'%s'\n" "$id"
+}
+
 # git history fixup 向け: コミットログのみを fzf 表示する
 _fzf_git_commit() {
   local commit escaped_commit

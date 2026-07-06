@@ -120,6 +120,16 @@
             "if": "Bash(git restore \\. *)"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/worktree-guard.sh",
+            "statusMessage": "worktree パスを確認中"
+          }
+        ]
       }
     ],
     "PostToolUse": [

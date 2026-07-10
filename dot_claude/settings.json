@@ -61,7 +61,8 @@
       "NotebookEdit",
       "WebSearch",
       "WebFetch"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "model": "claude-opus-4-6[1m]",
   "hooks": {

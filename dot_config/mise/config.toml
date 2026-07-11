@@ -4,11 +4,11 @@ actionlint = "latest"
 awscli = "latest"
 bat = "latest"
 bun = "latest"
+chezmoi = "latest"
 cmake = "latest"
 codex = "latest"
 cosign = "latest"
 cspell = "latest"
-chezmoi = "latest"
 deno = "latest"
 devcontainer-cli = "latest"
 difftastic = "latest"
@@ -31,6 +31,7 @@ jq = "latest"
 lazydocker = "latest"
 lsd = "latest"
 lua-language-server = "latest"
+mas = "latest"
 neovim = "latest"
 node = "24"
 opencode = "latest"
@@ -118,6 +119,34 @@ zoxide = "latest"
 "brew:terminal-notifier" = "latest"
 "brew:tree" = "latest"
 "brew:xdg-ninja" = "latest"
+"brew:mas" = "latest"
+"mas:1351639930" = "latest" # Gifski
+"mas:302584613" = "latest" # Kindle
+
+[bootstrap.macos.dock]
+autohide = true
+orientation = "right"
+tilesize = 16
+magnification = false
+show_recents = false
+
+[bootstrap.macos.finder]
+show_all_files = true
+show_pathbar = true
+show_status_bar = true
+show_extensions_warning = true
+preferred_view_style = "icon"
+
+[bootstrap.macos.keyboard]
+press_and_hold = false
+fn_state = true
+
+[bootstrap.macos.trackpad]
+tap_to_click = false
+three_finger_drag = true
+
+[bootstrap.user]
+login_shell = "/bin/zsh"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

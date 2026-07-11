@@ -3,6 +3,7 @@
 [core]
   editor = nvim
   pager = less -x4
+  hooksPath = ~/.config/git/hooks/
 [gpg]
   format = ssh
 [commit]

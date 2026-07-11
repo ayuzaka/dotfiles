@@ -19,9 +19,9 @@ if echo "$cmd" | grep -qE '\brm\b'; then
   exit 0
 fi
 
-# block git push
-if echo "$cmd" | grep -qE '\bgit push\b'; then
-  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git push is not allowed."}}'
+# block git force push
+if echo "$cmd" | grep -qE '\bgit push\b.*(^|[[:space:]])(-[[:alnum:]]*f[[:alnum:]]*|--force($|[=[:space:]])|--force-with-lease($|[=[:space:]])|--force-if-includes($|[=[:space:]]))'; then
+  jq -n '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git force push is not allowed."}}'
   exit 0
 fi
 

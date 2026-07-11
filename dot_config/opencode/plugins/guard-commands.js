@@ -22,8 +22,12 @@ export const GuardCommandsPlugin = async () => {
         );
       }
 
-      if (/\bgit push\b/.test(command)) {
-        throw new Error("git push is not allowed.");
+      if (
+        /\bgit push\b.*(^|\s)(-[A-Za-z0-9]*f[A-Za-z0-9]*|--force($|[=\s])|--force-with-lease($|[=\s])|--force-if-includes($|[=\s]))/.test(
+          command,
+        )
+      ) {
+        throw new Error("git force push is not allowed.");
       }
 
       if (/\bgit reset --hard\b/.test(command)) {

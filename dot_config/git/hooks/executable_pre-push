@@ -1,0 +1,23 @@
+#!/bin/sh
+
+protected_branches='
+main
+master
+'
+
+repo_protected_branches=$(git config --local --get-all hooks.protectedBranch)
+
+while read -r _ _ remote_ref _
+do
+  remote_branch=${remote_ref#refs/heads/}
+
+  for protected_branch in $protected_branches $repo_protected_branches
+  do
+    if [ "$remote_branch" = "$protected_branch" ]; then
+      echo "Error: pushing to '$remote_branch' is not allowed." >&2
+      exit 1
+    fi
+  done
+done
+
+exit 0

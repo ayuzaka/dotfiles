@@ -16,6 +16,7 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git diff:*)",
+      "Bash(git push:*)",
       "Bash(git status:*)",
       "Bash(ls:*)",
       "Bash(lsd:*)",
@@ -41,7 +42,6 @@
       "Bash(tvly extract *)"
     ],
     "deny": [
-      "Bash(git push:*)",
       "Bash(git reset:*)",
       "Bash(git clean -f:*)",
       "Bash(git branch -D:*)",

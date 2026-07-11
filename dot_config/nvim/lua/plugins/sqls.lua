@@ -42,5 +42,11 @@ vim.api.nvim_create_autocmd("FileType", {
       silent = true,
       desc = "Switch SQL connection",
     })
+
+    vim.keymap.set("n", "<leader>sd", "<Cmd>SqlsSwitchDatabase<CR>", {
+      buf = args.buf,
+      silent = true,
+      desc = "Switch SQL database",
+    })
   end,
 })

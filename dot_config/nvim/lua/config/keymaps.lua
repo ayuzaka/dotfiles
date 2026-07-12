@@ -50,30 +50,59 @@ vim.keymap.set("n", "<leader>e", ":Filer<CR>", { silent = true })
 -- editprompt
 -- Send buffer content while keeping the editor open
 if vim.env.EDITPROMPT then
-    vim.keymap.set("n", "<Space>x", function()
-        vim.cmd("update")
-        -- Get buffer content
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
+    local sending = false
 
-        -- Execute editprompt command
+    if vim.env.EDITPROMPT_WEZTERM_TARGET_PANE and vim.env.WEZTERM_PANE then
+        local pane_dir = vim.env.XDG_CACHE_HOME .. "/editprompt"
+        vim.fn.mkdir(pane_dir, "p")
+        vim.fn.writefile(
+            { vim.env.WEZTERM_PANE },
+            pane_dir .. "/wezterm-pane-" .. vim.env.EDITPROMPT_WEZTERM_TARGET_PANE
+        )
+    end
+
+    local function send_editprompt(buffer)
+        if sending then
+            return
+        end
+
+        local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+        local content = table.concat(lines, "\n")
+        if vim.trim(content) == "" then
+            return
+        end
+
+        sending = true
         vim.system(
             { "editprompt", "input", "--", content },
             { text = true },
             function(obj)
                 vim.schedule(function()
                     if obj.code == 0 then
-                        -- Clear buffer on success
-                        vim.api.nvim_buf_set_lines(0, 0, -1, false, {})
-                        vim.cmd("silent write")
+                        vim.api.nvim_buf_set_lines(buffer, 0, -1, false, {})
+                        vim.api.nvim_buf_call(buffer, function()
+                            vim.cmd("silent write")
+                        end)
                     else
-                        -- Show error notification
                         vim.notify("editprompt failed: " .. (obj.stderr or "unknown error"), vim.log.levels.ERROR)
                     end
+                    sending = false
                 end)
             end
         )
-    end, { silent = true, desc = "Send buffer content to editprompt" })
+    end
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        buffer = 0,
+        callback = function(args)
+            send_editprompt(args.buf)
+        end,
+    })
+
+    vim.keymap.set("n", "<Space>x", "<Cmd>update<CR>", {
+        silent = true,
+        desc = "Send buffer content to editprompt",
+    })
 end
 
 vim.keymap.set("n", "b,", ":bprev<CR>", { silent = true })

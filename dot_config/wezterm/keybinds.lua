@@ -1,8 +1,41 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local active_panes = {}
+local editprompt = wezterm.home_dir .. '/.local/share/mise/shims/editprompt'
+local herdr = wezterm.home_dir .. '/.local/share/mise/shims/herdr'
+local xdg_environment = {
+  PATH = wezterm.home_dir .. '/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin',
+  XDG_CACHE_HOME = wezterm.home_dir .. '/.cache',
+  XDG_CONFIG_HOME = wezterm.home_dir .. '/.config',
+  XDG_DATA_HOME = wezterm.home_dir .. '/.local/share',
+  XDG_STATE_HOME = wezterm.home_dir .. '/.local/state',
+}
 
-wezterm.on('update-right-status', function(window)
+local function editprompt_pane_path(target_pane_id)
+  return xdg_environment.XDG_CACHE_HOME .. '/editprompt/wezterm-pane-' .. target_pane_id
+end
+
+wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace())
+
+  local window_id = window:window_id()
+  local pane_id = pane:pane_id()
+  if active_panes[window_id] == pane_id then
+    return
+  end
+  active_panes[window_id] = pane_id
+
+  local workspace_id = pane:get_user_vars().HERDR_WORKSPACE_ID
+  if workspace_id and workspace_id ~= '' then
+    wezterm.background_child_process {
+      herdr,
+      '--session',
+      'agents',
+      'workspace',
+      'focus',
+      workspace_id,
+    }
+  end
 end)
 
 local config = {
@@ -42,6 +75,11 @@ local config = {
       key = 'z',
       mods = 'LEADER',
       action = act.TogglePaneZoomState,
+    },
+    {
+      key = 'y',
+      mods = 'LEADER',
+      action = act.ActivateCopyMode,
     },
     {
       key = 'H',
@@ -124,6 +162,47 @@ local config = {
       key = 'v',
       mods = 'SUPER',
       action = act.PasteFrom 'Clipboard',
+    },
+    {
+      key = "q",
+      mods = "ALT",
+      action = wezterm.action_callback(function(window, pane)
+        local target_pane_id = tostring(pane:pane_id())
+        local pane_file = io.open(editprompt_pane_path(target_pane_id), 'r')
+        if pane_file then
+          local editor_pane_id = tonumber(pane_file:read('*l'))
+          pane_file:close()
+          local pane_exists, editor_pane = pcall(wezterm.mux.get_pane, editor_pane_id)
+          if pane_exists and editor_pane then
+            editor_pane:activate()
+            return
+          end
+        end
+
+        window:perform_action(
+          act.SplitPane {
+            direction = 'Down',
+            size = { Cells = 10 },
+            command = {
+              args = {
+                editprompt,
+                'open',
+                '--editor',
+                'nvim',
+                '--always-copy',
+                '--mux',
+                'wezterm',
+                '--target-pane',
+                target_pane_id,
+                '--env',
+                'EDITPROMPT_WEZTERM_TARGET_PANE=' .. target_pane_id,
+              },
+              set_environment_variables = xdg_environment,
+            },
+          },
+          pane
+        )
+      end),
     },
     {
       key = 'j',

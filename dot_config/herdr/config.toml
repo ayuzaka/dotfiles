@@ -1,0 +1,9 @@
+[keys]
+prefix = "ctrl+space"
+new_tab = "prefix+c"
+rename_tab = "prefix+comma"
+previous_tab = "prefix+["
+next_tab = "prefix+]"
+
+[ui]
+prompt_new_tab_name = false

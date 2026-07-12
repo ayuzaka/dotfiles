@@ -41,6 +41,9 @@ enabled = true
 [plugins."ctx-agent-history-search@ctx"]
 enabled = true
 
+[plugins."context7@context7-marketplace"]
+enabled = true
+
 [mcp_servers.chrome-devtools]
 command = "chrome-devtools-mcp"
 args = ["--autoConnect"]
@@ -50,5 +53,11 @@ approval_mode = "approve"
 
 [mcp_servers.chrome-devtools.tools.performance_start_trace]
 approval_mode = "approve"
+
+[marketplaces.context7-marketplace]
+last_updated = "2026-07-09T00:26:06Z"
+last_revision = "ea82d5585aca02f871f6567dd207d5b616504889"
+source_type = "git"
+source = "https://github.com/upstash/context7.git"
 
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

@@ -57,6 +57,29 @@ vim.api.nvim_create_user_command("CopyBuffer", function()
   vim.cmd([[normal! gg"+yG]])
 end, {})
 
+vim.api.nvim_create_user_command("Trash", function(opts)
+  local buffer = vim.api.nvim_get_current_buf()
+  local path = vim.api.nvim_buf_get_name(buffer)
+
+  if path == "" or vim.bo[buffer].buftype ~= "" then
+    vim.notify("Current buffer is not a file", vim.log.levels.ERROR)
+    return
+  end
+
+  if vim.bo[buffer].modified and not opts.bang then
+    vim.notify("No write since last change (add ! to override)", vim.log.levels.ERROR)
+    return
+  end
+
+  local result = vim.system({ "trash", path }, { text = true }):wait()
+  if result.code ~= 0 then
+    vim.notify("trash failed: " .. vim.trim(result.stderr or ""), vim.log.levels.ERROR)
+    return
+  end
+
+  vim.api.nvim_buf_delete(buffer, { force = true })
+end, { bang = true, desc = "Move the current file to the trash" })
+
 vim.api.nvim_create_user_command("RemoveBlankLines", "%v/\\S/d", {})
 
 

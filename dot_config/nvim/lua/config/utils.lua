@@ -25,35 +25,11 @@ local function get_visual_text_internal(options)
   end
 
   if options.block_mode == "strict" then
-    if vim.fn.visualmode() == "\22" then
-      local start_col = math.min(start_pos[3], end_pos[3])
-      local end_col = math.max(start_pos[3], end_pos[3])
-      local block_lines = {}
-
-      for _, line in ipairs(lines) do
-        local selected = string.sub(line, start_col, end_col)
-        table.insert(block_lines, selected)
-      end
-
-      return table.concat(block_lines, "\n")
-    end
-
-    local first_col = start_pos[3]
-    local last_col = end_pos[3]
-    if start_pos[2] == end_pos[2] then
-      local col_start = math.min(first_col, last_col)
-      local col_end = math.max(first_col, last_col)
-      lines[1] = string.sub(lines[1], col_start, col_end)
-      return table.concat(lines, "\n")
-    end
-
-    if start_pos[2] > end_pos[2] then
-      first_col, last_col = last_col, first_col
-    end
-
-    lines[1] = string.sub(lines[1], first_col)
-    lines[#lines] = string.sub(lines[#lines], 1, last_col)
-    return table.concat(lines, "\n")
+    local region = vim.fn.getregion(start_pos, end_pos, {
+      exclusive = false,
+      type = vim.fn.visualmode(),
+    })
+    return table.concat(region, "\n")
   end
 
   local start_col_index = start_pos[3] - 1

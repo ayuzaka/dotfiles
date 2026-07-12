@@ -6,10 +6,15 @@ master
 '
 
 repo_protected_branches=$(git config --local --get-all hooks.protectedBranch)
+allow_main_push=$(git config --local --bool --get hooks.allowMainPush 2>/dev/null)
 
 while read -r _ _ remote_ref _
 do
   remote_branch=${remote_ref#refs/heads/}
+
+  if [ "$remote_branch" = main ] && [ "$allow_main_push" = true ]; then
+    continue
+  fi
 
   for protected_branch in $protected_branches $repo_protected_branches
   do

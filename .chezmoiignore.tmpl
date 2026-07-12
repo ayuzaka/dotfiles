@@ -1,0 +1,11 @@
+README.md
+AGENTS.md
+CLAUDE.md
+.github
+chezmoi_ignores
+
+{{ if eq .purpose "work" }}
+.config/mise/conf.d/personal.toml
+{{ else }}
+.config/mise/conf.d/work.toml
+{{ end }}

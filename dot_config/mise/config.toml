@@ -55,6 +55,7 @@ zoxide = "latest"
 "github:microsoft/waza" = "latest"
 "github:sxyazi/yazi" = "latest"
 "github:tofuutils/tenv" = "latest"
+"github:yusukebe/ax" = { version = "latest", rename_exe = "ax" }
 "go:github.com/ayuzaka/sqls" = "ayuzaka"
 "go:github.com/docker/docker-language-server/cmd/docker-language-server" = "latest"
 "go:github.com/k1LoW/git-wt" = "latest"
@@ -136,7 +137,7 @@ login_shell = "/bin/zsh"
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
 minimum_release_age = "7d"
-minimum_release_age_excludes = ["npm:@openai/codex"]
+minimum_release_age_excludes = ["github:yusukebe/ax", "npm:@openai/codex"]
 lockfile = true
 not_found_auto_install = false
 

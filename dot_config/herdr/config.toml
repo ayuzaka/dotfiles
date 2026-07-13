@@ -8,3 +8,17 @@ next_tab = "prefix+]"
 [ui]
 prompt_new_tab_name = false
 agent_panel_sort = "priority"
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "terminal"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "top-right"
+
+[ui.toast.clipboard]
+enabled = true
+position = "bottom-center"

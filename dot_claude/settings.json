@@ -170,22 +170,11 @@
         ]
       }
     ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_CONFIG_DIR/hooks/notify.sh"
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "hooks": [
           {
-            "command": "bash '/Users/ayuzaka/.claude/hooks/herdr-agent-state.sh' session",
+            "command": "bash '$CLAUDE_CONFIG_DIR/hooks/herdr-agent-state.sh' session",
             "timeout": 10,
             "type": "command"
           }

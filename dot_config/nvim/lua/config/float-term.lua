@@ -52,9 +52,14 @@ local function set_wezterm_user_var(name, value)
   io.stdout:flush()
 end
 
+local function is_herdr_server_running()
+  local command = { "herdr", "--session", herdr_session, "status", "server" }
+  local output = vim.fn.system(command)
+  return output:match("status: running") ~= nil
+end
+
 local function ensure_herdr_server()
-  local running = run_herdr({ "status", "server" })
-  if running then
+  if is_herdr_server_running() then
     return true
   end
 
@@ -64,7 +69,7 @@ local function ensure_herdr_server()
   end
 
   local started = vim.wait(2000, function()
-    return run_herdr({ "status", "server" })
+    return is_herdr_server_running()
   end, 100)
   if not started then
     return false, "Herdr server の起動がタイムアウトしました"

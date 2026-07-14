@@ -116,12 +116,12 @@ function M.new(dependencies)
       return
     end
 
-    if config.cache and cache[query] then
-      ui.show(cache[query], config)
+    if pending[query] then
       return
     end
 
-    if pending[query] then
+    if config.cache and cache[query] then
+      ui.show(cache[query], config)
       return
     end
 

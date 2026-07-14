@@ -79,6 +79,48 @@ describe("wiktionary.core", function()
     assert.are.same(definitions, state.shown[1].result.entries)
   end)
 
+  it("suppresses a reentrant lookup until the first lookup finishes", function()
+    local engine
+    local parse_calls = 0
+    local reentered = false
+    local show_calls = 0
+    local client = {
+      parse = function(title, callback)
+        parse_calls = parse_calls + 1
+        callback({ html = "html", sections = {}, title = title }, nil)
+      end,
+      search = function()
+        error("search must not run")
+      end,
+    }
+    local ui = {
+      notify = function()
+        error("notify must not run")
+      end,
+      select = function()
+        error("select must not run")
+      end,
+      show = function()
+        show_calls = show_calls + 1
+        if not reentered then
+          reentered = true
+          engine.lookup("概念")
+        end
+      end,
+    }
+    engine = core.new({ client = client, config = default_config, parser = successful_parser(), ui = ui })
+
+    engine.lookup("概念")
+
+    assert.are.equal(1, parse_calls)
+    assert.are.equal(1, show_calls)
+
+    engine.lookup("概念")
+
+    assert.are.equal(1, parse_calls)
+    assert.are.equal(2, show_calls)
+  end)
+
   it("bypasses the cache when cache is disabled", function()
     local parse_calls = 0
     local config = vim.tbl_extend("force", default_config, { cache = false })

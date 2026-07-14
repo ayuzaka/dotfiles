@@ -93,6 +93,28 @@ describe("wiktionary.api", function()
     assert.are.equal(true, has_argument(captured.arguments, "srlimit=7"))
   end)
 
+  it("classifies malformed search items as API failures", function()
+    local kinds = {}
+
+    for _, item in ipairs({ false, { title = 7 } }) do
+      local client = client_for({
+        code = 0,
+        stderr = "",
+        stdout = vim.json.encode({
+          query = {
+            search = { item },
+          },
+        }),
+      }, {})
+
+      client.search("概念", 7, function(_, err)
+        table.insert(kinds, err and err.kind or "success")
+      end)
+    end
+
+    assert.are.same({ "api", "api" }, kinds)
+  end)
+
   it("classifies MediaWiki and transport failures without exposing raw payloads", function()
     local cases = {
       {
@@ -158,6 +180,45 @@ describe("wiktionary.api", function()
 
     assert.are.equal("curl_missing", received_error.kind)
     assert.is_false(system_called)
+  end)
+
+  it("keeps a completed result when system throws after exit", function()
+    local calls = {}
+    local client = api.new({
+      executable = function()
+        return 1
+      end,
+      schedule = immediate_schedule,
+      system = function(_, _, on_exit)
+        on_exit({
+          code = 0,
+          stderr = "",
+          stdout = vim.json.encode({
+            parse = {
+              sections = {},
+              text = "<h2>日本語</h2>",
+              title = "概念",
+            },
+          }),
+        })
+        error("failure after exit")
+      end,
+      user_agent = "nvim-wiktionary/test",
+    })
+
+    client.parse("概念", function(result, err)
+      table.insert(calls, { err = err, result = result })
+    end)
+
+    assert.are.same({
+      {
+        result = {
+          html = "<h2>日本語</h2>",
+          sections = {},
+          title = "概念",
+        },
+      },
+    }, calls)
   end)
 
   it("classifies a process start exception as a network failure", function()

@@ -32,40 +32,51 @@ function M.new(options)
   local user_agent = options.user_agent
 
   local function request(parameters, transform, callback)
+    local finished = false
+
+    local function complete(result, err)
+      if finished then
+        return
+      end
+
+      finished = true
+      callback(result, err)
+    end
+
     if executable("curl") ~= 1 then
       schedule(function()
-        callback(nil, { kind = "curl_missing" })
+        complete(nil, { kind = "curl_missing" })
       end)
       return
     end
 
-    local started = pcall(system, build_arguments(user_agent, parameters), { text = true }, function(completed)
+    local started = pcall(system, build_arguments(user_agent, parameters), { text = true }, function(process_result)
       schedule(function()
-        if completed.code ~= 0 then
-          callback(nil, { kind = completed.code == 22 and "api" or "network" })
+        if process_result.code ~= 0 then
+          complete(nil, { kind = process_result.code == 22 and "api" or "network" })
           return
         end
 
-        local decoded, payload = pcall(vim.json.decode, completed.stdout or "")
+        local decoded, payload = pcall(vim.json.decode, process_result.stdout or "")
         if not decoded or type(payload) ~= "table" then
-          callback(nil, { kind = "json" })
+          complete(nil, { kind = "json" })
           return
         end
 
         if type(payload.error) == "table" then
           local kind = payload.error.code == "missingtitle" and "not_found" or "api"
-          callback(nil, { kind = kind })
+          complete(nil, { kind = kind })
           return
         end
 
         local result, transform_error = transform(payload)
-        callback(result, transform_error)
+        complete(result, transform_error)
       end)
     end)
 
     if not started then
       schedule(function()
-        callback(nil, { kind = "network" })
+        complete(nil, { kind = "network" })
       end)
     end
   end
@@ -110,7 +121,11 @@ function M.new(options)
 
       local titles = {}
       for _, item in ipairs(payload.query.search) do
-        if type(item.title) == "string" and item.title ~= "" then
+        if type(item) ~= "table" or type(item.title) ~= "string" then
+          return nil, { kind = "api" }
+        end
+
+        if item.title ~= "" then
           table.insert(titles, item.title)
         end
       end

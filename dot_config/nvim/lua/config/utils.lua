@@ -1,5 +1,25 @@
 local M = {}
 
+local function is_visual_mode(mode)
+  return mode == "v" or mode == "V" or mode == "\22"
+end
+
+local function get_visual_region()
+  local mode = vim.fn.mode()
+  local active = is_visual_mode(mode)
+  local start_pos = vim.fn.getpos(active and "v" or "'<")
+  local end_pos = vim.fn.getpos(active and "." or "'>")
+
+  if start_pos[2] == 0 or end_pos[2] == 0 then
+    return {}
+  end
+
+  return vim.fn.getregion(start_pos, end_pos, {
+    exclusive = false,
+    type = active and mode or vim.fn.visualmode(),
+  })
+end
+
 local function get_visual_selection()
   local start_pos = vim.fn.getpos("'<")
   local end_pos = vim.fn.getpos("'>")
@@ -15,6 +35,10 @@ local function get_visual_selection()
 end
 
 local function get_visual_text_internal(options)
+  if options.block_mode == "strict" then
+    return table.concat(get_visual_region(), "\n")
+  end
+
   local selection = get_visual_selection()
   local start_pos = selection.start_pos
   local end_pos = selection.end_pos
@@ -22,14 +46,6 @@ local function get_visual_text_internal(options)
 
   if #lines == 0 then
     return ""
-  end
-
-  if options.block_mode == "strict" then
-    local region = vim.fn.getregion(start_pos, end_pos, {
-      exclusive = false,
-      type = vim.fn.visualmode(),
-    })
-    return table.concat(region, "\n")
   end
 
   local start_col_index = start_pos[3] - 1

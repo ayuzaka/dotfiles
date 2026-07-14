@@ -1,3 +1,4 @@
+onboarding = false
 [keys]
 prefix = "ctrl+space"
 new_tab = "prefix+c"
@@ -13,7 +14,7 @@ agent_panel_sort = "priority"
 enabled = false
 
 [ui.toast]
-delivery = "terminal"
+delivery = "herdr"
 delay_seconds = 1
 
 [ui.toast.herdr]
@@ -22,3 +23,6 @@ position = "top-right"
 [ui.toast.clipboard]
 enabled = true
 position = "bottom-center"
+
+[experimental]
+pane_history = true

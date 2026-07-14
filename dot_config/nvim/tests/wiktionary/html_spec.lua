@@ -30,6 +30,13 @@ describe("wiktionary.html", function()
     }, tokens)
   end)
 
+  it("does not treat class text inside other attributes as a class attribute", function()
+    local tokens, reason = html.tokenize([[<div data-class="reference" data-label='class="fake"'>x</div>]])
+
+    assert.is_nil(reason)
+    assert.is_nil(tokens[1].class)
+  end)
+
   it("reports an unterminated tag", function()
     local tokens, reason = html.tokenize("<div")
 

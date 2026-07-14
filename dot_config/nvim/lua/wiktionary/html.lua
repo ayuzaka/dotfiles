@@ -85,8 +85,11 @@ local function append_text(tokens, value)
 end
 
 local function class_attribute(raw_tag)
-  return raw_tag:match('class%s*=%s*"([^"]*)"')
-    or raw_tag:match("class%s*=%s*'([^']*)'")
+  for attribute_name, _, value in raw_tag:gmatch([[%s+([%w:_-]+)%s*=%s*(["'])(.-)%2]]) do
+    if attribute_name == "class" then
+      return value
+    end
+  end
 end
 
 function M.tokenize(source)

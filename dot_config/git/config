@@ -3,7 +3,6 @@
 [core]
   editor = nvim
   pager = less -x4
-  hooksPath = ~/.config/git/hooks/
 [gpg]
   format = ssh
 [commit]
@@ -54,3 +53,6 @@
   copy = .nvim.lua
   copy = .claude/settings.local.json
   hook = ~/.local/bin/wt-open-tab || true
+[hook "protect-main"]
+	event = pre-push
+	command = /Users/kazuya/.config/git/hooks/pre-push

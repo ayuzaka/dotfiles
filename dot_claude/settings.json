@@ -57,7 +57,7 @@
       "Bash(wget:*)",
       "Read(**/.ssh/**)",
       "Read(.env)",
-      "Write(.env)",
+      "Edit(.env)",
       "NotebookEdit",
       "WebSearch",
       "WebFetch"

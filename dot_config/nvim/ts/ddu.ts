@@ -248,6 +248,19 @@ export class Config extends BaseConfig {
         open: {
           quit: false,
         },
+        preview: {
+          imageExts: [
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".gif",
+            ".webp",
+            ".avif",
+            ".bmp",
+            ".ico",
+            ".svg",
+          ],
+        },
       },
     });
   }

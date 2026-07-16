@@ -70,6 +70,7 @@ return {
   font_size = resolved_font.font_size,
   use_ime = true,
   macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
+  enable_kitty_graphics = true,
   hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = true,
   use_fancy_tab_bar = false,

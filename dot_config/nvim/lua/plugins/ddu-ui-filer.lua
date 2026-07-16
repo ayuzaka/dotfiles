@@ -10,68 +10,16 @@ local image_extensions = {
   svg = true,
 }
 
-local function is_image_file(path)
-  local ext = path:match("%.([^%.]+)$")
-  if ext then
-    ext = ext:lower()
-  end
+local function preview_image_after_layout()
+  local item = vim.fn["ddu#ui#get_item"]()
+  local path = item and item.action and item.action.path
+  local extension = path and path:match("%.([^%.]+)$")
 
-  return ext and image_extensions[ext]
-end
-
-local function find_preview_window(filer_win, wins_before, path)
-  -- Find newly opened window
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if not wins_before[win] then
-      return win
-    end
-  end
-
-  -- If no new window, find window with matching buffer name
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if win ~= filer_win then
-      local buf = vim.api.nvim_win_get_buf(win)
-      local bufname = vim.api.nvim_buf_get_name(buf)
-      if bufname:match(vim.pesc(path)) then
-        return win
-      end
-    end
-  end
-
-  return nil
-end
-
-local function render_image(preview_win, path)
-  local ok, api = pcall(require, "image")
-  if not ok then
+  if not extension or not image_extensions[extension:lower()] then
+    vim.fn["ddu#ui#do_action"]("preview")
     return
   end
 
-  api.clear()
-  local preview_buf = vim.api.nvim_win_get_buf(preview_win)
-  local img = api.from_file(path, {
-    window = preview_win,
-    buffer = preview_buf,
-    x = 0,
-    y = 0,
-    width = vim.api.nvim_win_get_width(preview_win),
-    height = vim.api.nvim_win_get_height(preview_win),
-  })
-  if img then
-    img:render()
-  end
-end
-
-local function clear_image()
-  local ok, api = pcall(require, "image")
-  if ok then
-    api.clear()
-  end
-end
-
-local function preview_image(path)
-  -- Close existing preview first to avoid toggle behavior
-  clear_image()
   vim.fn["ddu#ui#do_action"]("closePreviewWindow")
 
   local filer_win = vim.api.nvim_get_current_win()
@@ -83,9 +31,31 @@ local function preview_image(path)
   vim.fn["ddu#ui#do_action"]("preview")
 
   vim.defer_fn(function()
-    local preview_win = find_preview_window(filer_win, wins_before, path)
-    if preview_win then
-      render_image(preview_win, path)
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if not wins_before[win] then
+        vim.fn["ddu#ui#filer#_preview_image"](
+          path,
+          win,
+          vim.api.nvim_win_get_width(win),
+          vim.api.nvim_win_get_height(win)
+        )
+        return
+      end
+    end
+
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if win ~= filer_win then
+        local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+        if bufname:match(vim.pesc(path)) then
+          vim.fn["ddu#ui#filer#_preview_image"](
+            path,
+            win,
+            vim.api.nvim_win_get_width(win),
+            vim.api.nvim_win_get_height(win)
+          )
+          return
+        end
+      end
     end
   end, 100)
 end
@@ -120,28 +90,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end, opts)
 
     keymaps.apply_common_normal(opts)
-
-    vim.keymap.set("n", "p", function()
-      local item = vim.fn["ddu#ui#get_item"]()
-      if not item or item.isTree then
-        clear_image()
-        vim.fn["ddu#ui#do_action"]("preview")
-        return
-      end
-
-      local path = item.action and item.action.path or item.word
-      if is_image_file(path) then
-        preview_image(path)
-      else
-        clear_image()
-        vim.fn["ddu#ui#do_action"]("preview")
-      end
-    end, opts)
-
-    vim.keymap.set("n", "P", function()
-      clear_image()
-      vim.fn["ddu#ui#do_action"]("closePreviewWindow")
-    end, opts)
+    vim.keymap.set("n", "p", preview_image_after_layout, opts)
 
     vim.keymap.set("n", "..",
       "<Cmd>call ddu#ui#do_action('itemAction', { 'name': 'narrow', 'params': { 'path': '..' } })<CR>", opts)

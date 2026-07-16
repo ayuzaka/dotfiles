@@ -1,4 +1,8 @@
-vim.lsp.log._set_filename('/tmp/nvim/lsp.log')
+if vim.lsp.log._self then
+  vim.lsp.log._self.filename = '/tmp/nvim/lsp.log'
+elseif vim.lsp.log._set_filename then
+  vim.lsp.log._set_filename('/tmp/nvim/lsp.log')
+end
 
 vim.diagnostic.config({
   virtual_text = true

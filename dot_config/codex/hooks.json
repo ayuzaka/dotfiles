@@ -21,7 +21,17 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.config/codex/runcat-hook.py",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }
-

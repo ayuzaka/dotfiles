@@ -106,7 +106,7 @@ zoxide = "latest"
 "brew:xdg-ninja" = "latest"
 "brew:mas" = "latest"
 "mas:1351639930" = "latest" # Gifski
-"mas:1429033973" = "latest" # RunCat
+"mas:6757801838" = "latest" # RunCat Neo
 
 [bootstrap.macos.dock]
 autohide = true

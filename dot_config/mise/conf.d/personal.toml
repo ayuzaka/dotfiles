@@ -6,5 +6,4 @@ turso = "latest"
 "npm:@doist/todoist-cli" = "latest"
 
 [bootstrap.packages]
-"mas:1429033973" = "latest" # RunCat
 "mas:302584613" = "latest" # Kindle

@@ -8,6 +8,8 @@ local function build_arguments(user_agent, parameters)
     "--fail",
     "--get",
     "--location",
+    "--max-time",
+    "10",
     "--silent",
     "--show-error",
     "--header",

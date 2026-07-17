@@ -76,4 +76,13 @@ describe("wiktionary public facade", function()
     assert.are.equal(true, captured.config.cache)
     assert.are.equal(10, captured.config.search_limit)
   end)
+
+  it("looks up the specified line range", function()
+    local wiktionary = load_wiktionary()
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, { " 日本語 ", "", " 辞書 " })
+
+    wiktionary.lookup_visual(1, 3)
+
+    assert.are.same({ "日本語 辞書" }, captured.queries)
+  end)
 end)

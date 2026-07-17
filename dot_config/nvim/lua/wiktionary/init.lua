@@ -43,8 +43,9 @@ function M.lookup()
   get_engine().lookup(vim.fn.expand("<cword>"))
 end
 
-function M.lookup_visual()
-  get_engine().lookup(utils.get_visual_query_text())
+function M.lookup_visual(start_line, end_line)
+  local query = start_line and utils.get_range_query_text(start_line, end_line) or utils.get_visual_query_text()
+  get_engine().lookup(query)
 end
 
 return M

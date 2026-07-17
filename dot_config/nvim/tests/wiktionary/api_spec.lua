@@ -13,6 +13,15 @@ local function has_argument(arguments, expected)
   return false
 end
 
+local function has_argument_pair(arguments, expected, value)
+  for index, argument in ipairs(arguments) do
+    if argument == expected and arguments[index + 1] == value then
+      return true
+    end
+  end
+  return false
+end
+
 local function client_for(completed, captured)
   return api.new({
     executable = function()
@@ -63,6 +72,7 @@ describe("wiktionary.api", function()
     assert.are.equal(true, has_argument(captured.arguments, "prop=text|sections"))
     assert.are.equal(true, has_argument(captured.arguments, "redirects=1"))
     assert.are.equal(true, has_argument(captured.arguments, "nvim-wiktionary/test"))
+    assert.are.equal(true, has_argument_pair(captured.arguments, "--max-time", "10"))
     assert.are.same({ text = true }, captured.options)
   end)
 

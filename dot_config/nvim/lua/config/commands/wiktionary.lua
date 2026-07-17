@@ -2,7 +2,7 @@ local wiktionary = require("wiktionary")
 
 vim.api.nvim_create_user_command("Wiktionary", function(options)
   if options.range > 0 then
-    wiktionary.lookup_visual()
+    wiktionary.lookup_visual(options.line1, options.line2)
   else
     wiktionary.lookup()
   end

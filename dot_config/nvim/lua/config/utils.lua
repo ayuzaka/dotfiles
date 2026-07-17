@@ -167,6 +167,11 @@ M.get_visual_query_text = function()
   return normalize_query_text(text)
 end
 
+M.get_range_query_text = function(start_line, end_line)
+  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+  return normalize_query_text(table.concat(lines, "\n"))
+end
+
 M.url_encode = function(value)
   return (value:gsub("([^%w%-_%.~])", function(char)
     return string.format("%%%02X", string.byte(char))

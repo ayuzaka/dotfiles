@@ -55,4 +55,4 @@
   hook = ~/.local/bin/wt-open-tab || true
 [hook "protect-main"]
 	event = pre-push
-	command = /Users/kazuya/.config/git/hooks/pre-push
+	command = ~/.config/git/hooks/pre-push

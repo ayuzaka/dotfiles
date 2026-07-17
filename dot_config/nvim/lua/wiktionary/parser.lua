@@ -50,7 +50,7 @@ local function should_ignore(token)
 end
 
 local function clean_text(parts)
-  local text = table.concat(parts, " ")
+  local text = table.concat(parts, "")
   text = text:gsub("​", "")
   text = text:gsub("%s*%[%d+%]%s*", " ")
   text = text:gsub("%s+", " ")

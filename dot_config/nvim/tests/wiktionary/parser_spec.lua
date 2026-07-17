@@ -52,6 +52,22 @@ describe("wiktionary.parser", function()
     }, entries)
   end)
 
+  it("preserves Japanese text across inline links", function()
+    local entries, err = parser.extract([[
+      <h2>日本語</h2>
+      <h3>名詞</h3>
+      <ol><li>ものの<a href="/wiki/姿">姿</a>を、ある<a href="/wiki/平面">平面</a>に映すこと。</li></ol>
+    ]])
+
+    assert.is_nil(err)
+    assert.are.same({
+      {
+        part_of_speech = "名詞",
+        definitions = { "ものの姿を、ある平面に映すこと。" },
+      },
+    }, entries)
+  end)
+
   it("distinguishes a missing Japanese section", function()
     local entries, err = parser.extract("<h2>中国語</h2><h3>名詞</h3><ol><li>意味</li></ol>")
 

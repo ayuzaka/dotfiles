@@ -9,12 +9,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- Immediate loading (required for first render)
   { "sainnhe/everforest",    lazy = false, priority = 1000, config = function() require("plugins.everforest") end },
-  {
-    "morhetz/gruvbox",
-    lazy = false,
-    priority = 1000,
-    config = function() require("plugins.gruvbox") end
-  },
   { "neovim/nvim-lspconfig", lazy = false },
   { "tani/vim-artemis",      lazy = false },
 
@@ -159,7 +153,6 @@ require("lazy").setup({
   { "matsui54/ddu-source-help",            event = "VeryLazy" },
   { "kuuote/ddu-source-git_status",        event = "VeryLazy" },
   { "kyoh86/ddu-source-git_log",           event = "VeryLazy" },
-  { "ayuzaka/ddu-source-gh_pr_diff",       event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks",            event = "VeryLazy" },
   { "ayuzaka/ddu-source-git_blame",        event = "VeryLazy" },
   { "ayuzaka/ddu-source-comments",         event = "VeryLazy" },

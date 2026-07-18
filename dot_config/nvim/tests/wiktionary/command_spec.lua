@@ -2,6 +2,7 @@ describe(":Wiktionary", function()
   local calls
 
   before_each(function()
+    vim.cmd("enew!")
     calls = { normal = 0, visual = {} }
     package.loaded["wiktionary"] = {
       lookup = function()
@@ -30,6 +31,15 @@ describe(":Wiktionary", function()
     vim.cmd("1,1Wiktionary")
 
     assert.are.same({ normal = 0, visual = { { 1, 1 } } }, calls)
+  end)
+
+  it("preserves the active visual selection", function()
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, { "日本語辞書" })
+    local keys = vim.api.nvim_replace_termcodes("gg0vll:Wiktionary<CR>", true, false, true)
+
+    vim.api.nvim_feedkeys(keys, "xt", false)
+
+    assert.are.same({ normal = 0, visual = { {} } }, calls)
   end)
 
   it("does not define fixed normal or visual mappings", function()

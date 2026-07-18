@@ -27,57 +27,58 @@ local translate_async = function(text, callback)
   })
 end
 
-local show_floating_window = function(cursor_pos)
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Translating..." })
+local show_result_buffer = function(source_text)
+  vim.cmd("new")
 
-  local width = 40
-  local height = 3
-  local row_offset = 1
-  local col_offset = 0
+  local buf = vim.api.nvim_get_current_buf()
+  local lines = { "原文:", "" }
+  vim.list_extend(lines, vim.split(source_text, "\n"))
+  vim.list_extend(lines, { "", "英訳:", "", "翻訳中..." })
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
-  local win = vim.api.nvim_open_win(buf, true, {
-    relative = "win",
-    win = cursor_pos.win,
-    bufpos = { cursor_pos.row - 1, cursor_pos.col - 1 },
-    width = width,
-    height = height,
-    row = row_offset,
-    col = col_offset,
-    style = "minimal",
-    border = "rounded",
-  })
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].swapfile = false
 
-  vim.keymap.set("n", "q", "<cmd>close<CR>", { buf = buf, silent = true })
-  vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buf = buf, silent = true })
+  local win = vim.api.nvim_get_current_win()
+  vim.keymap.set("n", "q", function()
+    if vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_win_close(win, true)
+    end
+  end, { buffer = buf, silent = true })
 
   return { buf = buf, win = win }
 end
 
-local update_floating_window = function(float, content)
-  if not vim.api.nvim_win_is_valid(float.win) then
+local update_result_buffer = function(result_buffer, content)
+  if not vim.api.nvim_buf_is_valid(result_buffer.buf) then
     return
   end
 
-  local lines = vim.split(content, "\n")
-  local max_width = 0
-  for _, line in ipairs(lines) do
-    max_width = math.max(max_width, vim.fn.strdisplaywidth(line))
+  local lines = vim.api.nvim_buf_get_lines(result_buffer.buf, 0, -1, false)
+  local translation_start = 1
+  for index, line in ipairs(lines) do
+    if line == "英訳:" then
+      translation_start = index + 2
+      break
+    end
   end
 
-  local width = math.min(math.max(max_width, 20), 80)
-  local height = math.min(#lines, math.floor(vim.o.lines * 0.5))
+  local translated_lines = vim.split(content, "\n")
+  for index = #lines, translation_start, -1 do
+    table.remove(lines, index)
+  end
+  vim.list_extend(lines, translated_lines)
 
-  vim.bo[float.buf].modifiable = true
-  vim.api.nvim_buf_set_lines(float.buf, 0, -1, false, lines)
-  vim.bo[float.buf].modifiable = false
-  vim.api.nvim_win_set_config(float.win, { width = width, height = height })
+  vim.bo[result_buffer.buf].modifiable = true
+  vim.api.nvim_buf_set_lines(result_buffer.buf, 0, -1, false, lines)
+  vim.bo[result_buffer.buf].modifiable = false
 
   vim.keymap.set("n", "y", function()
     vim.fn.setreg("+", content)
-    vim.api.nvim_win_close(float.win, true)
+    vim.api.nvim_win_close(result_buffer.win, true)
     vim.notify("Copied to clipboard", vim.log.levels.INFO)
-  end, { buf = float.buf, silent = true })
+  end, { buffer = result_buffer.buf, silent = true })
 end
 
 vim.api.nvim_create_user_command("Translate", function()
@@ -87,23 +88,16 @@ vim.api.nvim_create_user_command("Translate", function()
     return
   end
 
-  local end_pos = vim.fn.getpos("'>")
-  local cursor_pos = {
-    win = vim.api.nvim_get_current_win(),
-    row = end_pos[2],
-    col = end_pos[3],
-  }
-
-  local float = show_floating_window(cursor_pos)
+  local result_buffer = show_result_buffer(text)
   translate_async(text, function(result)
     if result then
       vim.schedule(function()
-        update_floating_window(float, result)
+        update_result_buffer(result_buffer, result)
       end)
     else
       vim.schedule(function()
-        if vim.api.nvim_win_is_valid(float.win) then
-          vim.api.nvim_win_close(float.win, true)
+        if vim.api.nvim_win_is_valid(result_buffer.win) then
+          vim.api.nvim_win_close(result_buffer.win, true)
         end
       end)
     end

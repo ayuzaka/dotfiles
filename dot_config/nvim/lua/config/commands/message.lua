@@ -1,5 +1,6 @@
 vim.api.nvim_create_user_command("Messages", function()
   vim.cmd("new")
+  vim.keymap.set("n", "q", "<Cmd>close<CR>", { buffer = true, silent = true })
 
   local messages = vim.fn.execute("messages")
   local lines = vim.split(messages, "\n", { plain = true })

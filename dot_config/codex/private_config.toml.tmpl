@@ -34,9 +34,6 @@ enabled = true
 [plugins."build-ios-apps@openai-curated"]
 enabled = false
 
-[plugins."superpowers@openai-curated"]
-enabled = true
-
 [plugins."ctx-agent-history-search@ctx"]
 enabled = true
 
@@ -53,10 +50,8 @@ approval_mode = "approve"
 [mcp_servers.chrome-devtools.tools.performance_start_trace]
 approval_mode = "approve"
 
-[marketplaces.context7-marketplace]
-last_updated = "2026-07-09T00:26:06Z"
-last_revision = "ea82d5585aca02f871f6567dd207d5b616504889"
-source_type = "git"
-source = "https://github.com/upstash/context7.git"
+[mcp_servers.tirith-gateway]
+command = "tirith"
+args = ["gateway", "run", "--upstream-bin", "tirith", "--upstream-arg", "mcp-server", "--config", "/Users/ayuzaka/.config/tirith/gateway.yaml"]
 
 {{ include "chezmoi_ignores/private/codex_projects.toml" }}

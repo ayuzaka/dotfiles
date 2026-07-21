@@ -1,0 +1,10 @@
+[bootstrap.macos.launchd.agents.nvim-tmp]
+program = "/bin/mkdir"
+args = ["-p", "/tmp/nvim"]
+run_at_load = true
+
+[bootstrap.macos.launchd.agents.plamo-translate]
+program = "~/.local/share/mise/shims/plamo-translate"
+args = ["server"]
+run_at_load = true
+keep_alive = true

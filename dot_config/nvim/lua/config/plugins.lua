@@ -136,7 +136,7 @@ require("lazy").setup({
   { "Shougo/ddc-converter_remove_overlap", event = "VeryLazy" },
   { "Shougo/ddc-source-lsp",               event = "VeryLazy" },
   { "ayuzaka/ddc-source-todoist",          event = "VeryLazy" },
-  { "ayuzaka/ddc-source-github",          event = "VeryLazy" },
+  { "ayuzaka/ddc-source-github",           event = "VeryLazy" },
   { "LumaKernel/ddc-source-file",          event = "VeryLazy" },
   { "tani/ddc-fuzzy",                      event = "VeryLazy" },
   { "vim-skk/skkeleton",                   event = "VeryLazy" },
@@ -159,6 +159,7 @@ require("lazy").setup({
   { "Shougo/ddu-ui-filer",                 event = "VeryLazy" },
   { "ryota2357/ddu-column-icon_filename",  event = "VeryLazy" },
   { "Shougo/ddu-column-filename",          event = "VeryLazy" },
+  { "ayuzaka/reader-mode.nvim",            event = "VeryLazy", cmd = "Readability" },
 })
 
 -- Immediate config

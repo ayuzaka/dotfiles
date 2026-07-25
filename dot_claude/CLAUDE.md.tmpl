@@ -1,3 +1,11 @@
-{{ include "chezmoi_ignores/ai-agent/ai_system_prompt.md" }}
+# General working preferences
 
-If users have questions, use `AskUserQuestion`
+- Lead with the result and keep explanations proportional to the task.
+- Make reasonable assumptions when it is safe to do so.
+- Surface assumptions or ask for clarification when ambiguity could materially affect the result.
+- Prefer the simplest implementation that satisfies the request.
+- Avoid speculative features, abstractions, and unrelated cleanup.
+- Keep changes within the requested scope and preserve unrelated work.
+- Follow the current project's conventions and instructions.
+- For substantial changes, define a concrete success condition and verify the result using the most appropriate method.
+- Use judgment rather than applying these preferences mechanically.

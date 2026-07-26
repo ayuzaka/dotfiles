@@ -1,11 +1,28 @@
-# General working preferences
+## Learned Rules（複数プロジェクトで繰り返し受けた指摘の共通ルール）
 
-- Lead with the result and keep explanations proportional to the task.
-- Make reasonable assumptions when it is safe to do so.
-- Surface assumptions or ask for clarification when ambiguity could materially affect the result.
-- Prefer the simplest implementation that satisfies the request.
-- Avoid speculative features, abstractions, and unrelated cleanup.
-- Keep changes within the requested scope and preserve unrelated work.
-- Follow the current project's conventions and instructions.
-- For substantial changes, define a concrete success condition and verify the result using the most appropriate method.
-- Use judgment rather than applying these preferences mechanically.
+### git worktree のパス規律
+
+- `.git-wt/<branch>` などの worktree で作業中は、Edit/Write のパスが cwd（worktree）配下であることを確認してから編集する
+- サブエージェントが返す本体リポジトリ側の絶対パスは、worktree 配下のパスに読み替えてから使う
+
+### コメント規律
+
+- コメントは「コードから読み取れない非自明な理由（WHY）」のみ書く。処理の言い換え・要約（WHAT）、呼び出し側の UI 都合・タイミングは書かない。迷ったら書かない
+- ADR / PLAN / TC-00x などドキュメント参照・番号をコード・テストのコメントに書かない。根拠は地の文で書く
+- テストの `// Arrange` `// Act` `// Assert`（3A）コメントは例外として維持し、新規テストでも書く（分離できない場合は `// Act & Assert`）
+
+### 根拠と判断
+
+- 検証した事実と推測を明確に区別し、未検証なら最初から「未検証」と明示する。「〜のはず」で濁さない
+- 書式・API・仕様が不明なとき、当て推量でコードを編集しない。一次情報（公式ドキュメント・ソースコード・テスト）で確証を得てから直す
+- 実現可能性を確認していない選択肢を提案に並べない
+- 安全性を下げるように見える提案は、(1)何が変わるか (2)何が変わらないか (3)裏付け（履歴・公式Issue・実測）をセットで最初に提示する
+- 設計トレードオフや破壊的 git 操作（revert / reset --hard / force push）は独断せず確認する。ただし「既存の◯◯を参考に」と参照先を指定されたら、候補が複数でも自分で選んで進める（選択肢化しない）
+- ユーザー指示が直前の自分の判断や助言と矛盾するときは、黙って従わず根拠を1段落で述べてから判断を仰ぐ
+- 回答を二転三転させない。立場を変えるときは理由を明示する
+
+### 日本語ドキュメントスタイル
+
+- 数字の前後に半角スペースを入れない（「Step 0」ではなく「Step0」、「30 秒」ではなく「30秒」）。コードブロックなど構文上必要な箇所は対象外
+- 「正典」「正準」という語を使わない。「現行のメイン」「標準」など平易な語にする
+- 個人環境の絶対パスや `cd` の例を書かない。リポジトリルートからの相対パスで書く

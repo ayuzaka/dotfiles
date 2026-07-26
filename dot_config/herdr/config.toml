@@ -26,3 +26,7 @@ position = "bottom-center"
 
 [experimental]
 pane_history = true
+
+[theme]
+name = "kanagawa-lotus"
+auto_switch = false

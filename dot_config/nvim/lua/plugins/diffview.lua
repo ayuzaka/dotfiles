@@ -23,8 +23,6 @@ local function goto_file_and_close()
   if cursor then
     vim.api.nvim_win_set_cursor(0, cursor)
   end
-  local adapter = require("config.diffview_comments_adapter")
-  adapter.setup_buffer_keymaps(vim.api.nvim_get_current_buf())
 end
 
 require("diffview").setup({
@@ -58,8 +56,6 @@ require("diffview").setup({
     },
   },
 })
-
-require("config.diffview_comments_adapter").setup()
 
 local function diff_with_base()
   local branch = vim.fn.system("detect-best-branch.sh"):gsub("%s+", "")

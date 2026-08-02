@@ -125,8 +125,9 @@ require("lazy").setup({
       }
     }
   },
-  -- denops ecosystem (deferred Deno runtime startup)
+  -- denops ecosystem
   { "vim-denops/denops.vim",               event = "VeryLazy" },
+  { "ayuzaka/line-notes.nvim",             event = "VeryLazy" },
   { "Shougo/pum.vim",                      event = "VeryLazy" },
   { "Shougo/ddc.vim",                      event = "VeryLazy" },
   { "Shougo/ddc-ui-native",                event = "VeryLazy" },
@@ -155,7 +156,7 @@ require("lazy").setup({
   { "kyoh86/ddu-source-git_log",           event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks",            event = "VeryLazy" },
   { "ayuzaka/ddu-source-git_blame",        event = "VeryLazy" },
-  { "ayuzaka/ddu-source-comments",         event = "VeryLazy" },
+  { "ayuzaka/ddu-source-line-notes",       event = "VeryLazy" },
   { "Shougo/ddu-ui-filer",                 event = "VeryLazy" },
   { "ryota2357/ddu-column-icon_filename",  event = "VeryLazy" },
   { "Shougo/ddu-column-filename",          event = "VeryLazy" },
@@ -167,7 +168,6 @@ require("config.herdr-term")
 require("config.float-term")
 require("config.bookmark_comments")
 require("config.marks")
-require("plugins.comments")
 
 -- vim.g settings (must be set before plugin loads)
 require("plugins.vim-matchup")
@@ -196,7 +196,8 @@ vim.api.nvim_create_autocmd("User", {
     require("plugins.ddu-source-rg")
     require("plugins.ddu-source-gh_pr_diff")
     require("plugins.ddu-source-marks")
-    require("plugins.ddu-source-comments")
+    require("plugins.ddu-source-line-notes")
+    require("plugins.line-notes")
     require("plugins.ddu-ui-filer")
   end,
 })

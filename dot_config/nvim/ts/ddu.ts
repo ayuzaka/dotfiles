@@ -174,10 +174,10 @@ export class Config extends BaseConfig {
       },
     });
 
-    args.contextBuilder.patchLocal("comments", {
-      sources: [{ name: "comments" }],
+    args.contextBuilder.patchLocal("line-notes", {
+      sources: [{ name: "line-notes" }],
       kindOptions: {
-        comments: {
+        "line-notes": {
           defaultAction: "open",
         },
       },

@@ -6,4 +6,10 @@ turso = "latest"
 "npm:@doist/todoist-cli" = "latest"
 
 [bootstrap.packages]
+"brew-cask:spotify" = "latest"
+"brew-cask:termius" = "latest"
+"brew-cask:orbstack" = "latest"
+"brew-cask:yubico-authenticator" = "latest"
+"brew-cask:brave-browser" = "latest"
+"brew-cask:obsidian" = "latest"
 "mas:302584613" = "latest" # Kindle

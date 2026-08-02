@@ -2,6 +2,7 @@
 awscli = "latest"
 lazydocker = "latest"
 yarn = "4"
+gcloud = "latest"
 "go:github.com/laravel-ls/laravel-ls/cmd/laravel-ls" = "latest"
 "npm:@ember-tooling/ember-language-server" = "latest"
 "npm:@tailwindcss/language-server" = "latest"
@@ -11,4 +12,8 @@ yarn = "4"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 
 [bootstrap.packages]
+"brew-cask:figma" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:claude" = "latest"
+"brew-cask:docker-desktop" = "latest"
 "brew:docker" = "latest"

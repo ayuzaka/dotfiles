@@ -1,0 +1,5 @@
+{% if vars.dotfiles_purpose == "work" %}
+{{ read_file(path="mise.work.toml") }}
+{% else %}
+{{ read_file(path="mise.private.toml") }}
+{% endif %}

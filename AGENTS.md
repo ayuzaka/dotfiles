@@ -2,15 +2,34 @@
 
 ## Project Overview
 
-This project is a dotfiles management project using [chezmoi](https://www.chezmoi.io/). chezmoi manages dotfiles under source control and synchronizes configurations across multiple machines.
+This project manages dotfiles with `mise bootstrap dotfiles`.
 
 ## Important Rules
 
-Edit files within this project. Do not directly edit files in the target location (home directory).
+Edit files in this repository instead of editing their targets in the home directory.
 
-chezmoi applies files from the source directory (this project) to the target directory (home directory).
-Always make changes on the source side and apply them with `chezmoi apply`.
+- Place static files under `dotfiles/`.
+- Place Tera templates under `templates/`.
+- Keep machine-local template inputs under the Git-ignored `private/` directory.
+- Keep Git-managed files that are not applied to the home directory under `extras/`.
+
+Preview dotfile changes before applying them.
+
+```sh
+MISE_ENV=private mise \
+  -C "$HOME/workspace/github.com/ayuzaka/dotfiles" \
+  bootstrap dotfiles apply --force --dry-run
+```
+
+Run `mise run bootstrap` after changing the Codex merge or permission rules.
+Do not replace `~/.config/codex/config.toml` as a whole.
+It contains both managed and application-generated values.
+
+The legacy chezmoi checkout and configuration are retained only for rollback.
+Do not use chezmoi for normal dotfile updates.
 
 ## Testing Guidelines
 
-No tests are required for this project.
+No comprehensive test suite is required.
+Validate changed templates with a dry-run.
+Confirm that each affected application can load its configuration.

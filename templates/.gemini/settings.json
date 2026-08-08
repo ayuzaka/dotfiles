@@ -1,0 +1,13 @@
+{
+  "general": {
+    "preferredEditor": "neovim"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "{% if vars.dotfiles_purpose == "work" %}vertex-ai{% else %}oauth-personal{% endif %}"
+    }
+  },
+  "ui": {
+    "theme": "Dracula"
+  }
+}

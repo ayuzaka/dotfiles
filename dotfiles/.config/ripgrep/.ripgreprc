@@ -1,0 +1,23 @@
+--hidden
+#--color=always
+#--ignore-case
+#--line-number
+#--column
+#--no-heading
+
+# exclude file type
+--T=lock
+--T=svg
+
+# exclude path
+-g=!.git/*
+-g=!.yarn/*
+-g=!.obsidian/*
+-g=!**/*.js.map
+-g=!**/*.mjs.map
+-g=!**/*.min.js
+-g=!**/*.css.map
+-g=!**/*.min.css
+-g=!**/*.snap
+-g=!**/*.patch
+-g=!**/*.agents/skills/*

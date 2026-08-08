@@ -1,0 +1,242 @@
+export MISE_ENV="{{ vars.dotfiles_purpose }}"
+
+# xdg
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+export HERMES_HOME="${HERMES_HOME:-$XDG_CONFIG_HOME/hermes}"
+#export XDG_RUNTIME_DIR="~/Library/Caches/TemporaryItems"
+
+# -----------------------------
+# PATH
+# -----------------------------
+export HOMEBREW_CASK_OPTS=--appdir=/Applications
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
+
+case "${OSTYPE}" in
+  darwin*)
+    export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin
+    export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
+  ;;
+esac
+
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
+
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+# mise (shims は同期的に PATH 追加、activate は sheldon 読み込み後に遅延実行)
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PATH=$PATH:$CARGO_HOME/bin
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+
+export GOPATH="$XDG_DATA_HOME"/go
+export PATH=$PATH:$GOPATH/bin
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$PATH:$BUN_INSTALL/bin"
+
+# Deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$PATH:$DENO_INSTALL/bin"
+export DENO_NO_UPDATE_CHECK=1
+
+# npm
+export PATH="$XDG_DATA_HOME"/npm/bin:$PATH
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME"/npm
+
+# Python
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+
+# Haskell
+export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
+export CABAL_DIR="$XDG_DATA_HOME"/cabal
+
+# Moonbit
+export PATH="$HOME/.moon/bin:$PATH"
+
+# git-wt (zsh-defer で遅延実行、sheldon 読み込み後に実行)
+
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+
+typeset -a terminfo_dirs
+terminfo_dirs=("$XDG_DATA_HOME/terminfo" "/usr/share/terminfo")
+[[ -d /Applications/Ghostty.app/Contents/Resources/terminfo ]] && terminfo_dirs+=("/Applications/Ghostty.app/Contents/Resources/terminfo")
+[[ -d /opt/homebrew/share/terminfo ]] && terminfo_dirs+=("/opt/homebrew/share/terminfo")
+export TERMINFO_DIRS="${(j/:/)terminfo_dirs}"
+
+export MANPAGER="col -b -x|nvim -R -c 'set ft=man nolist nomod noma' -"
+export MINIKUBE_HOME="$XDG_DATA_HOME"/minikube
+
+# -----------------------------
+# General
+# -----------------------------
+# 色を使用
+autoload -Uz colors ; colors
+
+# エディタをnvimに設定
+export EDITOR=nvim
+
+# cdした際のディレクトリをディレクトリスタックへ自動追加
+setopt auto_pushd
+
+# ディレクトリスタックへの追加の際に重複させない
+setopt pushd_ignore_dups
+
+# viキーバインド
+bindkey -v
+bindkey -r '^J'
+
+# フローコントロールを無効にする
+setopt no_flow_control
+
+# ワイルドカード展開を使用する
+setopt extended_glob
+
+# cdコマンドを省略して、ディレクトリ名のみの入力で移動
+setopt auto_cd
+
+# コマンドラインがどのように展開され実行されたかを表示するようになる
+#setopt xtrace
+
+# 自動でpushdを実行
+setopt auto_pushd
+
+# pushdから重複を削除
+setopt pushd_ignore_dups
+
+# ビープ音を鳴らさないようにする
+setopt no_beep
+
+# カッコの対応などを自動的に補完する
+setopt auto_param_keys
+
+# bgプロセスの状態変化を即時に知らせる
+setopt notify
+
+# 8bit文字を有効にする
+setopt print_eight_bit
+
+# ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
+setopt mark_dirs
+
+# 上書きリダイレクトの禁止
+setopt no_clobber
+
+# sudo の後ろでコマンド名を補完する
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+
+# ps コマンドのプロセス名補完
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
+# パスの最後のスラッシュを削除しない
+setopt noautoremoveslash
+
+# rsyncでsshを使用する
+export RSYNC_RSH=ssh
+
+# その他
+umask 022
+ulimit -c 0
+
+# -----------------------------
+# Completion
+# -----------------------------
+# 自動補完を有効にする
+autoload -Uz compinit
+zcompdump="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+if [[ -f "$zcompdump" && $(date +'%j') == $(date -r "$zcompdump" +'%j') ]]; then
+  compinit -C -d "$zcompdump"
+else
+  compinit -d "$zcompdump"
+fi
+unset zcompdump
+
+# 補完の選択を楽にする
+zstyle ':completion:*' menu select
+
+# 補完候補をできるだけ詰めて表示する
+setopt list_packed
+
+# 補完候補にファイルの種類も表示する
+setopt list_types
+
+# -----------------------------
+# History
+# -----------------------------
+# 基本設定
+HISTFILE="$XDG_STATE_HOME"/zsh/history
+HISTSIZE=100000
+SAVEHIST=1000000
+
+# ヒストリーに重複を表示しない
+setopt histignorealldups
+
+# すでにhistoryにあるコマンドは残さない
+setopt hist_ignore_all_dups
+
+# ヒストリに保存するときに余分なスペースを削除する
+setopt hist_reduce_blanks
+
+# 履歴をすぐに追加する
+setopt inc_append_history
+
+# ヒストリを呼び出してから実行する間に一旦編集できる状態になる
+setopt hist_verify
+
+# historyコマンドは残さない
+setopt hist_save_no_dups
+
+# -----------------------------
+# plugin
+# -----------------------------
+# Ref:https://zenn.dev/fuzmare/articles/zsh-plugin-manager-cache
+export SHELDON_CONFIG_DIR="$XDG_CONFIG_HOME"/zsh/sheldon
+
+sheldon_cache="$XDG_CACHE_HOME"/sheldon.zsh
+sheldon_toml="$SHELDON_CONFIG_DIR"/plugins.toml
+
+# キャッシュがない、空、またはキャッシュが古い場合に安全に再生成
+if [[ ! -s "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
+  sheldon_cache_tmp="${sheldon_cache}.tmp"
+  if sheldon source >| "$sheldon_cache_tmp" && [[ -s "$sheldon_cache_tmp" ]]; then
+    mv -f "$sheldon_cache_tmp" "$sheldon_cache"
+  else
+    rm -f "$sheldon_cache_tmp"
+  fi
+fi
+
+source "$sheldon_cache"
+unset sheldon_cache sheldon_cache_tmp sheldon_toml
+
+source "$XDG_CONFIG_HOME/zsh/prompt.zsh"
+
+if [[ -f "$XDG_CONFIG_HOME/fzf/fzf.zsh" ]]; then
+  source "$XDG_CONFIG_HOME/fzf/fzf.zsh"
+fi
+
+eval "$(command mise activate zsh)"
+zsh-defer -c 'eval "$(git wt --init zsh)"'
+zsh-defer source "$XDG_CONFIG_HOME"/zsh/git-commands.zsh
+zsh-defer source "$XDG_CONFIG_HOME"/zsh/abbrev.zsh
+zsh-defer source "$XDG_CONFIG_HOME"/zsh/fzf-comp.zsh
+zsh-defer source "$XDG_CONFIG_HOME"/zsh/gh-guard.zsh
+zsh-defer source "$XDG_CONFIG_HOME"/zsh/lazy.zsh
+
+export GHCUP_USE_XDG_DIRS=true
+[ -f "/Users/ayuzaka/.local/share/ghcup/env" ] && . "/Users/ayuzaka/.local/share/ghcup/env" # ghcup-env
+export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
+export CABAL_DIR="$XDG_DATA_HOME"/cabal
+export STACK_ROOT="$XDG_DATA_HOME"/stack

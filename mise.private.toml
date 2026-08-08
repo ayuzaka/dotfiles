@@ -1,0 +1,18 @@
+[vars]
+dotfiles_purpose = "private"
+
+[tools]
+opencode = "latest"
+turso = "latest"
+"go:tailscale.com/cmd/tailscale" = "main"
+"go:tailscale.com/cmd/tailscaled" = "main"
+"npm:@doist/todoist-cli" = "latest"
+
+[bootstrap.packages]
+"brew-cask:spotify" = "latest"
+"brew-cask:termius" = "latest"
+"brew-cask:orbstack" = "latest"
+"brew-cask:yubico-authenticator" = "latest"
+"brew-cask:brave-browser" = "latest"
+"brew-cask:obsidian" = "latest"
+"mas:302584613" = "latest" # Kindle

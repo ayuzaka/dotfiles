@@ -67,6 +67,10 @@
 - pattern: ^deno task( .*)? $
   command: jq -r '.tasks | to_entries | .[] | .key + " = " + .value' deno.jsonc | _fzf_run | awk -F ' = ' '{print $1}'
 
+# --- mise ---
+- pattern: ^mise task ?$
+  command: mise tasks ls --no-header | _fzf_run | awk '{print "run " $1}'
+
 # --- act ---
 - pattern: ^act --job( .*)?$
   command: act --list 2>/dev/null | grep -v Stage | awk '{print $2}' | _fzf_run

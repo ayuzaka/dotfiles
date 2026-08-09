@@ -38,6 +38,12 @@ Trust the mise configuration symlink created by the dotfile apply.
 mise trust "$HOME/.config/mise/config.toml" --yes
 ```
 
+Apply the one-time macOS settings on a new Mac.
+
+```sh
+mise run macos-init
+```
+
 Preview and run the remaining bootstrap steps.
 System packages and Homebrew are excluded from this workflow.
 

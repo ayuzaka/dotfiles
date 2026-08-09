@@ -1,0 +1,205 @@
+[tools]
+1password-cli = "latest"
+actionlint = "latest"
+bat = "latest"
+bun = "latest"
+bottom = "latest"
+chezmoi = "latest"
+cmake = "latest"
+cosign = "latest"
+cspell = "latest"
+deno = "latest"
+devcontainer-cli = "latest"
+difftastic = "latest"
+fd = "latest"
+ffmpeg = "latest"
+fzf = "latest"
+ghq = "latest"
+github-cli = "latest"
+gitleaks = "latest"
+gitui = "latest"
+go = "latest"
+golangci-lint = "latest"
+golangci-lint-langserver = "latest"
+hadolint = "latest"
+herdr = "latest"
+hunk = "latest"
+hyperfine = "latest"
+imagemagick = "latest"
+jq = "latest"
+lsd = "latest"
+lua-language-server = "latest"
+mas = "latest"
+neovim = "nightly"
+node = "latest"
+pinact = "latest"
+pnpm = "latest"
+python = "3.13"
+resvg = "latest"
+ripgrep = "latest"
+ruff = "latest"
+rust = "latest"
+shfmt = "latest"
+terraform-ls = "latest"
+tflint = "latest"
+tirith = "latest"
+tmux = "latest"
+uv = "latest"
+zizmor = "latest"
+zoxide = "latest"
+"cargo:bacon" = "latest"
+"cargo:sheldon" = { version = "latest", features = ["vendored"] }
+"cargo:tree-sitter-cli" = "latest"
+"cargo:version-lsp" = "latest"
+"github:koalaman/shellcheck" = "latest"
+"github:k1LoW/mo" = "latest"
+"github:microsoft/waza" = "latest"
+"github:sxyazi/yazi" = "latest"
+"github:tofuutils/tenv" = "latest"
+"github:yusukebe/ax" = { version = "latest", rename_exe = "ax" }
+"go:github.com/ayuzaka/sqls" = "ayuzaka"
+"go:github.com/docker/docker-language-server/cmd/docker-language-server" = "latest"
+"go:github.com/k1LoW/git-wt" = "latest"
+"go:github.com/k1LoW/roots" = "latest"
+"go:github.com/mattn/efm-langserver" = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+"npm:@actions/languageserver" = "latest"
+"npm:@antfu/ni" = "latest"
+"npm:@astrojs/language-server" = "latest"
+"npm:@openai/codex" = "latest"
+"npm:@openai/codex-security" = "latest"
+"npm:@googleworkspace/cli" = "latest"
+"npm:@knip/language-server" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:@playwright/cli" = "latest"
+"npm:@typescript/native-preview" = "7.0.0-dev.20260619.1"
+"npm:bash-language-server" = "latest"
+"npm:chrome-devtools-mcp" = "latest"
+"npm:cssmodules-language-server" = "latest"
+"npm:editprompt" = "latest"
+"npm:fixjson" = "latest"
+"npm:markdownlint-cli" = "latest"
+"npm:ntn" = "latest"
+"npm:sfw" = "latest"
+"npm:skills" = "latest"
+"npm:sql-formatter" = "latest"
+"npm:stylelint-lsp" = "latest"
+"npm:svelte-language-server" = "latest"
+"npm:tombi" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:vscode-css-languageservice" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:yaml-language-server" = "latest"
+"pipx:mdformat" = { version = "latest", uvx_args = "--with mdformat-frontmatter" }
+"pipx:pdfplumber" = "latest"
+"pipx:plamo-translate" = { version = "latest", uvx_args = "--python 3.13 --with torch" }
+"pipx:python-lsp-server" = "latest"
+"pipx:ruff-lsp" = "latest"
+"pipx:tavily-cli" = "latest"
+
+[bootstrap.packages]
+"brew:git" = "latest"
+"brew:tree" = "latest"
+"brew:vim" = "latest"
+"brew:gnu-time" = "latest"
+"brew:libsixel" = "latest"
+"brew:terminal-notifier" = "latest"
+"brew:sqlite" = "latest"
+"brew:xdg-ninja" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:firefox" = "latest"
+"brew-cask:wezterm" = "latest"
+"brew-cask:font-kosugi" = "latest"
+"brew-cask:1password" = "latest"
+"brew-cask:chatgpt" = "latest"
+"brew:mas" = "latest"
+"mas:1351639930" = "latest" # Gifski
+"mas:6757801838" = "latest" # RunCat Neo
+
+[bootstrap.macos.dock]
+autohide = true
+orientation = "right"
+tilesize = 16
+magnification = false
+show_recents = false
+
+[bootstrap.macos.finder]
+show_all_files = true
+show_pathbar = true
+show_status_bar = true
+show_extensions_warning = true
+preferred_view_style = "icon"
+
+[bootstrap.macos.keyboard]
+press_and_hold = false
+fn_state = true
+
+[bootstrap.macos.trackpad]
+tap_to_click = false
+three_finger_drag = true
+
+[bootstrap.user]
+login_shell = "/bin/zsh"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
+experimental = true
+minimum_release_age = "7d"
+minimum_release_age_excludes = ["github:yusukebe/ax", "npm:@openai/codex"]
+lockfile = true
+not_found_auto_install = false
+
+[settings.npm]
+package_manager = "bun"
+
+[tasks.bootstrap]
+description = "Merge local Codex configuration"
+run = 'cargo run --quiet --manifest-path "$HOME/workspace/github.com/ayuzaka/dotfiles/scripts/merge-codex-config/Cargo.toml" --'
+
+[tasks.macskk-download]
+description = "Download the latest macSKK DMG"
+tools.jq = "latest"
+run = '''
+asset_url="$(
+  curl --fail --silent --show-error --location \
+    "https://api.github.com/repos/mtgto/macSKK/releases/latest" |
+    jq --exit-status --raw-output '
+      [.assets[] | select(.name | endswith(".dmg"))]
+      | if length == 1 then
+          .[0].browser_download_url
+        else
+          error("expected exactly one DMG asset")
+        end
+    '
+)"
+
+destination="$HOME/Downloads/${asset_url##*/}"
+
+curl --fail --show-error --location \
+  --output "$destination" \
+  "$asset_url"
+
+printf 'Downloaded: %s\n' "$destination"
+'''
+
+[tasks.macos-init]
+description = "Apply one-time macOS settings"
+run = '''
+# スクリーンショットの保存名
+defaults write com.apple.screencapture name "screenShot"
+
+# スクリーンショットの保存先
+defaults write com.apple.screencapture location ~/Downloads
+
+# すべての拡張子のファイルを表示する
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# .DS_Store ファイルを作らない
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Dock からアプリを削除
+defaults write com.apple.dock persistent-apps -array
+
+# Dock の設定を反映
+killall Dock
+'''

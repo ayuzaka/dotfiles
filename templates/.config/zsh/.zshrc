@@ -19,7 +19,7 @@ export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
 
 case "${OSTYPE}" in
   darwin*)
-    export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/opt/local/bin:/opt/local/sbin:$PATH"
     export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
   ;;
 esac

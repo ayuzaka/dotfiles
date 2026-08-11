@@ -19,6 +19,16 @@ The generated shell configuration preserves this selection for new shells.
 export MISE_ENV=private # or work
 ```
 
+On a work machine, create the Git-ignored Git include file.
+`templates/.config/git/config` reads it when the environment is `work`,
+and the dotfiles apply fails while it is missing.
+Put the `includeIf` entries for work repositories in it.
+
+```sh
+mkdir -p private/git
+"$EDITOR" private/git/work.gitconfig
+```
+
 Trust the cloned repository after reviewing its mise configuration.
 
 ```sh

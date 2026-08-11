@@ -1,5 +1,8 @@
 [include]
   path = ~/.config/git/config.local
+{% if vars.dotfiles_purpose == "work" %}
+{{ read_file(path="private/git/work.gitconfig") }}
+{% endif %}
 [user]
   signingkey = ~/.ssh/id_git_sign
 [core]

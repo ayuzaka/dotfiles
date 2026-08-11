@@ -2,11 +2,9 @@
 dotfiles.root = "~/workspace/github.com/ayuzaka/dotfiles"
 
 [dotfiles]
-"~/.agents" = { source = "dotfiles/.agents", mode = "symlink-each" }
 "~/.claude" = { source = "dotfiles/.claude", mode = "symlink-each" }
 "~/.config" = { source = "dotfiles/.config", mode = "symlink-each" }
 "~/.editorconfig" = { source = "dotfiles/.editorconfig", mode = "symlink" }
-"~/.gemini" = { source = "dotfiles/.gemini", mode = "symlink-each" }
 "~/.local" = { source = "dotfiles/.local", mode = "symlink-each" }
 "~/Library" = { source = "dotfiles/Library", mode = "symlink-each" }
 "~/.bashrc" = { source = "templates/.bashrc", mode = "template" }

@@ -1,6 +1,9 @@
 [vars]
 dotfiles_purpose = "private"
 
+[dotfiles]
+"~/.agents" = { source = "dotfiles/.agents", mode = "symlink-each" }
+
 [tools]
 opencode = "latest"
 turso = "latest"

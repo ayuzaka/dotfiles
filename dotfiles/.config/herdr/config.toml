@@ -28,5 +28,5 @@ position = "bottom-center"
 pane_history = true
 
 [theme]
-name = "nord"
+name = "gruvbox-light"
 auto_switch = false

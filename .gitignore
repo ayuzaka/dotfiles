@@ -1,2 +1,3 @@
 Brewfile.lock.json
-chezmoi_ignores/private
+private/
+scripts/merge-codex-config/target

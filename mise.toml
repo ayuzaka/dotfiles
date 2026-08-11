@@ -1,0 +1,20 @@
+[settings]
+dotfiles.root = "~/workspace/github.com/ayuzaka/dotfiles"
+
+[dotfiles]
+"~/.claude" = { source = "dotfiles/.claude", mode = "symlink-each" }
+"~/.config" = { source = "dotfiles/.config", mode = "symlink-each" }
+"~/.editorconfig" = { source = "dotfiles/.editorconfig", mode = "symlink" }
+"~/.local" = { source = "dotfiles/.local", mode = "symlink-each" }
+"~/Library" = { source = "dotfiles/Library", mode = "symlink-each" }
+"~/.bashrc" = { source = "templates/.bashrc", mode = "template" }
+"~/.claude/rules/dockerfile.md" = { source = "templates/.claude/rules/dockerfile.md", mode = "template" }
+"~/.claude/rules/github-actions.md" = { source = "templates/.claude/rules/github-actions.md", mode = "template" }
+"~/.config/codex/AGENTS.md" = { source = "templates/.config/codex/AGENTS.md", mode = "template" }
+"~/.config/git/config" = { source = "templates/.config/git/config", mode = "template" }
+"~/.config/mise/conf.d/purpose.toml" = { source = "templates/.config/mise/conf.d/purpose.toml", mode = "template" }
+"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+"~/.config/zsh/.zprofile" = { source = "templates/.config/zsh/.zprofile", mode = "template" }
+"~/.config/zsh/.zshrc" = { source = "templates/.config/zsh/.zshrc", mode = "template" }
+"~/.gemini/GEMINI.md" = { source = "templates/.gemini/GEMINI.md", mode = "template" }
+"~/.gemini/settings.json" = { source = "templates/.gemini/settings.json", mode = "template" }

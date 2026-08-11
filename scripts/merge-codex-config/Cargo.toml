@@ -1,0 +1,10 @@
+[package]
+name = "merge-codex-config"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+tempfile = "3"
+toml = "0.9"
+toml_edit = "0.23"

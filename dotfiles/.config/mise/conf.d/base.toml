@@ -159,10 +159,6 @@ run = 'cargo run --quiet --manifest-path "$HOME/workspace/github.com/ayuzaka/dot
 description = "Create and register a Git signing key"
 dir = "{{env.HOME}}"
 run = '''
-gh auth status --hostname github.com
-gh auth refresh --hostname github.com \
-  --scopes admin:public_key,admin:ssh_signing_key
-
 sc_auth create-ctk-identity -l git-sign -k p-256-ne -t none
 ssh-keygen -w /usr/lib/ssh-keychain.dylib -K -N ""
 

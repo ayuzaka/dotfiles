@@ -1,10 +1,14 @@
 [include]
   path = ~/.config/git/config.local
+[user]
+  signingkey = ~/.ssh/id_git_sign
 [core]
   editor = nvim
   pager = hunk pager
 [gpg]
   format = ssh
+[gpg "ssh"]
+  program = ~/.local/bin/ssh-sign
 [commit]
   verbose = true
   gpgsign = true

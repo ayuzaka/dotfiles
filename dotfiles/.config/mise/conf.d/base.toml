@@ -155,6 +155,21 @@ package_manager = "bun"
 description = "Merge local Codex configuration"
 run = 'cargo run --quiet --manifest-path "$HOME/workspace/github.com/ayuzaka/dotfiles/scripts/merge-codex-config/Cargo.toml" --'
 
+[tasks.git-signing-key-create]
+description = "Create and register a Git signing key"
+dir = "{{env.HOME}}"
+run = '''
+gh auth status --hostname github.com
+gh auth refresh --hostname github.com \
+  --scopes admin:public_key,admin:ssh_signing_key
+
+sc_auth create-ctk-identity -l git-sign -k p-256-ne -t none
+ssh-keygen -w /usr/lib/ssh-keychain.dylib -K -N ""
+
+mv id_ecdsa_sk_rk "$HOME/.ssh/id_git_sign"
+mv id_ecdsa_sk_rk.pub "$HOME/.ssh/id_git_sign.pub"
+'''
+
 [tasks.macskk-download]
 description = "Download the latest macSKK DMG"
 tools.jq = "latest"

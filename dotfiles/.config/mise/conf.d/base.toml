@@ -151,7 +151,7 @@ not_found_auto_install = false
 [settings.npm]
 package_manager = "bun"
 
-[tasks.bootstrap]
+[tasks.sync-codex-config]
 description = "Merge local Codex configuration"
 run = 'cargo run --quiet --manifest-path "$HOME/workspace/github.com/ayuzaka/dotfiles/scripts/merge-codex-config/Cargo.toml" --'
 

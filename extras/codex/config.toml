@@ -40,6 +40,10 @@ enabled = true
 [plugins."context7@context7-marketplace"]
 enabled = true
 
+[mcp_servers.kitesurf]
+command = "chrome-devtools-mcp"
+args = ["--wsEndpoint=wss://kitesurf.cloudflare.app/devtools/browser"]
+
 [mcp_servers.chrome-devtools]
 command = "chrome-devtools-mcp"
 args = ["--autoConnect"]

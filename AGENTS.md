@@ -25,9 +25,6 @@ Run `mise run bootstrap` after changing the Codex merge or permission rules.
 Do not replace `~/.config/codex/config.toml` as a whole.
 It contains both managed and application-generated values.
 
-The legacy chezmoi checkout and configuration are retained only for rollback.
-Do not use chezmoi for normal dotfile updates.
-
 ## Testing Guidelines
 
 No comprehensive test suite is required.

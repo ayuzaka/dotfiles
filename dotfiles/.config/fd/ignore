@@ -23,6 +23,7 @@ yarn-error.log*
 .svelte-kit
 .nxcache
 *.tsbuildinfo
+.jest-cache
 
 # Python
 .venv

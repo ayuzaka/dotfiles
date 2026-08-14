@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+item_id="$(
+  op item list --format json \
+    | jq -r '.[] | "\(.id)\t\(.vault.name)\t\(.title)"' \
+    | fzf --delimiter '\t' --with-nth 2,3 \
+    | cut -f1
+)"
+
+[[ -n "$item_id" ]] || exit 1
+
+op item get "$item_id" --format json | jq -r '
+  . as $item
+  | .fields[]
+  | select(.id != null)
+  | "\(.label)\t"
+    + "op://\($item.vault.id)/\($item.id)/"
+    + (if .section.id? then "\(.section.id)/" else "" end)
+    + "\(.id)"
+'

@@ -6,7 +6,9 @@ dotfiles.root = "~/workspace/github.com/ayuzaka/dotfiles"
 "~/.config" = { source = "dotfiles/.config", mode = "symlink-each" }
 "~/.editorconfig" = { source = "dotfiles/.editorconfig", mode = "symlink" }
 "~/.local" = { source = "dotfiles/.local", mode = "symlink-each" }
-"~/Library" = { source = "dotfiles/Library", mode = "symlink-each" }
+"~/Library/Application Support" = { source = "dotfiles/Library/Application Support", mode = "symlink-each" }
+# macSKK はサンドボックス内から読むため、コンテナ外を指す symlink は EPERM で拒否される
+"~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/kana-rule.conf" = { source = "dotfiles/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/kana-rule.conf", mode = "copy" }
 "~/.bashrc" = { source = "templates/.bashrc", mode = "template" }
 "~/.claude/rules/dockerfile.md" = { source = "templates/.claude/rules/dockerfile.md", mode = "template" }
 "~/.claude/rules/github-actions.md" = { source = "templates/.claude/rules/github-actions.md", mode = "template" }

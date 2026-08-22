@@ -27,13 +27,16 @@ local translate_async = function(text, callback)
   })
 end
 
-local show_result_buffer = function(source_text)
+local show_result_buffer = function(source_text, show_source)
   vim.cmd("new")
 
   local buf = vim.api.nvim_get_current_buf()
-  local lines = { "原文:", "" }
-  vim.list_extend(lines, vim.split(source_text, "\n"))
-  vim.list_extend(lines, { "", "英訳:", "", "翻訳中..." })
+  local lines = { "翻訳中..." }
+  if show_source then
+    lines = { "原文:", "" }
+    vim.list_extend(lines, vim.split(source_text, "\n"))
+    vim.list_extend(lines, { "", "英訳:", "", "翻訳中..." })
+  end
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
   vim.bo[buf].buftype = "nofile"
@@ -81,14 +84,18 @@ local update_result_buffer = function(result_buffer, content)
   end, { buffer = result_buffer.buf, silent = true })
 end
 
-vim.api.nvim_create_user_command("Translate", function()
-  local text = utils.get_visual_text()
+vim.api.nvim_create_user_command("Translate", function(opts)
+  local text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+  if opts.range > 0 then
+    text = utils.get_visual_text()
+  end
+
   if text == "" then
-    vim.notify("No text selected", vim.log.levels.WARN)
+    vim.notify("No text to translate", vim.log.levels.WARN)
     return
   end
 
-  local result_buffer = show_result_buffer(text)
+  local result_buffer = show_result_buffer(text, opts.range > 0)
   translate_async(text, function(result)
     if result then
       vim.schedule(function()

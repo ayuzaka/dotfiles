@@ -1,6 +1,6 @@
 local utils = require("config.utils")
 
-local translate_async = function(text, callback)
+local translate_async = function(text, callback, job_state)
   if vim.fn.executable("plamo-translate") ~= 1 then
     vim.notify("plamo-translate not found", vim.log.levels.ERROR)
     callback(nil)
@@ -8,7 +8,7 @@ local translate_async = function(text, callback)
   end
 
   local output = {}
-  vim.fn.jobstart({ "plamo-translate", "--input", text }, {
+  return vim.fn.jobstart({ "plamo-translate", "--input", text }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
       if data then
@@ -16,7 +16,13 @@ local translate_async = function(text, callback)
       end
     end,
     on_exit = function(_, exit_code)
-      if exit_code ~= 0 then
+      if job_state then
+        job_state.job_id = nil
+      end
+
+      if job_state and job_state.cancelled then
+        callback(nil)
+      elseif exit_code ~= 0 then
         vim.notify("Translation failed", vim.log.levels.ERROR)
         callback(nil)
       else
@@ -44,13 +50,19 @@ local show_result_buffer = function(source_text, show_source)
   vim.bo[buf].swapfile = false
 
   local win = vim.api.nvim_get_current_win()
+  local result_buffer = { buf = buf, win = win }
   vim.keymap.set("n", "q", function()
+    result_buffer.cancelled = true
+    if result_buffer.job_id then
+      vim.fn.jobstop(result_buffer.job_id)
+    end
+
     if vim.api.nvim_win_is_valid(win) then
       vim.api.nvim_win_close(win, true)
     end
   end, { buffer = buf, silent = true })
 
-  return { buf = buf, win = win }
+  return result_buffer
 end
 
 local update_result_buffer = function(result_buffer, content)
@@ -96,7 +108,7 @@ vim.api.nvim_create_user_command("Translate", function(opts)
   end
 
   local result_buffer = show_result_buffer(text, opts.range > 0)
-  translate_async(text, function(result)
+  result_buffer.job_id = translate_async(text, function(result)
     if result then
       vim.schedule(function()
         update_result_buffer(result_buffer, result)
@@ -108,7 +120,7 @@ vim.api.nvim_create_user_command("Translate", function(opts)
         end
       end)
     end
-  end)
+  end, result_buffer)
 end, { range = true })
 
 vim.api.nvim_create_user_command("TranslateReplace", function()

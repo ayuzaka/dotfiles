@@ -7,6 +7,8 @@ lazydocker = "latest"
 yarn = "4"
 gcloud = "latest"
 stripe = "latest"
+# bin/ に llmman も同梱される
+"github:docker/sbx-releases" = { version = "latest", asset_pattern = "DockerSandboxes-darwin.tar.gz", filter_bins = "sbx" }
 "go:github.com/laravel-ls/laravel-ls/cmd/laravel-ls" = "latest"
 "npm:@ember-tooling/ember-language-server" = "latest"
 "npm:@tailwindcss/language-server" = "latest"

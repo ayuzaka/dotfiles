@@ -1,8 +1,5 @@
 [include]
   path = ~/.config/git/config.local
-{% if vars.dotfiles_purpose == "work" %}
-{{ read_file(path="private/git/work.gitconfig") }}
-{% endif %}
 [user]
   signingkey = ~/.ssh/id_git_sign
 [core]
@@ -63,3 +60,6 @@
 [hook "protect-main"]
 	event = pre-push
 	command = ~/.config/git/hooks/pre-push
+{% if vars.dotfiles_purpose == "work" %}
+{{ read_file(path="private/git/work.gitconfig") }}
+{% endif %}

@@ -1,23 +1,88 @@
 local utils = require("config.utils")
 
-local translate_async = function(text, callback, job_state)
-  if vim.fn.executable("plamo-translate") ~= 1 then
-    vim.notify("plamo-translate not found", vim.log.levels.ERROR)
-    callback(nil)
+local MAX_PARALLEL_SECTIONS = 3
+
+local resolve_languages = function(text)
+  if vim.fn.match(text, "[ぁ-んァ-ヶ一-龥]") >= 0 then
+    return "Japanese", "English"
+  end
+
+  return "English", "Japanese"
+end
+
+local split_markdown_sections = function(text)
+  local sections = {}
+  local section_lines = {}
+  local fence_marker
+  local backtick = string.char(96)
+
+  local flush_section = function()
+    if #section_lines == 0 then
+      return
+    end
+
+    table.insert(sections, table.concat(section_lines, "\n"))
+    section_lines = {}
+  end
+
+  for _, line in ipairs(vim.split(text, "\n", { plain = true })) do
+    local marker = line:match("^%s*(" .. backtick .. backtick .. backtick .. "+)") or line:match("^%s*(~~~+)")
+    if marker then
+      local marker_type = marker:sub(1, 1)
+      if not fence_marker then
+        fence_marker = marker_type
+      elseif fence_marker == marker_type then
+        fence_marker = nil
+      end
+    end
+
+    local indentation, heading = line:match("^( *)(#+)%s+")
+    local starts_section = heading and #indentation <= 3 and #heading <= 6
+    if not fence_marker and starts_section and #section_lines > 0 then
+      flush_section()
+    end
+
+    table.insert(section_lines, line)
+  end
+
+  flush_section()
+  return sections
+end
+
+local stop_translation_jobs = function(job_state)
+  if not job_state or not job_state.job_ids then
     return
   end
 
-  local output = {}
-  return vim.fn.jobstart({ "plamo-translate", "--input", text }, {
+  for job_id in pairs(job_state.job_ids) do
+    vim.fn.jobstop(job_id)
+  end
+  job_state.job_ids = {}
+end
+
+local start_translation_job = function(text, source_language, target_language, callback, job_state)
+  local output = { "" }
+  local job_id = vim.fn.jobstart({
+    "plamo-translate",
+    "--from",
+    source_language,
+    "--to",
+    target_language,
+    "--input",
+    text,
+  }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
-      if data then
-        output = data
+      if data and #data > 0 then
+        output[#output] = output[#output] .. data[1]
+        for index = 2, #data do
+          table.insert(output, data[index])
+        end
       end
     end,
-    on_exit = function(_, exit_code)
-      if job_state then
-        job_state.job_id = nil
+    on_exit = function(completed_job_id, exit_code)
+      if job_state and job_state.job_ids then
+        job_state.job_ids[completed_job_id] = nil
       end
 
       if job_state and job_state.cancelled then
@@ -26,15 +91,89 @@ local translate_async = function(text, callback, job_state)
         vim.notify("Translation failed", vim.log.levels.ERROR)
         callback(nil)
       else
-        local result = vim.trim(table.concat(output, "\n"))
-        callback(result)
+        callback(vim.trim(table.concat(output, "\n")))
       end
     end,
   })
+
+  if job_state then
+    job_state.job_ids = job_state.job_ids or {}
+    job_state.job_ids[job_id] = true
+  end
+  return job_id
+end
+
+local translate_async = function(text, callback, job_state)
+  if vim.fn.executable("plamo-translate") ~= 1 then
+    vim.notify("plamo-translate not found", vim.log.levels.ERROR)
+    callback(nil)
+    return
+  end
+
+  local source_language, target_language = resolve_languages(text)
+  return start_translation_job(text, source_language, target_language, callback, job_state)
+end
+
+local translate_buffer_async = function(text, callback, job_state, on_progress)
+  if vim.fn.executable("plamo-translate") ~= 1 then
+    vim.notify("plamo-translate not found", vim.log.levels.ERROR)
+    callback(nil)
+    return
+  end
+
+  local source_language, target_language = resolve_languages(text)
+  local sections = split_markdown_sections(text)
+  local results = {}
+  local completed = 0
+  local next_index = 1
+  local running = 0
+  local finished = false
+  local start_next_sections
+
+  job_state.job_ids = {}
+  on_progress(completed, #sections)
+
+  start_next_sections = function()
+    while not finished and running < MAX_PARALLEL_SECTIONS and next_index <= #sections do
+      local section_index = next_index
+      next_index = next_index + 1
+      running = running + 1
+
+      start_translation_job(sections[section_index], source_language, target_language, function(result)
+        running = running - 1
+        if finished or job_state.cancelled then
+          return
+        end
+
+        if not result then
+          finished = true
+          stop_translation_jobs(job_state)
+          callback(nil)
+          return
+        end
+
+        results[section_index] = result
+        completed = completed + 1
+        on_progress(completed, #sections)
+        if completed == #sections then
+          finished = true
+          callback(table.concat(results, "\n\n"))
+        else
+          start_next_sections()
+        end
+      end, job_state)
+    end
+  end
+
+  start_next_sections()
 end
 
 local show_result_buffer = function(source_text, show_source)
-  vim.cmd("new")
+  if show_source then
+    vim.cmd("new")
+  else
+    vim.cmd("rightbelow vnew")
+  end
 
   local buf = vim.api.nvim_get_current_buf()
   local lines = { "翻訳中..." }
@@ -50,12 +189,10 @@ local show_result_buffer = function(source_text, show_source)
   vim.bo[buf].swapfile = false
 
   local win = vim.api.nvim_get_current_win()
-  local result_buffer = { buf = buf, win = win }
+  local result_buffer = { buf = buf, win = win, job_ids = {} }
   vim.keymap.set("n", "q", function()
     result_buffer.cancelled = true
-    if result_buffer.job_id then
-      vim.fn.jobstop(result_buffer.job_id)
-    end
+    stop_translation_jobs(result_buffer)
 
     if vim.api.nvim_win_is_valid(win) then
       vim.api.nvim_win_close(win, true)
@@ -65,7 +202,7 @@ local show_result_buffer = function(source_text, show_source)
   return result_buffer
 end
 
-local update_result_buffer = function(result_buffer, content)
+local update_result_buffer = function(result_buffer, content, copyable)
   if not vim.api.nvim_buf_is_valid(result_buffer.buf) then
     return
   end
@@ -89,6 +226,10 @@ local update_result_buffer = function(result_buffer, content)
   vim.api.nvim_buf_set_lines(result_buffer.buf, 0, -1, false, lines)
   vim.bo[result_buffer.buf].modifiable = false
 
+  if not copyable then
+    return
+  end
+
   vim.keymap.set("n", "y", function()
     vim.fn.setreg("+", content)
     vim.api.nvim_win_close(result_buffer.win, true)
@@ -98,7 +239,8 @@ end
 
 vim.api.nvim_create_user_command("Translate", function(opts)
   local text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
-  if opts.range > 0 then
+  local translate_buffer = opts.range == 0
+  if not translate_buffer then
     text = utils.get_visual_text()
   end
 
@@ -107,20 +249,28 @@ vim.api.nvim_create_user_command("Translate", function(opts)
     return
   end
 
-  local result_buffer = show_result_buffer(text, opts.range > 0)
-  result_buffer.job_id = translate_async(text, function(result)
-    if result then
-      vim.schedule(function()
-        update_result_buffer(result_buffer, result)
-      end)
-    else
-      vim.schedule(function()
-        if vim.api.nvim_win_is_valid(result_buffer.win) then
-          vim.api.nvim_win_close(result_buffer.win, true)
-        end
-      end)
-    end
-  end, result_buffer)
+  local result_buffer = show_result_buffer(text, not translate_buffer)
+  local on_result = function(result)
+    vim.schedule(function()
+      if result then
+        update_result_buffer(result_buffer, result, true)
+      elseif vim.api.nvim_win_is_valid(result_buffer.win) then
+        vim.api.nvim_win_close(result_buffer.win, true)
+      end
+    end)
+  end
+
+  if not translate_buffer then
+    translate_async(text, on_result, result_buffer)
+    return
+  end
+
+  translate_buffer_async(text, on_result, result_buffer, function(completed, section_count)
+    vim.schedule(function()
+      local progress = string.format("翻訳中... (%d/%dセクション)", completed, section_count)
+      update_result_buffer(result_buffer, progress, false)
+    end)
+  end)
 end, { range = true })
 
 vim.api.nvim_create_user_command("TranslateReplace", function()

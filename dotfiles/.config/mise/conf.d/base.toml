@@ -91,7 +91,7 @@ zoxide = "latest"
 "npm:yaml-language-server" = "latest"
 "pipx:mdformat" = { version = "latest", uvx_args = "--with mdformat-frontmatter" }
 "pipx:pdfplumber" = "latest"
-"pipx:plamo-translate" = { version = "latest", uvx_args = "--python 3.13 --with torch" }
+"pipx:plamo-translate" = { version = "latest", uvx_args = "--python 3.13 --with torch --with 'mcp<2'" }
 "pipx:python-lsp-server" = "latest"
 "pipx:ruff-lsp" = "latest"
 "pipx:tavily-cli" = "latest"

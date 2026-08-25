@@ -19,3 +19,10 @@ turso = "latest"
 "brew-cask:brave-browser" = "latest"
 "brew-cask:obsidian" = "latest"
 "mas:302584613" = "latest" # Kindle
+
+[bootstrap.macos.launchd.agents.hermes-gateway]
+program = "/bin/sh"
+args = ["-c", 'export HERMES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/hermes"; exec "$HOME/.local/bin/hermes" gateway start']
+run_at_load = true
+stdout_path = "~/.config/hermes/logs/gateway-launcher.log"
+stderr_path = "~/.config/hermes/logs/gateway-launcher.error.log"

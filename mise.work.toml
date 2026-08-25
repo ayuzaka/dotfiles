@@ -1,6 +1,9 @@
 [vars]
 dotfiles_purpose = "work"
 
+[dotfiles]
+"~/.config/claude-dev" = { source = "dotfiles/.claude", mode = "symlink-each" }
+
 [tools]
 awscli = "latest"
 lazydocker = "latest"

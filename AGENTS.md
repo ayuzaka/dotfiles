@@ -12,6 +12,7 @@ Edit files in this repository instead of editing their targets in the home direc
 - Place Tera templates under `templates/`.
 - Keep machine-local template inputs under the Git-ignored `private/` directory.
 - Keep Git-managed files that are not applied to the home directory under `extras/`.
+- Place temporary documents in the working directory root, not under `/tmp/claude-501/` and not in `.gitignore`. This keeps them easy to open and avoids leaving stray files behind.
 
 Preview dotfile changes before applying them.
 

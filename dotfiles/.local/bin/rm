@@ -1,0 +1,8 @@
+#!/bin/sh
+# rm を使わない方針のため、PATH 経由の呼び出しをすべて拒否する。
+# フックはエージェントが直接打ったコマンド文字列しか見えないのに対し、
+# ここはスクリプト内やシグナルトラップからの呼び出しも通るため、
+# 変数の展開結果が意図せず別の場所を指した場合の削除も止まる。
+
+printf 'rm: blocked by ~/.local/bin/rm. Use trash instead (trash file.txt). If deletion is truly required, call /bin/rm explicitly.\n' >&2
+exit 1

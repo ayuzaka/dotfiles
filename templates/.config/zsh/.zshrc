@@ -14,7 +14,8 @@ export HERMES_HOME="${HERMES_HOME:-$XDG_CONFIG_HOME/hermes}"
 export HOMEBREW_CASK_OPTS=--appdir=/Applications
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$PATH:$HOME/.local/bin"
+# システムコマンドを上書きするラッパーを置くため /bin より前に出す
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
 
 case "${OSTYPE}" in

@@ -26,6 +26,13 @@ Run `mise run bootstrap` after changing the Codex merge or permission rules.
 Do not replace `~/.config/codex/config.toml` as a whole.
 It contains both managed and application-generated values.
 
+Claude Code rewrites `dotfiles/.claude/settings.json` on its own, so a
+`jsonsort` clean filter keeps its committed form key-sorted.
+The filter lives in the per-clone Git config; run `mise run bootstrap` in a
+fresh clone to register it.
+There is no smudge filter, so `git checkout` writes the sorted form into the
+live file through the symlink.
+
 ## Testing Guidelines
 
 No comprehensive test suite is required.

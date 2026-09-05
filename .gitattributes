@@ -1,0 +1,2 @@
+# Claude Code の書き換えでキー順が変わるため正規化する
+dotfiles/.claude/settings.json filter=jsonsort

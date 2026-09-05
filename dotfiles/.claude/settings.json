@@ -23,9 +23,6 @@
       "Bash(rg:*)",
       "Bash(trash:*)",
       "Bash(fd:*)",
-      "Bash(npm run*)",
-      "Bash(pnpm run*)",
-      "Bash(yarn run*)",
       "Bash(moon check*)",
       "Bash(moon fmt*)",
       "Bash(moon info*)",
@@ -57,12 +54,11 @@
       "Bash(wget:*)",
       "Read(**/.ssh/**)",
       "Edit(.env)",
-      "NotebookEdit",
-      "WebSearch",
-      "WebFetch"
+      "NotebookEdit"
     ],
     "defaultMode": "auto"
   },
+  "fallbackModel": [],
   "hooks": {
     "PreToolUse": [
       {
@@ -170,14 +166,14 @@
     ],
     "SessionStart": [
       {
+        "matcher": "*",
         "hooks": [
           {
+            "type": "command",
             "command": "bash '$CLAUDE_CONFIG_DIR/hooks/herdr-agent-state.sh' session",
-            "timeout": 10,
-            "type": "command"
+            "timeout": 10
           }
-        ],
-        "matcher": "*"
+        ]
       }
     ]
   },
@@ -229,10 +225,19 @@
       }
     }
   },
+  "outputStyle": "Concise",
   "language": "japanese",
+  "sandbox": {
+    "enabled": true,
+    "filesystem": {
+      "allowWrite": [
+        "/var/folders",
+        "/private/var/folders"
+      ]
+    }
+  },
   "effortLevel": "high",
   "advisorModel": "opus",
-  "fallbackModel": [],
   "plansDirectory": ".agents/plans",
   "theme": "auto",
   "agentPushNotifEnabled": true

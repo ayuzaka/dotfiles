@@ -20,3 +20,16 @@ dotfiles.root = "~/workspace/github.com/ayuzaka/dotfiles"
 "~/.config/zsh/.zshrc" = { source = "templates/.config/zsh/.zshrc", mode = "template" }
 "~/.gemini/GEMINI.md" = { source = "templates/.gemini/GEMINI.md", mode = "template" }
 "~/.gemini/settings.json" = { source = "templates/.gemini/settings.json", mode = "template" }
+
+# conf.d/base.toml は dotfiles 適用後にしか読まれないため、未適用の clone でも
+# 見つかるようこちらに置く
+[tasks.bootstrap]
+description = "Converge repository-local setup that the declarative sections cannot express"
+run = '''
+repo="$HOME/workspace/github.com/ayuzaka/dotfiles"
+
+# git は mise 非活性の環境からもフィルタを起動する
+git -C "$repo" config filter.jsonsort.clean "$HOME/.local/share/mise/shims/jq -S ."
+# jq を欠く環境では git を失敗させず正規化なしへ縮退させる
+git -C "$repo" config filter.jsonsort.required false
+'''

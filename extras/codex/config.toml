@@ -1,5 +1,5 @@
-model = "gpt-5.6-sol"
-model_reasoning_effort = "high"
+model = "gpt-6-astra"
+model_reasoning_effort = "low"
 cli_auth_credentials_store = "auto"
 
 [notice]
@@ -12,6 +12,9 @@ multi_agent = true
 smart_approvals = true
 hooks = true
 terminal_resize_reflow = true
+
+[agents]
+enabled = false
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "model-name", "project-root", "git-branch", "context-used", "five-hour-limit", "weekly-limit"]

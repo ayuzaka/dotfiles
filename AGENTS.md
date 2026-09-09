@@ -15,9 +15,10 @@ Edit files in this repository instead of editing their targets in the home direc
 - Place temporary documents in the working directory root, not under `/tmp/claude-501/` and not in `.gitignore`. This keeps them easy to open and avoids leaving stray files behind.
 
 Preview dotfile changes before applying them.
+Set `MISE_ENV` in the Git-ignored `mise.local.toml`; do not override it in the command.
 
 ```sh
-MISE_ENV=private mise \
+mise \
   -C "$HOME/workspace/github.com/ayuzaka/dotfiles" \
   bootstrap dotfiles apply --force --dry-run
 ```

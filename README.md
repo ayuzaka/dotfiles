@@ -12,11 +12,11 @@ Change to the cloned repository.
 cd "$HOME/workspace/github.com/ayuzaka/dotfiles"
 ```
 
-Select the environment for the first bootstrap.
-The generated shell configuration preserves this selection for new shells.
+Select the environment in the Git-ignored `mise.local.toml`.
 
-```sh
-export MISE_ENV=private # or work
+```toml
+[env]
+MISE_ENV = "private" # or "work"
 ```
 
 On a work machine, create the Git-ignored Git include file.

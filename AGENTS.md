@@ -12,7 +12,7 @@ Edit files in this repository instead of editing their targets in the home direc
 - Place Tera templates under `templates/`.
 - Keep machine-local template inputs under the Git-ignored `private/` directory.
 - Keep Git-managed files that are not applied to the home directory under `extras/`.
-- Place temporary documents in the working directory root, not under `/tmp/claude-501/` and not in `.gitignore`. This keeps them easy to open and avoids leaving stray files behind.
+- Place temporary documents in the working directory root so they are easy to open and clean up.
 
 Preview dotfile changes before applying them.
 Set `MISE_ENV` in the Git-ignored `mise.local.toml`; do not override it in the command.
@@ -36,6 +36,6 @@ live file through the symlink.
 
 ## Testing Guidelines
 
-No comprehensive test suite is required.
-Validate changed templates with a dry-run.
-Confirm that each affected application can load its configuration.
+Choose checks that match the changed files. Validate changed templates with a
+dry-run and confirm that affected applications can load their configuration.
+Fix failures caused by the change and rerun the affected checks.

@@ -12,7 +12,6 @@ export PI_CODING_AGENT_DIR="${PI_CODING_AGENT_DIR:-$XDG_CONFIG_HOME/pi}"
 # -----------------------------
 # PATH
 # -----------------------------
-export HOMEBREW_CASK_OPTS=--appdir=/Applications
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # システムコマンドを上書きするラッパーを置くため /bin より前に出す
@@ -21,7 +20,8 @@ export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
 
 case "${OSTYPE}" in
   darwin*)
-    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/opt/local/bin:/opt/local/sbin:$PATH"
+    export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
     export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
   ;;
 esac
@@ -75,7 +75,6 @@ export TERMINFO="$XDG_DATA_HOME"/terminfo
 typeset -a terminfo_dirs
 terminfo_dirs=("$XDG_DATA_HOME/terminfo" "/usr/share/terminfo")
 [[ -d /Applications/Ghostty.app/Contents/Resources/terminfo ]] && terminfo_dirs+=("/Applications/Ghostty.app/Contents/Resources/terminfo")
-[[ -d /opt/homebrew/share/terminfo ]] && terminfo_dirs+=("/opt/homebrew/share/terminfo")
 export TERMINFO_DIRS="${(j/:/)terminfo_dirs}"
 
 export MANPAGER="col -b -x|nvim -R -c 'set ft=man nolist nomod noma' -"

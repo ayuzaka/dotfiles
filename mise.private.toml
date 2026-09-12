@@ -6,6 +6,7 @@ dotfiles_purpose = "private"
 
 [tools]
 opencode = "latest"
+pi = "latest"
 turso = "latest"
 "go:tailscale.com/cmd/tailscale" = "main"
 "go:tailscale.com/cmd/tailscaled" = "main"

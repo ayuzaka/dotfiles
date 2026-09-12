@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -u
+
+# Git may invoke hooks from a GUI without the shell initialization that adds
+# mise-managed tools to PATH.
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
+workflow_files=()
+dockerfiles=()
+toml_files=()
+
+while IFS= read -r -d '' file_path; do
+  case "$file_path" in
+  .github/workflows/*.yml | .github/workflows/*.yaml)
+    workflow_files+=("$file_path")
+    ;;
+  esac
+
+  case "$file_path" in
+  Dockerfile | */Dockerfile | *.Dockerfile)
+    dockerfiles+=("$file_path")
+    ;;
+  esac
+
+  case "$file_path" in
+  *.toml)
+    toml_files+=("$file_path")
+    ;;
+  esac
+done < <(git diff --cached --name-only --diff-filter=ACMR -z)
+
+status=0
+
+if ((${#workflow_files[@]} > 0)); then
+  echo "Checking staged GitHub Actions workflows..."
+
+  # Keep release-update checks out of pre-commit; they are network-dependent and
+  # belong in Dependabot, Renovate, or scheduled CI.
+  if ! pinact run --check --verify-comment "${workflow_files[@]}"; then
+    status=1
+  fi
+
+  if ! actionlint "${workflow_files[@]}"; then
+    status=1
+  fi
+
+  if ! zizmor --no-progress "${workflow_files[@]}"; then
+    status=1
+  fi
+fi
+
+if ((${#dockerfiles[@]} > 0)); then
+  echo "Checking staged Dockerfiles..."
+
+  if ! hadolint "${dockerfiles[@]}"; then
+    status=1
+  fi
+fi
+
+if ((${#toml_files[@]} > 0)); then
+  echo "Checking staged TOML files..."
+
+  if ! tombi lint "${toml_files[@]}"; then
+    status=1
+  fi
+
+  if ! tombi format --check --diff "${toml_files[@]}"; then
+    status=1
+  fi
+fi
+
+exit "$status"

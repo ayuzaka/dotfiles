@@ -60,6 +60,9 @@
 [hook "protect-main"]
 	event = pre-push
 	command = ~/.config/git/hooks/pre-push
+[hook "lint-staged-files"]
+	event = pre-commit
+	command = ~/.config/git/hooks/pre-commit
 {% if vars.dotfiles_purpose == "work" %}
 {{ read_file(path="private/git/work.gitconfig") }}
 {% endif %}

@@ -3,6 +3,11 @@
     "preset-ja-technical-writing": {
       "sentence-length": false
     },
-    "preset-ai-words-ja": true
+    "preset-ai-words-ja": {
+      "no-ai-words": {
+        "dictionaryPath": "./ai-words-ja.json",
+        "dictionaryMode": "append"
+      }
+    }
   }
 }

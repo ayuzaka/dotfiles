@@ -9,6 +9,7 @@ workflow_files=()
 dockerfiles=()
 toml_files=()
 markdown_files=()
+commented_files=()
 
 while IFS= read -r -d '' file_path; do
   case "$file_path" in
@@ -32,6 +33,12 @@ while IFS= read -r -d '' file_path; do
   case "$file_path" in
   *.md)
     markdown_files+=("$file_path")
+    ;;
+  esac
+
+  case "$file_path" in
+  *.sh | *.rs)
+    commented_files+=("$file_path")
     ;;
   esac
 done < <(git diff --cached --name-only --diff-filter=ACMR -z)
@@ -80,6 +87,14 @@ if ((${#markdown_files[@]} > 0)); then
   echo "Checking staged Markdown files..."
 
   if ! textlint-ja "${markdown_files[@]}"; then
+    status=1
+  fi
+fi
+
+if ((${#commented_files[@]} > 0)); then
+  echo "Checking staged code comments..."
+
+  if ! textlint-comments "${commented_files[@]}"; then
     status=1
   fi
 fi

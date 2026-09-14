@@ -1,0 +1,28 @@
+#!/bin/sh
+# Blank out non-comment lines so textlint's reported line numbers match the
+# source file, then reuse textlint-ja on the result via a fake .txt filename
+# (textlint has no source-code plugin, so it can't parse the real extension).
+set -u
+
+status=0
+for file in "$@"; do
+  case "$file" in
+  *.sh)
+    pattern='^[[:space:]]*#'
+    ;;
+  *.rs)
+    pattern='^[[:space:]]*//'
+    ;;
+  *)
+    continue
+    ;;
+  esac
+
+  awk -v pat="$pattern" '
+    NR==1 && /^#!/ { print ""; next }
+    $0 ~ pat { print; next }
+    { print "" }
+  ' "$file" | textlint-ja --stdin --stdin-filename "$file.txt" || status=1
+done
+
+exit "$status"

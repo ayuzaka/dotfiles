@@ -1,15 +1,12 @@
 version: 2
 tools:
   markdown-textlint: &markdown-textlint
-    lint-command: 'bunx --no-install textlint -f unix --stdin --stdin-filename "${INPUT}"'
+    lint-command: 'textlint-ja -f unix --stdin --stdin-filename "${INPUT}"'
     lint-ignore-exit-code: true
     lint-stdin: true
+    lint-after-open: true
     lint-formats:
       - "%f:%l:%c: %m [%trror/%r]"
-    root-markers:
-      - .textlintrc
-      - .textlintrc.json
-      - .textlintrc.js
 
   markdown-markdownlint: &markdown-markdownlint
     lint-command: 'markdownlint -s -c "~/.config/markdownlint/markdownlint.json"'

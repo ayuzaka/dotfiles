@@ -1,0 +1,3 @@
+#!/bin/sh
+export NODE_PATH="$HOME/.local/share/mise/installs/npm-textlint-rule-preset-ja-technical-writing/latest/node_modules:$HOME/.local/share/mise/installs/npm-textlint-rule-preset-ai-words-ja/latest/node_modules"
+exec textlint --config "$HOME/.config/textlint/.textlintrc.json" "$@"

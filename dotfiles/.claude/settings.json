@@ -113,6 +113,31 @@
             "type": "command",
             "command": "~/.local/bin/guard-commands.sh",
             "if": "Bash(git restore \\. *)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/require-gh-body-file.sh",
+            "if": "Bash(gh issue create *)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/require-gh-body-file.sh",
+            "if": "Bash(gh issue edit *)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/require-gh-body-file.sh",
+            "if": "Bash(gh issue comment *)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/require-gh-body-file.sh",
+            "if": "Bash(gh pr create *)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/require-gh-body-file.sh",
+            "if": "Bash(gh pr edit *)"
           }
         ]
       },
@@ -160,6 +185,16 @@
             "type": "command",
             "command": "$CLAUDE_CONFIG_DIR/hooks/lint-shell.sh",
             "if": "Write(**/*.sh)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-markdown.sh",
+            "if": "Edit(**/*.md)"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_CONFIG_DIR/hooks/lint-markdown.sh",
+            "if": "Write(**/*.md)"
           }
         ]
       }
@@ -191,7 +226,6 @@
     "stripe@claude-plugins-official": true,
     "aws-serverless@agent-plugins-for-aws": true,
     "codex@openai-codex": true,
-    "chrome-devtools-mcp@chrome-devtools-plugins": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {

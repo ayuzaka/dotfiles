@@ -44,20 +44,20 @@ end
 
 local tab_bar_colors = {
   dark = {
-    background = "#2d353b",
-    active_tab   = { bg_color = "#a7c080", fg_color = "#2d353b" },
-    inactive_tab = { bg_color = "#343f44", fg_color = "#9da9a0" },
+    background         = "#2d353b",
+    active_tab         = { bg_color = "#a7c080", fg_color = "#2d353b" },
+    inactive_tab       = { bg_color = "#343f44", fg_color = "#9da9a0" },
     inactive_tab_hover = { bg_color = "#3d484d", fg_color = "#d3c6aa" },
-    new_tab       = { bg_color = "#2d353b", fg_color = "#9da9a0" },
-    new_tab_hover = { bg_color = "#343f44", fg_color = "#d3c6aa" },
+    new_tab            = { bg_color = "#2d353b", fg_color = "#9da9a0" },
+    new_tab_hover      = { bg_color = "#343f44", fg_color = "#d3c6aa" },
   },
   light = {
-    background = "#e5e0d8",
-    active_tab   = { bg_color = "#8da101", fg_color = "#f3efe4" },
-    inactive_tab = { bg_color = "#d4cfc8", fg_color = "#5c6a72" },
+    background         = "#e5e0d8",
+    active_tab         = { bg_color = "#8da101", fg_color = "#f3efe4" },
+    inactive_tab       = { bg_color = "#d4cfc8", fg_color = "#5c6a72" },
     inactive_tab_hover = { bg_color = "#c9c4bd", fg_color = "#5c6a72" },
-    new_tab       = { bg_color = "#e5e0d8", fg_color = "#859289" },
-    new_tab_hover = { bg_color = "#d4cfc8", fg_color = "#5c6a72" },
+    new_tab            = { bg_color = "#e5e0d8", fg_color = "#859289" },
+    new_tab_hover      = { bg_color = "#d4cfc8", fg_color = "#5c6a72" },
   },
 }
 
@@ -80,4 +80,11 @@ return {
   audible_bell = "SystemBeep",
   leader = keybinds.leader,
   keys = keybinds.keys,
+  mouse_bindings = {
+    {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'CTRL',
+      action = wezterm.action.OpenLinkAtMouseCursor,
+    },
+  }
 }

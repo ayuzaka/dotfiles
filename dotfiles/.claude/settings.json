@@ -51,7 +51,9 @@
       "Bash(psql:*)",
       "Bash(rm:*)",
       "Bash(sudo:*)",
+      "Bash(ssh:*)",
       "Bash(wget:*)",
+      "Bash(aws:*)",
       "Read(**/.ssh/**)",
       "Edit(.env)",
       "NotebookEdit"
@@ -226,6 +228,7 @@
     "stripe@claude-plugins-official": true,
     "aws-serverless@agent-plugins-for-aws": true,
     "codex@openai-codex": true,
+    "chrome-devtools-mcp@chrome-devtools-plugins": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {
@@ -257,22 +260,20 @@
         "source": "github",
         "repo": "ChromeDevTools/chrome-devtools-mcp"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
     }
   },
   "outputStyle": "Concise",
   "language": "japanese",
-  "sandbox": {
-    "enabled": true,
-    "filesystem": {
-      "allowWrite": [
-        "/var/folders",
-        "/private/var/folders"
-      ]
-    }
-  },
   "effortLevel": "high",
   "advisorModel": "opus",
   "plansDirectory": ".agents/plans",
+  "autoMemoryEnabled": false,
   "theme": "auto",
   "agentPushNotifEnabled": true
 }

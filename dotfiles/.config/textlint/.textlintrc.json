@@ -8,6 +8,7 @@
         "dictionaryPath": "./ai-words-ja.json",
         "dictionaryMode": "append"
       }
-    }
+    },
+    "preset-ai-writing": true
   }
 }

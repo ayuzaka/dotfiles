@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": {
+      "sentence-length": false,
+      "ja-no-mixed-period": false
+    },
+    "preset-ai-words-ja": {
+      "no-ai-words": {
+        "dictionaryPath": "./ai-words-ja.json",
+        "dictionaryMode": "append"
+      }
+    },
+    "preset-ai-writing": true
+  }
+}

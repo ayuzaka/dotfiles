@@ -4,6 +4,9 @@
 # (textlint has no source-code plugin, so it can't parse the real extension).
 set -u
 
+# ja-no-mixed-period (文末の句点統一) fits prose, not code comments.
+export TEXTLINT_CONFIG="$HOME/.config/textlint/.textlintrc.code-comments.json"
+
 status=0
 for file in "$@"; do
   case "$file" in

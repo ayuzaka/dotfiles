@@ -5,6 +5,7 @@ dotfiles.root = "~/workspace/github.com/ayuzaka/dotfiles"
 "~/.claude" = { source = "dotfiles/.claude", mode = "symlink-each" }
 "~/.config" = { source = "dotfiles/.config", mode = "symlink-each" }
 "~/.editorconfig" = { source = "dotfiles/.editorconfig", mode = "symlink" }
+"~/.textlintrc.js" = { source = "dotfiles/.textlintrc.js", mode = "symlink" }
 "~/.local" = { source = "dotfiles/.local", mode = "symlink-each" }
 "~/Library/Application Support" = { source = "dotfiles/Library/Application Support", mode = "symlink-each" }
 # macSKK はサンドボックス内から読むため、コンテナ外を指す symlink は EPERM で拒否される

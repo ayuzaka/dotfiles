@@ -145,6 +145,11 @@ three_finger_drag = true
 [bootstrap.user]
 login_shell = "/bin/zsh"
 
+# textlint の各プリセットは npm: バックエンドで個別インストールされ、互いの
+# node_modules を解決できないため、textlint 本体にも探索パスを渡す
+[env]
+NODE_PATH = "{{env.HOME}}/.local/share/mise/installs/npm-textlint-rule-preset-ja-technical-writing/latest/node_modules:{{env.HOME}}/.local/share/mise/installs/npm-textlint-rule-preset-ai-words-ja/latest/node_modules:{{env.HOME}}/.local/share/mise/installs/npm-textlint-rule-preset-ai-writing/latest/node_modules"
+
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true

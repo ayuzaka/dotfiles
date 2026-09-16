@@ -84,9 +84,19 @@ if ((${#toml_files[@]} > 0)); then
 fi
 
 if ((${#markdown_files[@]} > 0)); then
-  echo "Checking staged Markdown files..."
+  echo "Checking staged Markdown files (added/changed lines only)..."
 
-  if ! textlint-ja "${markdown_files[@]}"; then
+  # textlint は絶対パスで報告するため、diff 側の相対パスに合わせて剥がす
+  repo_root=$(git rev-parse --show-toplevel)
+  checkstyle_output=$(textlint-ja -f checkstyle "${markdown_files[@]}")
+  textlint_status=$?
+
+  if ((textlint_status != 0)) && [[ -z "$checkstyle_output" ]]; then
+    # 出力が空なのに失敗している場合は違反ではなく textlint 自体の実行失敗
+    status=1
+  elif ! printf '%s\n' "$checkstyle_output" \
+    | sed "s#${repo_root}/##g" \
+    | reviewdog -f=checkstyle -diff="git diff --cached" -filter-mode=added -fail-level=error; then
     status=1
   fi
 fi

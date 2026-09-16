@@ -46,6 +46,7 @@ tmux = "latest"
 uv = "latest"
 zizmor = "latest"
 zoxide = "latest"
+"aqua:reviewdog/reviewdog" = "latest"
 "cargo:bacon" = "latest"
 "cargo:sheldon" = { version = "latest", features = ["vendored"] }
 "cargo:tree-sitter-cli" = "latest"

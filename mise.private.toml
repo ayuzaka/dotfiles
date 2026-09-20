@@ -19,7 +19,9 @@ turso = "latest"
 "brew-cask:yubico-authenticator" = "latest"
 "brew-cask:brave-browser" = "latest"
 "brew-cask:obsidian" = "latest"
-"mas:302584613" = "latest" # Kindle
+"brew-cask:abue-ammar/tinycast/tinycast" = "latest"
+"brew-cask:stablyai/orca/orca" = "latest"
+"mas:302584613" = "latest"  # Kindle
 
 [bootstrap.macos.launchd.agents.hermes-gateway]
 program = "/bin/sh"

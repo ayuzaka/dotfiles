@@ -18,6 +18,7 @@ stripe = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:@vue/language-server" = "latest"
 "npm:aws-cdk" = "latest"
+"npm:ntn" = "latest"
 "pipx:awscli-local" = { version = "latest", extras = "ver1" }
 
 [bootstrap.packages]

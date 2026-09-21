@@ -3,6 +3,7 @@ dotfiles_purpose = "private"
 
 [dotfiles]
 "~/.agents" = { source = "dotfiles/.agents", mode = "symlink-each" }
+"~/.cursor" = { source = "dotfiles/.cursor", mode = "symlink-each" }
 
 [tools]
 opencode = "latest"
@@ -29,3 +30,10 @@ args = ["-c", 'export HERMES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/hermes"; ex
 run_at_load = true
 stdout_path = "~/.config/hermes/logs/gateway-launcher.log"
 stderr_path = "~/.config/hermes/logs/gateway-launcher.error.log"
+
+# Cursor plan usage → RunCat Neo custom metrics JSON
+[bootstrap.macos.launchd.agents.runcat-cursor-usage]
+program = "~/.cursor/runcat-hook.py"
+run_at_load = true
+start_interval = 300
+environment = { PATH = "/usr/bin:/bin:/usr/sbin:/sbin" }

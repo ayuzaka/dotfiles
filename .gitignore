@@ -1,2 +1,4 @@
 private/
 scripts/merge-codex-config/target
+**/__pycache__/
+*.py[cod]

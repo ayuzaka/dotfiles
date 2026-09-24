@@ -1,20 +1,30 @@
 local M = {}
 
-local placeholder_password = "__SQLS_OP_SECRET_PLACEHOLDER__"
+local placeholder_secret = "__SQLS_OP_SECRET_PLACEHOLDER__"
 
-local is_op_ref = function(password)
-    return type(password) == "string" and vim.startswith(password, "op://")
+local is_op_ref = function(value)
+    return type(value) == "string" and vim.startswith(value, "op://")
 end
 
 local collect_op_refs = function(configs)
     local refs = {}
     local seen = {}
-    for _, config in ipairs(configs) do
-        if is_op_ref(config.password) and not seen[config.password] then
-            table.insert(refs, config.password)
-            seen[config.password] = true
+
+    local walk
+    walk = function(value)
+        if is_op_ref(value) then
+            if not seen[value] then
+                seen[value] = true
+                table.insert(refs, value)
+            end
+        elseif type(value) == "table" then
+            for _, child in pairs(value) do
+                walk(child)
+            end
         end
     end
+    walk(configs)
+
     return refs
 end
 
@@ -68,6 +78,28 @@ done
     return secrets, nil
 end
 
+-- 設定を書き換えて解決すると、起動時(プレースホルダ)と op 読み取り後の2回の走査のうち 1回目で op:// 参照が消え、2回目に解決できなくなる。複製を返す
+local resolve_op_refs
+resolve_op_refs = function(value, op_secrets, allow_placeholder)
+    if is_op_ref(value) then
+        local secret = op_secrets[value]
+        if (not secret or secret == "") and allow_placeholder then
+            return placeholder_secret
+        end
+        return secret
+    end
+
+    if type(value) ~= "table" then
+        return value
+    end
+
+    local resolved = {}
+    for key, child in pairs(value) do
+        resolved[key] = resolve_op_refs(child, op_secrets, allow_placeholder)
+    end
+    return resolved
+end
+
 local build_mysql_connection = function(config, op_secrets, allow_placeholder)
     if not config.password or config.password == "" then
         vim.notify(
@@ -77,20 +109,16 @@ local build_mysql_connection = function(config, op_secrets, allow_placeholder)
         return nil
     end
 
-    local password = config.password
-    if is_op_ref(config.password) then
-        password = op_secrets[config.password]
-        if (not password or password == "") and allow_placeholder then
-            password = placeholder_password
-        end
-    end
+    local resolved = resolve_op_refs(config, op_secrets, allow_placeholder)
 
-    if not password or password == "" then
-        vim.notify(
-            string.format("1Passwordの秘密参照が取得できませんでした(%s)", config.alias),
-            vim.log.levels.WARN
-        )
-        return nil
+    for _, key in ipairs({ "user", "password", "host", "port", "database" }) do
+        if not resolved[key] or resolved[key] == "" then
+            vim.notify(
+                string.format("1Passwordの秘密参照が取得できませんでした(%s): %s", config.alias, key),
+                vim.log.levels.WARN
+            )
+            return nil
+        end
     end
 
     return {
@@ -98,13 +126,13 @@ local build_mysql_connection = function(config, op_secrets, allow_placeholder)
         driver = "mysql",
         dataSourceName = string.format(
             "%s:%s@tcp(%s:%s)/%s",
-            config.user,
-            password,
-            config.host,
-            config.port,
-            config.database
+            resolved.user,
+            resolved.password,
+            resolved.host,
+            resolved.port,
+            resolved.database
         ),
-        sshConfig = config.sshConfig or config.sshconfig,
+        sshConfig = resolved.sshConfig or resolved.sshconfig,
     }
 end
 

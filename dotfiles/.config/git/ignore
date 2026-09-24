@@ -1,25 +1,18 @@
 .DS_Store
-.vscode
 .op/plugins
-.vim-lsp-settings
 .ayuzaka
-.claude/settings.local.json
-**/.claude/settings.local.json
-.claude/tmp
+.fdignore
+.ignore
+.envrc
+
+# editor / IDE
+.nvim.lua
+
+# mise
 mise.local.toml
 .mise.local.toml
-cc_kiro
-.fdignore
-.serena
-.spec
-.crush
-.crush/crush.db
-.crush/crush.db-shm
-.crush/crush.db-wal
-.crush/init
-.crush/logs
-.nvim.lua
-.envrc
-**/.agents/plans
 
+# Claude
 **/.claude/.cc-writes/
+**/.claude/settings.local.json
+.claude/tmp

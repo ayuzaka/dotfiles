@@ -6,6 +6,13 @@
         { "pos": "接頭詞", "surface_form": "正" },
         { "pos": "名詞", "surface_form": "準" }
       ]
+    },
+    {
+      "message": "\"〜の窓\" はAIが書いた文章で多用される表現です。別の表現に言い換えられないか検討してください。",
+      "tokens": [
+        { "pos": "助詞", "pos_detail_1": "連体化", "surface_form": "の" },
+        { "pos": "名詞", "surface_form": "窓" }
+      ]
     }
   ]
 }

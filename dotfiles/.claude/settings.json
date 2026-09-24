@@ -228,7 +228,9 @@
     "stripe@claude-plugins-official": true,
     "aws-serverless@agent-plugins-for-aws": true,
     "codex@openai-codex": true,
-    "chrome-devtools-mcp@chrome-devtools-plugins": true
+    "chrome-devtools-mcp@chrome-devtools-plugins": true,
+    "figma@claude-plugins-official": true,
+    "typesafe@typesafe-ai": true
   },
   "extraKnownMarketplaces": {
     "agent-plugins-for-aws": {
@@ -265,6 +267,12 @@
       "source": {
         "source": "github",
         "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "typesafe-ai": {
+      "source": {
+        "source": "github",
+        "repo": "typesafe-ai/skills"
       }
     }
   },

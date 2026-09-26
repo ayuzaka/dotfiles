@@ -1,0 +1,63 @@
+#!/bin/sh
+# Weekly cleanup of caches that are safe to prune unattended.
+# npm/bun/yarn caches and Docker images/volumes are left out: they can only be
+# wiped wholesale, and re-downloading or losing local data costs more than the
+# space they reclaim in a week.
+set -u
+
+# launchd starts agents with a minimal PATH that lacks mise shims and Homebrew.
+PATH="$HOME/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+export PATH
+
+derived_data_max_age_days=14
+
+log() {
+  printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*"
+}
+
+run() {
+  log "run: $*"
+  "$@" || log "failed ($?): $*"
+}
+
+free_space() {
+  df -h /System/Volumes/Data | awk 'NR == 2 { print "used " $3 ", avail " $4 " (" $5 ")" }'
+}
+
+log "start: $(free_space)"
+
+# Run from $HOME so a project's storeDir or packageManager pin cannot redirect
+# the prune to a project-local store.
+(cd "$HOME" && run pnpm store prune)
+
+run env HOMEBREW_NO_AUTO_UPDATE=1 brew cleanup
+
+run xcrun simctl delete unavailable
+
+derived_data="$HOME/Library/Developer/Xcode/DerivedData"
+if [ -d "$derived_data" ]; then
+  # Xcode rewrites info.plist when it opens a project, while the directory's
+  # own mtime does not change on rebuilds.
+  for dir in "$derived_data"/*/; do
+    [ -d "$dir" ] || continue
+    marker="$dir/info.plist"
+    [ -e "$marker" ] || marker="$dir"
+    age_days=$((($(date +%s) - $(/usr/bin/stat -f %m "$marker")) / 86400))
+    if [ "$age_days" -ge "$derived_data_max_age_days" ]; then
+      run rm -rf "$dir"
+    fi
+  done
+fi
+
+if docker info >/dev/null 2>&1; then
+  run docker builder prune --force --filter until=168h
+else
+  log "skip: docker daemon is not running"
+fi
+
+# Long-running uvx processes (e.g. MCP servers) hold the cache lock forever.
+# --force is avoided because it can delete files those processes still use;
+# UV_LOCK_TIMEOUT makes the prune give up and retry next week instead.
+run env UV_LOCK_TIMEOUT=60 uv cache prune
+
+log "done: $(free_space)"

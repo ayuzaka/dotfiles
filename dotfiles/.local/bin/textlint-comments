@@ -22,7 +22,7 @@ for file in "$@"; do
   esac
 
   awk -v pat="$pattern" '
-    NR==1 && /^#!/ { print ""; next }
+    /^[[:space:]]*#!/ { print ""; next }
     $0 ~ pat { print; next }
     { print "" }
   ' "$file" | textlint-ja --stdin --stdin-filename "$file.txt" || status=1

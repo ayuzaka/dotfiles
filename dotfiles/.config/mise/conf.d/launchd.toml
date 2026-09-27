@@ -3,6 +3,16 @@ program = "/bin/mkdir"
 args = ["-p", "/tmp/nvim"]
 run_at_load = true
 
+[bootstrap.macos.launchd.agents.disk-cleanup]
+# The installed mise neither recognizes process_type nor renders templates in
+# args, so a shell expands $HOME and taskpolicy applies the background QoS.
+program = "/bin/sh"
+args = ["-c", "exec /usr/sbin/taskpolicy -b \"$HOME/.local/bin/disk-cleanup\""]
+start_calendar_interval = { weekday = 1, hour = 12, minute = 0 }
+working_directory = "~"
+stdout_path = "~/Library/Logs/disk-cleanup.log"
+stderr_path = "~/Library/Logs/disk-cleanup.log"
+
 [bootstrap.macos.launchd.agents.plamo-translate]
 program = "~/.local/share/mise/shims/plamo-translate"
 args = ["server"]

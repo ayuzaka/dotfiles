@@ -11,6 +11,26 @@ toml_files=()
 markdown_files=()
 commented_files=()
 
+# .hadolint.yaml はパス単位の除外を持たず、除外設定をコミットせずに済ませたいので
+# リポジトリごとの .git/info/hadolint-ignore（1 行 1 glob）で除外する
+hadolint_ignore_patterns=()
+hadolint_ignore_file=$(git rev-parse --git-path info/hadolint-ignore)
+if [[ -f "$hadolint_ignore_file" ]]; then
+  while IFS= read -r pattern || [[ -n "$pattern" ]]; do
+    [[ -z "$pattern" || "$pattern" == \#* ]] && continue
+    hadolint_ignore_patterns+=("$pattern")
+  done <"$hadolint_ignore_file"
+fi
+
+is_hadolint_ignored() {
+  local pattern
+  for pattern in ${hadolint_ignore_patterns[@]+"${hadolint_ignore_patterns[@]}"}; do
+    # shellcheck disable=SC2053
+    [[ "$1" == $pattern ]] && return 0
+  done
+  return 1
+}
+
 while IFS= read -r -d '' file_path; do
   case "$file_path" in
   .github/workflows/*.yml | .github/workflows/*.yaml)
@@ -20,7 +40,7 @@ while IFS= read -r -d '' file_path; do
 
   case "$file_path" in
   Dockerfile | */Dockerfile | *.Dockerfile)
-    dockerfiles+=("$file_path")
+    is_hadolint_ignored "$file_path" || dockerfiles+=("$file_path")
     ;;
   esac
 

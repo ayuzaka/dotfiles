@@ -2,7 +2,8 @@
   "rules": {
     "preset-ja-technical-writing": {
       "sentence-length": false,
-      "ja-no-mixed-period": false
+      "ja-no-mixed-period": false,
+      "no-exclamation-question-mark": false
     },
     "preset-ai-words-ja": {
       "no-ai-words": {

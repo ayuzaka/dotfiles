@@ -229,7 +229,7 @@
     "codex@openai-codex": true,
     "chrome-devtools-mcp@chrome-devtools-plugins": true,
     "figma@claude-plugins-official": true,
-    "typesafe@typesafe-ai": true
+    "docker-skills@docker": true
   },
   "extraKnownMarketplaces": {
     "laravel": {
@@ -266,6 +266,12 @@
       "source": {
         "source": "github",
         "repo": "typesafe-ai/skills"
+      }
+    },
+    "docker": {
+      "source": {
+        "source": "github",
+        "repo": "docker/skills"
       }
     }
   },

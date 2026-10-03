@@ -45,3 +45,20 @@ vim.api.nvim_create_autocmd("FileType", {
 
 local vimx = require("artemis")
 vimx.fn.ddu.custom.load_config(vimx.fn.expand("$XDG_CONFIG_HOME/nvim/ts/ddu.ts"))
+
+require("lazy").load({ plugins = { "ddu-vim-ui-select" } })
+
+local ddu_select = require("ddu-vim-ui-select").select
+
+---@diagnostic disable-next-line: duplicate-set-field
+vim.ui.select = function(items, opts, on_choice)
+  opts = opts or {}
+  if opts.prompt == "sqls.nvim" then
+    opts = vim.tbl_extend("force", {}, opts, {
+      format_item = function(item)
+        return vim.split(tostring(item), " ")[3] or tostring(item)
+      end,
+    })
+  end
+  return ddu_select(items, opts, on_choice)
+end

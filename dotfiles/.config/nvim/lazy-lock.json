@@ -32,6 +32,7 @@
   "ddu-source-rg": { "branch": "main", "commit": "8c628b5d7c444ac07fb68201b4e02bbb5340b0f5" },
   "ddu-ui-ff": { "branch": "main", "commit": "4c56cea31c02692bb4e6ac9252552721eaa7a566" },
   "ddu-ui-filer": { "branch": "main", "commit": "d731d99519643969db3499f9fde871e6940af31f" },
+  "ddu-vim-ui-select": { "branch": "main", "commit": "0a781ce98da5ee1c045c3f9d01568b3206eaf8ba" },
   "ddu.vim": { "branch": "main", "commit": "37c809a0088b02a1a6a898772864fe61041f3e18" },
   "denops.vim": { "branch": "main", "commit": "e82c5a94ca1154b05c9d74d6f6f58c9991b1424f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },

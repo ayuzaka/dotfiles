@@ -38,6 +38,9 @@ export class Config extends BaseConfig {
         gh_pr_diff: {
           defaultAction: "open",
         },
+        ui_select: {
+          defaultAction: "select",
+        },
       },
       columnParams: {
         icon_filename: {

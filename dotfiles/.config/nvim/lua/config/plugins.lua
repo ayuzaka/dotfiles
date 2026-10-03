@@ -152,6 +152,7 @@ require("lazy").setup({
   { "Shougo/ddu-kind-file",                event = "VeryLazy" },
   { "Shougo/ddu-filter-matcher_substring", event = "VeryLazy" },
   { "matsui54/ddu-source-help",            event = "VeryLazy" },
+  { "matsui54/ddu-vim-ui-select",          event = "VeryLazy" },
   { "kuuote/ddu-source-git_status",        event = "VeryLazy" },
   { "kyoh86/ddu-source-git_log",           event = "VeryLazy" },
   { "ayuzaka/ddu-source-marks",            event = "VeryLazy" },

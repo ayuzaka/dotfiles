@@ -165,7 +165,6 @@ require("lazy").setup({
 })
 
 -- Immediate config
-require("config.herdr-term")
 require("config.float-term")
 require("config.bookmark_comments")
 require("config.marks")

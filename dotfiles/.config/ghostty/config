@@ -1,4 +1,95 @@
+# Font
 font-family = Berkeley Mono
 font-family = Kosugi
 font-size = 14
-theme = Everforest Light Med
+
+# Theme is loaded from an unmanaged sibling file written by ghostty-sync-theme
+# from ~/.config/theme (light/dark).
+config-file = ?theme
+
+# macOS chrome: keep a drag handle, but hide the window title text
+# (e.g. "hostname: workspace"). `hidden` removes the drag surface on
+# current macOS; option+click on the frame does not work reliably.
+# Runtime change of titlebar-style applies only to new windows.
+macos-titlebar-style = transparent
+title = " "
+
+# Keep zoom when moving focus between splits
+split-preserve-zoom = navigation
+
+# Confirm before closing a surface (pane/tab)
+confirm-close-surface = true
+
+# URL hover + click-to-open (Command-click on macOS)
+link-url = true
+
+# System beep on BEL
+bell-features = system
+
+# Shell integration: title is set by prompt.zsh (org/repo), not Ghostty's cwd default
+shell-integration-features = cursor,no-sudo,no-title,no-ssh-env,no-ssh-terminfo,path
+
+# New tabs/splits keep the current working directory
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+
+# Keybinds: clear defaults, then rebuild (Leader = ctrl+s sequences)
+keybind = clear
+
+# Clipboard (standard)
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = copy=copy_to_clipboard
+keybind = paste=paste_from_clipboard
+
+# Font size
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+s>0=reset_font_size
+
+# Config
+keybind = ctrl+s>r=reload_config
+keybind = super+shift+comma=reload_config
+keybind = super+comma=open_config
+
+# Splits (worktree slots). Prefer zoomed single-surface use.
+keybind = ctrl+s>|=new_split:right
+keybind = ctrl+s>-=new_split:down
+keybind = ctrl+s>h=goto_split:left
+keybind = ctrl+s>j=goto_split:down
+keybind = ctrl+s>k=goto_split:up
+keybind = ctrl+s>l=goto_split:right
+keybind = ctrl+s>z=toggle_split_zoom
+keybind = ctrl+s>x=close_surface
+keybind = ctrl+s>shift+h=resize_split:left,5
+keybind = ctrl+s>shift+j=resize_split:down,5
+keybind = ctrl+s>shift+k=resize_split:up,5
+keybind = ctrl+s>shift+l=resize_split:right,5
+
+# Tabs
+keybind = ctrl+s>t=new_tab
+keybind = ctrl+s>[=previous_tab
+keybind = ctrl+s>]=next_tab
+keybind = ctrl+s>shift+w=close_tab
+keybind = ctrl+s>,=prompt_tab_title
+keybind = ctrl+s>1=goto_tab:1
+keybind = ctrl+s>2=goto_tab:2
+keybind = ctrl+s>3=goto_tab:3
+keybind = ctrl+s>4=goto_tab:4
+keybind = ctrl+s>5=goto_tab:5
+keybind = ctrl+s>6=goto_tab:6
+keybind = ctrl+s>7=goto_tab:7
+keybind = ctrl+s>8=goto_tab:8
+
+# Search helpers
+keybind = super+f=start_search
+keybind = super+shift+f=end_search
+
+# keybind=clear 後は Escape がアプリに届かないことがあるので、明示的に送る
+keybind = escape=text:\x1b
+
+# Repo / worktree: fuzzy select → cd + herdr space open/focus
+# (move-only: cd_ghq / cd_worktree)
+keybind = ctrl+s>g=text:herdr_ghq\r
+keybind = ctrl+s>w=text:herdr_worktree\r

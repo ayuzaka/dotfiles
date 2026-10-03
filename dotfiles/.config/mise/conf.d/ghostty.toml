@@ -1,0 +1,3 @@
+# ~/.config/theme → Ghostty theme fragment（未管理ファイル）を同期
+[bootstrap.hooks.post-dotfiles]
+run = "$HOME/.local/bin/ghostty-sync-theme"

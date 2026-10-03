@@ -5,6 +5,13 @@ new_tab = "prefix+c"
 rename_tab = "prefix+comma"
 previous_tab = "prefix+["
 next_tab = "prefix+]"
+# herdr 標準の worktree 作成は ~/.herdr/worktrees/<repo>/<branch> 固定。
+# .git-wt（git-wt）を使うので unbound。作成は `git wt <branch>`。
+new_worktree = ""
+
+# herdr の global worktree root は使わない（作成は git-wt 側）。
+# [worktrees]
+# directory = "~/.herdr/worktrees"
 
 [ui]
 prompt_new_tab_name = false

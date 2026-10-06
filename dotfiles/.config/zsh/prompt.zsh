@@ -25,6 +25,14 @@ typeset -g _PROMPT_PATH='%~'
 # worktree マーカー。worktree 配下では '[wt] '、それ以外は空文字
 typeset -g _PROMPT_WTM=''
 
+# Ghostty / 端末のタブタイトル (OSC 2)。プロンプト用エスケープではなく素の文字列。
+_term_set_title() {
+  local title=$1
+  title="${title//[$'\x00'-$'\x1f'$'\x7f']/}"
+  [[ -n $title ]] || return
+  print -n $'\e]2;'"${title}"$'\a'
+}
+
 # バックグラウンドで実行: git ステータス文字列を stdout に出力して終了する
 _git_prompt_compute() {
   local git_dir=$1
@@ -164,8 +172,12 @@ _git_prompt_precmd() {
     if [[ -n $_GHQ_ROOT && $PWD == $_GHQ_ROOT/* ]]; then
       local ghq_rel="${PWD#$_GHQ_ROOT/}"
       _PROMPT_PATH="${ghq_rel#*/}"  # host 部分を除去して org/repo/... 形式に
+      # タブは org/repo まで（深いサブパスは載せない）
+      local -a parts=("${(@s:/:)_PROMPT_PATH}")
+      _term_set_title "${(j:/:)parts[1,2]}"
     else
       _PROMPT_PATH='%~'
+      _term_set_title "${(%):-%~}"
     fi
     return
   fi
@@ -178,6 +190,7 @@ _git_prompt_precmd() {
     local main_root="${toplevel%%/.git-wt/*}"
     local ghq_rel="${main_root#$_GHQ_ROOT/}"
     local org_repo="${ghq_rel#*/}"  # host 部分を除去して org/repo 形式に
+    local wt_label="${toplevel#${main_root}/.git-wt/}"
     local rel_path="${PWD#$toplevel/}"
     if [[ $rel_path == $PWD ]]; then
       # PWD == toplevel の場合 (worktree root にいる)
@@ -185,14 +198,18 @@ _git_prompt_precmd() {
     else
       _PROMPT_PATH="${org_repo}/${rel_path}"
     fi
+    _term_set_title "${org_repo}:${wt_label}"
   elif [[ -n $_GHQ_ROOT && $PWD == $_GHQ_ROOT/* ]]; then
     # ghq root 配下の通常リポジトリ: org/repo/... 形式
     _PROMPT_WTM=''
     local ghq_rel="${PWD#$_GHQ_ROOT/}"
     _PROMPT_PATH="${ghq_rel#*/}"  # host 部分を除去
+    local -a parts=("${(@s:/:)_PROMPT_PATH}")
+    _term_set_title "${(j:/:)parts[1,2]}"
   else
     _PROMPT_WTM=''
     _PROMPT_PATH='%~'
+    _term_set_title "${(%):-%~}"
   fi
 
   # git_dir をアクション検出に使うため引数として渡す

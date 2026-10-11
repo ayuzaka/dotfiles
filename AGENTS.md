@@ -49,9 +49,10 @@ tools. Host packages and the macOS bootstrap steps are not part of that setup.
 - `~/.config/mise/miserc.local.toml` sets `env = ["private"]`. mise 2026.10
   reads that file before it loads config. `MISE_ENV` inside `mise.local.toml`
   is too late to select `mise.private.toml`.
-- `mise.local.toml` disables `pipx:plamo-translate`. That package publishes
-  only a macOS wheel, and a failed install makes `mise install` and `mise run`
-  exit non-zero.
+- `mise.local.toml` and `~/.config/mise/config.local.toml` disable
+  `pipx:plamo-translate`. That package publishes only a macOS wheel, and a
+  failed install makes `mise install` and `mise run` exit non-zero. The global
+  file keeps commands outside this repository from trying to install it.
 - `dotfiles/.agents` has to exist. The private config deploys it, and a
   missing source fails apply. The directory is kept with `.gitkeep`.
 - Tasks and `dotfiles.root` use `~/workspace/github.com/ayuzaka/dotfiles`.

@@ -23,13 +23,6 @@ turso = "latest"
 "brew-cask:stablyai/orca/orca" = "latest"
 "mas:302584613" = "latest"  # Kindle
 
-[bootstrap.macos.launchd.agents.hermes-gateway]
-program = "/bin/sh"
-args = ["-c", 'export HERMES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/hermes"; exec "$HOME/.local/bin/hermes" gateway start']
-run_at_load = true
-stdout_path = "~/.config/hermes/logs/gateway-launcher.log"
-stderr_path = "~/.config/hermes/logs/gateway-launcher.error.log"
-
 # Cursor plan usage → RunCat Neo custom metrics JSON
 [bootstrap.macos.launchd.agents.runcat-cursor-usage]
 program = "~/.cursor/runcat-hook.py"

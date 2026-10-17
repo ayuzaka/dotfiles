@@ -2,7 +2,6 @@
 dotfiles_purpose = "private"
 
 [dotfiles]
-"~/.agents" = { source = "dotfiles/.agents", mode = "symlink-each" }
 "~/.cursor" = { source = "dotfiles/.cursor", mode = "symlink-each" }
 
 [tools]

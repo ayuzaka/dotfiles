@@ -39,3 +39,24 @@ live file through the symlink.
 Choose checks that match the changed files. Validate changed templates with a
 dry-run and confirm that affected applications can load their configuration.
 Fix failures caused by the change and rerun the affected checks.
+
+## Cursor Cloud specific instructions
+
+The Cloud Agent VM is Linux. Setup installs mise 2026.10.7, selects the
+private config environment, applies the dotfiles, and installs the configured
+tools. Host packages and the macOS bootstrap steps are not part of that setup.
+
+- `~/.config/mise/miserc.local.toml` sets `env = ["private"]`. mise 2026.10
+  reads that file before it loads config. `MISE_ENV` inside `mise.local.toml`
+  is too late to select `mise.private.toml`.
+- `mise.local.toml` and `~/.config/mise/config.local.toml` disable
+  `pipx:plamo-translate`. That package publishes only a macOS wheel, and a
+  failed install makes `mise install` and `mise run` exit non-zero. The global
+  file keeps commands outside this repository from trying to install it.
+- `dotfiles/.agents` has to exist. The private config deploys it, and a
+  missing source fails apply. The directory is kept with `.gitkeep`.
+- Tasks and `dotfiles.root` use `~/workspace/github.com/ayuzaka/dotfiles`.
+  Setup links the checkout there.
+- Preview with `mise bootstrap dotfiles apply --force --dry-run`. Check the
+  Codex merge tool with
+  `mise exec -- cargo test --manifest-path scripts/merge-codex-config/Cargo.toml`.

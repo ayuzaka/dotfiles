@@ -73,6 +73,8 @@ if has('vim_starting')
 endif
 
 " 全角スペースを可視化
+" Colorscheme より前に WinEnter が走っても E28 にならないよう、先に定義する
+highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
 augroup highlightIdegraphicSpace
   autocmd!
   autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
@@ -96,8 +98,27 @@ onoremap a` 2i`
 
 :source ~/.config/vim/plugins.vim
 
-set background=dark
-colorscheme gruvbox
+" Neovim の everforest と同じ設定。~/.config/theme が dark のときだけダークにする
+let g:everforest_background = 'soft'
+let g:everforest_enable_italic = 1
+let g:everforest_float_style = 'dim'
+let g:everforest_ui_contrast = 'high'
+let g:everforest_diagnostic_virtual_text = 'colored'
+let g:everforest_inlay_hints_background = 'dimmed'
+let g:everforest_show_eob = 0
+let g:everforest_better_performance = 1
+let s:theme_lines = filereadable(expand('~/.config/theme')) ? readfile(expand('~/.config/theme')) : []
+if trim(get(s:theme_lines, 0, '')) ==# 'dark'
+  set background=dark
+else
+  set background=light
+endif
+if has('termguicolors')
+  set termguicolors
+endif
+if !empty(globpath(&runtimepath, 'colors/everforest.vim'))
+  colorscheme everforest
+endif
 
 " custom command
 :source ~/.config/vim/command.vim

@@ -10,6 +10,7 @@ turso = "latest"
 "go:tailscale.com/cmd/tailscale" = "main"
 "go:tailscale.com/cmd/tailscaled" = "main"
 "npm:@doist/todoist-cli" = "latest"
+"npm:obsidian-headless" = "latest"
 
 [bootstrap.packages]
 "brew-cask:termius" = "latest"

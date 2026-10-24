@@ -1,7 +1,5 @@
 [tools]
 1password-cli = "latest"
-actionlint = "latest"
-bat = "latest"
 bun = "latest"
 bottom = "latest"
 cmake = "latest"
@@ -32,7 +30,7 @@ neovim = "nightly"
 node = "latest"
 pinact = "latest"
 pnpm = "latest"
-python = "3.13"
+python = "latest"
 resvg = "latest"
 ripgrep = "latest"
 ruff = "latest"
@@ -56,7 +54,6 @@ zoxide = "latest"
 "github:microsoft/waza" = "latest"
 "github:sxyazi/yazi" = "latest"
 "github:tofuutils/tenv" = "latest"
-"github:yusukebe/ax" = { version = "latest", rename_exe = "ax" }
 "go:github.com/ayuzaka/sqls" = "ayuzaka"
 "go:github.com/k1LoW/git-wt" = "latest"
 "go:github.com/k1LoW/roots" = "latest"
@@ -73,7 +70,6 @@ zoxide = "latest"
 "npm:bash-language-server" = "latest"
 "npm:chrome-devtools-mcp" = "latest"
 "npm:cssmodules-language-server" = "latest"
-"npm:editprompt" = "latest"
 "npm:fixjson" = "latest"
 "npm:markdownlint-cli" = "latest"
 "npm:sfw" = "latest"
@@ -152,7 +148,7 @@ NODE_PATH = "{{env.HOME}}/.local/share/mise/installs/npm-textlint-rule-preset-ja
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
 minimum_release_age = "7d"
-minimum_release_age_excludes = ["github:yusukebe/ax", "npm:@openai/codex", "npm:textlint-rule-preset-ai-words-ja"]
+minimum_release_age_excludes = ["npm:@openai/codex", "npm:textlint-rule-preset-ai-words-ja"]
 lockfile = true
 not_found_auto_install = false
 

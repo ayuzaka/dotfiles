@@ -17,6 +17,11 @@ version = "5.3.9"
 backend = "npm:@doist/todoist-cli"
 specifiers = ["latest"]
 
+[[tools."npm:obsidian-headless"]]
+version = "0.0.14"
+backend = "npm:obsidian-headless"
+specifiers = ["latest"]
+
 [[tools.opencode]]
 version = "1.18.31"
 backend = "aqua:anomalyco/opencode"

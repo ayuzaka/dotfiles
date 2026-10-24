@@ -3,7 +3,7 @@
 [user]
   signingkey = ~/.ssh/id_git_sign
 [core]
-  editor = nvim
+  editor = vim
   pager = hunk pager
 [gpg]
   format = ssh

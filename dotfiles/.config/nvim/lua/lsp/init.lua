@@ -219,7 +219,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- node
     if vim.fn.findfile("package.json", ".;") ~= "" then
-      vim.lsp.enable("tsgo")
+      vim.lsp.enable("tsc")
       return
     end
 

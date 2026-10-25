@@ -5,6 +5,7 @@ dotfiles_purpose = "private"
 "~/.cursor" = { source = "dotfiles/.cursor", mode = "symlink-each" }
 
 [tools]
+cursor-agent = "latest"
 opencode = "latest"
 turso = "latest"
 "go:tailscale.com/cmd/tailscale" = "main"

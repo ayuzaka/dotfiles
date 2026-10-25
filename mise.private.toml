@@ -3,6 +3,7 @@ dotfiles_purpose = "private"
 
 [dotfiles]
 "~/.cursor" = { source = "dotfiles/.cursor", mode = "symlink-each" }
+"~/.config/opencode" = { source = "dotfiles/opencode", mode = "symlink-each" }
 
 [tools]
 cursor-agent = "latest"

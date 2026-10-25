@@ -26,8 +26,10 @@ esac
 
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
 
+{% if vars.dotfiles_purpose == "work" %}
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+{% endif %}
 
 # mise (shims は同期的に PATH 追加、activate は sheldon 読み込み後に遅延実行)
 export PATH="$HOME/.local/share/mise/shims:$PATH"

@@ -8,14 +8,12 @@ ZSH_ABBR_MAP=(
   gu 'gitui'
   ol 'ollama'
   ls-img 'img2sixel'
-  gcloud-switch 'gcloud config configurations activate'
   swh 'sips -g pixelWidth -g pixelHeight'
   sql 'lazysql'
   psp 'ps -fp "$(lsof -t -i :__CURSOR__)"'
   h 'cat $HISTFILE | fzf | pbcopy'
   cg 'cd_ghq'
   cr 'cd_root'
-  dc-exec 'docker container exec -it'
   gpf 'git push --force-with-lease'
   git-tree "git log --graph --pretty=format:'%x09%C(auto) %h %Cgreen %cd %Creset%x09%C(cyan ul)%an%Creset %x09%C(auto)%s %d' --date=format:'%Y-%m-%d (%a)'"
   gm 'git switch main'
@@ -26,6 +24,12 @@ ZSH_ABBR_MAP=(
   gh-pr-me 'gh pr list --author "@me" --state all'
   gh-pr-search "gh pr list --state all --json number,title --jq \".[] | [.number,.title] | @csv\" --search \"__CURSOR__\" | fzf | awk -F ',' '{print \$1}' | xargs gh browse"
 )
+
+# gcloud と Docker Desktop は work の mise にだけ入っている
+if [[ "$MISE_ENV" == "work" ]]; then
+  ZSH_ABBR_MAP[gcloud-switch]='gcloud config configurations activate'
+  ZSH_ABBR_MAP[dc-exec]='docker container exec -it'
+fi
 
 function _zle_abbr_expand() {
   local key expansion prefix prefix_len cursor_marker before after

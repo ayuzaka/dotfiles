@@ -127,8 +127,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local vtsls_opts = require("lsp.vts_ls")
-vim.lsp.config("vtsls", vtsls_opts)
+local purpose_ok, purpose = pcall(require, "config.purpose")
+local work_machine = purpose_ok and purpose == "work"
+
+if work_machine then
+  local vtsls_opts = require("lsp.vts_ls")
+  vim.lsp.config("vtsls", vtsls_opts)
+end
 
 local oxlint_opts = require("lsp.oxlint")
 vim.lsp.config("oxlint", oxlint_opts)
@@ -151,10 +156,9 @@ vim.lsp.config("version_lsp", version_lsp_opts)
 local knip_opts = require("lsp.knip")
 vim.lsp.config("knip", knip_opts)
 
-vim.lsp.enable({
+local servers = {
   "gopls",
   "golangci_lint_ls",
-  "vue_ls",
   "rust_analyzer",
   "sourcekit",
   "pylsp",
@@ -178,7 +182,11 @@ vim.lsp.enable({
   "efm",
   "version_lsp",
   "knip",
-})
+}
+if work_machine then
+  table.insert(servers, "vue_ls")
+end
+vim.lsp.enable(servers)
 
 -- vts_ls or deno
 vim.api.nvim_create_autocmd("FileType", {
@@ -191,8 +199,8 @@ vim.api.nvim_create_autocmd("FileType", {
       return
     end
 
-    -- nuxt
-    if vim.fn.findfile("nuxt.config.ts", ".;") ~= "" then
+    -- nuxt。vtsls は work の mise にだけ入っている
+    if work_machine and vim.fn.findfile("nuxt.config.ts", ".;") ~= "" then
       vim.lsp.enable("vtsls")
       return
     end

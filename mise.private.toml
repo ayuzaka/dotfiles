@@ -16,6 +16,7 @@ turso = "latest"
 "brew-cask:yubico-authenticator" = "latest"
 "brew-cask:brave-browser" = "latest"
 "brew-cask:obsidian" = "latest"
+"brew-cask:cursor" = "latest"
 "brew-cask:abue-ammar/tinycast/tinycast" = "latest"
 "mas:302584613" = "latest"  # Kindle
 

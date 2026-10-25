@@ -44,7 +44,6 @@ cssls
 ctermbg
 cwindow
 cword
-dbcli
 dbeaver
 dbname
 dearmor
@@ -210,7 +209,6 @@ mbti
 mdast
 monokai
 moonfmt
-mycli
 mypy
 nargs
 nbsp
@@ -269,7 +267,6 @@ oxfmt
 oxlint
 palt
 pesc
-pgcli
 phpenv
 pipx
 pkce

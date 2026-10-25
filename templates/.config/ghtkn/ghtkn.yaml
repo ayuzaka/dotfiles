@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/suzuki-shunsuke/ghtkn/main/json-schema/ghtkn.json
+{% if vars.dotfiles_purpose == "work" %}
+{{ read_file(path="private/ghtkn/ghtkn.yaml") }}
+{% else %}
+apps:
+  - name: ayuzaka
+    client_id: Iv23liYfkyFyO1qMJBaT
+{% endif %}

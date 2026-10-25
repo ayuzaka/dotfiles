@@ -15,7 +15,7 @@
   template = ~/.config/git/gitmessage
 [credential "https://github.com"]
   helper =
-  helper = !gh auth git-credential
+  helper = !ghtkn git-credential
 [credential "https://gist.github.com"]
   helper =
   helper = !gh auth git-credential

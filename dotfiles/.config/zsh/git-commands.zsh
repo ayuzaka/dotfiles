@@ -15,10 +15,7 @@ function _fzf_select() {
 
 # ghq repo を fuzzy 選択。キャンセル時は空文字。
 function _select_ghq() {
-  local ghq_root
-  ghq_root="$(ghq root)"
-  ghq list | _fzf_select --delimiter "/" --with-nth "2.." \
-    --preview "bat $ghq_root/{}/README.md"
+  ghq list | _fzf_select --delimiter "/" --with-nth "2.."
 }
 
 # 現 repo の worktree を fuzzy 選択し、絶対パスを返す。キャンセル時は空文字。
@@ -150,7 +147,7 @@ function herdr_worktree() {
 }
 
 function cd_root() {
-  local dir=$(roots | fzf --delimiter "/" --with-nth "2.." --preview "glow {}/README.md")
+  local dir=$(roots | fzf --delimiter "/" --with-nth "2..")
   if [ "$dir" = "" ];then
     return 0
   fi

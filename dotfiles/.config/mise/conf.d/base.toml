@@ -3,6 +3,7 @@
 bun = "latest"
 bottom = "latest"
 cspell = "latest"
+cursor-agent = "latest"
 deno = "latest"
 devcontainer-cli = "latest"
 difftastic = "latest"
@@ -145,7 +146,7 @@ NODE_PATH = "{{env.HOME}}/.local/share/mise/installs/npm-textlint-rule-preset-ja
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
 minimum_release_age = "7d"
-minimum_release_age_excludes = ["npm:@openai/codex", "npm:textlint-rule-preset-ai-words-ja"]
+minimum_release_age_excludes = ["cursor-agent", "npm:@openai/codex", "npm:textlint-rule-preset-ai-words-ja"]
 lockfile = true
 not_found_auto_install = false
 

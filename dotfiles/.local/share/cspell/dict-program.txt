@@ -216,7 +216,6 @@ neorg
 netrw
 neue
 nextjs
-ngrok
 nmap
 nnoremap
 noautoremoveslash

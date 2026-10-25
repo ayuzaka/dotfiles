@@ -95,16 +95,6 @@ bindkey "^o" edit-command-line
 export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 export CODEX_HOME="${CODEX_HOME:-$XDG_CONFIG_HOME/codex}"
 
-if command -v ngrok &>/dev/null; then
-  _ngrok_cache="$XDG_CACHE_HOME/zsh/ngrok.zsh"
-  _lazy_zsh="$XDG_CONFIG_HOME/zsh/lazy.zsh"
-  if [[ ! -r "$_ngrok_cache" || "$_lazy_zsh" -nt "$_ngrok_cache" ]]; then
-    ngrok completion >| "$_ngrok_cache"
-  fi
-  source "$_ngrok_cache"
-  unset _ngrok_cache _lazy_zsh
-fi
-
 # 1Password
 if command -v op >/dev/null 2>&1; then
   source "$XDG_CONFIG_HOME"/op/plugins.sh

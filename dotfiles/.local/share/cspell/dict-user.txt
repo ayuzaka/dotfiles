@@ -1,6 +1,5 @@
 aarrr
 acceprability
-alacritty
 alogolia
 anthropics
 arpu
@@ -22,7 +21,6 @@ imsnif
 jisx
 jisyo
 jmode
-karabiner
 keka
 kekaexternalhelper
 kiro
@@ -53,7 +51,6 @@ tpope
 unhide
 visc
 vscodevim
-wezterm
 xplr
 yano
 yazi

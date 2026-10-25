@@ -127,11 +127,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local lua_ls_opts = require("lsp.lua_ls")
-vim.lsp.config("lua_ls", lua_ls_opts)
+local purpose_ok, purpose = pcall(require, "config.purpose")
+local work_machine = purpose_ok and purpose == "work"
 
-local vtsls_opts = require("lsp.vts_ls")
-vim.lsp.config("vtsls", vtsls_opts)
+if work_machine then
+  local vtsls_opts = require("lsp.vts_ls")
+  vim.lsp.config("vtsls", vtsls_opts)
+end
 
 local oxlint_opts = require("lsp.oxlint")
 vim.lsp.config("oxlint", oxlint_opts)
@@ -142,20 +144,11 @@ vim.lsp.config("oxfmt", oxfmt_opts)
 local stylelint_opts = require("lsp.stylelint_lsp")
 vim.lsp.config("stylelint_lsp", stylelint_opts)
 
-local tailwindcss_opts = require("lsp.tailwindcss")
-vim.lsp.config("tailwindcss", tailwindcss_opts)
-
 local actions_ls_opts = require("lsp.actionsls")
 vim.lsp.config("actionsls", actions_ls_opts)
 
 local zizmor_opts = require("lsp.zizmor")
 vim.lsp.config("zizmor", zizmor_opts)
-
-local yamlls_opts = require("lsp.yamlls")
-vim.lsp.config("yamlls", yamlls_opts)
-
-local astro_opts = require("lsp.astro")
-vim.lsp.config("astro", astro_opts)
 
 local version_lsp_opts = require("lsp.version_lsp")
 vim.lsp.config("version_lsp", version_lsp_opts)
@@ -163,42 +156,37 @@ vim.lsp.config("version_lsp", version_lsp_opts)
 local knip_opts = require("lsp.knip")
 vim.lsp.config("knip", knip_opts)
 
-vim.lsp.enable({
-  "lua_ls",
+local servers = {
   "gopls",
   "golangci_lint_ls",
-  "vue_ls",
-  "svelte",
-  "astro",
   "rust_analyzer",
   "sourcekit",
   "pylsp",
   "ruff_lsp",
-  "phpactor",
-  "laravel-ls",
   "bashls",
   "html",
   "cssls",
   "cssmodules_ls",
   "stylelint_lsp",
-  "tailwindcss",
   "eslint",
   "biome",
   "oxlint",
   "oxfmt",
   "actionsls",
   "zizmor",
-  "docker_language_server",
   "jsonls",
   "yamlls",
   "tombi",
   "terraformls",
   "tflint",
-  "ember",
   "efm",
   "version_lsp",
   "knip",
-})
+}
+if work_machine then
+  table.insert(servers, "vue_ls")
+end
+vim.lsp.enable(servers)
 
 -- vts_ls or deno
 vim.api.nvim_create_autocmd("FileType", {
@@ -211,8 +199,8 @@ vim.api.nvim_create_autocmd("FileType", {
       return
     end
 
-    -- nuxt
-    if vim.fn.findfile("nuxt.config.ts", ".;") ~= "" then
+    -- nuxt。vtsls は work の mise にだけ入っている
+    if work_machine and vim.fn.findfile("nuxt.config.ts", ".;") ~= "" then
       vim.lsp.enable("vtsls")
       return
     end

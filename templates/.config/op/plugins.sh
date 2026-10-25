@@ -1,4 +1,4 @@
 export OP_PLUGIN_ALIASES_SOURCED=1
-alias pgcli="op plugin run -- pgcli"
+{% if vars.dotfiles_purpose == "work" %}
 alias localstack="op plugin run -- localstack"
-alias ngrok="op plugin run -- ngrok"
+{% endif %}

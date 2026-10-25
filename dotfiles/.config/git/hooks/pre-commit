@@ -74,10 +74,6 @@ if ((${#workflow_files[@]} > 0)); then
     status=1
   fi
 
-  if ! actionlint "${workflow_files[@]}"; then
-    status=1
-  fi
-
   if ! zizmor --no-progress "${workflow_files[@]}"; then
     status=1
   fi

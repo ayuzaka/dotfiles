@@ -44,7 +44,6 @@ cssls
 ctermbg
 cwindow
 cword
-dbcli
 dbeaver
 dbname
 dearmor
@@ -210,7 +209,6 @@ mbti
 mdast
 monokai
 moonfmt
-mycli
 mypy
 nargs
 nbsp
@@ -218,7 +216,6 @@ neorg
 netrw
 neue
 nextjs
-ngrok
 nmap
 nnoremap
 noautoremoveslash
@@ -269,7 +266,6 @@ oxfmt
 oxlint
 palt
 pesc
-pgcli
 phpenv
 pipx
 pkce

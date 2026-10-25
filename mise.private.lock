@@ -2,6 +2,35 @@
 
 lockfile_version = 2
 
+[[tools.cursor-agent]]
+version = "2026.10.22-27dcf5f"
+backend = "http:cursor-agent"
+specifiers = ["latest"]
+
+[tools.cursor-agent.options]
+strip_components = "0"
+
+[tools.cursor-agent."platforms.linux-arm64"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/linux/arm64/agent-cli-package.tar.gz"
+
+[tools.cursor-agent."platforms.linux-arm64-musl"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/linux/arm64/agent-cli-package.tar.gz"
+
+[tools.cursor-agent."platforms.linux-x64"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/linux/x64/agent-cli-package.tar.gz"
+
+[tools.cursor-agent."platforms.linux-x64-musl"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/linux/x64/agent-cli-package.tar.gz"
+
+[tools.cursor-agent."platforms.macos-arm64"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/darwin/arm64/agent-cli-package.tar.gz"
+
+[tools.cursor-agent."platforms.macos-x64"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/darwin/x64/agent-cli-package.tar.gz"
+
+[tools.cursor-agent."platforms.windows-x64"]
+url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/windows/x64/agent-cli-package.tar.gz"
+
 [[tools."go:tailscale.com/cmd/tailscale"]]
 version = "main"
 backend = "go:tailscale.com/cmd/tailscale"

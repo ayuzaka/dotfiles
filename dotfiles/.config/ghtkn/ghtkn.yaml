@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/suzuki-shunsuke/ghtkn/main/json-schema/ghtkn.json
+apps:
+  - name: ayuzaka
+    client_id: Iv23liYfkyFyO1qMJBaT
+    git_owner: ayuzaka

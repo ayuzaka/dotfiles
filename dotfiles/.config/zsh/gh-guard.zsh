@@ -14,5 +14,11 @@ gh() {
     done
   fi
 
-  command gh "$@"
+  if [[ -n ${GH_TOKEN:-} || -n ${GITHUB_TOKEN:-} ]]; then
+    command gh "$@"
+    return
+  fi
+
+  # ghtkn は PATH 上の gh を実行するので、この関数は再入しない
+  ghtkn exec -e GH_TOKEN -- gh "$@"
 }

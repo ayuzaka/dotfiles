@@ -12,6 +12,7 @@ dotfiles.root = "~/workspace/github.com/ayuzaka/dotfiles"
 "~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/kana-rule.conf" = { source = "dotfiles/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/kana-rule.conf", mode = "copy" }
 "~/.bashrc" = { source = "templates/.bashrc", mode = "template" }
 "~/.config/git/config" = { source = "templates/.config/git/config", mode = "template" }
+"~/.config/op/plugins.sh" = { source = "templates/.config/op/plugins.sh", mode = "template" }
 "~/.config/mise/conf.d/purpose.toml" = { source = "templates/.config/mise/conf.d/purpose.toml", mode = "template" }
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
 "~/.config/zsh/.zprofile" = { source = "templates/.config/zsh/.zprofile", mode = "template" }

@@ -21,7 +21,6 @@ imsnif
 jisx
 jisyo
 jmode
-karabiner
 keka
 kekaexternalhelper
 kiro

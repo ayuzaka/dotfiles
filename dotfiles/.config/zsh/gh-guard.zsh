@@ -19,6 +19,12 @@ gh() {
     return
   fi
 
+  # work では ghtkn を入れない。private でも未インストールなら素の gh に落とす
+  if ! command -v ghtkn >/dev/null 2>&1; then
+    command gh "$@"
+    return
+  fi
+
   # ghtkn は PATH 上の gh を実行するので、この関数は再入しない
   ghtkn exec -e GH_TOKEN -- gh "$@"
 }

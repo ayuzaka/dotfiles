@@ -15,7 +15,11 @@
   template = ~/.config/git/gitmessage
 [credential "https://github.com"]
   helper =
+{%- if vars.dotfiles_purpose == "work" %}
+  helper = !gh auth git-credential
+{%- else %}
   helper = !ghtkn git-credential
+{%- endif %}
 [credential "https://gist.github.com"]
   helper =
   helper = !gh auth git-credential

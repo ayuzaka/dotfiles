@@ -29,21 +29,6 @@ mkdir -p private/git
 "$EDITOR" private/git/work.gitconfig
 ```
 
-On a work machine, also create the Git-ignored ghtkn config.
-`templates/.config/ghtkn/ghtkn.yaml` reads it when the environment is `work`.
-Put that environment's GitHub App in it. This repository's private environment uses its own app.
-
-```sh
-mkdir -p private/ghtkn
-"$EDITOR" private/ghtkn/ghtkn.yaml
-```
-
-```yaml
-apps:
-  - name: work
-    client_id: Iv1...
-```
-
 Trust the cloned repository after reviewing its mise configuration.
 
 ```sh

@@ -21,6 +21,9 @@ Plug 'rhysd/vim-fixjson'
 Plug 'preservim/vim-markdown'
 Plug 'bullets-vim/bullets.vim'
 Plug 'machakann/vim-sandwich'
+" denops / skkeleton: nvim lazy-lock と同じコミットに揃える
+Plug 'vim-denops/denops.vim', { 'commit': 'e82c5a94ca1154b05c9d74d6f6f58c9991b1424f' }
+Plug 'vim-skk/skkeleton', { 'commit': 'e22d59fea70e46cf27f516c7a31ef4f52e6e8b06' }
 
 call plug#end()
 

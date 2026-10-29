@@ -85,7 +85,7 @@ export MINIKUBE_HOME="$XDG_DATA_HOME"/minikube
 autoload -Uz colors ; colors
 
 # 既定のエディタ。エージェント CLI の Ctrl-G は VISUAL を優先する
-export EDITOR=nvim
+export EDITOR=vim
 export VISUAL=vim
 
 # cdした際のディレクトリをディレクトリスタックへ自動追加

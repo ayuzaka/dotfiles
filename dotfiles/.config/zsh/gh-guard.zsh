@@ -14,6 +14,12 @@ gh() {
     done
   fi
 
+  # work 環境は organization 向けに GitHub CLI の認証を使う
+  if [[ ${MISE_ENV:-} == work ]]; then
+    command gh "$@"
+    return
+  fi
+
   if [[ -n ${GH_TOKEN:-} || -n ${GITHUB_TOKEN:-} ]]; then
     command gh "$@"
     return

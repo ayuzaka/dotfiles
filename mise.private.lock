@@ -31,6 +31,11 @@ url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/darwin/x64/agent-cli-
 [tools.cursor-agent."platforms.windows-x64"]
 url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/windows/x64/agent-cli-package.tar.gz"
 
+[[tools.ghtkn]]
+version = "0.4.1"
+backend = "aqua:suzuki-shunsuke/ghtkn"
+specifiers = ["latest"]
+
 [[tools."go:tailscale.com/cmd/tailscale"]]
 version = "main"
 backend = "go:tailscale.com/cmd/tailscale"

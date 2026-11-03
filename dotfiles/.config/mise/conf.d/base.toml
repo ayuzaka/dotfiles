@@ -106,6 +106,7 @@ zoxide = "latest"
 "brew-cask:1password" = "latest"
 "brew-cask:chatgpt" = "latest"
 "brew-cask:ghostty" = "latest"
+"brew-cask:anomalyco/tap/hex" = "latest"
 "brew:mas" = "latest"
 "mas:1351639930" = "latest"  # Gifski
 "mas:6757801838" = "latest"  # RunCat Neo

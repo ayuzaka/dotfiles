@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codex-merge:
+    name: Codex merge
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Rust
+        run: bash .github/ci/install-rust.sh
+      - name: Test the merge tool
+        run: cargo test --locked --manifest-path scripts/merge-codex-config/Cargo.toml
+      - name: Run the merge tool
+        run: bash .github/ci/check-merge.sh
+
+  nvim:
+    name: Neovim specs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Neovim
+        run: bash .github/ci/install-nvim.sh
+      - name: Run specs
+        run: bash .github/ci/check-nvim.sh
+
+  static:
+    name: JSON and shellcheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install shellcheck
+        run: bash .github/ci/install-shellcheck.sh
+      - name: Parse JSON
+        run: bash .github/ci/check-json.sh
+      - name: Run shellcheck
+        run: bash .github/ci/check-shell.sh
+
+  apply-linux:
+    name: Private dotfiles apply (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install mise
+        run: bash .github/ci/install-mise.sh
+      - name: Apply
+        run: bash .github/ci/apply-private.sh
+
+  apply-macos:
+    name: Private dotfiles apply (macOS)
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install mise
+        run: bash .github/ci/install-mise.sh
+      - name: Apply
+        run: bash .github/ci/apply-private.sh

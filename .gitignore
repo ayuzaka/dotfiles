@@ -1,4 +1,5 @@
 private/
 scripts/merge-codex-config/target
+artifacts/
 **/__pycache__/
 *.py[cod]

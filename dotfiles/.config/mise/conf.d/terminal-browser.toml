@@ -1,0 +1,2 @@
+[bootstrap.hooks.post-packages]
+run = "$HOME/.local/bin/fix-terminal-browser-codesign"

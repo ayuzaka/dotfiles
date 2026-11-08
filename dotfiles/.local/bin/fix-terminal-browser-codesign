@@ -1,0 +1,27 @@
+#!/bin/bash
+# Workaround for mise brew-cask extract leaving AppleDouble `._*` as regular
+# files, which breaks notarized .app signatures (Gatekeeper "damaged").
+# macOS /usr/bin/tar does not do this. Remove those files when present.
+set -euo pipefail
+
+app="/opt/homebrew/Caskroom/terminal-browser"
+if [[ ! -d "$app" ]]; then
+  exit 0
+fi
+
+python3 - "$app" <<'PY'
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1])
+removed = 0
+for path in root.rglob("._*"):
+    if path.is_file():
+        path.unlink()
+        removed += 1
+
+if removed:
+    print(f"removed {removed} AppleDouble file(s) under {root}")
+else:
+    print(f"unchanged {root}")
+PY

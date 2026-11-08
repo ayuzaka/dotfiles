@@ -117,6 +117,23 @@ cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ":s" ? [getchar(), ""][1] 
 -- netrwの設定
 vim.g.netrw_home = vim.env.XDG_CACHE_HOME .. "/nvim"
 
+-- http(s) は terminal-browser で開く（ローカルパスはシステムの opener のまま）
+do
+  local open = vim.ui.open
+  vim.ui.open = function(path, opt)
+    opt = opt or {}
+    if
+      not opt.cmd
+      and type(path) == "string"
+      and path:match("^https?://")
+      and vim.fn.executable("terminal-browser") == 1
+    then
+      opt = vim.tbl_extend("force", opt, { cmd = { "terminal-browser", "open" } })
+    end
+    return open(path, opt)
+  end
+end
+
 -- :term でカーソルがずれる問題の解消
 vim.api.nvim_create_autocmd("TermOpen", {
 pattern = "*",

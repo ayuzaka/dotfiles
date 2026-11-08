@@ -19,6 +19,7 @@
   helper = !gh auth git-credential
 {%- else %}
   helper = !ghtkn git-credential
+  useHttpPath = true
 {%- endif %}
 [credential "https://gist.github.com"]
   helper =

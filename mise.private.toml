@@ -22,7 +22,7 @@ turso = "latest"
 "brew-cask:brave-browser" = "latest"
 "brew-cask:obsidian" = "latest"
 "brew-cask:cursor" = "latest"
-"brew-cask:abue-ammar/tinycast/tinycast" = "latest"
+"brew-cask:tinycast" = "latest"
 "brew-cask:beeper" = "latest"
 "mas:302584613" = "latest"  # Kindle
 

@@ -32,7 +32,7 @@ Preconditions:
 
 ## Gotchas
 
-- The post-dotfiles hook is `dotfiles/.local/bin/ghostty-sync-theme`, declared in `dotfiles/.config/mise/conf.d/ghostty.toml`. It writes `$XDG_CONFIG_HOME/ghostty/theme` and, when `Ghostty.app` is running, reloads it with `osascript`. The harness sets `XDG_CONFIG_HOME` inside `RUN_HOME`. A real `XDG_CONFIG_HOME` inherited from the user would make the hook write outside the run.
+- The post-dotfiles hook is `dotfiles/.local/bin/bootstrap-post-dotfiles`, declared in `dotfiles/.config/mise/conf.d/ghostty.toml`. It runs `ghostty-sync-theme` (writes `$XDG_CONFIG_HOME/ghostty/theme`, reloads Ghostty with `osascript` when running), then links the herdr terminal-browser link plugin. The harness sets `XDG_CONFIG_HOME` inside `RUN_HOME`. A real `XDG_CONFIG_HOME` inherited from the user would make the theme write outside the run.
 - `templates/.bashrc` adds `export MISE_ENV=...` only when the OS is not macOS. Do not use the rendered bashrc as proof of a Mac apply.
 - `apply-work` without `private/git/work.gitconfig` exits `1` with `Failed to read file` for `private/git/work.gitconfig` and does not create `~/.config/git/config`.
 - `--yes` skips the confirmation prompt. A later apply on a real machine may prompt; that prompt is not part of this harness.

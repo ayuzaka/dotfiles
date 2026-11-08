@@ -32,50 +32,50 @@ url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/darwin/x64/agent-cli-
 url = "https://downloads.cursor.com/lab/2026.10.22-27dcf5f/windows/x64/agent-cli-package.tar.gz"
 
 [[tools.ghtkn]]
-version = "0.4.2"
+version = "0.4.3"
 backend = "aqua:suzuki-shunsuke/ghtkn"
 specifiers = ["latest"]
 
 [tools.ghtkn."platforms.linux-arm64"]
-checksum = "sha256:40c0f15e924ce087bf6cdcf3c3e2960945afc14c35b3a5a342effe0057a757aa"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387534"
+checksum = "sha256:8d7f539a0a924d7ea9873d180f8f13692252e762eb905959ad1c7b856290a1bb"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521191"
 provenance = "github-attestations"
 
 [tools.ghtkn."platforms.linux-arm64-musl"]
-checksum = "sha256:40c0f15e924ce087bf6cdcf3c3e2960945afc14c35b3a5a342effe0057a757aa"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387534"
+checksum = "sha256:8d7f539a0a924d7ea9873d180f8f13692252e762eb905959ad1c7b856290a1bb"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521191"
 provenance = "github-attestations"
 
 [tools.ghtkn."platforms.linux-x64"]
-checksum = "sha256:7f07647c32e45c31c82a97547a1e008bcf127f88dc3269cd53d73f61c6ca4e89"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387526"
+checksum = "sha256:e451a18622995f9cca89a149d1d1d54e886c8656e9592adc512a60a522b18709"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521178"
 provenance = "github-attestations"
 
 [tools.ghtkn."platforms.linux-x64-musl"]
-checksum = "sha256:7f07647c32e45c31c82a97547a1e008bcf127f88dc3269cd53d73f61c6ca4e89"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387526"
+checksum = "sha256:e451a18622995f9cca89a149d1d1d54e886c8656e9592adc512a60a522b18709"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521178"
 provenance = "github-attestations"
 
 [tools.ghtkn."platforms.macos-arm64"]
-checksum = "sha256:e85345449b6a67a3f76ce3e0a837e8b134b0ec29b0b7c2d6a3f6aab976297619"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387510"
+checksum = "sha256:9ed2f1e9b191d4e5161841d8b7d173a96d217ac5ae79be100ec5dcd4ddeb5197"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521153"
 provenance = "github-attestations"
 
 [tools.ghtkn."platforms.macos-x64"]
-checksum = "sha256:88387bbd03544ba5d5d03c79e560b38dba04ccebac647f4b256cb020c9a2feeb"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387513"
+checksum = "sha256:7f1504e7c6b8a12b944224178a67568ee165daae690064797d3cec7c6740b86b"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521150"
 provenance = "github-attestations"
 
 [tools.ghtkn."platforms.windows-x64"]
-checksum = "sha256:8a8512a317fad169fec42899367a9723748f3c736b44b029a9fec3b967548e66"
-url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.2/ghtkn_windows_amd64.zip"
-url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/664387543"
+checksum = "sha256:66ec61d78df6daebaedaccea03ec4a0dae82389179b150f9d79b561a92d79420"
+url = "https://github.com/suzuki-shunsuke/ghtkn/releases/download/v0.4.3/ghtkn_windows_amd64.zip"
+url_api = "https://api.github.com/repos/suzuki-shunsuke/ghtkn/releases/assets/678521211"
 provenance = "github-attestations"
 
 [[tools."go:tailscale.com/cmd/tailscale"]]
@@ -99,44 +99,44 @@ backend = "npm:obsidian-headless"
 specifiers = ["latest"]
 
 [[tools.opencode]]
-version = "1.18.31"
+version = "1.19.5"
 backend = "aqua:anomalyco/opencode"
 specifiers = ["latest"]
 
 [tools.opencode."platforms.linux-arm64"]
-checksum = "sha256:d4e332f46b227448582c0d9fc75f6f826dfe95c9f751bc2011fc4d937a042be6"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563876611"
+checksum = "sha256:fae5be262d693b7c5e562856cc473e59e741772936db0c0600ac0d5ed5bd088b"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683987812"
 
 [tools.opencode."platforms.linux-arm64-musl"]
-checksum = "sha256:20f548107dd3307437594ad4344f9dac2e2264c26ea03d946db461f73c2d1bf0"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563876682"
+checksum = "sha256:fae5be262d693b7c5e562856cc473e59e741772936db0c0600ac0d5ed5bd088b"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683987812"
 
 [tools.opencode."platforms.linux-x64"]
-checksum = "sha256:e9312be75ed803b7415fc2aeabda1f4fe938912a39673762dc0c38c0e11ebde4"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563876605"
+checksum = "sha256:588310a336fa3b9df36b3f0225b26f679d453efaad0cf3d66c3651ef3ec1647a"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683986986"
 
 [tools.opencode."platforms.linux-x64-musl"]
-checksum = "sha256:408bfbcae7d8760b4fa15f11d4b342afef25a2ea64c4807706f8180bacdb4008"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563876607"
+checksum = "sha256:588310a336fa3b9df36b3f0225b26f679d453efaad0cf3d66c3651ef3ec1647a"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683986986"
 
 [tools.opencode."platforms.macos-arm64"]
-checksum = "sha256:caf7f31fa1aec2353ea859d4ef9ab824c6273d941b016e88d51193fa3028d34e"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-darwin-arm64.zip"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563876553"
+checksum = "sha256:c1c9e62521192192ef4c3ed1355ada2144055bddb61682217e997b03c55203c1"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-darwin-arm64.zip"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683994920"
 
 [tools.opencode."platforms.macos-x64"]
-checksum = "sha256:f8510eaf400f07c3a2014e3a517e3650c705bcd6ac3e6740351b723ee685042f"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-darwin-x64.zip"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563876552"
+checksum = "sha256:b0212efa6db347187225a17fa3a31c6b261bf4c9f1589a290b0ca902d720d250"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-darwin-x64.zip"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683994925"
 
 [tools.opencode."platforms.windows-x64"]
-checksum = "sha256:0ecd7ffc7f26390ce7799e7bcd409e4f11c410144308a6a5b0fcdce63d871006"
-url = "https://github.com/anomalyco/opencode/releases/download/v1.18.31/opencode-windows-x64.zip"
-url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/563879966"
+checksum = "sha256:09a6e693157f0887e504f2cf4357a8cbddc5ead5d0dffb9a269dcc47c48640f5"
+url = "https://github.com/anomalyco/opencode/releases/download/v1.19.5/opencode-windows-x64.zip"
+url_api = "https://api.github.com/repos/anomalyco/opencode/releases/assets/683997723"
 
 [[tools.pi]]
 version = "0.86.0"
@@ -179,36 +179,36 @@ url = "https://github.com/earendil-works/pi/releases/download/v0.86.0/pi-windows
 url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/575641012"
 
 [[tools.turso]]
-version = "1.0.32"
+version = "1.0.34"
 backend = "aqua:tursodatabase/turso-cli"
 specifiers = ["latest"]
 
 [tools.turso."platforms.linux-arm64"]
-checksum = "sha256:672f29e8f77b4c30a5f31c04fe0d5636d29fb1bb5be1137c40234bb2e76c2150"
-url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.32/turso-cli_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/518489486"
+checksum = "sha256:5cdc15a9a04841142729ec1ab3ee7fea77dcf2d2cba1701ac218c83f6fe6c2f5"
+url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.34/turso-cli_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/620008689"
 
 [tools.turso."platforms.linux-arm64-musl"]
-checksum = "sha256:672f29e8f77b4c30a5f31c04fe0d5636d29fb1bb5be1137c40234bb2e76c2150"
-url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.32/turso-cli_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/518489486"
+checksum = "sha256:5cdc15a9a04841142729ec1ab3ee7fea77dcf2d2cba1701ac218c83f6fe6c2f5"
+url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.34/turso-cli_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/620008689"
 
 [tools.turso."platforms.linux-x64"]
-checksum = "sha256:c35acbcad8e2e7a32580fe380adc4658d3032ddc56d25396b9b123aa4a704107"
-url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.32/turso-cli_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/518489481"
+checksum = "sha256:9eb67f3efece578a6407d1fa535a75e8d7b5cde4f6af3ac1dd79929e99768dc9"
+url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.34/turso-cli_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/620008692"
 
 [tools.turso."platforms.linux-x64-musl"]
-checksum = "sha256:c35acbcad8e2e7a32580fe380adc4658d3032ddc56d25396b9b123aa4a704107"
-url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.32/turso-cli_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/518489481"
+checksum = "sha256:9eb67f3efece578a6407d1fa535a75e8d7b5cde4f6af3ac1dd79929e99768dc9"
+url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.34/turso-cli_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/620008692"
 
 [tools.turso."platforms.macos-arm64"]
-checksum = "sha256:f180b794032f29b4ab44ad7451b2be661cd581311119ff5160359d2562d5f2be"
-url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.32/turso-cli_Darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/518489484"
+checksum = "sha256:b182a192dbb9b5f4f150430efeefca1b1185bdead789d1b55ae6aa73e83838c3"
+url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.34/turso-cli_Darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/620008690"
 
 [tools.turso."platforms.macos-x64"]
-checksum = "sha256:d6ba8b73d7cafff8b6a318215f19a6933fe3fca6a74960b7c8ad42758eebbd6e"
-url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.32/turso-cli_Darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/518489482"
+checksum = "sha256:db4b640547135436f4e96729a84d8cd699e855a86057ef93dd827eb2fee9f0e2"
+url = "https://github.com/tursodatabase/turso-cli/releases/download/v1.0.34/turso-cli_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/tursodatabase/turso-cli/releases/assets/620008691"

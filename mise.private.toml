@@ -3,6 +3,7 @@ dotfiles_purpose = "private"
 
 [dotfiles]
 "~/.cursor" = { source = "dotfiles/.cursor", mode = "symlink-each" }
+"~/.cursor/rules/prefer-opencode-browse.mdc" = { source = "dotfiles/.cursor-rules/prefer-opencode-browse.mdc", mode = "symlink" }
 "~/.config/opencode" = { source = "dotfiles/opencode", mode = "symlink-each" }
 "~/.config/ghtkn/ghtkn.yaml" = { source = "templates/.config/ghtkn/ghtkn.yaml", mode = "template" }
 

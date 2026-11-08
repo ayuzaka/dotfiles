@@ -1,0 +1,13 @@
+---
+description: Prefer OpenCode Browse for opening and interacting with web pages
+alwaysApply: true
+---
+
+# Prefer OpenCode Browse
+
+When opening a URL, reading a live page, or interacting with a website:
+
+- Use the `browse` MCP (OpenCode Browse) first.
+- Do not use Cursor `WebFetch`, Playwright MCP, Chrome DevTools MCP, or `curl`/`ax` for page browsing unless `browse` is unavailable or the user asks otherwise.
+- Preferred loop: `session_new` → `execute` (`page.goto` + `snapshot` / targeted reads) → verify → `session_reset` or `session_delete` when done.
+- Keep allowlists tight with `allowedOrigins` / `session_allowlist` before typing secrets.

@@ -50,8 +50,21 @@ load_run() {
     echo "harness: no run env at $env_file; launch first" >&2
     exit 1
   fi
+  # cmd_launch writes these into run.env. The placeholders exist so
+  # ShellCheck can see the names, and so a missing key fails here instead of
+  # later as an unbound variable. source replaces the placeholders.
+  RUN_ROOT=
+  RUN_HOME=
+  REPO=
+  MISE_ENV=
+  EVIDENCE=
   # shellcheck disable=SC1090
   source "$env_file"
+  : "${RUN_ROOT:?harness: run.env did not set RUN_ROOT}"
+  : "${RUN_HOME:?harness: run.env did not set RUN_HOME}"
+  : "${REPO:?harness: run.env did not set REPO}"
+  : "${MISE_ENV:?harness: run.env did not set MISE_ENV}"
+  : "${EVIDENCE:?harness: run.env did not set EVIDENCE}"
 }
 
 apply_isolated_env() {

@@ -1,0 +1,26 @@
+id = "ayuzaka.terminal-browser-links"
+name = "Terminal Browser Links"
+version = "0.1.0"
+min_herdr_version = "0.8.2"
+description = "Open clicked http(s) links in terminal-browser instead of the system browser."
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "open-url"
+title = "Open URL in terminal-browser"
+description = "Open the clicked URL in a terminal-browser split"
+contexts = ["global"]
+command = ["bash", "open-url.sh"]
+
+[[actions]]
+id = "open-split"
+title = "Open terminal-browser (right split)"
+description = "Split the focused pane and open terminal-browser in it"
+contexts = ["global"]
+command = ["bash", "open-split.sh"]
+
+[[link_handlers]]
+id = "http"
+title = "Open in terminal-browser"
+pattern = "^https?://.*$"
+action = "open-url"

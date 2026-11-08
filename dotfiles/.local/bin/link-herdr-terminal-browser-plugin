@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Link the local herdr plugin that routes Ctrl-clicked http(s) URLs to
+# terminal-browser. Idempotent: re-link refreshes the registration.
+set -euo pipefail
+
+self="$(realpath "${BASH_SOURCE[0]}")"
+repo="$(cd "$(dirname "$self")/../../.." && pwd)"
+plugin="$repo/extras/herdr-plugins/terminal-browser-links"
+
+if [[ ! -f "$plugin/herdr-plugin.toml" ]]; then
+  echo "missing plugin manifest: $plugin/herdr-plugin.toml" >&2
+  exit 1
+fi
+
+if ! command -v herdr >/dev/null 2>&1; then
+  echo "herdr is not installed; skip plugin link" >&2
+  exit 0
+fi
+
+herdr plugin link "$plugin"
+herdr plugin list

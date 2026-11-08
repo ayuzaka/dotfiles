@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# post-dotfiles hook: Ghostty theme sync, then herdr → terminal-browser link plugin.
+set -euo pipefail
+
+"$HOME/.local/bin/ghostty-sync-theme"
+"$HOME/.local/bin/link-herdr-terminal-browser-plugin"

@@ -89,7 +89,6 @@ zoxide = "latest"
 "pipx:plamo-translate" = { version = "latest", uvx_args = "--python 3.13 --with torch --with 'mcp<2'" }
 "pipx:python-lsp-server" = "latest"
 "pipx:ruff-lsp" = "latest"
-"pipx:tavily-cli" = "latest"
 
 [bootstrap.packages]
 "brew:git" = "latest"

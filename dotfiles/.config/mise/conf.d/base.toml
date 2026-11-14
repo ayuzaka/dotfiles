@@ -112,25 +112,25 @@ zoxide = "latest"
 "mas:1351639930" = "latest"  # Gifski
 "mas:6757801838" = "latest"  # RunCat Neo
 
-[bootstrap.macos.dock]
+[bootstrap.settings.macos.dock]
 autohide = true
 orientation = "right"
 tilesize = 16
 magnification = false
 show_recents = false
 
-[bootstrap.macos.finder]
+[bootstrap.settings.macos.finder]
 show_all_files = true
 show_pathbar = true
 show_status_bar = true
 show_extensions_warning = true
 preferred_view_style = "icon"
 
-[bootstrap.macos.keyboard]
+[bootstrap.settings.macos.keyboard]
 press_and_hold = false
 fn_state = true
 
-[bootstrap.macos.trackpad]
+[bootstrap.settings.macos.trackpad]
 tap_to_click = false
 three_finger_drag = true
 

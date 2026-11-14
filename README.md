@@ -148,7 +148,7 @@ Mac App Store のアプリ（`mas:`）は prune の対象外なので、App Stor
 
 ## macOS のシステム設定
 
-`[bootstrap.macos]` の Dock、Finder、キーボード、トラックパッド。`base.toml` にある。
+`[bootstrap.settings.macos]` の Dock、Finder、キーボード、トラックパッド。`base.toml` にある。
 
 - 追加・更新:
 

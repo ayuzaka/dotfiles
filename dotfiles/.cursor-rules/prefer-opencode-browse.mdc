@@ -9,5 +9,7 @@ When opening a URL, reading a live page, or interacting with a website:
 
 - Use the `browse` MCP (OpenCode Browse) first.
 - Do not use Cursor `WebFetch`, Playwright MCP, Chrome DevTools MCP, or `curl`/`ax` for page browsing unless `browse` is unavailable or the user asks otherwise.
-- Preferred loop: `session_new` → `execute` (`page.goto` + `snapshot` / targeted reads) → verify → `session_reset` or `session_delete` when done.
-- Keep allowlists tight with `allowedOrigins` / `session_allowlist` before typing secrets.
+- Cursor's browse tools are `execute`, `status`, and `tabs`. Preferred loop: `execute` whose `page.goto(url)` opens a background tab (omit `tab`; the result starts with `tab: <id>`) → later `execute` calls pass that `tab` and use `snapshot()` / `ref()` → verify → `page.close()` or `tabs` with `action: "close"` and `tab` when done.
+- Reuse a tab with `tabs` `action: "new"` and an `id` (set `keepOpen: true` so idle cleanup leaves it open). Opening that `id` again returns the same tab, still on its current page. Pass the `id` as `tab`.
+- Before typing secrets, set a tight `allowedOrigins` when opening the tab (`tabs` `action: "new"`, or `browse.tabs` / `browse.navigate` inside `execute`).
+- If no browser is connected, call `status` and follow `nextStep` instead of retrying.

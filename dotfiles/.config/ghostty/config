@@ -33,6 +33,9 @@ shell-integration-features = cursor,no-sudo,no-title,no-ssh-env,no-ssh-terminfo,
 tab-inherit-working-directory = true
 split-inherit-working-directory = true
 
+# 1.4.0 changed the macOS default from true to none.
+copy-on-select = primary
+
 # Keybinds: clear defaults, then rebuild (Leader = ctrl+s sequences)
 keybind = clear
 
